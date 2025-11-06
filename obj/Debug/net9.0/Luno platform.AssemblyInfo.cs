@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Luno platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae438c175591d0f4dc283d0bb15dcde4809f427c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Luno platform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Luno platform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
