@@ -1,0 +1,205 @@
+﻿@{
+    Layout = "_SideBarDashbord";
+}
+@section styles {
+    <link rel="stylesheet" href="/assets/css/Reports.css">
+}
+<div class="Reportspage m-3 bodycontent" id="Reportspage">
+    <div class="container text-center mt-3">
+        <div class="search">
+            <input type="search"
+                   class="form-control me-3"
+                   placeholder="اكتب للبحث" />
+            <i class="fa-solid fa-magnifying-glass icon me-3 btn btn-outline-success me-1 icon"></i>
+        </div>
+
+        <div class="flexToProg">
+            <div class="sub-choose d-flex mb-3">
+                <div class="dropdown choose-Sub">
+                    <button class="btn dropdown-toggle repbtn"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        اختر المادة
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" data-subject="arabic" href="#">عربي</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" data-subject="english" href="#">انجليزي</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" data-subject="chemistry" href="#">كيمياء</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="studentName" value="عربي" disabled />
+                    <label for="studentName">اسم المادة</label>
+                </div>
+            </div>
+
+            <div id="semiContainer"></div>
+
+        </div>
+
+        <!-- جدول عربي -->
+        <div class="table-responsive">
+            <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit"
+                   id="arabic">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الكورس</th>
+                        <th>تسليم الواجب</th>
+                        <th>درجات الامتحان</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    <tr>
+                        <th>1</th>
+                        <td>الوحدة الأولى عربي</td>
+                        <td>تم التسليم</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>مراجعة على الوحدة الأولى</td>
+                        <td>تحت المراجعة</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>مراجعة على الوحدة الأولى</td>
+                        <td>تحت المراجعة</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>مراجعة على الوحدة الأولى</td>
+                        <td>تحت المراجعة</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>مراجعة على الوحدة الأولى</td>
+                        <td>تحت المراجعة</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>مراجعة على الوحدة الأولى</td>
+                        <td>تحت المراجعة</td>
+                        <td>49</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- جدول إنجليزي -->
+        <div class="table-responsive">
+
+            <table class="table  subject-table table-striped d-none table-hover text-center align-middle table_Edit"
+                   id="english">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الكورس</th>
+                        <th>تسليم الواجب</th>
+                        <th>درجات الامتحان</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    <tr>
+                        <th>1</th>
+                        <td>Unit 1 English</td>
+                        <td>Submitted</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Review Unit 1</td>
+                        <td>Not Submitted</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Review Unit 1</td>
+                        <td>Not Submitted</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Review Unit 1</td>
+                        <td>Not Submitted</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Review Unit 1</td>
+                        <td>Not Submitted</td>
+                        <td>38</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Review Unit 1</td>
+                        <td>Not Submitted</td>
+                        <td>38</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- جدول كيمياء -->
+        <div class="table-responsive">
+
+            <table class="table  table-hover table-striped subject-table d-none  text-center align-middle table_Edit"
+                   id="chemistry">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الكورس</th>
+                        <th>تسليم الواجب</th>
+                        <th>درجات الامتحان</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    <tr>
+                        <th>1</th>
+                        <td>الوحدة الأولى كيمياء</td>
+                        <td>تم التسليم</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>الوحدة الثانية كيمياء</td>
+                        <td>لم يسلم بعد</td>
+                        <td>41</td>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td>الوحدة الأولى كيمياء</td>
+                        <td>تم التسليم</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>الوحدة الثانية كيمياء</td>
+                        <td>لم يسلم بعد</td>
+                        <td>41</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>الوحدة الثانية كيمياء</td>
+                        <td>لم يسلم بعد</td>
+                        <td>41</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section script {
+   
+    <script src="/assets/js/prog.js"></script>
+}

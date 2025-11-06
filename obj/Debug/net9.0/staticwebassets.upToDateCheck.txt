@@ -1,61 +1,203 @@
-wwwroot\ahmed_morsi\assets\css\bootstrap.min.css
-wwwroot\ahmed_morsi\assets\css\bootstrap.min.css.map
-wwwroot\ahmed_morsi\assets\css\details_courses.css
-wwwroot\ahmed_morsi\assets\css\home_page.css
-wwwroot\ahmed_morsi\assets\css\Login_page.css
-wwwroot\ahmed_morsi\assets\css\navbar.css
-wwwroot\ahmed_morsi\assets\css\portfolio_teacher.css
-wwwroot\ahmed_morsi\assets\css\show_all_teacher.css
-wwwroot\ahmed_morsi\assets\css\show_courses.css
-wwwroot\ahmed_morsi\assets\css\teacher_login.css
-wwwroot\ahmed_morsi\assets\fonts\DINNextLTArabic-Regular-3 (1).ttf
-wwwroot\ahmed_morsi\assets\imgs\2-4.png
-wwwroot\ahmed_morsi\assets\imgs\38619-Enroll360-Solutions-Header-Transfer-Portal-1080x720-1-1080x720-c-default.png
-wwwroot\ahmed_morsi\assets\imgs\7a9eeeba-c0dd-40bc-ac67-47e8a63f99a9.png
-wwwroot\ahmed_morsi\assets\imgs\7db3c2974f23463c4699b9a8b8e56ff62b865494.jpg
-wwwroot\ahmed_morsi\assets\imgs\919ef1f4636547f6e57082e8bcba3ffe4c997829.jpeg
-wwwroot\ahmed_morsi\assets\imgs\a.jpg
-wwwroot\ahmed_morsi\assets\imgs\b.jpg
-wwwroot\ahmed_morsi\assets\imgs\c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg
-wwwroot\ahmed_morsi\assets\imgs\download.jpeg
-wwwroot\ahmed_morsi\assets\imgs\Englishimg.png
-wwwroot\ahmed_morsi\assets\imgs\icon.svg
-wwwroot\ahmed_morsi\assets\imgs\logo.svg
-wwwroot\ahmed_morsi\assets\imgs\logohomepage.png
-wwwroot\ahmed_morsi\assets\imgs\mohamedsalahcourse.jpg
-wwwroot\ahmed_morsi\assets\imgs\Screenshot 2025-09-10 150338.png
-wwwroot\ahmed_morsi\assets\imgs\Teacher.webp
-wwwroot\ahmed_morsi\assets\imgs\Teacher2.jpeg
-wwwroot\ahmed_morsi\assets\imgs\Teacher3.jpeg
-wwwroot\ahmed_morsi\assets\js\bootstrap.bundle.min.js
-wwwroot\ahmed_morsi\assets\js\bootstrap.bundle.min.js.map
-wwwroot\ahmed_morsi\assets\js\buttom.js
-wwwroot\ahmed_morsi\assets\js\governorates.js
-wwwroot\ahmed_morsi\assets\js\main.js
-wwwroot\ahmed_morsi\assets\js\navbar.js
-wwwroot\ahmed_morsi\assets\js\pages.js
-wwwroot\ahmed_morsi\assets\js\swaper.js
+wwwroot\assets\css\all.min.css
+wwwroot\assets\css\bootstrap.min.css
+wwwroot\assets\css\bootstrap.min.css.map
+wwwroot\assets\css\dashboard.css
+wwwroot\assets\css\details_courses.css
+wwwroot\assets\css\home_page.css
+wwwroot\assets\css\Login_page.css
+wwwroot\assets\css\mainpage.css
+wwwroot\assets\css\navbar.css
+wwwroot\assets\css\portfolio_teacher.css
+wwwroot\assets\css\Reports.css
+wwwroot\assets\css\responsive-fix.css
+wwwroot\assets\css\show_all_teacher.css
+wwwroot\assets\css\show_courses.css
+wwwroot\assets\css\Student_registration_page_m.css
+wwwroot\assets\css\Subjects.css
+wwwroot\assets\css\teacher_login.css
+wwwroot\assets\fonts\DINNextLTArabic-Regular-3 (1).ttf
+wwwroot\assets\imgs\2-4.png
+wwwroot\assets\imgs\38619-Enroll360-Solutions-Header-Transfer-Portal-1080x720-1-1080x720-c-default.png
+wwwroot\assets\imgs\7a9eeeba-c0dd-40bc-ac67-47e8a63f99a9.png
+wwwroot\assets\imgs\7db3c2974f23463c4699b9a8b8e56ff62b865494.jpg
+wwwroot\assets\imgs\919ef1f4636547f6e57082e8bcba3ffe4c997829.jpeg
+wwwroot\assets\imgs\a.jpg
+wwwroot\assets\imgs\Avatar 3.svg
+wwwroot\assets\imgs\b.jpg
+wwwroot\assets\imgs\c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg
+wwwroot\assets\imgs\download.jpeg
+wwwroot\assets\imgs\Englishimg.png
+wwwroot\assets\imgs\icon.svg
+wwwroot\assets\imgs\logo.svg
+wwwroot\assets\imgs\logohomepage.png
+wwwroot\assets\imgs\mohamedsalahcourse.jpg
+wwwroot\assets\imgs\Sasuke.svg
+wwwroot\assets\imgs\Screenshot 2025-09-10 150338.png
+wwwroot\assets\imgs\Teacher.webp
+wwwroot\assets\imgs\Teacher2.jpeg
+wwwroot\assets\imgs\Teacher3.jpeg
+wwwroot\assets\imgs\testImg.jpg
+wwwroot\assets\js\all.min.js
+wwwroot\assets\js\bootstrap.bundle.min.js
+wwwroot\assets\js\bootstrap.bundle.min.js.map
+wwwroot\assets\js\buttom.js
+wwwroot\assets\js\dashbord.js
+wwwroot\assets\js\governorates.js
+wwwroot\assets\js\main.js
+wwwroot\assets\js\mainprogres.js
+wwwroot\assets\js\navbar.js
+wwwroot\assets\js\pages.js
+wwwroot\assets\js\prog.js
+wwwroot\assets\js\progressbar.js
+wwwroot\assets\js\Subjects.js
+wwwroot\assets\js\swaper.js
 wwwroot\favicon.ico
-wwwroot\ahmed_morsi\assets\css\Student_registration_page_m.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\bootstrap.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\bootstrap.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\details_courses.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\home_page.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\Login_page.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\navbar.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\portfolio_teacher.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\show_all_teacher.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\show_courses.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\teacher_login.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\imgs\icon.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\imgs\logo.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\bootstrap.bundle.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\bootstrap.bundle.min.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\buttom.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\governorates.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\main.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\navbar.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\pages.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\js\swaper.js
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\LICENSE.txt
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\all.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\navbar.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\show_all_teacher.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\show_courses.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Student_registration_page_m.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\teacher_login.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\buttom.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\pages.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\swaper.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\governorates.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\navbar.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\icon.svg
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\portfolio_teacher.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\main.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\bootstrap.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Login_page.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\home_page.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\details_courses.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\logo.svg
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\bootstrap.bundle.min.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\bootstrap.bundle.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\bootstrap.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\dashboard.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\mainpage.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Reports.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\responsive-fix.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Subjects.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\Avatar 3.svg
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\Sasuke.svg
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\all.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\dashbord.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\mainprogres.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\prog.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\progressbar.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\Subjects.js
 D:\Luno platform\Luno platform\Luno platform\wwwroot\favicon.ico
-D:\Luno platform\Luno platform\Luno platform\wwwroot\ahmed_morsi\assets\css\Student_registration_page_m.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\additional-methods.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\LICENSE.md
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.js
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.map
+D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\LICENSE.txt

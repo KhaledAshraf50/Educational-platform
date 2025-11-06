@@ -1,0 +1,228 @@
+/* .Reportspage {
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 30px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+ 
+} */
+body {
+  margin: 0;
+  font-family: DIN Next LT Arabic;
+  background: #f8f9fa;
+}
+
+:root {
+  --primary-color: #092c4c;
+  --secondary-color: #f2994a;
+  --Info-color: #2f80ed;
+  --Success-color: #27ae60;
+  --Warning-color: #e2b93b;
+  --Error-color: #eb5757;
+  --sidebar-bg: #ffffff;
+  --content-bg: #f8fafc;
+  --white-color: #fff;
+  --border-color: #bdbdbd;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Start Reportspage */
+#Reportspage {
+  margin-right: 72px;
+  padding: 24px;
+  transition: margin-right 0.3s;
+}
+
+.sidebar:hover ~ #Reportspage {
+  margin-right: 220px;
+}
+
+#Reportspage .search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Reportspage input {
+  direction: rtl;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+#Reportspage .search .icon {
+  font-size: 24px;
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  border: 1px solid var(--border-color);
+  transition: 0.3s;
+  padding: 8px 16px;
+}
+
+#Reportspage .search .icon:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+.table_Edit {
+  background-color: var(--content-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.table_Edit thead th {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table_Edit tbody tr button {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: none;
+  transition: 0.3s ease;
+}
+.table_Edit th,
+.table_Edit tr {
+  height: 64px;
+}
+.table_Edit tbody td button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+@media (max-width: 992px) {
+  .search input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  #Reportspage {
+    margin-right: 0px;
+    padding: 0px;
+    transition: margin-right 0.3s;
+  }
+
+  .search {
+    /* flex-direction: column; */
+    gap: 2px;
+  }
+  .search .icon {
+    font-size: 20px;
+  }
+  .btns {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .table_Edit {
+    font-size: 14px;
+  }
+}
+.Reportspage .dropdown .repbtn {
+  background: var(--white-color);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 16px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.Reportspage .dropdown .repbtn:hover {
+  box-shadow: var(--card-shadow);
+}
+
+.Reportspage .dropdown-menu {
+  border-radius: 4px;
+  width: 320px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--hover-shadow);
+  padding: 0px;
+}
+
+.Reportspage .dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+  height: 55px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+.Reportspage .dropdown-menu .dropdown-item:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.Reportspage .sub-choose {
+  display: flex;
+  align-items: end;
+  gap: 32px;
+  margin: 16px 0;
+}
+.Reportspage .flexToProg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input-group input {
+  text-align: center;
+  width: 220px;
+  height: 55px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--white-color);
+  color: var(--primary-color);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-group label {
+  border-radius: 20px;
+  padding: 5px 12px;
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+/* End Reportspage */
+#semiContainer {
+  width: 200px;
+  height: 100px;
+  margin: 16px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  #semiContainer {
+    width: 140px !important;
+    height: 70px !important;
+    margin: 8px auto !important;
+  }
+}

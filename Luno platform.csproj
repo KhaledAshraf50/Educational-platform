@@ -8,9 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\ahmed_morsi\assets\imgs\" />
-    <Folder Include="wwwroot\ahmed_morsi\assets\js\" />
-    <Folder Include="wwwroot\ahmed_morsi\assets\fonts\" />
+    <Compile Remove="wwwroot\ahmed_morsi\**" />
+    <Content Remove="wwwroot\ahmed_morsi\**" />
+    <EmbeddedResource Remove="wwwroot\ahmed_morsi\**" />
+    <None Remove="wwwroot\ahmed_morsi\**" />
   </ItemGroup>
 
 </Project>
