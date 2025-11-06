@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+<link rel="stylesheet" href="~/ahmed_morsi/assets/css/portfolio_teacher.css" />
+
+<div class="teacher-profile-container" style="margin-top: 100px;">
+
+
+
+
+
+    <div class="teacher-info">
+        <img src="~/ahmed_morsi/assets/imgs/a.jpg" alt="صورة المدرس">
+        <h2>مستر حسن ممدوح</h2>
+        <p>مدرس رياضيات</p>
+        <div class="teacher-details">
+            <ul>
+                <li><i class="fa-solid fa-graduation-cap"></i> المؤهل: بكالوريوس تربية قسم رياضيات</li>
+                <li><i class="fa-solid fa-briefcase"></i> الخبرة: 10 سنوات في تدريس الرياضيات</li>
+                <li><i class="fa-solid fa-envelope"></i> البريد: hassan.math@example.com</li>
+                <li><i class="fa-solid fa-phone"></i> الهاتف: 01012345678</li>
+            </ul>
+        </div>
+
+        <div class="teacher-bio">
+            أنا مستر حسن ممدوح، مدرس رياضيات متخصص في تبسيط المفاهيم الرياضية
+            وجعل المادة ممتعة وسهلة الفهم لجميع المراحل. أؤمن أن الرياضيات يمكن أن تكون ممتعة عندما تُدرَّس بالطريقة الصحيحة.
+        </div>
+    </div>
+
+    <!-- 📚 الصفوف -->
+    <div class="teacher-classes">
+        <h3><i class="fa-solid fa-layer-group"></i> الصفوف التي يدرّسها</h3>
+
+        <div class="class-cards">
+            <div class="class-card">
+                <i class="fa-solid fa-book"></i>
+                <h4>الصف الأول الإعدادي</h4>
+                <p>عدد الكورسات: 3</p>
+                <form action="/homepage/show_courses_teacher" method="post">
+                <button>تصفح الكورسات</button>
+
+                    </form>
+            </div>
+
+            <div class="class-card">
+                <i class="fa-solid fa-book-open"></i>
+                <h4>الصف الثاني الإعدادي</h4>
+                <p>عدد الكورسات: 4</p>
+                <button>تصفح الكورسات</button>
+            </div>
+        </div>
+
+    </div>
+</div>   

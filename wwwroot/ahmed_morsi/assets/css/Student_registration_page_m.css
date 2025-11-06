@@ -1,0 +1,228 @@
+:root {
+  --primary-color: #0ea5e9; /* أزرق أساسي */
+  --secondary-color: #2ecc71; /* أخضر */
+  --accent-color: #e74c3c; /* أحمر */
+  --background-color: #f4f4f4; /* رمادي فاتح */
+  --text-color: #333333; /* أسود غامق */
+}
+
+
+/* Container */
+
+
+.form-container {
+  max-width: 900px;
+  margin: 120px auto;
+  background: #fff; /* لون فاتح بدل الغامق */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 14px;
+  color: #4b5563; /* لون نص غامق على الفاتح */
+  margin-bottom: 20px;
+}
+
+.subtitle span {
+  color:var(--primary-color) ;/* لون أصفر داكن */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Grid */
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+@media (min-width: 768px) {
+  .grid-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* أي عنصر عنده الكلاس .full-width ياخد العرض كله */
+  .grid-form > .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* Floating label */
+.form-group {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 25px 12px 5px 12px;
+  border: none;
+  border: 2px solid #BDBDBD; /* أزرق فاتح */
+  background: transparent;
+  color: #111827; /* نص غامق */
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  z-index: 2;
+}
+
+
+.form-group label {
+  
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  color: #6b7280; /* رمادي متوسط */
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 3;
+  background-color: #fff;
+
+}
+
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: 6px;
+  right: 8px;
+  font-size: 12px;
+  color:var(--primary-color);
+  /* background: #f9fafb; */
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* Animated background */
+.bg-anim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(59, 130, 246, 0.2);
+  z-index: 4;
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+.form-group input:focus ~ .bg-anim {
+  transform: translateX(-100%);
+}
+
+.form-group input:not(:focus) ~ .bg-anim {
+  transform: translateX(100%);
+}
+
+
+/* Select */
+/* Select */
+.form-group select {
+    width: 100%;
+    padding: 25px 12px 5px 12px;
+    border: none;
+    border: 1px solid #BDBDBD;
+    color: #111827;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    z-index: 2;
+    appearance: none;
+    cursor: pointer;
+}
+
+    .form-group select option {
+        background: #f9fafb;
+        color: #4F4F4F;
+        padding: 10px;
+    }
+
+
+    .form-group select:focus + label,
+    .form-group select:valid + label {
+        top: 4px;
+        right: 8px;
+        font-size: 12px;
+        color: var(--primary-color);
+        background: #f9fafb;
+        padding: 0 4px;
+        border-radius: 4px;
+    }
+
+/* Password toggle */
+.password-group .toggle-password {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #3b82f6;
+  font-size: 18px;
+  z-index: 5;
+}
+
+/* Error messages */
+.error-msg  {
+  
+  display: none;
+  /* background-color: #f87171; */
+  color: #ff0404;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 5;
+
+}
+/* تغيير لون الـ input عند وجود خطأ */
+.input-error {
+  border-color: red !important;
+}
+
+.input-error ~ .error-msg {
+  display: block;
+}
+
+.error-msg:not(:empty) {
+  display: block;
+}
+
+/* السهم المخصص للأب form-group1 */
+.form-group1 {
+  position: relative;
+}
+
+/* السهم */
+    .form-group1::after {
+        content: "\f107"; /* سهم من Font Awesome */
+        font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+        font-weight: 900;
+        position: absolute;
+        left: 12px; /* لو RTL خلي السهم على اليسار */
+        top: 50%;
+        transform: translateY(-50%);
+        color: #38bdf8;
+        pointer-events: none; /* لا يؤثر على الضغط على select */
+        z-index: 3;
+    }
+
+
+
+/* اخفاء السهم الافتراضي */
+.form-group1 select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.full-width{
+  color: #6b7280; /* رمادي متوسط */
+  font-size: 16px;
+}
