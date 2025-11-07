@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Luno_platform.Controllers.homepage
+namespace Luno_platform.Controllers
 {
   
     public class HomepageController : Controller
