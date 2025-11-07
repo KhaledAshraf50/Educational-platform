@@ -5,7 +5,7 @@ namespace Luno_platform.Controllers.homepage
   
     public class HomepageController : Controller
     {
-        public IActionResult mainpage()
+        public IActionResult ainpage()
         {
             return View();
         }
