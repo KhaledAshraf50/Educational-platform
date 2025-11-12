@@ -126,3 +126,6 @@ D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\8z008yp
 D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\ry6hu2kdve-dd6z7egasc.gz
 D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\s0iqz3mxes-5pze98is44.gz
 D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\uonajyc4x7-mlv21k5csn.gz
+D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\j9fgxiwu1x-vr0nu0p0bi.gz
+D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\8k8lxsw7gb-bfpes18tbb.gz
+D:\Luno platform\Luno platform\Luno platform\obj\Debug\net9.0\compressed\uk73max4gq-xu1i5g14b0.gz

@@ -2,6 +2,7 @@ wwwroot\assets\css\all.min.css
 wwwroot\assets\css\bootstrap.min.css
 wwwroot\assets\css\bootstrap.min.css.map
 wwwroot\assets\css\dashboard.css
+wwwroot\assets\css\dashboardadmin.css
 wwwroot\assets\css\details_courses.css
 wwwroot\assets\css\home_page.css
 wwwroot\assets\css\Login_page.css
@@ -13,6 +14,7 @@ wwwroot\assets\css\responsive-fix.css
 wwwroot\assets\css\show_all_teacher.css
 wwwroot\assets\css\show_courses.css
 wwwroot\assets\css\Student_registration_page_m.css
+wwwroot\assets\css\style.css
 wwwroot\assets\css\Subjects.css
 wwwroot\assets\css\teacher_login.css
 wwwroot\assets\fonts\DINNextLTArabic-Regular-3 (1).ttf
@@ -42,6 +44,7 @@ wwwroot\assets\js\bootstrap.bundle.min.js
 wwwroot\assets\js\bootstrap.bundle.min.js.map
 wwwroot\assets\js\buttom.js
 wwwroot\assets\js\dashbord.js
+wwwroot\assets\js\dashbordadmin.js
 wwwroot\assets\js\governorates.js
 wwwroot\assets\js\main.js
 wwwroot\assets\js\mainprogres.js
@@ -201,3 +204,6 @@ D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.js
 D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.js
 D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.map
 D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\LICENSE.txt
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\dashboardadmin.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\style.css
+D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\dashbordadmin.js
