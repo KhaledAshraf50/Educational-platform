@@ -1,3 +1,9 @@
+using Luno_platform.Models;
+using Luno_platform.Repository;
+using Luno_platform.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+
 namespace Luno_platform
 {
     public class Program
@@ -8,6 +14,14 @@ namespace Luno_platform
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<LunoDBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+
+);
+            builder.Services.AddScoped(typeof(I_BaseRepository<>), typeof(BaseRepository<>));
+
+            builder.Services.AddScoped(typeof(I_BaseService<>), typeof(BaseService<>));
+
 
             var app = builder.Build();
 
