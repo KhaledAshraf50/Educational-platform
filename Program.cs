@@ -18,9 +18,22 @@ namespace Luno_platform
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 
 );
+            //_______________________________________________________
             builder.Services.AddScoped(typeof(I_BaseRepository<>), typeof(BaseRepository<>));
 
             builder.Services.AddScoped(typeof(I_BaseService<>), typeof(BaseService<>));
+
+
+            builder.Services.AddScoped<I_homepage_serves,Homepage_Service>();
+            builder.Services.AddScoped<I_instructor_services,instructor_services>();
+            //builder.Services.AddScoped<I_instructor_repo,instructor_services>();
+            builder.Services.AddScoped<I_instructor_repo,instructor_repo>();
+
+
+
+
+
+            //_______________________________________________________
 
 
             var app = builder.Build();

@@ -10,7 +10,12 @@ namespace Luno_platform.Models
 
         [Required]
         [MaxLength(200)]
-        public string SubjectName { get; set; }
+        public string SubjectNameAR { get; set; }
+        //[Required]
+
+        [MaxLength(200)]
+        public string SubjectNameEN { get; set; }
+
 
         public string Image { get; set; }
 

@@ -6,10 +6,16 @@ namespace Luno_platform.Models
     public class Instructor
     {
         [Key]
-       
+
+      
         public int instructorID { get; set; }
+        public string Image { get; set; }
+        public string motto { get; set; }
+        public string bio { get; set; }
+        public string eligible { get; set; }
 
         [Required]
+
 
         public int UserId { get; set; }
 
