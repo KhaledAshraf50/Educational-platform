@@ -1,4 +1,11 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+
+@model homepage_viewmodel
+
+
+
+
+@{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 <link rel="stylesheet" href="~/assets/css/home_page.css" />
@@ -44,37 +51,46 @@
                     <!-- <div class="swiper-pagination"></div> -->
                     <div class="swiper-wrapper ">
 
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <div class="p-2 imgs">
-                                    <img class=" " src="~/assets/imgs/7db3c2974f23463c4699b9a8b8e56ff62b865494.jpg" alt="">
+                        @foreach(var teac in Model.instructor)
+                        {
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="p-2 imgs">
+                                        <img class=" " src="@Url.Content(teac.Image)" alt="@teac.User.fname">
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="iconcrown d-flex align-items-center ">
+
+                                            <i class="fas fa-crown iconcrown1"></i>
+                                            <h6 class="mx-2">@teac.Subject.SubjectNameAR</h6>
+
+                                        </div>
+                                        <h3 class=" d-flex text-align: right " style="padding-right: 5px;">@teac.User.fname @teac.User.lastName</h3>
+                                        <p class=" d-flex text-align: right " style="padding-right: 5px;">@teac.motto</p>
+                                        <div class=" tages " style="display: flex; gap: 20px;">
+
+                                            @foreach (var classe in teac.instructor_classescs)
+                                            {
+                                                <p class=" tags" style="font-size: 10px ">@classe.classes.ClassName </p>
+
+                                                
+                                            }
+
+
+
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="card-body">
 
-                                    <div class="iconcrown d-flex align-items-center ">
-
-                                        <i class="fas fa-crown iconcrown1"></i>
-                                        <h6 class="mx-2">رياضيات</h6>
-
-                                    </div>
-                                    <h3 class=" d-flex text-align: right " style="padding-right: 5px;">محمد عبد الجواد</h3>
-                                    <p class=" d-flex text-align: right " style="padding-right: 5px;">كيمياء - عميد الكيمياء</p>
-                                    <div class=" tages " style="display: flex; gap: 20px;">
-
-
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-
-
-
-                                    </div>
-                                </div>
                             </div>
+                            
+                        }
 
-
-                        </div>
+                     
 
                         <div class="swiper-slide">
                             <div class="card">
@@ -108,69 +124,6 @@
 
                         </div>
 
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <div class="p-2 imgs">
-                                    <img class=" " src="~/assets/imgs/a.jpg" alt="">
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="iconcrown d-flex align-items-center ">
-
-                                        <i class="fas fa-crown iconcrown1"></i>
-                                        <h6 class="mx-2">رياضيات</h6>
-
-                                    </div>
-                                    <h3 class=" d-flex text-align: right " style="padding-right: 5px;">محمد عبد الجواد</h3>
-                                    <p class=" d-flex text-align: right " style="padding-right: 5px;">كيمياء - عميد الكيمياء</p>
-                                    <div class=" tages " style="display: flex; gap: 20px;">
-
-
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <div class="p-2 imgs">
-                                    <img class=" " src="~/assets/imgs/b.jpg" alt="">
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="iconcrown d-flex align-items-center ">
-
-                                        <i class="fas fa-crown iconcrown1"></i>
-                                        <h6 class="mx-2">رياضيات</h6>
-
-                                    </div>
-                                    <h3 class=" d-flex text-align: right " style="padding-right: 5px;">محمد عبد الجواد</h3>
-                                    <p class=" d-flex text-align: right " style="padding-right: 5px;">كيمياء - عميد الكيمياء</p>
-                                    <div class=" tages " style="display: flex; gap: 20px;">
-
-
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
 
                     </div>
                 </div>
@@ -654,114 +607,36 @@
                     <!-- <div class="swiper-pagination"></div> -->
                     <div class="swiper-wrapper  ">
 
-                        <div class="swiper-slide" style="height: auto; ">
-                            <div class="card-subject" style="width: 100%;">
-                                <div class="subject-card">
-                                    <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
-                                    </div>
-                                    <div class="text-subject">
-                                        <h1 class="namesubjectEB">English</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
-                                            <i class="fas fa-user-graduate"></i>
-                                            (<span>3</span> مدرس) موجود
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @foreach(var item in Model.subjects)
+                        {
 
                         <div class="swiper-slide" style="height: auto; ">
                             <div class="card-subject" style="width: 100%;">
                                 <div class="subject-card">
                                     <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
+                                            <img src="@Url.Content(item.Image)" alt="">
                                     </div>
                                     <div class="text-subject">
-                                        <h1 class="namesubjectEB">English</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
+                                        <h1 class="namesubjectEB">@item.SubjectNameAR</h1>
+                                        <p class="namesubjectEB">@item.SubjectNameEN</p>
+                                        @* <p class="subject-teachers">
                                             <i class="fas fa-user-graduate"></i>
                                             (<span>3</span> مدرس) موجود
-                                        </p>
+                                        </p> *@
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide" style="height: auto; ">
-                            <div class="card-subject" style="width: 100%;">
-                                <div class="subject-card">
-                                    <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
-                                    </div>
-                                    <div class="text-subject">
-                                        <h1 class="namesubjectEB">English</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
-                                            <i class="fas fa-user-graduate"></i>
-                                            (<span>3</span> مدرس) موجود
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style="height: auto; ">
-                            <div class="card-subject" style="width: 100%;">
-                                <div class="subject-card">
-                                    <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
-                                    </div>
-                                    <div class="text-subject">
-                                        <h1 class="namesubjectEB">English</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
-                                            <i class="fas fa-user-graduate"></i>
-                                            (<span>3</span> مدرس) موجود
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style="height: auto; ">
-                            <div class="card-subject" style="width: 100%;">
-                                <div class="subject-card">
-                                    <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
-                                    </div>
-                                    <div class="text-subject">
-                                        <h1 class="namesubjectEB">English</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
-                                            <i class="fas fa-user-graduate"></i>
-                                            (<span>3</span> مدرس) موجود
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide" style="height: auto; ">
-                            <div class="card-subject" style="width: 100%;">
-                                <div class="subject-card">
-                                    <div class="subject-img">
-                                        <img src="~/assets/imgs/Englishimg.png" alt="English">
-                                    </div>
-                                    <div class="text-subject">
-                                        <h1 class="namesubjectEB">عربي</h1>
-                                        <p class="namesubjectEB">انجليزي</p>
-                                        <p class="subject-teachers">
-                                            <i class="fas fa-user-graduate"></i>
-                                            (<span>3</span> مدرس) موجود
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+                            
+                        }
 
                     </div>
 
 
                 </div>
+              
 
 
 
@@ -778,9 +653,7 @@
         <div class="swiper-button container  ">
 
             <div class="icon" id="goPrev1"> <i class="fa-solid fa-arrow-right"></i></div>
-            <button class="btn">
-                عرض الكل
-            </button>
+
 
             <div class="icon" id="goNext1"> <i class="fa-solid fa-arrow-left "></i></div>
 

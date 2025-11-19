@@ -12,7 +12,7 @@ namespace Luno_platform.Models
         [MaxLength(100)]
         public string branch { get; set; }
 
-
+        public string Image { get; set; }
         [Required]
 
         public int UserId { get; set; }
