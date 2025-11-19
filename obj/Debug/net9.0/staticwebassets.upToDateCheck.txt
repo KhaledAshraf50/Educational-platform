@@ -1,3 +1,98 @@
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\Reports.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\LICENSE.md
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\bootstrap.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\home_page.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\imgs\icon.svg
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\imgs\Sasuke.svg
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\all.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\Student_registration_page_m.css
+D:\depi\FinalProject\Educational-platform\wwwroot\favicon.ico
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\imgs\Avatar 3.svg
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\show_courses.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\style.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery\dist\jquery.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\Subjects.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\mainprogres.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\details_courses.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\dist\additional-methods.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\responsive-fix.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\Subjects.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\teacher_login.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\imgs\logo.svg
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\bootstrap.bundle.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\swaper.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\Login_page.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\dashboardadmin.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\prog.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\mainpage.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\main.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\bootstrap.bundle.min.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\portfolio_teacher.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\governorates.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\pages.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\dashbord.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\show_all_teacher.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery\dist\jquery.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery\dist\jquery.min.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\buttom.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\bootstrap.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\dashbordadmin.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\navbar.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery\LICENSE.txt
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\progressbar.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\dashboard.css
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\all.min.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\js\navbar.js
+D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\assets\css\all.min.css
 wwwroot\assets\css\bootstrap.min.css
 wwwroot\assets\css\bootstrap.min.css.map
@@ -55,6 +150,14 @@ wwwroot\assets\js\progressbar.js
 wwwroot\assets\js\Subjects.js
 wwwroot\assets\js\swaper.js
 wwwroot\favicon.ico
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -79,14 +182,6 @@ wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
@@ -100,110 +195,15 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\lib\bootstrap\LICENSE
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
-wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
-wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\LICENSE.txt
 wwwroot\lib\jquery-validation\dist\additional-methods.js
 wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 wwwroot\lib\jquery-validation\LICENSE.md
-wwwroot\lib\jquery\dist\jquery.js
-wwwroot\lib\jquery\dist\jquery.min.js
-wwwroot\lib\jquery\dist\jquery.min.map
-wwwroot\lib\jquery\LICENSE.txt
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\all.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\navbar.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\show_all_teacher.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\show_courses.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Student_registration_page_m.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\teacher_login.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\buttom.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\pages.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\swaper.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\governorates.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\navbar.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\icon.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\portfolio_teacher.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\main.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\bootstrap.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Login_page.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\home_page.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\details_courses.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\logo.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\bootstrap.bundle.min.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\bootstrap.bundle.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\bootstrap.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\dashboard.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\mainpage.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Reports.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\responsive-fix.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\Subjects.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\Avatar 3.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\imgs\Sasuke.svg
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\all.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\dashbord.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\mainprogres.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\prog.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\progressbar.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\Subjects.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\favicon.ico
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\additional-methods.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery-validation\LICENSE.md
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.js
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\dist\jquery.min.map
-D:\Luno platform\Luno platform\Luno platform\wwwroot\lib\jquery\LICENSE.txt
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\dashboardadmin.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\css\style.css
-D:\Luno platform\Luno platform\Luno platform\wwwroot\assets\js\dashbordadmin.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt

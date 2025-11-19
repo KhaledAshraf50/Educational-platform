@@ -1,0 +1,485 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\Luno platform.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Luno platform.gbubulow3t.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\Login_page.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Login_page.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\Reports.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Reports.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\Student_registration_page_m.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Student_registration_page_m.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\Subjects.css",
+      "PackagePath": "staticwebassets\\assets\\css\\Subjects.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\assets\\css\\dashboard.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\dashboardadmin.css",
+      "PackagePath": "staticwebassets\\assets\\css\\dashboardadmin.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\details_courses.css",
+      "PackagePath": "staticwebassets\\assets\\css\\details_courses.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\home_page.css",
+      "PackagePath": "staticwebassets\\assets\\css\\home_page.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\mainpage.css",
+      "PackagePath": "staticwebassets\\assets\\css\\mainpage.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\navbar.css",
+      "PackagePath": "staticwebassets\\assets\\css\\navbar.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\portfolio_teacher.css",
+      "PackagePath": "staticwebassets\\assets\\css\\portfolio_teacher.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\responsive-fix.css",
+      "PackagePath": "staticwebassets\\assets\\css\\responsive-fix.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\show_all_teacher.css",
+      "PackagePath": "staticwebassets\\assets\\css\\show_all_teacher.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\show_courses.css",
+      "PackagePath": "staticwebassets\\assets\\css\\show_courses.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\teacher_login.css",
+      "PackagePath": "staticwebassets\\assets\\css\\teacher_login.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\fonts\\DINNextLTArabic-Regular-3 (1).ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\DINNextLTArabic-Regular-3 (1).ttf"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\2-4.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\2-4.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\38619-Enroll360-Solutions-Header-Transfer-Portal-1080x720-1-1080x720-c-default.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\38619-Enroll360-Solutions-Header-Transfer-Portal-1080x720-1-1080x720-c-default.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\7a9eeeba-c0dd-40bc-ac67-47e8a63f99a9.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\7a9eeeba-c0dd-40bc-ac67-47e8a63f99a9.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\7db3c2974f23463c4699b9a8b8e56ff62b865494.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\7db3c2974f23463c4699b9a8b8e56ff62b865494.jpg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\919ef1f4636547f6e57082e8bcba3ffe4c997829.jpeg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\919ef1f4636547f6e57082e8bcba3ffe4c997829.jpeg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Avatar 3.svg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Avatar 3.svg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Englishimg.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Englishimg.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Sasuke.svg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Sasuke.svg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Screenshot 2025-09-10 150338.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Screenshot 2025-09-10 150338.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Teacher.webp",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Teacher.webp"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Teacher2.jpeg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Teacher2.jpeg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\Teacher3.jpeg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\Teacher3.jpeg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\a.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\a.jpg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\b.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\b.jpg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\download.jpeg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\download.jpeg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\icon.svg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\icon.svg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\logo.svg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\logo.svg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\logohomepage.png",
+      "PackagePath": "staticwebassets\\assets\\imgs\\logohomepage.png"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\mohamedsalahcourse.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\mohamedsalahcourse.jpg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\imgs\\testImg.jpg",
+      "PackagePath": "staticwebassets\\assets\\imgs\\testImg.jpg"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\Subjects.js",
+      "PackagePath": "staticwebassets\\assets\\js\\Subjects.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\all.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\all.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\buttom.js",
+      "PackagePath": "staticwebassets\\assets\\js\\buttom.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\dashbord.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashbord.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\dashbordadmin.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashbordadmin.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\governorates.js",
+      "PackagePath": "staticwebassets\\assets\\js\\governorates.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\mainprogres.js",
+      "PackagePath": "staticwebassets\\assets\\js\\mainprogres.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\navbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\navbar.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\pages.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\prog.js",
+      "PackagePath": "staticwebassets\\assets\\js\\prog.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\progressbar.js",
+      "PackagePath": "staticwebassets\\assets\\js\\progressbar.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\js\\swaper.js",
+      "PackagePath": "staticwebassets\\assets\\js\\swaper.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Luno platform.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Luno platform.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.Luno platform.props",
+      "PackagePath": "build\\Luno platform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.Luno platform.props",
+      "PackagePath": "buildMultiTargeting\\Luno platform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.Luno platform.props",
+      "PackagePath": "buildTransitive\\Luno platform.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
