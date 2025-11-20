@@ -261,3 +261,275 @@ D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\refint\Luno platform.
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\Luno platform.pdb
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\Luno platform.genruntimeconfig.cache
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\ref\Luno platform.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\appsettings.Development.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\appsettings.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.staticwebassets.runtime.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.staticwebassets.endpoints.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.exe
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.deps.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.runtimeconfig.json
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Luno platform.pdb
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Azure.Core.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Azure.Identity.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Humanizer.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.ClientModel.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.CodeDom.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Memory.Data.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\project takharog\The Project\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.csproj.AssemblyReference.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.GeneratedMSBuildEditorConfig.editorconfig
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.AssemblyInfoInputs.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.AssemblyInfo.cs
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.csproj.CoreCompileInputs.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.MvcApplicationPartsAssemblyInfo.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.RazorAssemblyInfo.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.RazorAssemblyInfo.cs
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.sourcelink.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\scopedcss\bundle\Luno platform.styles.css
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\scopedcss\projectbundle\Luno platform.bundle.scp.css
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\j9fgxiwu1x-vr0nu0p0bi.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\aykkthqh2n-k9ns5agxp1.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\1yy1djvxi2-wi25hh5hrq.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\izi0hipdo5-zd3ol14tgn.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ukijcp6kaj-vgw8iax2vw.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\nahppgw7jm-q05sqg7tt3.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\pst7dpzykl-wt51bmh9bv.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\7j50nyz65s-dck5hyjoi6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\6r1j81q78n-ctw9dwqebf.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\8k8lxsw7gb-bfpes18tbb.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ceyt1o2sng-gg5mvhurm0.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\7gfonuv8m2-x6gy7muo5q.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\21eydju4xw-aibcmtedp2.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\cimazqu71d-d4ybrmdh5t.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\2j053pj54e-t6yjd2j3tm.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\snt5tqzx5t-kb75u7wxjl.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\uk73max4gq-xu1i5g14b0.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\nrs5macl4r-59bbp0mfn3.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\jwt77hj1lm-hoteiumb5e.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\zpo8decyad-5ipweew5fc.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\osp8xx4f5c-5ipweew5fc.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\iwzprf3lhe-wpvvt8ef6o.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\76c33awhlh-61n19gt1b8.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\b02kx6hdgy-nakmwdwsxp.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\14k3b30sap-st1cbwfwo5.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\wqx3s0pr28-5p029spbuu.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\2yj9cc3wh8-5vj65cig9w.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\qs9inii2e1-e6q6xbwqzk.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\h2l3g8as6u-2q4vfeazbq.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\bu224thlxa-dy6jgresuo.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\vjugssgtc1-o371a8zbv2.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\08q9u21hz2-mk8rdyw69w.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\9k4qp8l7an-jeal3x0ldm.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\0z72v0n8cd-z7kmom2977.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\5nwtmfkrqr-okkk44j0xs.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\mc1j0aw74l-97yrjpyf9r.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\gyqdoivij9-cwzlr5n8x4.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\3w4o8knyok-y53cy5s2zj.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\2wc1c9gup4-wmug9u23qg.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\hotm9q6f7d-z9shlbduue.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\vfpcwa4jk3-j75batdsum.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\bkmzo2tibt-2yn17lgxub.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\h8d3r0l476-vy0bq9ydhf.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\a1g75n7mdc-ophe14yye5.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\dmsavdp3ou-ab1c3rmv7g.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\n3sgwjxinu-ik6i2hrs65.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\jaofx0apkl-56d2bn4wt9.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\mfm4ivf1vo-ozu22stjof.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\t6vo4lsgxa-73kdqttayv.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\dv6m17kgva-6gzpyzhau4.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\44sgeryje4-8inm30yfxf.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\gmrmkzmfcv-gjcw7pocpk.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\e84edga2wx-4gxs3k148c.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\hl2neval35-6l4ir0ityv.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\e6ota1w3v4-fctod5rc9n.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\8kaku7zr2r-f6zq8v6eb3.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\vq3g2pr2w4-kbynt5jhd9.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ule063fdoi-89qbw8ngem.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\npz8yynjkc-c2nslu3uf3.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\s3951vbnpl-n5w6o92d9r.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\cacd87qrjq-2lgwfvgpvi.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\azhebeanh0-jqwzsa9uv6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\233tkj86ha-wsezl0heh6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\urf35zfwym-1piudyfv7h.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\k7d6u7clbw-6ukhryfubh.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\zz6bhvkxrd-4908xmbfjr.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\a4lp4segio-u33ctipx7g.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\nysbpbpy56-03hjc8e09r.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\bs3qnjd8ws-48y08845bh.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\i0plxscx0m-356vix0kms.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ayr1uafwuz-ay5nd8zt9x.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\pcd3z8diu0-9oaff4kq20.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\sx2hknsdhd-6d0lkjaslc.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\whaozemuj1-l1zq2mitth.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\13camfqj9m-x0q3zqp4vz.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\8z008ypx24-7s2n0ol71w.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ry6hu2kdve-ehgnz7f14e.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\s0iqz3mxes-5pze98is44.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\uonajyc4x7-mlv21k5csn.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\a5d71ywj5a-gbubulow3t.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\fv10fm52kw-gbubulow3t.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\staticwebassets.build.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\staticwebassets.development.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno pla.352F01C9.Up2Date
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.dll
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\refint\Luno platform.dll
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.pdb
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\Luno platform.genruntimeconfig.cache
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\ref\Luno platform.dll
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\0efglkpusn-gfnkit3jpq.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\jq9w9o04ts-cqfyb35bbx.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\05drzcwedi-mfnf0c8sxu.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\bgavr3r8q4-kq5sohnzjf.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\ph4ili8ygr-ayfn7m9603.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\9a6s4d8hvb-zrsoo2a9gn.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\j70gqol450-pyhe47udw6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\laki1hxiri-tnvm78kv17.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\veg468beve-j8nu2oy8x7.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\b5k4eult6n-r0xf1adrow.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\6ugiw20caw-b605zrviat.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\9i8gkd384m-5ipweew5fc.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\x2geeeks0h-gtj45mk798.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\1pu4a5tqb0-7z09619q9j.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\tzw5vtv18l-jpw2fk0kvm.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\wo7ztozki8-wexis30tn8.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\4adkd63b9d-h85m06otfp.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\i6r9e8cr3b-zyma9w1t4a.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\mr8s5hvk75-0ia45k0zg6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\pkpt3glt4w-med9yvo8t6.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\9cfwfy70lm-tgxw920357.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\jet82vh2eu-rw8d2bv7cb.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\vns6yp39nt-iadzrettkq.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\bhm03z7yo0-vfkd2k94g3.gz
+D:\project takharog\The Project\Educational-platform\obj\Debug\net9.0\compressed\7zhbi2u33c-o3x6hdm46d.gz

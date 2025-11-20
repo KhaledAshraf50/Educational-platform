@@ -25,6 +25,14 @@ namespace Luno_platform.Models
         public DbSet<Classes> Classes { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher_payment> Teacher_Payments { get; set; }
+        public DbSet<instructor_classescs> instructor_classescs { get; set; }
+        public DbSet<Subject_Classes> Subject_Classes { get; set; }
+        public DbSet<Exams_contentcs> Exams_Contentcs { get; set; }
+        public DbSet<Task_content> Task_Contents { get; set; }
+
+        public DbSet<Student_Courses> Student_Courses { get; set; }
+        
 
 
 

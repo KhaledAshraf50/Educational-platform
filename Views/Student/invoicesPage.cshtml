@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "_SideBarDashbord";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/invoices.css">
+}
+<div class="InvoicesPage m-3" id="InvoicesPage">
+    <div class="container text-center mt-3 ">
+        <div class="header d-flex justify-content-between align-items-center mb-3">
+            <div class="title">
+                <h3>الفواتير</h3>
+                <p>آخر الفواتير الخاصة بالكورسات المشترك بها</p>
+            </div>
+            <!-- Search Box -->
+            <form class="search-box" role="search">
+                <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+                <!-- <i class="fa-solid fa-magnifying-glass"></i>س -->
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table table-hover text-center align-middle table_Edit">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الكورس</th>
+                        <th>تاريخ الفاتورة</th>
+                        <th>الحالة</th>
+                        <th>المبلغ</th>
+                        <th>عرض الفاتورة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Unit 1 English</td>
+                        <td>2025-09-01</td>
+                        <td><span class="badgepaid">مدفوع</span></td>
+                        <td>45EG</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Review Unit 1</td>
+                        <td>2025-09-05</td>
+                        <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
+                        <td>38EG</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Review Unit 2</td>
+                        <td>2025-09-05</td>
+                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                        <td>38EG</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Review Unit 3</td>
+                        <td>2025-09-05</td>
+                        <td><span class="badgepaid">مدفوع</span></td>
+                        <td>38EG</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Review Unit 4</td>
+                        <td>2025-09-05</td>
+                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                        <td>38EG</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btnsNextPre">
+                <button class="Previous">السابق</button>
+                <button class="Next">التالي</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script {
+    <script src="~/assets/js/invoices.js"></script>
+}

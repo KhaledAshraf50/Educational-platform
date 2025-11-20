@@ -1,4 +1,5 @@
-﻿
+﻿@using Luno_platform.Viewmodel
+@model mainPage_Student_ViewModel
 @{
     Layout = "_SideBarDashbord";
 }
@@ -9,11 +10,12 @@
     <div class="container">
         <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
             <div class="img">
-                <img src="/assets/imgs/Avatar 3.svg" alt="student_img" />
+                <img src=" @Model.Student.Image" alt="student_img" />
+                
             </div>
             <div class="text">
-                <h2>عبد العظيم عبد الناصر عبد العظيم</h2>
-                <p>الصف الثاني الثانوي</p>
+                <h2>@Model.Student.User.fname @Model.Student.User.lastName</h2>
+                <p>@Model.Student.Classes.ClassName</p>
             </div>
         </div>
         <div class="progres">
@@ -51,173 +53,43 @@
         <div class="courses">
             <div class="text"><p>الكورسات المشترك بها</p></div>
             <div class="courses-card d-flex flex-column flex-md-row">
+                @foreach (var course in Model.Courses)
+                { 
                 <div class="card-courses">
                     <div class="image-courses">
-                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
+                        <img class="" src="@course.Image" alt="" />
                     </div>
                     <div class="body-course">
                         <div class="bodytop">
                             <div class="bodyright">
                                 <div class="brtop">
-                                    <p>
-                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                        عربية - 2 ثانوي )
+                                    <p>@course.CourseName
                                     </p>
                                 </div>
                                 <div class="brmid">
                                     <p>
-                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                        الشاملة
+                                            @course.description
                                     </p>
                                 </div>
-                                <!-- <div class="brdowm">
-                                  <p>خلِّ بالك:</p>
-                                  <p>1- لازم تتفرج على فيديو كيفية تسليم الواجب قبل لما تضغط على تسليم الواجب.</p>
-                                  <p>2- محاولة تسليم الواجب هي مرة واحدة فقط فلازم تسلم الواجب صح علشان تعرف تشوف باقي المحاضرات ،لو
-                                    الواجب قفل منك لازم تتواصل مع الدعم عشان يزودولك محاولة.</p>
-                                  <p>3- الامتحان بيفتح مرة واحدة بس فحل كويس قبل ما تدوس إنهاء الامتحان ...</p>
-                                  <p>بالتوفيق يا بطل.</p>
-                                  </p>
-                                </div> -->
+                                
                             </div>
                             <div class="bodyleft">
                                 <a class=""> الدخول للكوس</a>
-                                <!-- <a class=""> اشتراك الان!</a> -->
+                                
                             </div>
                         </div>
                         <div class="bodybuttom">
-                            <div class="price"><span>294.00</span> جنيهًا</div>
+                            <div class="price"><span>@course.price</span> جنيهًا</div>
                             <div class="date">
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
+                                <h3>@course.createdAt</h3>
+                                
                             </div>
                         </div>
                     </div>
 
 
                 </div>
-                <div class="card-courses">
-                    <div class="image-courses">
-                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
-                    </div>
-                    <div class="body-course">
-                        <div class="bodytop">
-                            <div class="bodyright">
-                                <div class="brtop">
-                                    <p>
-                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                        عربية - 2 ثانوي )
-                                    </p>
-                                </div>
-                                <div class="brmid">
-                                    <p>
-                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                        الشاملة
-                                    </p>
-                                </div>
-                                <!-- <div class="brdowm">
-                                  <p>خلِّ بالك:</p>
-                                  <p>1- لازم تتفرج على فيديو كيفية تسليم الواجب قبل لما تضغط على تسليم الواجب.</p>
-                                  <p>2- محاولة تسليم الواجب هي مرة واحدة فقط فلازم تسلم الواجب صح علشان تعرف تشوف باقي المحاضرات ،لو
-                                    الواجب قفل منك لازم تتواصل مع الدعم عشان يزودولك محاولة.</p>
-                                  <p>3- الامتحان بيفتح مرة واحدة بس فحل كويس قبل ما تدوس إنهاء الامتحان ...</p>
-                                  <p>بالتوفيق يا بطل.</p>
-                                  </p>
-                                </div> -->
-                            </div>
-                            <div class="bodyleft">
-                                <a class=""> الدخول للكوس</a>
-                                <!-- <a class=""> اشتراك الان!</a> -->
-                            </div>
-                        </div>
-                        <div class="bodybuttom">
-                            <div class="price"><span>294.00</span> جنيهًا</div>
-                            <div class="date">
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="card-courses">
-                    <div class="image-courses">
-                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
-                    </div>
-                    <div class="body-course">
-                        <div class="bodytop">
-                            <div class="bodyright">
-                                <div class="brtop">
-                                    <p>
-                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                        عربية - 2 ثانوي )
-                                    </p>
-                                </div>
-                                <div class="brmid">
-                                    <p>
-                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                        الشاملة
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bodyleft">
-                                <a class=""> الدخول للكوس</a>
-                                <!-- <a class=""> اشتراك الان!</a> -->
-                            </div>
-                        </div>
-                        <div class="bodybuttom">
-                            <div class="price"><span>294.00</span> جنيهًا</div>
-                            <div class="date">
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="card-courses">
-                    <div class="image-courses">
-                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
-                    </div>
-                    <div class="body-course">
-                        <div class="bodytop">
-                            <div class="bodyright">
-                                <div class="brtop">
-                                    <p>
-                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                        عربية - 2 ثانوي )
-                                    </p>
-                                </div>
-                                <div class="brmid">
-                                    <p>
-                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                        الشاملة
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bodyleft">
-                                <a class=""> الدخول للكوس</a>
-                                <!-- <a class=""> اشتراك الان!</a> -->
-                            </div>
-                        </div>
-                        <div class="bodybuttom">
-                            <div class="price"><span>294.00</span> جنيهًا</div>
-                            <div class="date">
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
+                }
             </div>
         </div>
         <div class="courses">
@@ -377,9 +249,7 @@
     </div>
 </div>
 @section script {
-<script src="/assets/js/progressbar.js"></script>
-<script src="/assets/js/all.min.js"></script>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/mainprogres.js"></script>
-<script src="/assets/js/dashbord.js"></script>
+
+<script src="~/assets/js/mainprogres.js"></script>
+
 }
