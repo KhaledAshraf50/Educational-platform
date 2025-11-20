@@ -261,3 +261,276 @@ D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\refint\Luno platform.
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\Luno platform.pdb
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\Luno platform.genruntimeconfig.cache
 D:\depi\FinalProject\Educational-platform\obj\Debug\net9.0\ref\Luno platform.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\appsettings.Development.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\appsettings.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.staticwebassets.runtime.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.staticwebassets.endpoints.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.exe
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.deps.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.runtimeconfig.json
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Luno platform.pdb
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Azure.Core.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Azure.Identity.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Humanizer.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.ClientModel.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.CodeDom.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Formats.Asn1.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Memory.Data.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Text.Json.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\FinalLuno\Educational-platform\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.csproj.AssemblyReference.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.GeneratedMSBuildEditorConfig.editorconfig
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.AssemblyInfoInputs.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.AssemblyInfo.cs
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.csproj.CoreCompileInputs.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.MvcApplicationPartsAssemblyInfo.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.RazorAssemblyInfo.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.RazorAssemblyInfo.cs
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.sourcelink.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\scopedcss\bundle\Luno platform.styles.css
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\scopedcss\projectbundle\Luno platform.bundle.scp.css
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\x2geeeks0h-r5om5b6a5j.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\1pu4a5tqb0-t7g9wg1led.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\tzw5vtv18l-8odm1nyag1.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\wo7ztozki8-51m9s3t9h2.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\j9fgxiwu1x-vr0nu0p0bi.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\aykkthqh2n-k9ns5agxp1.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\1yy1djvxi2-wi25hh5hrq.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\0efglkpusn-jiqr362t7d.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\izi0hipdo5-zd3ol14tgn.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\jq9w9o04ts-2m34umef4j.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ukijcp6kaj-vgw8iax2vw.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\nahppgw7jm-q05sqg7tt3.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\05drzcwedi-y5p1h8vph7.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bgavr3r8q4-kavth9ste5.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\pst7dpzykl-wt51bmh9bv.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\7j50nyz65s-dck5hyjoi6.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\6r1j81q78n-ctw9dwqebf.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\8k8lxsw7gb-bfpes18tbb.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\9a6s4d8hvb-y4o4grko9p.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ceyt1o2sng-gg5mvhurm0.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\7gfonuv8m2-x6gy7muo5q.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\21eydju4xw-aibcmtedp2.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\cimazqu71d-d4ybrmdh5t.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\2j053pj54e-t6yjd2j3tm.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\4adkd63b9d-8zvjqd3m3v.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\i6r9e8cr3b-kq3enx1zfc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\mr8s5hvk75-259makaqpv.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\snt5tqzx5t-kb75u7wxjl.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\uk73max4gq-xu1i5g14b0.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\nrs5macl4r-59bbp0mfn3.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\jwt77hj1lm-hoteiumb5e.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\zpo8decyad-5ipweew5fc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\osp8xx4f5c-5ipweew5fc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\jet82vh2eu-j912oxmtfb.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\vns6yp39nt-no5evgc3cu.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bhm03z7yo0-y4rpeys3eg.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\iwzprf3lhe-wpvvt8ef6o.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\76c33awhlh-61n19gt1b8.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\b02kx6hdgy-nakmwdwsxp.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\14k3b30sap-st1cbwfwo5.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\wqx3s0pr28-5p029spbuu.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\2yj9cc3wh8-5vj65cig9w.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\qs9inii2e1-e6q6xbwqzk.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\h2l3g8as6u-2q4vfeazbq.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bu224thlxa-dy6jgresuo.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\vjugssgtc1-o371a8zbv2.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\08q9u21hz2-mk8rdyw69w.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\9k4qp8l7an-jeal3x0ldm.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\0z72v0n8cd-z7kmom2977.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\5nwtmfkrqr-okkk44j0xs.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\mc1j0aw74l-97yrjpyf9r.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\gyqdoivij9-cwzlr5n8x4.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\3w4o8knyok-y53cy5s2zj.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\2wc1c9gup4-wmug9u23qg.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\hotm9q6f7d-z9shlbduue.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\vfpcwa4jk3-j75batdsum.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bkmzo2tibt-2yn17lgxub.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\h8d3r0l476-vy0bq9ydhf.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\a1g75n7mdc-ophe14yye5.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\dmsavdp3ou-ab1c3rmv7g.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\n3sgwjxinu-ik6i2hrs65.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\jaofx0apkl-56d2bn4wt9.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\mfm4ivf1vo-ozu22stjof.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\t6vo4lsgxa-73kdqttayv.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\dv6m17kgva-6gzpyzhau4.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\44sgeryje4-8inm30yfxf.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\gmrmkzmfcv-gjcw7pocpk.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\e84edga2wx-4gxs3k148c.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\hl2neval35-6l4ir0ityv.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\e6ota1w3v4-fctod5rc9n.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\8kaku7zr2r-f6zq8v6eb3.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\vq3g2pr2w4-kbynt5jhd9.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ule063fdoi-89qbw8ngem.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\npz8yynjkc-c2nslu3uf3.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\s3951vbnpl-n5w6o92d9r.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\cacd87qrjq-2lgwfvgpvi.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\azhebeanh0-jqwzsa9uv6.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\233tkj86ha-wsezl0heh6.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\urf35zfwym-1piudyfv7h.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\k7d6u7clbw-6ukhryfubh.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\zz6bhvkxrd-4908xmbfjr.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\a4lp4segio-u33ctipx7g.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\nysbpbpy56-03hjc8e09r.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bs3qnjd8ws-48y08845bh.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\i0plxscx0m-356vix0kms.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ayr1uafwuz-ay5nd8zt9x.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\pcd3z8diu0-9oaff4kq20.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\sx2hknsdhd-6d0lkjaslc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\whaozemuj1-l1zq2mitth.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\13camfqj9m-x0q3zqp4vz.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\8z008ypx24-7s2n0ol71w.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ry6hu2kdve-ehgnz7f14e.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\s0iqz3mxes-5pze98is44.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\uonajyc4x7-mlv21k5csn.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\a5d71ywj5a-gbubulow3t.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\fv10fm52kw-gbubulow3t.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\staticwebassets.build.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\staticwebassets.development.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno pla.352F01C9.Up2Date
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.dll
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\refint\Luno platform.dll
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.pdb
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\Luno platform.genruntimeconfig.cache
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\ref\Luno platform.dll
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\muo2s7usjt-20r74vn3tc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\bgjh2x6zwh-cn3knnul3w.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\ph4ili8ygr-mvlxqor88o.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\gmx1g8snt7-zrsoo2a9gn.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\9i8gkd384m-5ipweew5fc.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\2bk5fuu7px-rh2ssoisgo.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\pkpt3glt4w-7r9gxugxmf.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\7zhbi2u33c-2oqfja1ilo.gz
+D:\FinalLuno\Educational-platform\obj\Debug\net9.0\compressed\9cfwfy70lm-ekh0deil78.gz

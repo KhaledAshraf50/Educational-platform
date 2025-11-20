@@ -4,6 +4,7 @@ const notificationBtn = document.getElementById("notification-btn");
 notificationBtn.addEventListener("click", function () {
   notification.classList.toggle("d-none");
 });
+//-------------------
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
@@ -228,3 +229,4 @@ tabs.forEach((tab, index) => {
     forms[index].classList.add("active");
   };
 });
+//----------------------
