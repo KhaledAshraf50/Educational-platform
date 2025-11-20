@@ -28,6 +28,11 @@ namespace Luno_platform
             builder.Services.AddScoped<I_instructor_services,instructor_services>();
             //builder.Services.AddScoped<I_instructor_repo,instructor_services>();
             builder.Services.AddScoped<I_instructor_repo,instructor_repo>();
+            builder.Services.AddScoped<Icourses_repo, courses_repo>();
+            builder.Services.AddScoped<Icourses_service, courses_service>();
+            builder.Services.AddScoped<IExam_repo, Exam_repo>();
+            builder.Services.AddScoped<IExam_service, Exam_service>();
+
 
 
 

@@ -4,6 +4,7 @@ using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luno_platform.Migrations
 {
     [DbContext(typeof(LunoDBContext))]
-    partial class LunoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251119172630_v10")]
+    partial class v10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,9 +130,6 @@ namespace Luno_platform.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("cousrsid")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("CourseContents");
@@ -138,7 +138,10 @@ namespace Luno_platform.Migrations
             modelBuilder.Entity("Luno_platform.Models.Courses", b =>
                 {
                     b.Property<int>("Courseid")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Courseid"));
 
                     b.Property<string>("CourseName")
                         .IsRequired()
@@ -152,6 +155,9 @@ namespace Luno_platform.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("classID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("contentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("createdAt")
@@ -175,6 +181,9 @@ namespace Luno_platform.Migrations
                     b.HasIndex("SubjectId");
 
                     b.HasIndex("classID");
+
+                    b.HasIndex("contentId")
+                        .IsUnique();
 
                     b.HasIndex("instructorID");
 
@@ -709,12 +718,6 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.Courses", b =>
                 {
-                    b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
-                        .WithOne("courses")
-                        .HasForeignKey("Luno_platform.Models.Courses", "Courseid")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Luno_platform.Models.Subject", "Subjects")
                         .WithMany("Courses")
                         .HasForeignKey("SubjectId")
@@ -724,6 +727,12 @@ namespace Luno_platform.Migrations
                     b.HasOne("Luno_platform.Models.Classes", "classes")
                         .WithMany("Courses")
                         .HasForeignKey("classID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
+                        .WithOne("courses")
+                        .HasForeignKey("Luno_platform.Models.Courses", "contentId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

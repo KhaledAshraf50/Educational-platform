@@ -20,7 +20,10 @@ namespace Luno_platform.Models
         public string? Url5 { get; set; }
         [MaxLength(1000)]
         public string? Url6 { get; set; }
+        public int cousrsid { get; set; }
 
+        [ForeignKey("cousrsid")]
+       
         public Courses courses { get; set; }
 
         

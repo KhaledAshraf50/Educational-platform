@@ -11,6 +11,8 @@ namespace Luno_platform.Models
         [Required]
         [MaxLength(200)]
         public string ClassName { get; set; }
+        public virtual ICollection<Courses> Courses { get; set; }
+
         public virtual ICollection<instructor_classescs> instructor_classescs { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Tasks> Tasks { get; set; }

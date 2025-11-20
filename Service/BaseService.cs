@@ -1,48 +1,44 @@
-﻿
-using Luno_platform.Repository;
+﻿using Luno_platform.Repository;
 
 namespace Luno_platform.Service
 {
     public class BaseService<T> : I_BaseService<T> where T : class
     {
-
         public I_BaseRepository<T> Repo;
-        public BaseService( I_BaseRepository<T> Repository)
+
+        public BaseService(I_BaseRepository<T> repository)
         {
-            Repo = Repository;
-            
+            Repo = repository;
         }
 
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            Repo.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            Repo.Delete(entity);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return Repo.GetAll();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return Repo.GetById(id); 
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            Repo.Save();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Repo.Update(entity);
         }
     }
-
-
 }

@@ -77,6 +77,13 @@ namespace Luno_platform.Models
             .HasForeignKey(i => i.SubjectID)
             .OnDelete(DeleteBehavior.NoAction);
 
+
+            modelBuilder.Entity<Courses>()
+           .HasOne(i => i.classes)
+           .WithMany(s => s.Courses)
+           .HasForeignKey(i => i.classID)
+           .OnDelete(DeleteBehavior.NoAction);
+
             // 2. Instructors -> Users (UserId) - One-to-One/Zero
             modelBuilder.Entity<Instructor>()
                 .HasOne(i => i.User)
@@ -92,10 +99,10 @@ namespace Luno_platform.Models
                 .OnDelete(DeleteBehavior.NoAction);
 
             // 4. Courses -> CourseContents (contentId) - One-to-One
-            modelBuilder.Entity<Courses>()
-                .HasOne(c => c.CourseContent)
-                .WithOne(cc => cc.courses)
-                .HasForeignKey<Courses>(c => c.contentId)
+            modelBuilder.Entity<CourseContent>()
+                .HasOne(c => c.courses)
+                .WithOne(cc => cc.CourseContent)
+                .HasForeignKey<Courses>(c => c.Courseid)
                 .OnDelete(DeleteBehavior.NoAction);//----------------------------------------------------------------------------
 
             // 5. Courses -> Instructors (instructorID)
