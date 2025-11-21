@@ -26,10 +26,16 @@ namespace Luno_platform.Models
        
         public Courses courses { get; set; }
 
+       public int? ExamId { get; set; }
+       
+        [ForeignKey("ExamId")]
+        public Exams Exams { get; set; }
+
+        public int? taskId { get; set; }
         
-        public virtual ICollection<Tasks> Tasks { get; set; }
-        public virtual ICollection<Exams_contentcs> Exams_Content { get; set; }
-        public virtual ICollection<Task_content> Task_Contents { get; set; }
+        [ForeignKey("taskId")]
+        public Tasks Tasks { get; set; }
+
 
     }
 

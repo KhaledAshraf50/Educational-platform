@@ -5,7 +5,7 @@
 namespace Luno_platform.Migrations
 {
     /// <inheritdoc />
-    public partial class v99 : Migration
+    public partial class database3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

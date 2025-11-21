@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Luno_platform.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class database : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,8 @@ namespace Luno_platform.Migrations
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NationalID = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     birthdate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    FullNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    FullNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,30 +47,13 @@ namespace Luno_platform.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseContents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Url1 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url2 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url3 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url4 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url5 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url6 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseContents", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Subjects",
                 columns: table => new
                 {
                     SubjectID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SubjectName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SubjectNameAR = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SubjectNameEN = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -127,6 +111,10 @@ namespace Luno_platform.Migrations
                 {
                     instructorID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    motto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    eligible = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     SubjectID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -151,7 +139,8 @@ namespace Luno_platform.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -161,42 +150,6 @@ namespace Luno_platform.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "ID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Courses",
-                columns: table => new
-                {
-                    Courseid = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    instructorID = table.Column<int>(type: "int", nullable: false),
-                    contentId = table.Column<int>(type: "int", nullable: false),
-                    SubjectId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Courses", x => x.Courseid);
-                    table.ForeignKey(
-                        name: "FK_Courses_CourseContents_contentId",
-                        column: x => x.contentId,
-                        principalTable: "CourseContents",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Courses_Instructors_instructorID",
-                        column: x => x.instructorID,
-                        principalTable: "Instructors",
-                        principalColumn: "instructorID");
-                    table.ForeignKey(
-                        name: "FK_Courses_Subjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Subjects",
-                        principalColumn: "SubjectID");
                 });
 
             migrationBuilder.CreateTable(
@@ -267,8 +220,7 @@ namespace Luno_platform.Migrations
                     createdAT = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumOfQuestions = table.Column<int>(type: "int", nullable: false),
                     instructorId = table.Column<int>(type: "int", nullable: false),
-                    ClassId = table.Column<int>(type: "int", nullable: false),
-                    CourseContentId = table.Column<int>(type: "int", nullable: true)
+                    ClassId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -279,11 +231,6 @@ namespace Luno_platform.Migrations
                         principalTable: "Classes",
                         principalColumn: "ClassID");
                     table.ForeignKey(
-                        name: "FK_Tasks_CourseContents_CourseContentId",
-                        column: x => x.CourseContentId,
-                        principalTable: "CourseContents",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Tasks_Instructors_instructorId",
                         column: x => x.instructorId,
                         principalTable: "Instructors",
@@ -291,7 +238,7 @@ namespace Luno_platform.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teacher_payment",
+                name: "Teacher_Payments",
                 columns: table => new
                 {
                     paymentID = table.Column<int>(type: "int", nullable: false)
@@ -304,14 +251,14 @@ namespace Luno_platform.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher_payment", x => x.paymentID);
+                    table.PrimaryKey("PK_Teacher_Payments", x => x.paymentID);
                     table.ForeignKey(
-                        name: "FK_Teacher_payment_Admins_AdminID",
+                        name: "FK_Teacher_Payments_Admins_AdminID",
                         column: x => x.AdminID,
                         principalTable: "Admins",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Teacher_payment_Instructors_instructorID",
+                        name: "FK_Teacher_Payments_Instructors_instructorID",
                         column: x => x.instructorID,
                         principalTable: "Instructors",
                         principalColumn: "instructorID");
@@ -324,6 +271,7 @@ namespace Luno_platform.Migrations
                     StudentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     branch = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     classId = table.Column<int>(type: "int", nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: true)
@@ -349,25 +297,34 @@ namespace Luno_platform.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exams_contentcs",
+                name: "CourseContents",
                 columns: table => new
                 {
-                    ExamId = table.Column<int>(type: "int", nullable: false),
-                    contentid = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Url1 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Url2 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Url3 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Url4 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Url5 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Url6 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    cousrsid = table.Column<int>(type: "int", nullable: false),
+                    ExamId = table.Column<int>(type: "int", nullable: true),
+                    taskId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exams_contentcs", x => new { x.ExamId, x.contentid });
+                    table.PrimaryKey("PK_CourseContents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Exams_contentcs_CourseContents_contentid",
-                        column: x => x.contentid,
-                        principalTable: "CourseContents",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Exams_contentcs_Exams_ExamId",
+                        name: "FK_CourseContents_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "ExamID");
+                    table.ForeignKey(
+                        name: "FK_CourseContents_Tasks_taskId",
+                        column: x => x.taskId,
+                        principalTable: "Tasks",
+                        principalColumn: "TaskID");
                 });
 
             migrationBuilder.CreateTable(
@@ -402,22 +359,108 @@ namespace Luno_platform.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Task_content",
+                name: "StudentStatistics",
                 columns: table => new
                 {
-                    TaskId = table.Column<int>(type: "int", nullable: false),
-                    contentid = table.Column<int>(type: "int", nullable: false)
+                    Statistics_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    degree = table.Column<int>(type: "int", nullable: false),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    ExamId = table.Column<int>(type: "int", nullable: true),
+                    TaskId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Task_content", x => new { x.TaskId, x.contentid });
+                    table.PrimaryKey("PK_StudentStatistics", x => x.Statistics_ID);
                     table.ForeignKey(
-                        name: "FK_Task_content_CourseContents_contentid",
-                        column: x => x.contentid,
+                        name: "FK_StudentStatistics_Exams_ExamId",
+                        column: x => x.ExamId,
+                        principalTable: "Exams",
+                        principalColumn: "ExamID");
+                    table.ForeignKey(
+                        name: "FK_StudentStatistics_Students_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Students",
+                        principalColumn: "StudentID");
+                    table.ForeignKey(
+                        name: "FK_StudentStatistics_Tasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Tasks",
+                        principalColumn: "TaskID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    Courseid = table.Column<int>(type: "int", nullable: false),
+                    CourseName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    instructorID = table.Column<int>(type: "int", nullable: false),
+                    classID = table.Column<int>(type: "int", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.Courseid);
+                    table.ForeignKey(
+                        name: "FK_Courses_Classes_classID",
+                        column: x => x.classID,
+                        principalTable: "Classes",
+                        principalColumn: "ClassID");
+                    table.ForeignKey(
+                        name: "FK_Courses_CourseContents_Courseid",
+                        column: x => x.Courseid,
                         principalTable: "CourseContents",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Task_content_Tasks_TaskId",
+                        name: "FK_Courses_Instructors_instructorID",
+                        column: x => x.instructorID,
+                        principalTable: "Instructors",
+                        principalColumn: "instructorID");
+                    table.ForeignKey(
+                        name: "FK_Courses_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
+                        principalColumn: "SubjectID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentAnswers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    studentanswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentID = table.Column<int>(type: "int", nullable: false),
+                    ExamId = table.Column<int>(type: "int", nullable: true),
+                    TaskId = table.Column<int>(type: "int", nullable: true),
+                    QuestionId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentAnswers", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_StudentAnswers_Exams_ExamId",
+                        column: x => x.ExamId,
+                        principalTable: "Exams",
+                        principalColumn: "ExamID");
+                    table.ForeignKey(
+                        name: "FK_StudentAnswers_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "questionID");
+                    table.ForeignKey(
+                        name: "FK_StudentAnswers_Students_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Students",
+                        principalColumn: "StudentID");
+                    table.ForeignKey(
+                        name: "FK_StudentAnswers_Tasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "Tasks",
                         principalColumn: "TaskID");
@@ -472,79 +515,24 @@ namespace Luno_platform.Migrations
                         principalColumn: "StudentID");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "StudentStatistics",
-                columns: table => new
-                {
-                    Statistics_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    degree = table.Column<int>(type: "int", nullable: false),
-                    StudentID = table.Column<int>(type: "int", nullable: false),
-                    ExamId = table.Column<int>(type: "int", nullable: true),
-                    TaskId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentStatistics", x => x.Statistics_ID);
-                    table.ForeignKey(
-                        name: "FK_StudentStatistics_Exams_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exams",
-                        principalColumn: "ExamID");
-                    table.ForeignKey(
-                        name: "FK_StudentStatistics_Students_StudentID",
-                        column: x => x.StudentID,
-                        principalTable: "Students",
-                        principalColumn: "StudentID");
-                    table.ForeignKey(
-                        name: "FK_StudentStatistics_Tasks_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Tasks",
-                        principalColumn: "TaskID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StudentAnswers",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    studentanswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StudentID = table.Column<int>(type: "int", nullable: false),
-                    ExamId = table.Column<int>(type: "int", nullable: true),
-                    TaskId = table.Column<int>(type: "int", nullable: true),
-                    QuestionId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentAnswers", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_StudentAnswers_Exams_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exams",
-                        principalColumn: "ExamID");
-                    table.ForeignKey(
-                        name: "FK_StudentAnswers_Questions_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Questions",
-                        principalColumn: "questionID");
-                    table.ForeignKey(
-                        name: "FK_StudentAnswers_Students_StudentID",
-                        column: x => x.StudentID,
-                        principalTable: "Students",
-                        principalColumn: "StudentID");
-                    table.ForeignKey(
-                        name: "FK_StudentAnswers_Tasks_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Tasks",
-                        principalColumn: "TaskID");
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseContents_ExamId",
+                table: "CourseContents",
+                column: "ExamId",
+                unique: true,
+                filter: "[ExamId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_contentId",
+                name: "IX_CourseContents_taskId",
+                table: "CourseContents",
+                column: "taskId",
+                unique: true,
+                filter: "[taskId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_classID",
                 table: "Courses",
-                column: "contentId",
-                unique: true);
+                column: "classID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_instructorID",
@@ -570,11 +558,6 @@ namespace Luno_platform.Migrations
                 name: "IX_Exams_subjectId",
                 table: "Exams",
                 column: "subjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Exams_contentcs_contentid",
-                table: "Exams_contentcs",
-                column: "contentid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_instructor_classescs_classId",
@@ -680,19 +663,9 @@ namespace Luno_platform.Migrations
                 column: "subjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Task_content_contentid",
-                table: "Task_content",
-                column: "contentid");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tasks_ClassId",
                 table: "Tasks",
                 column: "ClassId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tasks_CourseContentId",
-                table: "Tasks",
-                column: "CourseContentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_instructorId",
@@ -700,13 +673,13 @@ namespace Luno_platform.Migrations
                 column: "instructorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_payment_AdminID",
-                table: "Teacher_payment",
+                name: "IX_Teacher_Payments_AdminID",
+                table: "Teacher_Payments",
                 column: "AdminID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_payment_instructorID",
-                table: "Teacher_payment",
+                name: "IX_Teacher_Payments_instructorID",
+                table: "Teacher_Payments",
                 column: "instructorID");
 
             migrationBuilder.CreateIndex(
@@ -719,9 +692,6 @@ namespace Luno_platform.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Exams_contentcs");
-
             migrationBuilder.DropTable(
                 name: "instructor_classescs");
 
@@ -741,10 +711,7 @@ namespace Luno_platform.Migrations
                 name: "Subject_Classes");
 
             migrationBuilder.DropTable(
-                name: "Task_content");
-
-            migrationBuilder.DropTable(
-                name: "Teacher_payment");
+                name: "Teacher_Payments");
 
             migrationBuilder.DropTable(
                 name: "Courses");
@@ -759,19 +726,19 @@ namespace Luno_platform.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
+                name: "CourseContents");
+
+            migrationBuilder.DropTable(
+                name: "Parents");
+
+            migrationBuilder.DropTable(
                 name: "Exams");
 
             migrationBuilder.DropTable(
                 name: "Tasks");
 
             migrationBuilder.DropTable(
-                name: "Parents");
-
-            migrationBuilder.DropTable(
                 name: "Classes");
-
-            migrationBuilder.DropTable(
-                name: "CourseContents");
 
             migrationBuilder.DropTable(
                 name: "Instructors");

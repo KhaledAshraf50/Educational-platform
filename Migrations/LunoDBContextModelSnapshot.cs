@@ -103,6 +103,9 @@ namespace Luno_platform.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ExamId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Url1")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
@@ -130,7 +133,18 @@ namespace Luno_platform.Migrations
                     b.Property<int>("cousrsid")
                         .HasColumnType("int");
 
+                    b.Property<int?>("taskId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ExamId")
+                        .IsUnique()
+                        .HasFilter("[ExamId] IS NOT NULL");
+
+                    b.HasIndex("taskId")
+                        .IsUnique()
+                        .HasFilter("[taskId] IS NOT NULL");
 
                     b.ToTable("CourseContents");
                 });
@@ -138,6 +152,7 @@ namespace Luno_platform.Migrations
             modelBuilder.Entity("Luno_platform.Models.Courses", b =>
                 {
                     b.Property<int>("Courseid")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CourseName")
@@ -227,21 +242,6 @@ namespace Luno_platform.Migrations
                     b.HasIndex("subjectId");
 
                     b.ToTable("Exams");
-                });
-
-            modelBuilder.Entity("Luno_platform.Models.Exams_contentcs", b =>
-                {
-                    b.Property<int>("ExamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("contentid")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExamId", "contentid");
-
-                    b.HasIndex("contentid");
-
-                    b.ToTable("Exams_contentcs");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Instructor", b =>
@@ -544,21 +544,6 @@ namespace Luno_platform.Migrations
                     b.ToTable("Subject_Classes");
                 });
 
-            modelBuilder.Entity("Luno_platform.Models.Task_content", b =>
-                {
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("contentid")
-                        .HasColumnType("int");
-
-                    b.HasKey("TaskId", "contentid");
-
-                    b.HasIndex("contentid");
-
-                    b.ToTable("Task_content");
-                });
-
             modelBuilder.Entity("Luno_platform.Models.Tasks", b =>
                 {
                     b.Property<int>("TaskID")
@@ -568,9 +553,6 @@ namespace Luno_platform.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskID"));
 
                     b.Property<int>("ClassId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseContentId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumOfQuestions")
@@ -590,8 +572,6 @@ namespace Luno_platform.Migrations
                     b.HasKey("TaskID");
 
                     b.HasIndex("ClassId");
-
-                    b.HasIndex("CourseContentId");
 
                     b.HasIndex("instructorId");
 
@@ -629,7 +609,7 @@ namespace Luno_platform.Migrations
 
                     b.HasIndex("instructorID");
 
-                    b.ToTable("Teacher_payment");
+                    b.ToTable("Teacher_Payments");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Users", b =>
@@ -707,6 +687,23 @@ namespace Luno_platform.Migrations
                     b.ToTable("instructor_classescs");
                 });
 
+            modelBuilder.Entity("Luno_platform.Models.CourseContent", b =>
+                {
+                    b.HasOne("Luno_platform.Models.Exams", "Exams")
+                        .WithOne("CourseContent")
+                        .HasForeignKey("Luno_platform.Models.CourseContent", "ExamId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Luno_platform.Models.Tasks", "Tasks")
+                        .WithOne("CourseContent")
+                        .HasForeignKey("Luno_platform.Models.CourseContent", "taskId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Exams");
+
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("Luno_platform.Models.Courses", b =>
                 {
                     b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
@@ -767,25 +764,6 @@ namespace Luno_platform.Migrations
                     b.Navigation("Instructor");
 
                     b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Luno_platform.Models.Exams_contentcs", b =>
-                {
-                    b.HasOne("Luno_platform.Models.Exams", "Exams")
-                        .WithMany("Exams_Content")
-                        .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
-                        .WithMany("Exams_Content")
-                        .HasForeignKey("contentid")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("CourseContent");
-
-                    b.Navigation("Exams");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Instructor", b =>
@@ -975,25 +953,6 @@ namespace Luno_platform.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Luno_platform.Models.Task_content", b =>
-                {
-                    b.HasOne("Luno_platform.Models.Tasks", "Tasks")
-                        .WithMany("Task_Contents")
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
-                        .WithMany("Task_Contents")
-                        .HasForeignKey("contentid")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("CourseContent");
-
-                    b.Navigation("Tasks");
-                });
-
             modelBuilder.Entity("Luno_platform.Models.Tasks", b =>
                 {
                     b.HasOne("Luno_platform.Models.Classes", "Classes")
@@ -1001,10 +960,6 @@ namespace Luno_platform.Migrations
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.HasOne("Luno_platform.Models.CourseContent", null)
-                        .WithMany("Tasks")
-                        .HasForeignKey("CourseContentId");
 
                     b.HasOne("Luno_platform.Models.Instructor", "Instructor")
                         .WithMany("Tasks")
@@ -1077,12 +1032,6 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.CourseContent", b =>
                 {
-                    b.Navigation("Exams_Content");
-
-                    b.Navigation("Task_Contents");
-
-                    b.Navigation("Tasks");
-
                     b.Navigation("courses");
                 });
 
@@ -1095,7 +1044,7 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.Exams", b =>
                 {
-                    b.Navigation("Exams_Content");
+                    b.Navigation("CourseContent");
 
                     b.Navigation("Questions");
 
@@ -1151,13 +1100,13 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.Tasks", b =>
                 {
+                    b.Navigation("CourseContent");
+
                     b.Navigation("Questions");
 
                     b.Navigation("StudentAnswers");
 
                     b.Navigation("StudentStatistics");
-
-                    b.Navigation("Task_Contents");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Users", b =>
