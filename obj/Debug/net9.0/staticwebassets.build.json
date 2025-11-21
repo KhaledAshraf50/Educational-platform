@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q6Ow69uEqECjJTjUOEXbCNFjezc0aUT7AVSxDOzyZYo=",
+  "Hash": "VpGCf0psS2pC4bUcPGgegMn2wx/qRd0stIpxKMhRNQo=",
   "Source": "Luno platform",
   "BasePath": "_content/Luno platform",
   "Mode": "Default",
@@ -57,6 +57,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Identity": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0efglkpusn-jiqr362t7d.gz",
+      "SourceId": "Luno platform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Luno platform",
+      "RelativePath": "assets/css/invoices#[.{fingerprint=jiqr362t7d}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "lhqiy4bpyi",
+      "Integrity": "mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css"
     },
     {
       "Identity": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0z72v0n8cd-z7kmom2977.gz",
@@ -2241,6 +2262,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\home_page.css"
+    },
+    {
+      "Identity": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css",
+      "SourceId": "Luno platform",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\",
+      "BasePath": "_content/Luno platform",
+      "RelativePath": "assets/css/invoices#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jiqr362t7d",
+      "Integrity": "BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\invoices.css"
     },
     {
       "Identity": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\Login_page.css",
@@ -6574,6 +6616,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-wMejP2Nc0G4vdjHoVQjGkctL12WaVsxAPDGUaNsUfaw="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.css",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0efglkpusn-jiqr362t7d.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000956022945"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1045"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.css",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3766"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.css.gz",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0efglkpusn-jiqr362t7d.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1045"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.jiqr362t7d.css",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0efglkpusn-jiqr362t7d.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000956022945"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1045"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jiqr362t7d"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/invoices.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.jiqr362t7d.css",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3766"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jiqr362t7d"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/invoices.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BSYJcOcTGZ7eo1vRtSSTGWutZ06TE4+nvpG7CZyAUCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/invoices.jiqr362t7d.css.gz",
+      "AssetFile": "D:\\depi\\FinalProject\\Educational-platform\\obj\\Debug\\net9.0\\compressed\\0efglkpusn-jiqr362t7d.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1045"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Nov 2025 13:37:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jiqr362t7d"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/invoices.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mTgD1rWqFz8Ns9juFZoU7rDKV0ivmMnIFrd06LbSz3k="
         }
       ]
     },
@@ -34384,7 +34724,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34437,7 +34777,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34474,7 +34814,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34521,7 +34861,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34582,7 +34922,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34627,7 +34967,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34682,7 +35022,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34743,7 +35083,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34788,7 +35128,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34843,7 +35183,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34896,7 +35236,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34933,7 +35273,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Nov 2025 13:21:00 GMT"
+          "Value": "Fri, 21 Nov 2025 15:26:34 GMT"
         },
         {
           "Name": "Cache-Control",

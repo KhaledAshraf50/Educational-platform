@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\assets\\css\\home_page.css"
     },
     {
+      "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\invoices.css",
+      "PackagePath": "staticwebassets\\assets\\css\\invoices.css"
+    },
+    {
       "Id": "D:\\depi\\FinalProject\\Educational-platform\\wwwroot\\assets\\css\\mainpage.css",
       "PackagePath": "staticwebassets\\assets\\css\\mainpage.css"
     },

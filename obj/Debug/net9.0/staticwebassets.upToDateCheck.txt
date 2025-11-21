@@ -1,5 +1,6 @@
 D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\Reports.css
 D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\depi\FinalProject\Educational-platform\wwwroot\assets\css\invoices.css
 D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
 D:\depi\FinalProject\Educational-platform\wwwroot\lib\jquery-validation\LICENSE.md
 D:\depi\FinalProject\Educational-platform\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -100,6 +101,7 @@ wwwroot\assets\css\dashboard.css
 wwwroot\assets\css\dashboardadmin.css
 wwwroot\assets\css\details_courses.css
 wwwroot\assets\css\home_page.css
+wwwroot\assets\css\invoices.css
 wwwroot\assets\css\Login_page.css
 wwwroot\assets\css\mainpage.css
 wwwroot\assets\css\navbar.css
