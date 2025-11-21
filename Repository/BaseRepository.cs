@@ -37,7 +37,12 @@ namespace Luno_platform.Repository
            
         }
 
-        public IEnumerable<T> GetAll()
+        //public IEnumerable<T> GetAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public List<T> GetAll()
         {
             return Table.ToList();
         }

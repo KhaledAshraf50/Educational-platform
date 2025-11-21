@@ -84,6 +84,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxSZXBvcnRzQ29weS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/depi/FinalProject/Educational-platform/Views/Parent/Childerns.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XENoaWxkZXJucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/depi/FinalProject/Educational-platform/Views/Parent/Invoices.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XEludm9pY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/depi/FinalProject/Educational-platform/Views/Parent/MainPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XE1haW5QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/depi/FinalProject/Educational-platform/Views/Parent/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XFNldHRpbmdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/depi/FinalProject/Educational-platform/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -94,6 +110,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/depi/FinalProject/Educational-platform/Views/Shared/_navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9uYXZiYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/depi/FinalProject/Educational-platform/Views/Shared/_ParentDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJlbnREYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/depi/FinalProject/Educational-platform/Views/Shared/_SideBarDashbord.cshtml]

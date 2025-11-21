@@ -13,6 +13,8 @@ namespace Luno_platform.Models
 
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }
+        public string Image { get; set; }
+
 
         public virtual ICollection<Student> Students { get; set; }  
 

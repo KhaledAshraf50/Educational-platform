@@ -38,6 +38,10 @@ namespace Luno_platform.Models
         [MaxLength(20)]
         public string FullNumber { get; set; }
 
+
+        public string Image { get; set; }
+
+
         public virtual  ICollection<Teacher_payment> Teacher_Payments { get; set; } 
 
     }

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Luno_platform.Models;
+using Luno_platform.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
@@ -7,6 +8,7 @@ namespace Luno_platform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+       
 
         public HomeController(ILogger<HomeController> logger)
         {

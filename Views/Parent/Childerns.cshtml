@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Childerns";
+    Layout = "_ParentDashboard";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/parentchildren.css" />
+    <link rel="stylesheet" href="~/assets/css/mainpage.css" />
+}
+<div class="m-3 bodycontent children" id="children">
+    <div class="children-header">
+        <h2><i class="fa-solid fa-children me-2"></i> قائمة الأبناء</h2>
+        <button class="btn-add-child">
+            <i class="fa-solid fa-plus"></i> إضافة ابن
+        </button>
+    </div>
+    <div id="childrenList" class="mt-4">
+        <div class="children-grid">
+
+            <!-- ابن 1 -->
+            <div class="child-card">
+                <img src="/assets/img/Sasuke.svg" alt="Child Photo" class="child-avatar">
+                <h4>محمد خالد</h4>
+                <p class="child-grade">الصف الثاني الثانوي</p>
+                <!-- <p class="child-id">ID: <span>22101</span></p> -->
+                <button class="btn-details">عرض التفاصيل</button>
+            </div>
+
+            <!-- ابن 2 -->
+            <div class="child-card">
+                <img src="/assets/img/Clock-fill (1).svg" alt="Child Photo" class="child-avatar">
+                <h4>سارة خالد</h4>
+                <p class="child-grade">الصف الأول الإعدادي</p>
+                <!-- <p class="child-id">ID: <span>22102</span></p> -->
+                <button class="btn-details">عرض التفاصيل</button>
+            </div>
+
+            <!-- ابن 3 -->
+            <div class="child-card">
+                <img src="/assets/img/books.png" alt="Child Photo" class="child-avatar">
+                <h4>آدم خالد</h4>
+                <p class="child-grade">الصف الرابع الابتدائي</p>
+                <!-- <p class="child-id">ID: <span>22103</span></p> -->
+                <button class="btn-details">عرض التفاصيل</button>
+            </div>
+        </div>
+    </div>
+</div>
