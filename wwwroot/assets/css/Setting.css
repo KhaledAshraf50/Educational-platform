@@ -1,0 +1,356 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+}
+
+:root {
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#Settingspage {
+    margin-right: 70px;
+    padding: 24px;
+    transition: margin-right 0.3s;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 28px;
+    direction: rtl;
+    align-items: start;
+}
+
+.sidebar:hover~#Settingspage {
+    margin-right: 220px;
+}
+
+.settings-card {
+    background: var(--content-bg);
+    border-radius: 4px;
+    box-shadow: var(--card-shadow);
+    padding: 16px;
+    height: calc(100vh - 48px);
+    /* يملأ تقريباً ارتفاع الشاشة داخل البادينج */
+    overflow: auto;
+    /* لو المحتوى زايد يبقى قابل للتمرير داخل الكارد */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.left-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 40px;
+    gap: 16px;
+}
+
+.left-profile .avatar {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    box-shadow: var(--card-shadow);
+    border: 8px solid rgba(255, 255, 255, 0.9);
+    background: linear-gradient(180deg, #fff, #fafafa);
+}
+
+.left-profile .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.left-profile h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.left-profile p {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 15px;
+}
+
+.left-profile .btns {
+    display: flex;
+    gap: 16px;
+    margin-top: auto;
+}
+
+.left-profile .btns .btn {
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.left-profile .btns .edit {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 8px;
+}
+
+.left-profile .btns .delete {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 16px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.form-row .form-group {
+    flex: 1;
+    width: 100%;
+}
+
+.form-control,
+.form-control:focus {
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-save {
+    align-self: flex-end;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 16px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.settings-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding-bottom: 8px;
+}
+
+.settings-tabs button {
+    background: transparent;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.settings-tabs button.active {
+    background: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.settings-form {
+    display: none;
+}
+
+.settings-form.active {
+    display: flex;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-input {
+    display: none;
+}
+
+/* الخلفية */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-direction: row-reverse;
+}
+
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background-color: #bdbdbd;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* الدائرة */
+.toggle-label::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* لما يكون مفعل */
+.toggle-input:checked+.toggle-label {
+    background-color: var(--primary-color);
+}
+
+/* حركة الدائرة */
+.toggle-input:checked+.toggle-label::before {
+    transform: translateX(20px);
+}
+
+/* النص */
+.toggle-text {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+@media (max-width: 992px) {
+    #Settingspage {
+        grid-template-columns: 300px 1fr;
+        gap: 24px;
+    }
+
+    .settings-card {
+        height: auto;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .toggle-text {
+        font-size: 16px;
+    }
+
+    .toggle-container {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    #Settingspage {
+        grid-template-columns: 1fr;
+        margin-right: 0;
+        padding: 16px;
+    }
+
+    .left-profile {
+        padding-top: 24px;
+        margin-bottom: 16px;
+    }
+
+    .left-profile .btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left-profile .btns .btn {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .settings-tabs {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .settings-tabs button {
+        flex: 1;
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+
+    .left-profile .avatar img {
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .toggle-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-profile h3 {
+        font-size: 16px;
+    }
+
+    .left-profile p {
+        font-size: 13px;
+    }
+
+    .form-control {
+        font-size: 14px;
+    }
+
+    .btn-save {
+        width: 100%;
+        align-self: center;
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_InstructorDashboard";
+}
+
+<div class="container mt-5">
+    <h3>إضافة كورس جديد</h3>
+    <form id="addCourseForm">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">عنوان الكورس</label>
+                <input type="text" class="form-control" id="courseTitle" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">الصف الدراسي</label>
+                <select class="form-select" id="courseGrade">
+                    <option>الصف الأول الثانوي</option>
+                    <option>الصف الثاني الثانوي</option>
+                    <option>الصف الثالث الثانوي</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">المادة</label>
+                <input type="text" class="form-control" id="courseSubject">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">السعر</label>
+                <input type="number" class="form-control" id="coursePrice" placeholder="بالجنيه المصري">
+            </div>
+            <div class="col-12">
+                <label class="form-label">الوصف</label>
+                <textarea class="form-control" rows="3" id="courseDesc"></textarea>
+            </div>
+            <div class="col-12">
+                <label class="form-label">صورة الكورس</label>
+                <input type="file" class="form-control" id="courseImgInput" accept="image/*">
+                <div class="mt-3 text-center">
+                    <img id="courseImgPreview" src="" alt="معاينة الصورة" class="img-fluid rounded d-none" style="max-height: 200px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">حفظ</button>
+            <button type="reset" class="btn btn-outline-dark">إلغاء</button>
+        </div>
+    </form>
+</div>
