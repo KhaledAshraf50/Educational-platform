@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Viewmodel;
 
 namespace Luno_platform.Service
 {
@@ -6,5 +7,6 @@ namespace Luno_platform.Service
     {
         Student GetStudent(int id);
         List<Courses> GetStudentCourses(int id);
+        List<StudentCourseFullDataVM> GetStudentCoursesFullData(int id);
     }
 }

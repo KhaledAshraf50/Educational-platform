@@ -7,6 +7,6 @@
         public string CourseDescription { get; set; }
         public string SubjectNameAR { get; set; }
         public string SubjectNameEN { get; set; }
-        public decimal? Degree { get; set; }
+        public string Degree { get; set; }
     }
 }

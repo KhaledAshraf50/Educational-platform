@@ -54,44 +54,36 @@
             <div class="text"><p>الكورسات المشترك بها</p></div>
             <div class="courses-card d-flex flex-column flex-md-row">
                 @foreach (var course in Model.Courses)
-                { 
-                <div class="card-courses">
-                    <div class="image-courses">
-                        <img class="" src="@course.Image" alt="" />
-                    </div>
-                    <div class="body-course">
-                        <div class="bodytop">
-                            <div class="bodyright">
-                                <div class="brtop">
-                                    <p>@course.CourseName
-                                    </p>
-                                </div>
-                                <div class="brmid">
-                                    <p>
-                                            @course.description
-                                    </p>
-                                </div>
-                                
-                            </div>
-                            <div class="bodyleft">
-                                <a class=""> الدخول للكوس</a>
-                                
-                            </div>
+                {
+                    <div class="card-courses">
+                        <div class="image-courses">
+                            <img class="" src="@Url.Content(course.Image)" alt="" />
                         </div>
-                        <div class="bodybuttom">
-                            <div class="price"><span>@course.price</span> جنيهًا</div>
-                            <div class="date">
-                                <h3>@course.createdAt</h3>
-                                
+                        <div class="body-course">
+                            <div class="bodytop">
+                                <div class="bodyright">
+                                    <div class="brtop">
+                                        <p>@course.CourseName</p>
+                                    </div>
+                                    <div class="brmid">
+                                        <p>@course.description</p>
+                                    </div>
+                                </div>
+                                <div class="bodyleft">
+                                    <a class="">الدخول للكورس</a>
+                                </div>
+                            </div>
+                            <div class="bodybuttom">
+                                <div class="price"><span>@course.price</span> جنيهًا</div>
+                                <div class="date">
+                                    <h3>@course.createdAt.ToString("yyyy-MM-dd")</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-                </div>
                 }
             </div>
-        </div>
+
         <div class="courses">
             <div class="text"><p>الكورسات المقترحه لك</p></div>
             <div class="courses-card d-flex flex-column flex-md-row">
@@ -252,4 +244,4 @@
 
 <script src="~/assets/js/mainprogres.js"></script>
 
-}
+} 
