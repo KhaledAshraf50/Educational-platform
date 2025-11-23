@@ -37,14 +37,22 @@ namespace Luno.Controllers
             List<StudentCourseFullDataVM> courses = istudentService.GetStudentCoursesFullData(id);
             return View(courses);
         }
-        
-        public IActionResult SubjectsPage()
+        [Route("/Student/SubjectsPage/{id}")]
+        public IActionResult SubjectsPage(int id, int page = 1)
         {
-            return View("SubjectsPage");
+            int pageSize = 10;
+            var courses = istudentService.GetStudentCourses(id, page, pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.StudentId = id;
+            return View(courses);
         }
-        public IActionResult invoicesPage()
+
+        [Route("/Student/invoicesPage/{id}")]
+        public IActionResult invoicesPage(int id)
         {
-            return View("invoicesPage");
+            List<Payments> payments = istudentService.GetPayments(id); // استبدل 1 بالمعرف الصحيح للطالب
+            return View(payments);
         }
         public IActionResult SettingPage()
         {
