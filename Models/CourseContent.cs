@@ -7,26 +7,42 @@ namespace Luno_platform.Models
     {
       
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
+        public string? nameurl1 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url1 { get; set; }
+        public string? nameurl2 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url2 { get; set; }
+        public string? nameurl3 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url3 { get; set; }
         [MaxLength(1000)]
-        public string? Url4 { get; set; }
-        [MaxLength(1000)]
-        public string? Url5 { get; set; }
-        [MaxLength(1000)]
-        public string? Url6 { get; set; }
 
+        public int cousrsid { get; set; }
+
+        [ForeignKey("cousrsid")]
+       
         public Courses courses { get; set; }
 
+       public int? ExamId { get; set; }
+       
+        [ForeignKey("ExamId")]
+        public Exams Exams { get; set; }
+
+        public int? taskId { get; set; }
         
-        public virtual ICollection<Tasks> Tasks { get; set; }
-        public virtual ICollection<Exams_contentcs> Exams_Content { get; set; }
-        public virtual ICollection<Task_content> Task_Contents { get; set; }
+        [ForeignKey("taskId")]
+        public Tasks Tasks { get; set; }
+
 
     }
 

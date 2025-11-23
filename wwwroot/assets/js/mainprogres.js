@@ -4,8 +4,8 @@ function getColorByValue(value) {
   return "#27AE60"; // أخضر
 }
 
-function createSemiCircle(containerId, percentage) {
-  var bar = new ProgressBar.SemiCircle(containerId, {
+function createSemiCircle(el, percentage) {
+  var bar = new ProgressBar.SemiCircle(el, {
     strokeWidth: 10,
     trailColor: "#eee",
     trailWidth: 10,
@@ -27,11 +27,22 @@ function createSemiCircle(containerId, percentage) {
   bar.animate(percentage); // يبدأ التحريك للنسبة المطلوبة
   return bar;
 }
+function initProgress(containerId, percentage) {
+    const el = document.querySelector(containerId);
+    if (el) {
+        createSemiCircle(el, percentage);
+    }
+}
+// Child 1
+initProgress("#semiContainer", 0.85);         // 85%
+initProgress("#semiContainerEXAM", 0.70);     // 70%
+initProgress("#semiContainerTASK", 0.90);     // 90%
+// Child 2
+initProgress("#semiContainer2", 0.60);        // 60%
+initProgress("#semiContainerEXAM2", 0.40);    // 40%
+initProgress("#semiContainerTASK2", 0.75);    // 75%
 
-// إنشاء الثلاث دوائر:
-var semiContainerOverall = createSemiCircle("#semiContainer", 0.85); // 85%
-var semiContainerExam = createSemiCircle("#semiContainerEXAM", 0.7); // 70%
-var semiContainerTask = createSemiCircle("#semiContainerTASK", 0.9); // 90%
+
 
 // const notification = document.getElementById("notification");
 // const notificationBtn = document.getElementById("notification-btn");

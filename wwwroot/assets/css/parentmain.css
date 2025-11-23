@@ -1,0 +1,557 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    direction: rtl;
+}
+
+:root {
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* start mainpage  */
+.mainpage {
+    /* max-width: 900px; */
+    margin: 24px auto;
+    padding: 16px;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease-in-out;
+}
+
+.mainpage:hover {
+    box-shadow: var(--hover-shadow);
+}
+
+.detiels .feild {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    background-color: var(--content-bg);
+    border-right: 4px solid var(--primary-color);
+    border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.feild ::before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+    border-radius: 0 0 8px 8px;
+}
+
+.feild:hover::before {
+    height: 100%;
+    opacity: 0.5;
+}
+
+.detiels .feild:hover {
+    transform: translateX(4px);
+    box-shadow: var(--hover-shadow);
+}
+
+.feild i {
+    font-size: 24px;
+    color: var(--primary-color);
+    min-width: 24px;
+}
+
+.feild .part2-feild p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.feild .part2-feild h1 {
+    margin-top: 4px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.child-selector h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--Info-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--Info-color);
+    padding-bottom: 4px;
+}
+
+.child-selector .feild i {
+    color: var(--Success-color);
+}
+
+@media (max-width: 768px) {
+    .detiels .feild {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .part2-feild h1 {
+        font-size: 16px;
+    }
+
+    .part2-feild p {
+        font-size: 14px;
+    }
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 8px;
+}
+
+.custom-dropdown select {
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: var(--primary-color);
+    background: #fff;
+    appearance: none;
+    /* إزالة شكل المتصفح الافتراضي */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-dropdown select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: var(--hover-shadow);
+}
+
+.custom-dropdown::after {
+    content: "▼";
+    font-size: 12px;
+    color: #555;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.custom-dropdown select option {
+    padding: 8px;
+    background: #fff;
+    color: var(--primary-color);
+}
+
+.custom-dropdown select option:hover,
+.custom-dropdown select option:focus {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* end mainpage  */
+/* لحد ما نروح الباك mvc ونمنع التكرار ده  */
+.HeadOfBody .img img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.HeadOfBody .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.HeadOfBody .text p {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0 0 0;
+}
+
+.HeadOfBody .text h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+@media (max-width: 480px) {
+    .HeadOfBody {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .HeadOfBody .img img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.mainpage .container .progres {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0;
+}
+
+.mainpage .container .progres .overall-prog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid var(--border-color); */
+    border-radius: 8px;
+    padding: 8px 16px;
+    background-color: var(--white-color);
+    box-shadow: var(--card-shadow);
+}
+
+/* .mainpage .container .progres .overall-prog .text {
+  margin-top: 32px;
+} */
+.mainpage .container .progres .overall-prog .text .main-text {
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mainpage .container .progres .overall-prog .text .sec-text {
+    font-size: 18px;
+    line-height: 25.5px;
+    font-weight: 400;
+    color: #828282;
+}
+
+/* .mainpage .container .progres .deteils-prog {
+  display: flex;
+  justify-content: space-between;
+}*/
+.mainpage .container .progres .deteils-prog .exams,
+.mainpage .container .progres .deteils-prog .tasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background-color: var(--white-color);
+    box-shadow: var(--card-shadow);
+}
+
+.mainpage .container .progres .deteils-prog .exams .main-text,
+.mainpage .container .progres .deteils-prog .tasks .main-text {
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mainpage .container .progres .deteils-prog .exams .sec-text,
+.mainpage .container .progres .deteils-prog .tasks .sec-text {
+    font-size: 18px;
+    line-height: 25.5px;
+    font-weight: 400;
+    color: #828282;
+}
+
+#semiContainer {
+    width: 250px;
+    height: 125px;
+    margin: 16px;
+    position: relative;
+    font-size: 20px;
+}
+
+#semiContainerEXAM {
+    width: 200px;
+    height: 100px;
+    margin: 32px;
+    position: relative;
+    font-size: 18px;
+}
+
+#semiContainerTASK {
+    width: 200px;
+    height: 100px;
+    margin: 32px;
+    position: relative;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    #semiContainer {
+        width: 140px !important;
+        height: 70px !important;
+        margin: 8px auto !important;
+    }
+
+    #semiContainerEXAM {
+        width: 140px !important;
+        height: 70px !important;
+        margin: 8px auto !important;
+    }
+
+    #semiContainerTASK {
+        width: 140px !important;
+        height: 70px !important;
+        margin: 8px auto !important;
+    }
+
+    .mainpage .container .progres .deteils-prog .exams,
+    .mainpage .container .progres .deteils-prog .tasks {
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 19.6px;
+        gap: 16px;
+    }
+
+    .mainpage .container .progres .overall-prog .text p {
+        font-size: 14px;
+        line-height: 19.6px;
+        gap: 16px;
+    }
+}
+
+.courses .text {
+    margin: 40px 0;
+    text-align: start;
+}
+
+.courses .text p {
+    color: var(--primary-color);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+/* ======= حاوية الكروت ======= */
+.courses-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    /* margin: 0 auto; */
+    /* padding: 10px 0; */
+}
+
+/* ======= الكارد ======= */
+.card-courses {
+    flex: 1 1 300px;
+    max-width: 340px;
+    min-width: 260px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.4s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    animation: fadeInUp 0.7s ease forwards;
+    opacity: 0;
+    /* هيظهر وقت التمرير */
+}
+
+.card-courses.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-courses.hidden {
+    display: none;
+}
+
+/* ======= الصورة ======= */
+.image-courses {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.image-courses img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card-courses:hover .image-courses img {
+    transform: scale(1.08);
+}
+
+/* ======= محتوى الكارد ======= */
+.body-course {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.body-course .bodyright .brtop p {
+    font-weight: bold;
+    color: #333;
+    margin: 8px 0;
+}
+
+.body-course .bodyright .brmid p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.body-course .bodyright .brdowm p {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+/* ======= الأزرار ======= */
+.bodyleft {
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+}
+
+.bodyleft a {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 6px;
+    background: var(--secondary-color);
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.bodyleft .subscribe {
+    background-color: var(--primary-color);
+}
+
+.bodyleft a:hover {
+    background: var(--primary-color);
+}
+
+/* ======= السعر والتاريخ ======= */
+.bodybuttom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.bodybuttom .price span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.bodybuttom .date h3 {
+    font-size: 13px;
+    color: #888;
+    font-weight: normal;
+}
+
+/* ======= الريسبونسف ======= */
+@media (max-width: 1024px) {
+    .courses-card {
+        justify-content: center;
+    }
+
+    .card-courses {
+        flex: 1 1 calc(50% - 20px);
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-courses {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .courses-card {
+        gap: 16px;
+        padding: 8px;
+    }
+
+    .card-courses {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .image-courses {
+        height: 180px;
+    }
+}
+
+@media (max-width: 320px) {
+    .courses-card {
+        padding: 6px;
+    }
+
+    .card-courses {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .body-course {
+        padding: 10px;
+    }
+}
+
+/* ======= الأنيميشن ======= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.courses .pagenation {
+    margin: 0 auto;
+    width: 20%;
+}
+
+.courses .pagenation li {
+    color: var(--primary-color);
+}

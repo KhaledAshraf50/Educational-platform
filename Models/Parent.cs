@@ -6,7 +6,8 @@ namespace Luno_platform.Models
     public class Parent
     {
         [Key]
-       
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { get; set; }
         [Required]
         public int UserId { get; set; }

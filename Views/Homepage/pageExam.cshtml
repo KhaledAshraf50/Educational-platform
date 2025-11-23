@@ -1,0 +1,129 @@
+﻿@using Luno_platform.Viewmodel
+
+@model pageExam_viewmodel
+
+
+
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/Exam.css" />
+}
+
+<div class="exam-container">
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+        <div class="timer" id="timer">@Model.examinfo.Time</div>
+        <div class="questions-list" id="questionsList"></div>
+    </div>
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <div class="question-text" id="questionText"></div>
+
+        <div id="imageContainer" class="question-image-container"></div>
+
+        <div class="options" id="optionsContainer"></div>
+
+        <div class="buttons">
+            <button class="next-btn" id="nextBtn">التالي ➡️</button>
+            <button class="prev-btn" id="prevBtn">⬅️ السابق</button>
+            <button class="mark-btn" id="markBtn">🔖 مراجعة</button>
+            <button class="save-btn" id="saveBtn">💾 حفظ</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+        const questions = [
+        @foreach (var q in Model.questions)
+        {
+                <text>
+                {
+                    id: @q.questionID,
+                    question: "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.questionText))",
+                    degree: @q.degree,
+                    options: [
+                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseA))",
+                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseB))",
+                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseC))",
+                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseD))"
+                    ]
+                },
+                </text>
+        }
+    ];
+
+
+    function GetTypeForQuestion(q) { return "mcq"; }
+
+    let currentIndex = 0;
+    let answers = {};
+    let marked = new Set();
+
+    const questionText = document.getElementById("questionText");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const questionsList = document.getElementById("questionsList");
+    const imageContainer = document.getElementById("imageContainer");
+
+    // إنشاء أزرار الأسئلة
+    questions.forEach((q, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = "Q" + (i + 1);
+        btn.className = "question-btn";
+        btn.onclick = () => loadQuestion(i);
+        questionsList.appendChild(btn);
+    });
+
+    function loadQuestion(index) {
+        currentIndex = index;
+        const q = questions[index];
+
+        questionText.textContent = `السؤال ${index + 1}: ${q.question}`;
+        optionsContainer.innerHTML = "";
+        imageContainer.innerHTML = "";
+
+        if (q.imageUrl && q.imageUrl.length > 0) {
+            const img = document.createElement("img");
+            img.src = q.imageUrl;
+            imageContainer.appendChild(img);
+        }
+
+        q.options.forEach(opt => {
+            if (opt && opt.trim() !== "") {
+                const label = document.createElement("label");
+                label.innerHTML = `<input type="radio" name="q${q.id}" value="${opt}"
+                    ${(answers[q.id] === opt ? "checked" : "")}> ${opt}`;
+                optionsContainer.appendChild(label);
+            }
+        });
+
+        document.querySelectorAll(".question-btn").forEach((b, i) => {
+            b.classList.toggle("active", i === index);
+        });
+    }
+
+    // مؤقت الامتحان
+    let time = @Model.examinfo.Time * 60;
+    const timerEl = document.getElementById('timer');
+
+    function updateTimer() {
+        const m = Math.floor(time / 60);
+        const s = time % 60;
+        timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        time--;
+        if (time >= 0) setTimeout(updateTimer, 1000);
+    }
+    updateTimer();
+
+
+</script>

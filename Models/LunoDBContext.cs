@@ -9,7 +9,7 @@ namespace Luno_platform.Models
         {
         }
         public DbSet<Users> Users { get; set; }
-        DbSet<Tasks> Tasks { get; set; }
+        public  DbSet<Tasks> Tasks { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudentStatistics> StudentStatistics { get; set; }
         public DbSet<StudentAnswer> StudentAnswers { get; set; }
@@ -34,6 +34,14 @@ namespace Luno_platform.Models
         public DbSet<Student_Courses> Student_Courses { get; set; }
         
 
+        public DbSet<Teacher_payment> Teacher_Payments { get; set; }
+        public DbSet<instructor_classescs> instructor_classescs { get; set; }
+        public DbSet<Subject_Classes> Subject_Classes { get; set; }
+
+        public DbSet<Student_Courses> Student_Courses { get; set; }
+
+
+
 
 
 
@@ -47,7 +55,9 @@ namespace Luno_platform.Models
 
 
 
-
+            modelBuilder.Entity<Courses>()
+    .Property(c => c.CourseId)
+    .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Users>()
            .HasIndex(u => u.email)
@@ -64,11 +74,6 @@ namespace Luno_platform.Models
             modelBuilder.Entity<Subject_Classes>()
 .HasKey(ic => new { ic.classId, ic.subjectId });
 
-            modelBuilder.Entity<Exams_contentcs>()
-.HasKey(ic => new { ic.ExamId, ic.contentid });
-
-            modelBuilder.Entity<Task_content>()
-.HasKey(ic => new { ic.TaskId, ic.contentid });
 
             modelBuilder.Entity<Student_Courses>()
     .HasKey(sc => new { sc.StudentId, sc.CourseId });
@@ -85,6 +90,13 @@ namespace Luno_platform.Models
             .HasForeignKey(i => i.SubjectID)
             .OnDelete(DeleteBehavior.NoAction);
 
+
+            modelBuilder.Entity<Courses>()
+           .HasOne(i => i.classes)
+           .WithMany(s => s.Courses)
+           .HasForeignKey(i => i.classID)
+           .OnDelete(DeleteBehavior.NoAction);
+
             // 2. Instructors -> Users (UserId) - One-to-One/Zero
             modelBuilder.Entity<Instructor>()
                 .HasOne(i => i.User)
@@ -100,10 +112,10 @@ namespace Luno_platform.Models
                 .OnDelete(DeleteBehavior.NoAction);
 
             // 4. Courses -> CourseContents (contentId) - One-to-One
-            modelBuilder.Entity<Courses>()
-                .HasOne(c => c.CourseContent)
-                .WithOne(cc => cc.courses)
-                .HasForeignKey<Courses>(c => c.contentId)
+            modelBuilder.Entity<CourseContent>()
+                .HasOne(c => c.courses)
+                .WithOne(cc => cc.CourseContent)
+                .HasForeignKey<Courses>(c => c.CourseId)
                 .OnDelete(DeleteBehavior.NoAction);//----------------------------------------------------------------------------
 
             // 5. Courses -> Instructors (instructorID)
@@ -323,34 +335,19 @@ namespace Luno_platform.Models
                 .HasForeignKey(sc => sc.classId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            // 35. Exams_contentcs -> Exams (ExamId)
-            modelBuilder.Entity<Exams_contentcs>()
-                .HasOne(sc => sc.Exams)
-                .WithMany(c => c.Exams_Content)
-                .HasForeignKey(sc => sc.ExamId)
-                .OnDelete(DeleteBehavior.NoAction);
 
-            // 36. Exams_contentcs -> CourseContent (CourseId)
-            modelBuilder.Entity<Exams_contentcs>()
-                .HasOne(sc => sc.CourseContent)
-                .WithMany(c => c.Exams_Content)
-                .HasForeignKey(sc => sc.contentid)
-                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<CourseContent>()
+    .HasOne(p => p.Exams)
+    .WithOne(u => u.CourseContent)
+    .HasForeignKey<CourseContent>(p => p.ExamId)
+    .OnDelete(DeleteBehavior.NoAction);
 
-            // 37. task_contentcs -> task (TaskId)
-            modelBuilder.Entity<Task_content>()
-                .HasOne(sc => sc.Tasks)
-                .WithMany(c => c.Task_Contents)
-                .HasForeignKey(sc => sc.TaskId)
-                .OnDelete(DeleteBehavior.NoAction);
 
-            // 38. task_contentcs -> CourseContent (contentid)
-            modelBuilder.Entity<Task_content>()
-                .HasOne(sc => sc.CourseContent)
-                .WithMany(c => c.Task_Contents)
-                .HasForeignKey(sc => sc.contentid)
-                .OnDelete(DeleteBehavior.NoAction);
-
+            modelBuilder.Entity<CourseContent>()
+.HasOne(p => p.Tasks)
+.WithOne(u => u.CourseContent)
+.HasForeignKey<CourseContent>(p => p.taskId)
+.OnDelete(DeleteBehavior.NoAction);
 
         }
     }

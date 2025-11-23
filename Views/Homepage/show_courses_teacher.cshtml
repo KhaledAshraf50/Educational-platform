@@ -1,175 +1,60 @@
-﻿@{
+﻿@model List<Courses>
+
+
+@{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 <link rel="stylesheet" href="~/assets/css/show_courses.css" />
 <h1 class="teacher-courses-title">كورسات <span>الصف الثالث الثانوي</span></h1>
 <section class="courses" style="margin-top: 0px;">
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-                    </div>
 
-                </div>
-                <div class="bodyleft">
-                    <a href="show_details_courses" class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
+    @foreach(var course in Model)
+    {
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p> @course.CourseName </p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                @course.description
+                            </p>
+                        </div>
+                        <div class="brdowm">
+                        </div>
 
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
                     </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
+                    <div class="bodyleft">
+                        <a href="/Homepage/show_details_courses/@course.CourseId" class="mt-2"> الدخول للكوس</a>
+                        <a class="mt-2"> اشتراك الان!</a>
                     </div>
 
                 </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>@course.price</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                           @course.createdAt
+                        </h3>
+                       
+                    </div>
                 </div>
 
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
             </div>
 
         </div>
+        
 
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
+    }
 
-                    </div>
 
-                </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
 
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-
-                    </div>
-
-                </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
-
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+   
     <div class="card-courses">
         <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
         <div class="body-course">
@@ -211,173 +96,6 @@
         </div>
 
     </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-
-                    </div>
-
-                </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
-
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-
-                    </div>
-
-                </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
-
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-
-                    </div>
-
-                </div>
-                <div class="bodyleft">
-                    <a class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
-
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="card-courses">
-        <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
-        <div class="body-course">
-            <div class="bodytop">
-                <div class="bodyright">
-                    <div class="brtop">
-                        <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
-                    </div>
-                    <div class="brmid">
-                        <p>
-                            هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
-                            الامتحانات الشاملة
-                        </p>
-                    </div>
-                    <div class="brdowm">
-                    </div>
-
-                </div>
-                <div class="bodyleft">
-                    <a  class="mt-2"> الدخول للكوس</a>
-                    <a class="mt-2"> اشتراك الان!</a>
-                </div>
-
-            </div>
-            <div class="bodybuttom">
-                <div class="price">
-                    <span>294.00</span> جنيهًا
-                </div>
-                <div class="date">
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                    <h3>
-                        السبت، ٢٣ أغسطس ٢٠٢٥
-                    </h3>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
+   
 
 </section>

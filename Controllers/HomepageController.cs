@@ -8,13 +8,24 @@ namespace Luno_platform.Controllers
     {
         public readonly I_homepage_serves _homeservice;
         public readonly I_instructor_services _i_Instructor_Services;
+        public readonly Icourses_service _icourses_Service;
+        public readonly  IExam_service _exam_Service;
 
-        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services )
+
+
+
+        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service)
         {
          
             _homeservice = homeservice;
 
             _i_Instructor_Services = i_Instructor_Services;
+
+            _icourses_Service = icourses_Service;
+            _exam_Service = exam_Service;
+
+
+
 
 
         }
@@ -57,15 +68,35 @@ namespace Luno_platform.Controllers
             return View(teacher);
         }
 
-        public IActionResult show_courses_teacher()
+        [Route("homepage/show_courses_teacher/{structorid}/{classId}")]
+        public IActionResult show_courses_teacher(int structorid,int classid)
         {
-            return View();
+            var courses = _icourses_Service.showAllcoursebyclassandinstructor(structorid, classid);
+
+            return View(courses);
+        }
+
+        [Route("Homepage/show_details_courses/{courseid}")]
+        public IActionResult show_details_courses(int courseid)
+        {
+            var course = _icourses_Service.Infocourse(courseid);
+            if (course == null) return NotFound();
+            return View(course);
         }
 
 
-        public IActionResult show_details_courses()
+        [Route("homepage/pageExam/{Examid}")]
+        public IActionResult pageExam(int Examid)
         {
-            return View();
+            var model = new pageExam_viewmodel { 
+            
+                questions = _exam_Service.GetExamsbyid(Examid),
+                examinfo = _exam_Service.GetById(Examid)
+            };
+
+            
+
+            return View(model);
         }
 
 

@@ -6,6 +6,8 @@ namespace Luno_platform.Models
     public class Subject
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int SubjectID { get; set; }
 
         [Required]

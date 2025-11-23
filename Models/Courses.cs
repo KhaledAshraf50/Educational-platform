@@ -6,7 +6,10 @@ namespace Luno_platform.Models
     public class Courses
     {
         [Key]
-        public int Courseid { get; set; }
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+        public int CourseId { get; set; }
 
         [Required]
         [MaxLength(200)]
@@ -22,6 +25,7 @@ namespace Luno_platform.Models
         public string Image { get; set; }
 
 
+
         public DateTime createdAt { get; set; }
 
         public int instructorID { get; set; }
@@ -29,9 +33,13 @@ namespace Luno_platform.Models
         [ForeignKey("instructorID")]
         public Instructor Instructor { get; set; }
 
+        public int classID { get; set; }
+
+        [ForeignKey("classID")]
+        public Classes classes { get; set; }
+
         public virtual ICollection<Student_Courses> Student_Courses { get; set; }
-        public int contentId { get; set; }
-        [ForeignKey("contentId")]
+
         public virtual  CourseContent CourseContent { get; set; }
 
 

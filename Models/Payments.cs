@@ -6,7 +6,8 @@ namespace Luno_platform.Models
     public class Payments
     {
         [Key]
-     
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { get; set; }
 
         public DateTime date { get; set; }

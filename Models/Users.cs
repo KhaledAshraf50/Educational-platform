@@ -6,6 +6,8 @@ namespace Luno_platform.Models
     public class Users
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { get; set; }
 
         [Required]
@@ -33,11 +35,7 @@ namespace Luno_platform.Models
         [MaxLength(100)]
         public string fname { get; set; }
 
-        [MaxLength(100)]
-        public string secondName { get; set; }
 
-        [MaxLength(100)]
-        public string ThirdName { get; set; }
 
         [Required]
         [MaxLength(100)]

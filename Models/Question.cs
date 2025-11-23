@@ -6,6 +6,8 @@ namespace Luno_platform.Models
     public class Question
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int questionID { get; set; }
         [Required]
         public int degree { get; set; }

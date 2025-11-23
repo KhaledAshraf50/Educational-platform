@@ -1,6 +1,10 @@
 (function () {
     const tabsContainer = document.querySelector(".settings-tabs");
+<<<<<<< HEAD
     if (!tabsContainer) return;
+=======
+    if (!tabsContainer) return; 
+>>>>>>> origin/dev
 
     const tabs = Array.from(tabsContainer.querySelectorAll("button"));
     const forms = Array.from(document.querySelectorAll(".settings-form"));
@@ -19,4 +23,8 @@
             activate(i);
         }, { passive: true });
     });
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> origin/dev
