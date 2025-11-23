@@ -83,35 +83,7 @@ namespace Luno_platform.Controllers
         {
             return View();
         }
-        public IActionResult Settings(int ParentId)
-        {
-            var vm=_parentService.GetParentSetting(ParentId);
-            return View(vm);
-        }
-        public IActionResult ChangePassword(ParentSettingVM vm)
-        {
-            bool ok = _parentService.ChangeParentPassword(vm.ParentID, vm.Password, vm.ConfirmPassword);
-            if (!ok)
-            {
-                TempData["Error"] = "كلمه المرور غير صحيحة!!";
-                return RedirectToAction("Settings");
-            }
-            TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح ";
-            return RedirectToAction("Settings");
-        }
-        [HttpPost]
-        public IActionResult UploadImage(int parentID,IFormFile file)
-        {
-            string imageUrl = FileUploader.UploadImage(file);
-            _parentService.UpdateImage(parentID, imageUrl);
-            if (imageUrl == "null")
-            {
-                TempData["ErrorFile"] = "فشل رفع الصوره حاول مره اخري";
-                return RedirectToAction("Settings", new { ParentId = parentID });
-            }
-            TempData["SucessFile"] = "تم تغيير الصوره بنجاح ";
-            return RedirectToAction("Settings", new { ParentId = parentID });
-        }
+       
 
     }
 }
