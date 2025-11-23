@@ -40,7 +40,7 @@ namespace Luno_platform.Models
 
         public virtual ICollection<Student_Courses> Student_Courses { get; set; }
 
-        public virtual  CourseContent CourseContent { get; set; }
+        public virtual CourseContent CourseContent { get; set; }
 
 
 

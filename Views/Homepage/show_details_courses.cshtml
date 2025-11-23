@@ -1,87 +1,109 @@
 ﻿@model Courses
 
-
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
-<!-- تأكد إن Bootstrap CSS متحمل -->
-@* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> *@
-@* 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
 
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
 
-        
+        <!-- هيدر الكورس -->
         <div class="course-header">
             <img src="@Url.Content(Model.Image)" alt="صورة الكورس" class="course-image" />
             <div class="course-info">
                 <h1 class="course-title">@Model.CourseName</h1>
-                <p class="course-teacher">المدرس: <span>@Model.Instructor.User.fname @Model.Instructor.User.lastName </span></p>
+                <p class="course-teacher">
+                    المدرس:
+                    <span>@Model.Instructor.User.fname @Model.Instructor.User.lastName</span>
+                </p>
                 <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.price</span></p>
                 <button class="enroll-btn">اشترك الآن</button>
             </div>
         </div>
 
+        <!-- وصف الكورس -->
         <div class="course-description">
             <h2>عن الكورس</h2>
-            <p>
-               @Model.description
-            </p>
+            <p>@Model.description</p>
         </div>
 
+        <!-- المحتوى -->
         <div class="course_content">
             <h1 class="title mb-4">تفاصيل الكورس</h1>
 
             <div class="accordion" id="accordionLevel1">
-                <!-- الأسبوع الأول -->
+
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLevel1Week1" aria-expanded="false" aria-controls="collapseLevel1Week1">
-                           المحتوي
+                        <button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseContent"
+                                aria-expanded="false" aria-controls="collapseContent">
+                            المحتوى
                         </button>
                     </h2>
-                    <div id="collapseLevel1Week1" class="accordion-collapse collapse" data-bs-parent="#accordionLevel1">
+
+                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#accordionLevel1">
                         <div class="accordion-body">
-                            <div class="desc_content">
-                                <p>شرح أول درس في النحو: كان وأخواتها</p>
-                                <a href="">عرض</a>
-                            </div>
-                          
-                               
-                                
-                                    @foreach (var ec in Model.CourseContent.Exams_Content)
-                                    {
-                                <div class="desc_content">
-                                      
-                                            <p>@ec.Exams.ExamName</p>
 
-                                    <a href="/homepage/pageExam/@ec.ExamId">عرض</a>
-                                </div>
-                                    }
-                            @foreach (var ec in Model.CourseContent.Task_Contents)
+                            <!-- Video URLs -->
+                            @if (Model.CourseContent != null)
                             {
-                                <div class="desc_content">
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url1))
+                                {
+                                    <div class="desc_content">
+                                        <p>@Model.CourseContent.nameurl1</p>
+                                        <a href="@Model.CourseContent.Url1">عرض</a>
+                                    </div>
+                                }
 
-                                    <p>@ec.Tasks.TaskName</p>
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url2))
+                                {
+                                    <div class="desc_content">
+                                        <p>@Model.CourseContent.nameurl2</p>
+                                        <a href="@Model.CourseContent.Url2">عرض</a>
+                                    </div>
+                                }
 
-                                    <a href="/Exam/Details/@ec.TaskId">عرض</a>
-                                </div>
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url3))
+                                {
+                                    <div class="desc_content">
+                                        <p>@Model.CourseContent.nameurl3</p>
+                                        <a href="@Model.CourseContent.Url3">عرض</a>
+                                    </div>
+                                }
+
+                                <!-- Exam -->
+                                @if (Model.CourseContent.Exams != null)
+                                {
+                                    <div class="desc_content">
+                                        <p>@Model.CourseContent.Exams.ExamName</p>
+                                        <a href="/homepage/pageExam/@Model.CourseContent.Exams.ExamID">عرض</a>
+                                    </div>
+                                }
+
+                                <!-- Task -->
+                                @if (Model.CourseContent.Tasks != null)
+                                {
+                                    <div class="desc_content">
+                                        <p>@Model.CourseContent.Tasks.TaskName</p>
+                                        <a href="/Exam/Details/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                    </div>
+                                }
                             }
-                                
-                            
+                            else
+                            {
+                                <p>لا يوجد محتوى لهذا الكورس حتى الآن.</p>
+                            }
 
-                           
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-   
-    
+
     </div>
-</section> *@
-<!-- تأكد إن jQuery مش متحمل في layout، لو متحمل احذفه -->
-@* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> *@
+</section>
