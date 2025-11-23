@@ -30,10 +30,10 @@ namespace Luno_platform.Models
         public int cousrsid { get; set; }
 
         [ForeignKey("cousrsid")]
-       
+
         public Courses courses { get; set; }
 
-       public int? ExamId { get; set; }
+        public int? ExamId { get; set; }
        
         [ForeignKey("ExamId")]
         public Exams Exams { get; set; }
