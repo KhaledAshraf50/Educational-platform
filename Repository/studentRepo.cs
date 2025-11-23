@@ -35,7 +35,7 @@ namespace Luno_platform.Repository
      )
      .FirstOrDefault(s => s.StudentID == id);
 
-            
+
 
             return student;
 
@@ -46,6 +46,7 @@ namespace Luno_platform.Repository
             var courses = _Context.Student_Courses
      .Where(sc => sc.StudentId == studentId)
      .Include(sc => sc.Course)
+     .ThenInclude(c => c.Subjects)
      .Select(sc => new Courses
      {
          CourseId = sc.Course.CourseId,
@@ -55,13 +56,50 @@ namespace Luno_platform.Repository
          Image = sc.Course.Image ?? "default-image.png",
          createdAt = sc.Course.createdAt,
          instructorID = sc.Course.instructorID,
-         SubjectId = sc.Course.SubjectId
+         SubjectId = sc.Course.SubjectId,
+         Subjects = new Subject
+         {
+             SubjectID = sc.Course.Subjects.SubjectID,
+             SubjectNameAR = sc.Course.Subjects.SubjectNameAR ?? "اسم المادة غير متوفر",
+             SubjectNameEN = sc.Course.Subjects.SubjectNameEN ?? "Subject name not available"
+         }
      })
      .ToList();
 
 
             return courses;
         }
+        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        {
+            var coursesQuery = _Context.Student_Courses
+                .Where(sc => sc.StudentId == studentId)
+                .Include(sc => sc.Course)            // Include قبل الـ Select
+                    .ThenInclude(c => c.Subjects)
+                .OrderBy(sc => sc.Course.CourseId)  // ترتيب ثابت
+
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(sc => new Courses
+                {
+                    CourseId = sc.Course.CourseId,
+                    CourseName = sc.Course.CourseName ?? "بدون اسم",
+                    description = sc.Course.description ?? "لا يوجد وصف",
+                    price = sc.Course.price,
+                    Image = sc.Course.Image ?? "default-image.png",
+                    createdAt = sc.Course.createdAt,
+                    instructorID = sc.Course.instructorID,
+                    SubjectId = sc.Course.SubjectId,
+                    Subjects = sc.Course.Subjects != null ? new Subject
+                    {
+                        SubjectID = sc.Course.Subjects.SubjectID,
+                        SubjectNameAR = sc.Course.Subjects.SubjectNameAR ?? "لا يوجد مادة",
+                        SubjectNameEN = sc.Course.Subjects.SubjectNameEN ?? "Subject name not available"
+                    } : null
+                });
+
+            return coursesQuery.ToList();
+        }
+
         //public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int studentId)
         //{
         //    return _Context.Student_Courses
@@ -157,15 +195,35 @@ namespace Luno_platform.Repository
 
             return result;
         }
+        public List<Payments> GetPayments(int studentId)
+        {
+            var payments = _Context.Payments
+         .Where(p => p.StudentID == studentId)
+         .Include(p => p.Courses)
+         .Select(p => new Payments
+         {
+             ID = p.ID,
+             date = p.date,
+             status = p.status,
+             amountPayment = p.amountPayment,
+             courseId = p.courseId,
+             Courses = new Courses
+             {
+                 CourseId = p.Courses.CourseId,
+                 CourseName = p.Courses.CourseName ?? "بدون اسم"
+             }
+         })
+         .ToList();
+
+
+
+            return payments;
 
 
 
 
-
-
+        }
 
 
     }
-
-
 }

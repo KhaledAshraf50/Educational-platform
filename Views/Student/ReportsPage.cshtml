@@ -5,6 +5,7 @@
 }
 @section Styles {
     <link rel="stylesheet" href="/assets/css/Reports.css">
+    
 }
 <div class="Reportspage m-3 bodycontent" id="Reportspage">
     <div class="container text-center mt-3">
@@ -25,21 +26,17 @@
                         اختر المادة
                     </button>
                     <ul class="dropdown-menu">
+                        <a class="dropdown-item"  href="#" onclick="filterCourse('all')">الكل</a>
                         @foreach (var course in Model){
                         <li>
-                                <a class="dropdown-item" data-subject="@course.SubjectNameEN" href="#">@course.SubjectNameAR</a>
+                                <a class="dropdown-item" data-subject="@course.SubjectNameAR" href="#" onclick="filterCourse('@(course.SubjectNameAR ?? "لا يوجد مادة")')">@course.SubjectNameAR</a>
                             </li>
                         }
-                        @* <li>
-                            <a class="dropdown-item" data-subject="english" href="#">انجليزي</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" data-subject="chemistry" href="#">كيمياء</a>
-                        </li> *@
+                        
                     </ul>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="studentName" value="عربي" disabled />
+                    <input type="text" id="studentName" value="الكل" disabled />
                     <label for="studentName">اسم المادة</label>
                 </div>
             </div>
@@ -63,7 +60,8 @@
                 <tbody id="courseTable">
                     @foreach (var course in Model)
                     {
-                        <tr>
+                        <tr data-subject="@course.SubjectNameAR">
+
                             <th>@course.CourseId</th>
                             <td>@course.CourseName</td>
                             <td>تم التسليم</td>
@@ -78,5 +76,6 @@
 
 @section script {
    
-     <script src="/assets/js/prog.js"></script> 
+     <script src="/assets/js/prog.js"></script>
+    <script src="~/assets/js/Subjects.js"></script>
 }

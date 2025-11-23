@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Courses>
+@{
     Layout = "_SideBarDashbord"; 
 }
 @section Styles {
@@ -12,9 +13,15 @@
         </div>
         <div class="mb-3 p-3 btns">
             <button class="btn-btn-secondary me-3" onclick="filterCourse('all')">الكل</button>
-            <button class="btn-btn-secondary me-3" onclick="filterCourse('عربي')">عربي</button>
+            @foreach (var sub in Model)
+            {
+                <button class="btn-btn-secondary me-3" onclick="filterCourse('@(sub.Subjects.SubjectNameAR ?? "لا يوجد مادة")')">
+                    @(sub.Subjects?.SubjectNameAR ?? "لا يوجد مادة")
+                </button>
+            }
+            @* <button class="btn-btn-secondary me-3" onclick="filterCourse('عربي')">عربي</button>
             <button class="btn-btn-secondary me-3" onclick="filterCourse('انجليزي')">انجليزي</button>
-            <button class="btn-btn-secondary me-3" onclick="filterCourse('كيمياء')">كيمياء</button>
+            <button class="btn-btn-secondary me-3" onclick="filterCourse('كيمياء')">كيمياء</button> *@
         </div>
         <div class="table-responsive">
             <table class="table table-hover text-center align-middle table_Edit">
@@ -29,89 +36,39 @@
                     </tr>
                 </thead>
                 <tbody id="courseTable">
-                    <!-- <tr>
-                      <td colspan="6">لا توجد بيانات</td>
-                    </tr> -->
-                    <tr data-subject="عربي">
-                        <td>1</td>
-                        <td>CS101</td>
-                        <td>مقدمة في الوحده الاولي</td>
-                        <td> شرح دروس نجيب محفوظ</td>
-                        <td>
-                            <span class="text-danger fw-bold">20%</span>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width:20%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr data-subject="انجليزي">
-                        <td>2</td>
-                        <td>WEB202</td>
-                        <td>مقدمه في زمن الماضي البسيط</td>
-                        <td>تعلم الماضي البسيط</td>
-                        <td>
-                            <span class="text-danger fw-bold">45%</span>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width:45%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr data-subject="انجليزي">
-                        <td>3</td>
-                        <td>DB303</td>
-                        <td>مقدمه عن المضارع التام</td>
-                        <td> فهم المضارع التام </td>
-                        <td>
-                            <span class="text-warning fw-bold">70%</span>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" style="width:70%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr data-subject="كيمياء">
-                        <td>4</td>
-                        <td>REACT404</td>
-                        <td>شرح كيمياء العضويه</td>
-                        <td> فهم الكيمياء العضويه </td>
-                        <td>
-                            <span class="text-primary fw-bold">90%</span>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" style="width:90%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr data-subject="كيمياء">
-                        <td>5</td>
-                        <td>SEC505</td>
-                        <td>شرح الكيمياء الغير العضويه</td>
-                        <td> فهم الكيمياء الغير العضويه</td>
-                        <td>
-                            <span class="text-primary fw-bold">100%</span>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" style="width:100%"></div>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                </tbody>
+                    @{
+                        int i = 1;
+                    }
+                    
+                    @foreach (var course in Model)
+                    {
+                        <tr data-subject="@course.Subjects.SubjectNameAR">
+                            <td>@i</td>
+                            <td>@course.CourseId</td>
+                            <td>@course.CourseName</td>
+                            <td> @course.description</td>
+                            <td>
+                                <span class="text-danger fw-bold">20%</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" style="width:20%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+
+                        i++;
+                    }
+                
             </table>
-            <div class="btnsNextPre">
+            @* <div class="btnsNextPre">
                 <button class="Previous">السابق</button>
                 <button class="Next">التالي</button>
+            </div> *@
+            <div class="btnsNextPre">
+                <button class="Previous" href="@Url.Action("SubjectsPage", new { id = ViewBag.StudentId, page = ViewBag.CurrentPage - 1 })">السابق</button>
+                <button class="Next" href="@Url.Action("SubjectsPage", new { id = ViewBag.StudentId, page = ViewBag.CurrentPage + 1 })">التالي</button>
             </div>
         </div>
     </div>

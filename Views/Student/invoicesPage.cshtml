@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Payments>
+@{
     Layout = "_SideBarDashbord";
 }
 @section Styles {
@@ -30,56 +31,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Unit 1 English</td>
-                        <td>2025-09-01</td>
-                        <td><span class="badgepaid">مدفوع</span></td>
-                        <td>45EG</td>
+                    @foreach (var payment in Model)
+                    {
+                        <tr>
+                            <td>1</td>
+                        <td>@payment.Courses.CourseName</td>
+                        <td>@payment.date</td>
+                            @{
+                                if (payment.status == "مدفوع"){
+                            
+                                <td><span class="badgepaid">مدفوع</span></td>
+                            }
+                            else if (payment.status == "غيرمدفوع")
+                            {
+                                <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
+                            }
+                            }
+                        <td>@payment.amountPayment</td>
                         <td>
                             <button class="btn btn-sm btn-info">عرض</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Review Unit 1</td>
-                        <td>2025-09-05</td>
-                        <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
-                        <td>38EG</td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Review Unit 2</td>
-                        <td>2025-09-05</td>
-                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                        <td>38EG</td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Review Unit 3</td>
-                        <td>2025-09-05</td>
-                        <td><span class="badgepaid">مدفوع</span></td>
-                        <td>38EG</td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Review Unit 4</td>
-                        <td>2025-09-05</td>
-                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                        <td>38EG</td>
-                        <td>
-                            <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
-                    </tr>
+                    }
+                   
                 </tbody>
             </table>
             <div class="btnsNextPre">
