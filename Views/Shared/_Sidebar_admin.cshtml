@@ -1,35 +1,84 @@
-﻿@{
-    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
-}
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" /><link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
+    <link rel="stylesheet" href="~/assets/css/Reportstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="shortcut icon" href="~/assets/imgs/icon.svg" type="image/x-icon" />
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="~/assets/imgs/logo.svg" alt="Logo" id="logo" />
+            <span>أكاديمية تعليمية</span>
+        </div>
+        <ul>
+            <li>
+                <a href="#"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسة  </span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-house mx-2"></i> <span>اداره المستخدمين </span></a>
+            </li>
+             <li>
+                <a href="#"><i class="fa-solid fa-house mx-2"></i> <span>اداره المعاملات </span></a>
+            </li>
 
-@section buttom {
-    <ul>
-        <li>
-            <a href="#"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-chart-line mx-2"></i>
-                <span>اداره المستخدمين </span>
-            </a>
-        </li>
-        <li>
-            <a href="#"><i class="fa-solid fa-book mx-2"></i> <span>اداره الكورسات  </span></a>
-        </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-book mx-2"></i> <span>اداره الكورسات  </span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-book mx-2"></i> <span>التقارير  </span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-gear mx-2"></i> <span>الإعدادات</span></a>
+            </li>
+        </ul>
+    </div>
 
-        <li>
-            <a href="#">
-                <i class="fa-regular fa-money-bill-1 mx-2"></i>
-                <span>اداره الفواتير </span>
-            </a>
-        </li>
-        <li>
-            <a href="#"><i class="fa-solid fa-gear mx-2"></i> <span>التقارير </span></a>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <button class="icon-btn d-lg-none"
+            aria-label="فتح القائمة"
+            onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <!-- Main Content -->
+    <div class="content">
+        <div class="top-icons">
+            <button class="icon-btn" aria-label="الإشعارات">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <button class="icon-btn"
+                    aria-label="الملف الشخصي"
+                    onclick="window.location.href='#'">
+                <i class="fa-solid fa-circle-user"></i>
+            </button>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    <script src="/assets/js/progressbar.js"></script>
+    <script src="/assets/js/all.min.js"></script>
+    <script src="/assets/js/dashbord.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/adminSetting.js"></script>
 
-        </li>
-        <li>
-            <a href="#"><i class="fa-solid fa-gear mx-2"></i> <span>الاعدادات  </span></a>
 
-        </li>
-    </ul>
-}
+<script src="/assets/js/all.min.js"></script>
+<script src="/assets/js/dashbordadmin.js"></script>
+<script src="/assets/js/main.js"></script>
+
+    @RenderSection("script", required: false)
+
+</body>
+</html>
