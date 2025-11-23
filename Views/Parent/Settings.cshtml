@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+@model ParentSettingVM
+@{
     ViewData["Title"] = "Settings";
     Layout = "_ParentDashboard";
 }
@@ -10,10 +12,10 @@
     <!-- الشمال: بروفايل -->
     <div class="settings-card left-profile">
         <div class="avatar">
-            <img src="/assets/imgs/Avatar 3.svg" alt="avatar" style="width:100px">
+            <img src="@Model.Image" alt="avatar" style="width:100px">
         </div>
-        <h3> خالد اشرف</h3>
-        <p>الصف الثالث الثانوي — ID: 12345</p>
+        <h3>@Model.Name</h3>
+        <h2>عدد الابناء المرتبطين: @Model.NoOfChildren </h2>
         <div class="btns">
             <button id="edit-btn" class="btn edit">
                 <i class="fa-solid fa-pen"></i> تعديل
@@ -21,7 +23,9 @@
                 الشخصية
             </button>
             <!-- input مخفي لاختيار الصورة -->
-            <input type="file" id="file-input" accept="image/*" style="display:none;">
+            <form asp-action="UploadImage" enctype="multipart/form-data" method="post">
+                <input type="file" name="file"  />
+            </form>
             <button class="btn delete">حذف</button>
         </div>
     </div>
@@ -35,8 +39,7 @@
                 <button>الإشعارات</button>
             </div>
         </div>
-
-        <form class="settings-form active">
+        <form class="settings-form active" asp-action="ChangePassword" method="post">
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">الاسم</label>

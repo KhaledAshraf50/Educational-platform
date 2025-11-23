@@ -13,10 +13,7 @@ namespace Luno_platform.Repository
         public BaseRepository( LunoDBContext lunoDBContext)
         {
             _Context = lunoDBContext;
-
             Table = _Context.Set<T>();
-
-            
         }
 
         public void Add(T entity)
@@ -27,14 +24,10 @@ namespace Luno_platform.Repository
         public void Delete(T entity)
         {
             var en = Table.Find(entity);
-
             if (en != null)
             {
                 Table.Remove(en);
             }
-      
-                
-           
         }
 
         //public IEnumerable<T> GetAll()

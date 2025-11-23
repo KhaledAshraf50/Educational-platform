@@ -13,7 +13,10 @@ namespace Luno_platform
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddViewOptions(options =>
+            {
+                options.HtmlHelperOptions.ClientValidationEnabled = true;
+            });
             builder.Services.AddDbContext<LunoDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 
@@ -39,7 +42,9 @@ namespace Luno_platform
 
 
             //_______________________________________________________
-
+            builder.Services.AddScoped<IParentService,ParentService>();
+            //builder.Services.AddScoped<I_instructor_repo,instructor_services>();
+            builder.Services.AddScoped<IParentRepo, ParentRepo>();
 
             var app = builder.Build();
 

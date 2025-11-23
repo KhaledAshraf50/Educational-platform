@@ -24,8 +24,8 @@ namespace Luno_platform.Models
         public string role { get; set; }
 
         [Required]
+        //[DataType(DataType.Password)]
         public string password { get; set; }
-
         [Required]
         [EmailAddress]
         [MaxLength(256)]

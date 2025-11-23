@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Parent
+@{
     ViewData["Title"] = "MainPage";
     Layout = "_ParentDashboard";
 }
@@ -12,14 +13,14 @@
             <i class="fa-solid fa-id-card"></i>
             <div class="part2-feild">
                 <p>الاسم</p>
-                <h1>ahmed morsi mohamed owais</h1>
+                <h1>@Model.User.fname @Model.User.lastName</h1>
             </div>
         </div>
         <div class="feild" data-field="email">
             <i class="fa-solid fa-envelope"></i>
             <div class="part2-feild">
                 <p>البريد الإلكتروني</p>
-                <h1>morsi6540@gmail.com</h1>
+                <h1>@Model.User.email</h1>
             </div>
         </div>
 
@@ -27,14 +28,14 @@
             <i class="fa-solid fa-phone"></i>
             <div class="part2-feild">
                 <p>رقم الهاتف</p>
-                <h1>+2001550277545</h1>
+                <h1>@Model.User.phoneNumber</h1>
             </div>
         </div>
         <div class="feild" data-field="password">
             <i class="fa-solid fa-key"></i>
             <div class="part2-feild">
                 <p>كلمة المرور</p>
-                <h1>***********</h1>
+                <h1>@Model.User.password</h1>
             </div>
         </div>
         <!--  سيكشن بيانات الأبناء -->

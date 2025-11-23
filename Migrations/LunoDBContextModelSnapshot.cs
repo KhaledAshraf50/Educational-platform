@@ -649,7 +649,7 @@ namespace Luno_platform.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("passwordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

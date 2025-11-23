@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+@model ParentChildrenViewModel
+@{
     ViewData["Title"] = "Childerns";
     Layout = "_ParentDashboard";
 }
@@ -9,39 +11,23 @@
 <div class="m-3 bodycontent children" id="children">
     <div class="children-header">
         <h2><i class="fa-solid fa-children me-2"></i> قائمة الأبناء</h2>
-        <button class="btn-add-child">
+        <a class="btn-add-child" asp-controller="Parent" asp-action="AddChild"
+        asp-route-parentId="@Model.ParentID">
             <i class="fa-solid fa-plus"></i> إضافة ابن
-        </button>
+        </a>
     </div>
     <div id="childrenList" class="mt-4">
         <div class="children-grid">
-
-            <!-- ابن 1 -->
-            <div class="child-card">
-                <img src="/assets/img/Sasuke.svg" alt="Child Photo" class="child-avatar">
-                <h4>محمد خالد</h4>
-                <p class="child-grade">الصف الثاني الثانوي</p>
-                <!-- <p class="child-id">ID: <span>22101</span></p> -->
-                <button class="btn-details">عرض التفاصيل</button>
-            </div>
-
-            <!-- ابن 2 -->
-            <div class="child-card">
-                <img src="/assets/img/Clock-fill (1).svg" alt="Child Photo" class="child-avatar">
-                <h4>سارة خالد</h4>
-                <p class="child-grade">الصف الأول الإعدادي</p>
-                <!-- <p class="child-id">ID: <span>22102</span></p> -->
-                <button class="btn-details">عرض التفاصيل</button>
-            </div>
-
-            <!-- ابن 3 -->
-            <div class="child-card">
-                <img src="/assets/img/books.png" alt="Child Photo" class="child-avatar">
-                <h4>آدم خالد</h4>
-                <p class="child-grade">الصف الرابع الابتدائي</p>
-                <!-- <p class="child-id">ID: <span>22103</span></p> -->
-                <button class="btn-details">عرض التفاصيل</button>
-            </div>
+            @foreach(var std in Model.Students)
+            {
+                <div class="child-card">
+                    <img src="@std.Image" alt="Child Photo" class="child-avatar">
+                    <h4>@std.User.fname @std.User.lastName</h4>
+                    <p class="child-grade">@std.Classes.ClassName</p>
+                    <!-- <p class="child-id">ID: <span>22101</span></p> -->
+                    <a asp-controller="Parent" asp-action="ChildDetails" asp-route-id="@std.StudentID" class="btn-details">عرض التفاصيل</a>
+                </div>
+            }
         </div>
     </div>
 </div>
