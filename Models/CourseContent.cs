@@ -7,19 +7,26 @@ namespace Luno_platform.Models
     {
       
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
+        public string? nameurl1 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url1 { get; set; }
+        public string? nameurl2 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url2 { get; set; }
+        public string? nameurl3 { get; set; }
+
         [MaxLength(1000)]
+        [Url]
         public string? Url3 { get; set; }
         [MaxLength(1000)]
-        public string? Url4 { get; set; }
-        [MaxLength(1000)]
-        public string? Url5 { get; set; }
-        [MaxLength(1000)]
-        public string? Url6 { get; set; }
+
         public int cousrsid { get; set; }
 
         [ForeignKey("cousrsid")]

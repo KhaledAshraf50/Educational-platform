@@ -7,6 +7,7 @@ namespace Luno_platform.Models
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int paymentID { get; set; }
 
        

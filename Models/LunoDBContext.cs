@@ -48,7 +48,7 @@ namespace Luno_platform.Models
 
 
             modelBuilder.Entity<Courses>()
-    .Property(c => c.Courseid)
+    .Property(c => c.CourseId)
     .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Users>()
@@ -107,7 +107,7 @@ namespace Luno_platform.Models
             modelBuilder.Entity<CourseContent>()
                 .HasOne(c => c.courses)
                 .WithOne(cc => cc.CourseContent)
-                .HasForeignKey<Courses>(c => c.Courseid)
+                .HasForeignKey<Courses>(c => c.CourseId)
                 .OnDelete(DeleteBehavior.NoAction);//----------------------------------------------------------------------------
 
             // 5. Courses -> Instructors (instructorID)

@@ -6,7 +6,9 @@ namespace Luno_platform.Models
     public class StudentStatistics
     {
         [Key]
-        public int Statistics_ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+        public int StatisticsID { get; set; }
 
         public int degree { get; set; }
 

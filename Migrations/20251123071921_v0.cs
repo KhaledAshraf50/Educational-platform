@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Luno_platform.Migrations
 {
     /// <inheritdoc />
-    public partial class database : Migration
+    public partial class v0 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,8 +74,6 @@ namespace Luno_platform.Migrations
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     fname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    secondName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ThirdName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     lastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -115,6 +113,10 @@ namespace Luno_platform.Migrations
                     motto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     eligible = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PendingBalance = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    AvailableBalance = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    TotalEarnings = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    TotalWithdrawn = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     SubjectID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -163,7 +165,6 @@ namespace Luno_platform.Migrations
                     degreeExam = table.Column<int>(type: "int", nullable: false),
                     NumOfQuestions = table.Column<int>(type: "int", nullable: false),
                     Time = table.Column<int>(type: "int", nullable: false),
-                    attempt = table.Column<int>(type: "int", nullable: false),
                     instructorID = table.Column<int>(type: "int", nullable: false),
                     ClassId = table.Column<int>(type: "int", nullable: false),
                     subjectId = table.Column<int>(type: "int", nullable: false)
@@ -302,13 +303,13 @@ namespace Luno_platform.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    nameurl1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url1 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    nameurl2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url2 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    nameurl3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url3 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url4 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url5 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    Url6 = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    cousrsid = table.Column<int>(type: "int", nullable: false),
+                    cousrsid = table.Column<int>(type: "int", maxLength: 1000, nullable: false),
                     ExamId = table.Column<int>(type: "int", nullable: true),
                     taskId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -362,7 +363,7 @@ namespace Luno_platform.Migrations
                 name: "StudentStatistics",
                 columns: table => new
                 {
-                    Statistics_ID = table.Column<int>(type: "int", nullable: false)
+                    StatisticsID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     degree = table.Column<int>(type: "int", nullable: false),
                     StudentID = table.Column<int>(type: "int", nullable: false),
@@ -371,7 +372,7 @@ namespace Luno_platform.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentStatistics", x => x.Statistics_ID);
+                    table.PrimaryKey("PK_StudentStatistics", x => x.StatisticsID);
                     table.ForeignKey(
                         name: "FK_StudentStatistics_Exams_ExamId",
                         column: x => x.ExamId,
@@ -393,7 +394,7 @@ namespace Luno_platform.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    Courseid = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
                     CourseName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -406,15 +407,15 @@ namespace Luno_platform.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Courses", x => x.Courseid);
+                    table.PrimaryKey("PK_Courses", x => x.CourseId);
                     table.ForeignKey(
                         name: "FK_Courses_Classes_classID",
                         column: x => x.classID,
                         principalTable: "Classes",
                         principalColumn: "ClassID");
                     table.ForeignKey(
-                        name: "FK_Courses_CourseContents_Courseid",
-                        column: x => x.Courseid,
+                        name: "FK_Courses_CourseContents_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "CourseContents",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -433,7 +434,7 @@ namespace Luno_platform.Migrations
                 name: "StudentAnswers",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     studentanswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudentID = table.Column<int>(type: "int", nullable: false),
@@ -443,7 +444,7 @@ namespace Luno_platform.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentAnswers", x => x.id);
+                    table.PrimaryKey("PK_StudentAnswers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_StudentAnswers_Exams_ExamId",
                         column: x => x.ExamId,
@@ -485,7 +486,7 @@ namespace Luno_platform.Migrations
                         name: "FK_Payments_Courses_courseId",
                         column: x => x.courseId,
                         principalTable: "Courses",
-                        principalColumn: "Courseid");
+                        principalColumn: "CourseId");
                     table.ForeignKey(
                         name: "FK_Payments_Students_StudentID",
                         column: x => x.StudentID,
@@ -507,7 +508,7 @@ namespace Luno_platform.Migrations
                         name: "FK_Student_Courses_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Courseid");
+                        principalColumn: "CourseId");
                     table.ForeignKey(
                         name: "FK_Student_Courses_Students_StudentId",
                         column: x => x.StudentId,

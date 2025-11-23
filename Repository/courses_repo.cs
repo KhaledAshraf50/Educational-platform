@@ -99,7 +99,7 @@ namespace Luno_platform.Repository
 
                           .Select(i => new Courses
                           {
-                              Courseid=i.Courseid,
+                              CourseId=i.CourseId,
                               CourseName = i.CourseName,
                               Image = i.Image,
                               description = i.description,

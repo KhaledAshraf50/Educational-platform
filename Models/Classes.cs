@@ -6,6 +6,8 @@ namespace Luno_platform.Models
     public class Classes
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ClassID { get; set; }
 
         [Required]

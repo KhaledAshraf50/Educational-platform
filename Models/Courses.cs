@@ -9,7 +9,7 @@ namespace Luno_platform.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int Courseid { get; set; }
+        public int CourseId { get; set; }
 
         [Required]
         [MaxLength(200)]

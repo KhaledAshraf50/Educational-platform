@@ -14,6 +14,21 @@ namespace Luno_platform.Models
         public string bio { get; set; }
         public string eligible { get; set; }
 
+        // الرصيد المعلق (في انتظار التحويل)
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal PendingBalance { get; set; } = 0;
+
+        // الرصيد المتاح للسحب
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal AvailableBalance { get; set; } = 0;
+
+        // إجمالي الأرباح على الإطلاق
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal TotalEarnings { get; set; } = 0;
+
+        // إجمالي المسحوبات
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal TotalWithdrawn { get; set; } = 0;
         [Required]
 
 

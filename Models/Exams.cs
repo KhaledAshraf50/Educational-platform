@@ -21,7 +21,7 @@ namespace Luno_platform.Models
 
         public int Time { get; set; }
 
-        public int attempt { get; set; }
+ 
 
 
         [Required]

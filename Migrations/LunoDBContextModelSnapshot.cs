@@ -118,20 +118,18 @@ namespace Luno_platform.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("Url4")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Url5")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Url6")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
                     b.Property<int>("cousrsid")
+                        .HasMaxLength(1000)
                         .HasColumnType("int");
+
+                    b.Property<string>("nameurl1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nameurl2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nameurl3")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("taskId")
                         .HasColumnType("int");
@@ -151,7 +149,7 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.Courses", b =>
                 {
-                    b.Property<int>("Courseid")
+                    b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -185,7 +183,7 @@ namespace Luno_platform.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Courseid");
+                    b.HasKey("CourseId");
 
                     b.HasIndex("SubjectId");
 
@@ -216,9 +214,6 @@ namespace Luno_platform.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Time")
-                        .HasColumnType("int");
-
-                    b.Property<int>("attempt")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("createdAT")
@@ -252,11 +247,23 @@ namespace Luno_platform.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("instructorID"));
 
+                    b.Property<decimal>("AvailableBalance")
+                        .HasColumnType("decimal(10, 2)");
+
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PendingBalance")
+                        .HasColumnType("decimal(10, 2)");
+
                     b.Property<int>("SubjectID")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalEarnings")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<decimal>("TotalWithdrawn")
+                        .HasColumnType("decimal(10, 2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -424,11 +431,11 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.StudentAnswer", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ExamId")
                         .HasColumnType("int");
@@ -445,7 +452,7 @@ namespace Luno_platform.Migrations
                     b.Property<string>("studentanswer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("ExamId");
 
@@ -460,11 +467,11 @@ namespace Luno_platform.Migrations
 
             modelBuilder.Entity("Luno_platform.Models.StudentStatistics", b =>
                 {
-                    b.Property<int>("Statistics_ID")
+                    b.Property<int>("StatisticsID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Statistics_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatisticsID"));
 
                     b.Property<int?>("ExamId")
                         .HasColumnType("int");
@@ -478,7 +485,7 @@ namespace Luno_platform.Migrations
                     b.Property<int>("degree")
                         .HasColumnType("int");
 
-                    b.HasKey("Statistics_ID");
+                    b.HasKey("StatisticsID");
 
                     b.HasIndex("ExamId");
 
@@ -623,10 +630,6 @@ namespace Luno_platform.Migrations
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ThirdName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("email")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -659,10 +662,6 @@ namespace Luno_platform.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("secondName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
 
@@ -708,7 +707,7 @@ namespace Luno_platform.Migrations
                 {
                     b.HasOne("Luno_platform.Models.CourseContent", "CourseContent")
                         .WithOne("courses")
-                        .HasForeignKey("Luno_platform.Models.Courses", "Courseid")
+                        .HasForeignKey("Luno_platform.Models.Courses", "CourseId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

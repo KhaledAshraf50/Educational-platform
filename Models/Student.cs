@@ -6,7 +6,8 @@ namespace Luno_platform.Models
     public class Student
     {
         [Key]
-      
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int StudentID { get; set; }
 
         [MaxLength(100)]
