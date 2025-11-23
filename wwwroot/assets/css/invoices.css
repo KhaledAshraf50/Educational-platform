@@ -126,7 +126,7 @@ body {
 
 .table_Edit tbody td button:hover {
     background-color: var(--primary-color);
-    color: whit
+    color: var(--white-color);
 }
 
 .btnsNextPre {

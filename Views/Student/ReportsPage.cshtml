@@ -1,7 +1,9 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+@model List<StudentCourseFullDataVM>;
+@{
     Layout = "_SideBarDashbord";
 }
-@section styles {
+@section Styles {
     <link rel="stylesheet" href="/assets/css/Reports.css">
 }
 <div class="Reportspage m-3 bodycontent" id="Reportspage">
@@ -23,15 +25,17 @@
                         اختر المادة
                     </button>
                     <ul class="dropdown-menu">
+                        @foreach (var course in Model){
                         <li>
-                            <a class="dropdown-item" data-subject="arabic" href="#">عربي</a>
-                        </li>
-                        <li>
+                                <a class="dropdown-item" data-subject="@course.SubjectNameEN" href="#">@course.SubjectNameAR</a>
+                            </li>
+                        }
+                        @* <li>
                             <a class="dropdown-item" data-subject="english" href="#">انجليزي</a>
                         </li>
                         <li>
                             <a class="dropdown-item" data-subject="chemistry" href="#">كيمياء</a>
-                        </li>
+                        </li> *@
                     </ul>
                 </div>
                 <div class="input-group">
@@ -57,142 +61,15 @@
                     </tr>
                 </thead>
                 <tbody id="courseTable">
-                    <tr>
-                        <th>1</th>
-                        <td>الوحدة الأولى عربي</td>
-                        <td>تم التسليم</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>مراجعة على الوحدة الأولى</td>
-                        <td>تحت المراجعة</td>
-                        <td>49</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>مراجعة على الوحدة الأولى</td>
-                        <td>تحت المراجعة</td>
-                        <td>49</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>مراجعة على الوحدة الأولى</td>
-                        <td>تحت المراجعة</td>
-                        <td>49</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>مراجعة على الوحدة الأولى</td>
-                        <td>تحت المراجعة</td>
-                        <td>49</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>مراجعة على الوحدة الأولى</td>
-                        <td>تحت المراجعة</td>
-                        <td>49</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- جدول إنجليزي -->
-        <div class="table-responsive">
-
-            <table class="table  subject-table table-striped d-none table-hover text-center align-middle table_Edit"
-                   id="english">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>اسم الكورس</th>
-                        <th>تسليم الواجب</th>
-                        <th>درجات الامتحان</th>
-                    </tr>
-                </thead>
-                <tbody id="courseTable">
-                    <tr>
-                        <th>1</th>
-                        <td>Unit 1 English</td>
-                        <td>Submitted</td>
-                        <td>45</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Review Unit 1</td>
-                        <td>Not Submitted</td>
-                        <td>38</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Review Unit 1</td>
-                        <td>Not Submitted</td>
-                        <td>38</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Review Unit 1</td>
-                        <td>Not Submitted</td>
-                        <td>38</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Review Unit 1</td>
-                        <td>Not Submitted</td>
-                        <td>38</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Review Unit 1</td>
-                        <td>Not Submitted</td>
-                        <td>38</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- جدول كيمياء -->
-        <div class="table-responsive">
-
-            <table class="table  table-hover table-striped subject-table d-none  text-center align-middle table_Edit"
-                   id="chemistry">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>اسم الكورس</th>
-                        <th>تسليم الواجب</th>
-                        <th>درجات الامتحان</th>
-                    </tr>
-                </thead>
-                <tbody id="courseTable">
-                    <tr>
-                        <th>1</th>
-                        <td>الوحدة الأولى كيمياء</td>
-                        <td>تم التسليم</td>
-                        <td>48</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>الوحدة الثانية كيمياء</td>
-                        <td>لم يسلم بعد</td>
-                        <td>41</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>الوحدة الأولى كيمياء</td>
-                        <td>تم التسليم</td>
-                        <td>48</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>الوحدة الثانية كيمياء</td>
-                        <td>لم يسلم بعد</td>
-                        <td>41</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>الوحدة الثانية كيمياء</td>
-                        <td>لم يسلم بعد</td>
-                        <td>41</td>
-                    </tr>
+                    @foreach (var course in Model)
+                    {
+                        <tr>
+                            <th>@course.CourseId</th>
+                            <td>@course.CourseName</td>
+                            <td>تم التسليم</td>
+                            <td>@course.Degree</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -201,5 +78,5 @@
 
 @section script {
    
-    <script src="/assets/js/prog.js"></script>
+     <script src="/assets/js/prog.js"></script> 
 }
