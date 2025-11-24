@@ -14,7 +14,7 @@ namespace Luno_platform.Service
         public bool LinkChild(int parentID, int studentID , out string error);
         public Parent GetParent(int id);
         public ParentSettingVM GetParentSetting(int ParentId);
-        public ParentSettingVM UpdateParentSetting(ParentSettingVM pVM);
+        public bool UpdateParentSetting(ParentSettingVM pVM);
 
         public bool ChangeParentPassword(int parentId, string currentPassword, string newPassword);
         public void UpdateImage(int parentId, string imgUrl);

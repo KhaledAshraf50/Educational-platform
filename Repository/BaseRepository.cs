@@ -15,12 +15,10 @@ namespace Luno_platform.Repository
             _Context = lunoDBContext;
             Table = _Context.Set<T>();
         }
-
         public void Add(T entity)
         {
             Table.Add(entity);
         }
-
         public void Delete(T entity)
         {
             var en = Table.Find(entity);
@@ -29,27 +27,22 @@ namespace Luno_platform.Repository
                 Table.Remove(en);
             }
         }
-
         //public IEnumerable<T> GetAll()
         //{
         //    throw new NotImplementedException();
         //}
-
         public List<T> GetAll()
         {
             return Table.ToList();
         }
-
         public T GetById(int id)
         {
             return Table.Find(id);
         }
-
         public void Save()
         {
           _Context.SaveChanges();
         }
-
         public void Update(T entity)
         {
             Table.Update(entity);

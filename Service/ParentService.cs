@@ -85,18 +85,29 @@ namespace Luno_platform.Service
             return pVM;
         }
 
-        public ParentSettingVM UpdateParentSetting(ParentSettingVM pVM)
-        {
-            throw new NotImplementedException();
+        public bool UpdateParentSetting(ParentSettingVM pVM)
+        { 
+           var parent = parentRepo.GetParent(pVM.ParentID);
+            if (parent == null || parent.User == null)
+                return false;
+            parent.User.fname = pVM.Name.Split(' ')[0];
+            parent.User.lastName = pVM.Name.Split(' ').Length > 1 ? pVM.Name.Split(' ')[1] : "";
+            parent.User.email = pVM.Email;
+            parent.User.phoneNumber = pVM.PhoneNumber;
+            parent.User.nationalID = pVM.NationalId;
+            parentRepo.Update(parent);
+            parentRepo.Save();
+            return true;
         }
 
-        public bool ChangeParentPassword(int parentId, string currentPassword, string newPassword)
+        public bool ChangeParentPassword(int parentId, string oldPassword, string newPassword)
         {
             var parent = parentRepo.GetParent(parentId);
             if (parent == null) return false;
-            if (parent.User.password != currentPassword) return false;
+            if (parent.User.password != oldPassword) return false;
             parent.User.password = newPassword;
             parentRepo.Update(parent);
+            parentRepo.Save();
             return true;
         }
         public void UpdateImage(int parentId, string imgUrl)
@@ -109,6 +120,7 @@ namespace Luno_platform.Service
             parent.Image = imgUrl;
 
             parentRepo.Update(parent);
+            parentRepo.Save(); 
         }
     }
 }

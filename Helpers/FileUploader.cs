@@ -4,9 +4,9 @@
     {
         public static string UploadImage(IFormFile file)
         {
-            string folder = Path.Combine("wwwroot/assets/imgs");
             if (file == null || file.Length == 0)
                 return null;
+            string folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/imgs");
             // Ensure the folder exists
             if (!Directory.Exists(folder))
             {
@@ -20,7 +20,7 @@
             {
                 file.CopyTo(stream);
             }
-            return filePath; // Return the path where the file is saved
+            return $"/assets/imgs/{uniqueFileName}";
         }
     }
 }
