@@ -24,12 +24,12 @@ namespace Luno_platform.Models
         public string role { get; set; }
 
         [Required]
-<<<<<<< HEAD
-        //[DataType(DataType.Password)]
-=======
+//<<<<<<< HEAD
+//        //[DataType(DataType.Password)]
+//=======
         [DataType(DataType.Password)]
 
->>>>>>> origin/back_homepage
+//>>>>>>> origin/back_homepage
         public string password { get; set; }
         [Required]
         [EmailAddress]

@@ -1,0 +1,205 @@
+body {
+    font-family: "Cairo", sans-serif;
+    background-color: #f8faff;
+    color: #092C4C;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(9, 44, 76, 0.1);
+    padding: 10px 0;
+}
+
+.nav-links a {
+    color: #092C4C;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #F2994A;
+}
+
+.btn1 {
+    background-color: #F2994A;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.btn1:hover {
+    background-color: #092C4C;
+}
+
+/* ===== Course Details ===== */
+.course-details {
+    padding: 60px 15px;
+}
+
+.course-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.course-image {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(9, 44, 76, 0.15);
+}
+
+.edit-btn {
+    background-color: #092C4C;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #F2994A;
+}
+
+.course-title {
+    color: #092C4C;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.course-teacher span {
+    color: #F2994A;
+    font-weight: 600;
+}
+
+.course-price span {
+    color: #F2994A;
+    font-weight: 700;
+}
+
+.course-description {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(9, 44, 76, 0.08);
+    margin-bottom: 30px;
+}
+
+.course-description h2 {
+    color: #092C4C;
+    margin-bottom: 15px;
+    border-right: 5px solid #F2994A;
+    padding-right: 10px;
+}
+
+.add-lesson-btn {
+    background-color: #F2994A;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.add-lesson-btn:hover {
+    background-color: #092C4C;
+}
+
+/* Accordion */
+.accordion-item {
+    border: none;
+    margin-top: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px 2px rgba(9, 44, 76, 0.1);
+}
+
+.accordion-button {
+    background-color: #f3f4f6 !important;
+    color: #092C4C;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 20px;
+    box-shadow: none !important;
+    transition: 0.3s;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #092C4C !important;
+    color: #fff !important;
+}
+
+.desc_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(9, 44, 76, 0.08);
+}
+
+.desc_content p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.lesson-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 18px;
+    color: #092C4C;
+    transition: 0.3s;
+}
+
+.lesson-actions button:hover {
+    color: #F2994A;
+}
+
+@media (max-width: 768px) {
+    .course-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* مودال RTL لكن الـ X على الشمال */
+.modal-content {
+    direction: rtl;
+    text-align: right;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    /* العنوان يبقى يمين */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header .btn-close {
+    order: 2;
+    /* تخلي X بعد العنوان */
+    margin-right: auto;
+    /* تحركها للشمال */
+    margin-left: 0;
+}

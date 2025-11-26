@@ -7,6 +7,8 @@ namespace Luno_platform.Repository
 
         Courses Infocourse(int courseid);
         List<Courses> showAllcoursebyclassandinstructor(int instructorid, int classid);
-      
+        List<Classes> GetAllClasses();
+        List<Subject> GetAllSubjects();
+
     }
 }

@@ -1,363 +1,69 @@
-﻿@{
+﻿@model Luno_platform.Viewmodel.ReportsPageVM
+@{
     Layout = "_InstructorDashboard";
 }
-@section stylee{
+
+@section stylee {
     <link rel="stylesheet" href="~/assets/css/Reports.css">
 }
+
 <div class="content">
-    <div class="top-icons">
-        <button class="icon-btn" id="notification-btn">
-            <i class="fa-solid fa-bell"></i>
-        </button>
-        <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
-            <i class="fa-solid fa-circle-user"></i>
-        </button>
-    </div>
-    <div class="notification d-none" id="notification">
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-    </div>
-    <div class="Reportspage m-3 bodycontent" id="Reportspage">
+    <div class="Reportspage m-3 bodycontent">
+
         <div class="container text-center mt-3">
-            <div class="search">
-                <input type="search" class="form-control me-3" placeholder="اكتب للبحث" />
-                <i class="fa-solid fa-magnifying-glass icon me-3 btn btn-outline-success me-1 icon"></i>
+
+            <!-- البحث -->
+            <div class="search d-flex mb-3">
+                <input type="search" class="form-control me-3" placeholder="اكتب للبحث" asp-for="Search">
             </div>
 
-            <div class="flexToProg">
-                <div class="sub-choose d-flex mb-3">
-                    <div class="dropdown choose-Sub">
-                        <button class="btn dropdown-toggle repbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            اختر الصف
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" data-subject="arabic" href="#">الصف الاول</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" data-subject="english" href="#">الصف الثاني</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" data-subject="chemistry" href="#">الصف الثالث</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="studentName" value="الصف الأولى" disabled />
-                        <label for="studentName">الصفوف</label>
-                    </div>
+            <!-- اختيار الصف والمادة -->
+            <div class="flexToProg mb-3">
+                <div class="sub-choose d-flex">
+
+                    <select asp-for="SelectedSubjectId" class="form-select mx-2">
+                        <option value="">اختر المادة</option>
+                        @foreach (var s in Model.Subjects)
+                        {
+                            <option value="@s.SubjectID">@s.SubjectNameAR</option>
+                        }
+                    </select>
+
+                    <select asp-for="SelectedClassId" class="form-select mx-2">
+                        <option value="">اختر الصف</option>
+                        @foreach (var c in Model.Classes)
+                        {
+                            <option value="@c.ClassID">@c.ClassName</option>
+                        }
+                    </select>
+
                 </div>
-
-                <!-- <div id="semiContainer" ></div> -->
-
             </div>
 
-            <!-- جدول الصف الأول الثانوي -->
+            <!-- جدول التقارير -->
             <div class="table-responsive">
                 <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit"
                        id="arabic">
-                    <thead>
+                    <thead class="table-light">
                         <tr>
-                            <th>id</th>
-                            <th>اسم الكورس</th>
+                            <th>الكورس</th>
+                            <th>المادة</th>
                             <th>الصف</th>
                             <th>عدد الطلاب</th>
-                            <th>تسليم الواجب</th>
-                            <th>درجات الامتحان</th>
+                            <th>الأرباح</th>
                         </tr>
                     </thead>
-                    <tbody id="courseTable">
-                        <tr>
-                            <th>1</th>
-                            <td>النحو: الفعل اللازم والمتعدي</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>145</td>
-                            <td>82%</td>
-                            <td>76%</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>النصوص: قيم عربية أصيلة</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>210</td>
-                            <td>90%</td>
-                            <td>81%</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>البلاغة: التشبيه</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>98</td>
-                            <td>64%</td>
-                            <td>67%</td>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <td>الأدب: العصر الجاهلي</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>175</td>
-                            <td>71%</td>
-                            <td>70%</td>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <td>القراءة: شباب تسامى للعلا</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>260</td>
-                            <td>88%</td>
-                            <td>83%</td>
-                        </tr>
-                        <tr>
-                            <th>6</th>
-                            <td>النحو: المفعول المطلق</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>120</td>
-                            <td>52%</td>
-                            <td>61%</td>
-                        </tr>
-                        <tr>
-                            <th>7</th>
-                            <td>النصوص: صيانة المال العام</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>301</td>
-                            <td>93%</td>
-                            <td>85%</td>
-                        </tr>
-                        <tr>
-                            <th>8</th>
-                            <td>البلاغة: المجاز المرسل</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>80</td>
-                            <td>69%</td>
-                            <td>72%</td>
-                        </tr>
-                        <tr>
-                            <th>9</th>
-                            <td>التعبير: كتابة قصة قصيرة</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>144</td>
-                            <td>77%</td>
-                            <td>75%</td>
-                        </tr>
-                        <tr>
-                            <th>10</th>
-                            <td>النحو: المفعول لأجله</td>
-                            <td>الصف الأول الثانوي</td>
-                            <td>65</td>
-                            <td>55%</td>
-                            <td>58%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- جدول الصف الثاني الثانوي -->
-            <div class="table-responsive">
-                <table class="table subject-table table-striped d-none table-hover text-center align-middle table_Edit"
-                       id="english">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>اسم الكورس</th>
-                            <th>الصف</th>
-                            <th>عدد الطلاب</th>
-                            <th>تسليم الواجب</th>
-                            <th>درجات الامتحان</th>
-                        </tr>
-                    </thead>
-                    <tbody id="courseTable">
-                        <tr>
-                            <th>1</th>
-                            <td>النحو: أسلوب الشرط</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>187</td>
-                            <td>80%</td>
-                            <td>78%</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>الأدب: المدرسة الرومانسية</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>134</td>
-                            <td>66%</td>
-                            <td>70%</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>النصوص: الرثاء</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>220</td>
-                            <td>79%</td>
-                            <td>73%</td>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <td>البلاغة: الكناية</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>156</td>
-                            <td>84%</td>
-                            <td>82%</td>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <td>القراءة: وادي الكنانة</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>245</td>
-                            <td>92%</td>
-                            <td>88%</td>
-                        </tr>
-                        <tr>
-                            <th>6</th>
-                            <td>النحو: التمييز</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>100</td>
-                            <td>59%</td>
-                            <td>60%</td>
-                        </tr>
-                        <tr>
-                            <th>7</th>
-                            <td>التعبير: مقال وصفي</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>178</td>
-                            <td>75%</td>
-                            <td>79%</td>
-                        </tr>
-                        <tr>
-                            <th>8</th>
-                            <td>الأدب: مدرسة الديوان</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>90</td>
-                            <td>62%</td>
-                            <td>65%</td>
-                        </tr>
-                        <tr>
-                            <th>9</th>
-                            <td>البلاغة: الطباق</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>207</td>
-                            <td>83%</td>
-                            <td>80%</td>
-                        </tr>
-                        <tr>
-                            <th>10</th>
-                            <td>النصوص: الدفاع عن النفس</td>
-                            <td>الصف الثاني الثانوي</td>
-                            <td>312</td>
-                            <td>95%</td>
-                            <td>89%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- جدول الصف الثالث الثانوي -->
-            <div class="table-responsive">
-                <table class="table table-hover table-striped subject-table d-none text-center align-middle table_Edit"
-                       id="chemistry">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>اسم الكورس</th>
-                            <th>الصف</th>
-                            <th>عدد الطلاب</th>
-                            <th>تسليم الواجب</th>
-                            <th>درجات الامتحان</th>
-                        </tr>
-                    </thead>
-                    <tbody id="courseTable">
-                        <tr>
-                            <th>1</th>
-                            <td>النحو: إعراب الفعل المضارع</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>351</td>
-                            <td>94%</td>
-                            <td>91%</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>النصوص: كن بلسماً</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>176</td>
-                            <td>81%</td>
-                            <td>79%</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>الأدب: مدرسة أبولو</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>115</td>
-                            <td>69%</td>
-                            <td>72%</td>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <td>البلاغة: الأساليب الإنشائية</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>222</td>
-                            <td>87%</td>
-                            <td>85%</td>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <td>القراءة: عالم عربي</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>403</td>
-                            <td>98%</td>
-                            <td>93%</td>
-                        </tr>
-                        <tr>
-                            <th>6</th>
-                            <td>النحو: الممنوع من الصرف</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>133</td>
-                            <td>74%</td>
-                            <td>77%</td>
-                        </tr>
-                        <tr>
-                            <th>7</th>
-                            <td>النصوص: حياة الحياة</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>165</td>
-                            <td>79%</td>
-                            <td>82%</td>
-                        </tr>
-                        <tr>
-                            <th>8</th>
-                            <td>الأدب: الواقعية الجديدة</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>190</td>
-                            <td>70%</td>
-                            <td>73%</td>
-                        </tr>
-                        <tr>
-                            <th>9</th>
-                            <td>البلاغة: الإيجاز والإطناب</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>214</td>
-                            <td>86%</td>
-                            <td>84%</td>
-                        </tr>
-                        <tr>
-                            <th>10</th>
-                            <td>التعبير: مقال argumentative</td>
-                            <td>الصف الثالث الثانوي</td>
-                            <td>142</td>
-                            <td>65%</td>
-                            <td>69%</td>
-                        </tr>
+                    <tbody>
+                        @foreach (var item in Model.Courses)
+                        {
+                            <tr>
+                                <td>@item.CourseName</td>
+                                <td>@item.SubjectName</td>
+                                <td>@item.ClassName</td>
+                                <td>@item.StudentsCount</td>
+                                <td>@item.Earnings</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -365,3 +71,39 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // لما تختاري الصف أو المادة
+        $('#SelectedClassId, #SelectedSubjectId').change(function () {
+
+            var classId = $('#SelectedClassId').val();
+            var subjectId = $('#SelectedSubjectId').val();
+
+            // نطلب من الكونترولر يرجع الكورسات المناسبة
+            $.get('/Instructor/FilterCourses', { classId: classId, subjectId: subjectId }, function (data) {
+
+                var tbody = $('#arabic tbody');
+                tbody.empty(); // نمسح الجدول القديم
+
+                // نضيف الصفوف الجديدة
+                $.each(data, function (i, c) {
+                    tbody.append(`
+                        <tr>
+                            <td>${c.courseName}</td>
+                            <td>${c.subjectName}</td>
+                            <td>${c.className}</td>
+                            <td>${c.studentsCount}</td>
+                            <td>${c.earnings}</td>
+                        </tr>
+                    `);
+                });
+            });
+
+        });
+
+    });
+</script>
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@

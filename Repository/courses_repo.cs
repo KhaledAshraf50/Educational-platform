@@ -20,8 +20,15 @@ namespace Luno_platform.Repository
         //    throw new NotImplementedException();
         //}
 
-
-
+        public List<Subject> GetAllSubjects()
+        {
+            return _Context.Subjects.ToList();   
+        }
+        public List<Classes> GetAllClasses()
+        {
+           
+            return _Context.Classes.ToList();
+        }
         public Courses Infocourse(int courseId)
         {
             return _Context.Courses

@@ -20,5 +20,15 @@ namespace Luno_platform.Service
         {
             return _coursesRepo.showAllcoursebyclassandinstructor(instructorid, classid);
         }
+        public List<Classes> GetAllClasses()
+        {
+            return _coursesRepo.GetAllClasses();
+        }
+        public List<Subject> GetAllSubjects()
+        {
+            return _coursesRepo.GetAllSubjects();
+        }
+
+
     }
 }

@@ -1,250 +1,136 @@
-﻿@{
+﻿@model Luno_platform.Models.InstructorDashboardViewModel
+@{
     Layout = "_InstructorDashboard";
 }
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["Error"]
+    </div>
+}
+
 <div class="content">
     <div class="top-icons">
         <button class="icon-btn" id="notification-btn">
             <i class="fa-solid fa-bell"></i>
         </button>
-
         <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
             <i class="fa-solid fa-circle-user"></i>
         </button>
     </div>
-    <div class="notification d-none" id="notification">
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-    </div>
-    <div class="container mt-5">
 
+    @* <!-- Notifications --> *@
+    @* <div class="notification @(Model.Notifications.Count == 0 ? "d-none" : "")" id="notification"> *@
+    @*     @foreach(var note in Model.Notifications) *@
+    @*     { *@
+    @*         <div class="messages"> *@
+    @*             <p>@note.Message</p> *@
+    @*         </div> *@
+    @*     } *@
+    @* </div> *@
+
+    <div class="container mt-5">
         <!-- Stats Section -->
         <div class="row g-4 text-center">
             <div class="col-md-3 col-6">
                 <div class="card stat-card p-3">
                     <div class="stat-icon mb-2"><i class="fa-solid fa-book"></i></div>
                     <h6>عدد الكورسات</h6>
-                    <h4 class="fw-bold" id="totalCourses">0</h4>
+                    <h4 class="fw-bold">@Model.Courses.Count</h4>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="card stat-card p-3">
                     <div class="stat-icon mb-2"><i class="fa-solid fa-users"></i></div>
                     <h6>عدد الصفوف</h6>
-                    <h4 class="fw-bold">3</h4>
+                    <h4 class="fw-bold">@Model.Classes.Count</h4>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="card stat-card p-3">
                     <div class="stat-icon mb-2"><i class="fa-solid fa-dollar-sign"></i></div>
                     <h6>مرات بيع الكورسات</h6>
-                    <h4 class="fw-bold">50</h4>
+                    <h4 class="fw-bold">@Model.TotalSales</h4>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="card stat-card p-3">
                     <div class="stat-icon mb-2"><i class="fa-solid fa-check-circle"></i></div>
                     <h6>الكورسات المتاحة</h6>
-                    <h4 class="fw-bold" id="availableCourses">0</h4>
+                    <h4 class="fw-bold">@Model.AvailableCourses</h4>
                 </div>
             </div>
         </div>
 
-
+        <!-- Classes Section -->
         <div class="mt-5">
             <h5 class="fw-bold mb-4">
                 <i class="fa-solid fa-layer-group text-warning me-2"></i> الصفوف التي أدرّسها
             </h5>
             <div class="row g-4">
-
-                <div class="col-md-4">
-                    <div class="card class-card p-4 text-center shadow-sm border-0"
-                         style="background-color:#f8f9fb; border-radius:15px;">
-                        <i class="fa-solid fa-book fa-2x mb-3" style="color:#092C4C;"></i>
-                        <h6 class="fw-bold mb-2" style="color:#092C4C;">الصف الأول الثانوي</h6>
-                        <p class="text-muted">
-                            عدد الكورسات: <span class="course-count fw-semibold text-dark">0</span>
-                        </p>
-                        <div class="d-flex justify-content-center gap-2">
-                            <button class="btn btn-orange btn-sm browse-btn">تصفح الكورسات</button>
-
-
-                            <button class="btn btn-primary btn-sm add-course-grade-btn">إضافة كورس للصف</button>
+                @foreach(var cls in Model.Classes)
+                {
+                    <div class="col-md-4">
+                        <div class="card class-card p-4 text-center shadow-sm border-0" style="background-color:#f8f9fb; border-radius:15px;">
+                            <i class="fa-solid fa-book fa-2x mb-3" style="color:#092C4C;"></i>
+                            <h6 class="fw-bold mb-2" style="color:#092C4C;">@cls.ClassName</h6>
+                            <p class="text-muted">
+                                عدد الكورسات: <span class="course-count fw-semibold text-dark">@cls.Courses.Count</span>
+                            </p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="btn btn-orange btn-sm" href="@Url.Action("CoursesByClass", "Instructor", new { classId = cls.ClassID })">تصفح الكورسات</a>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("AddCourse", "Instructor", new { classId = cls.ClassID })">إضافة كورس للصف</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card class-card p-4 text-center shadow-sm border-0"
-                         style="background-color:#f8f9fb; border-radius:15px;">
-                        <i class="fa-solid fa-book-open fa-2x mb-3" style="color:#092C4C;"></i>
-                        <h6 class="fw-bold mb-2" style="color:#092C4C;">الصف الثاني الثانوي</h6>
-                        <p class="text-muted">
-                            عدد الكورسات: <span class="course-count fw-semibold text-dark">0</span>
-                        </p>
-                        <div class="d-flex justify-content-center gap-2">
-                            <button class="btn btn-orange btn-sm browse-btn">تصفح الكورسات</button>
-
-                            <button class="btn btn-primary btn-sm add-course-grade-btn">إضافة كورس للصف</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card class-card p-4 text-center shadow-sm border-0"
-                         style="background-color:#f8f9fb; border-radius:15px;">
-                        <i class="fa-solid fa-book-bookmark fa-2x mb-3" style="color:#092C4C;"></i>
-                        <h6 class="fw-bold mb-2" style="color:#092C4C;">الصف الثالث الثانوي</h6>
-                        <p class="text-muted">
-                            عدد الكورسات: <span class="course-count fw-semibold text-dark">0</span>
-                        </p>
-                        <div class="d-flex justify-content-center gap-2">
-                            <button class="btn btn-orange btn-sm browse-btn">تصفح الكورسات</button>
-
-                            <button class="btn btn-primary btn-sm add-course-grade-btn">إضافة كورس للصف</button>
-                        </div>
-                    </div>
-                </div>
-
+                }
             </div>
-        </div>
-
-
-        <!-- Search -->
-        <div class="mt-5 search-box d-flex justify-content-center">
-            <input type="text" class="form-control w-50 me-2" placeholder="ابحث عن كورس..." id="searchInput">
-            <button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
 
         <!-- Courses Section -->
         <div class="mt-5 d-flex justify-content-between align-items-center">
             <h5 class="fw-bold mb-3">كورساتي</h5>
-            <button class="add-course-btn" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+            <a class="add-course-btn btn btn-success" href="@Url.Action("AddCourse", "Instructor")">
                 <i class="fa-solid fa-plus"></i> إضافة كورس جديد
-            </button>
+            </a>
         </div>
 
-        <div class="row g-4 mt-1" id="coursesContainer"></div>
-
-        <div class="text-center text-muted py-5" id="noCourses" style="display:none;">
-            <i class="fa-solid fa-box-open fa-2x mb-3"></i>
-            <p>لا توجد كورسات حالياً، يمكنك إضافة كورس جديد.</p>
-        </div>
-    </div>
-
-    <!-- Add Course Modal -->
-    @* <div class="modal fade" id="addCourseModal" tabindex="-1"> *@
-    @*     <div class="modal-dialog modal-lg modal-dialog-centered"> *@
-    @*         <div class="modal-content"> *@
-    @*             <div class="modal-header"> *@
-    @*                 <h5 class="modal-title">إضافة كورس جديد</h5> *@
-    @*                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button> *@
-    @*             </div> *@
-    @*             <div class="modal-body"> *@
-    @*                 <form id="addCourseForm"> *@
-    @*                     <div class="row g-3"> *@
-    @*                         <div class="col-md-6"> *@
-    @*                             <label class="form-label">عنوان الكورس</label> *@
-    @*                             <input type="text" class="form-control" id="courseTitle" required> *@
-    @*                         </div> *@
-    @*                         <div class="col-md-6"> *@
-    @*                             <label class="form-label">الصف الدراسي</label> *@
-    @*                             <select class="form-select" id="courseGrade"> *@
-    @*                                 <option>الصف الأول الثانوي</option> *@
-    @*                                 <option>الصف الثاني الثانوي</option> *@
-    @*                                 <option>الصف الثالث الثانوي</option> *@
-    @*                             </select> *@
-    @*                         </div> *@
-    @*                         <div class="col-md-6"> *@
-    @*                             <label class="form-label">المادة</label> *@
-    @*                             <input type="text" class="form-control" id="courseSubject"> *@
-    @*                         </div> *@
-    @*                         <div class="col-md-6"> *@
-    @*                             <label class="form-label">السعر</label> *@
-    @*                             <input type="number" class="form-control" id="coursePrice" *@
-    @*                                    placeholder="بالجنيه المصري"> *@
-    @*                         </div> *@
-    @*                         <div class="col-12"> *@
-    @*                             <label class="form-label">الوصف</label> *@
-    @*                             <textarea class="form-control" rows="3" id="courseDesc"></textarea> *@
-    @*                         </div> *@
-    @*                         <div class="col-12"> *@
-    @*                             <label class="form-label">صورة الكورس</label> *@
-    @*                             <input type="file" class="form-control" id="courseImgInput" accept="image/*"> *@
-    @*                             <div class="mt-3 text-center"> *@
-    @*                                 <img id="courseImgPreview" src="" alt="معاينة الصورة" class="img-fluid rounded d-none" style="max-height: 200px;"> *@
-    @*                             </div> *@
-    @*                         </div> *@
-
-    @*                     </div> *@
-    @*                 </form> *@
-    @*             </div> *@
-    @*             <div class="modal-footer"> *@
-    @*                 <button class="btn btn-secondary" id="saveCourseBtn">حفظ</button> *@
-    @*                 <button class="btn btn-outline-dark" data-bs-dismiss="modal">إلغاء</button> *@
-    @*             </div> *@
-    @*         </div> *@
-    @*     </div> *@
-    @* </div> *@
-
-    <!-- View Course Modal -->
-    <div class="modal fade" id="viewCourseModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewCourseTitle">تفاصيل الكورس</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="row g-4 mt-1">
+            @if(Model.Courses.Count == 0)
+            {
+                <div class="text-center text-muted py-5" id="noCourses">
+                    <i class="fa-solid fa-box-open fa-2x mb-3"></i>
+                    <p>لا توجد كورسات حالياً، يمكنك إضافة كورس جديد.</p>
                 </div>
-                <div class="modal-body">
-                    <img id="viewCourseImg" src="" class="img-fluid rounded mb-3" alt="">
-                    <p><strong>الصف:</strong> <span id="viewCourseGrade"></span></p>
-                    <!-- <p><strong>المادة:</strong> <span id="viewCourseSubject"></span></p> -->
-                    <p><strong>السعر:</strong> <span id="viewCoursePrice"></span> جنيه</p>
-                    <p><strong>الوصف:</strong> <span id="viewCourseDesc"></span></p>
-                </div>
-            </div>
-        </div>
-    </div>
+            }
+            else
+            {
+                @foreach(var course in Model.Courses)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card course-card">
+                            <img src="@course.Image" class="card-img-top" alt="@course.CourseName">
+                            <div class="card-body">
+                                <h6 class="fw-bold">@course.CourseName</h6>
+                                <p class="mb-1"><strong>الصف:</strong> @course.classID</p>
+                                <p class="mb-1"><strong>المادة:</strong> @course.Subjects</p>
+                                <p class="mb-1"><strong>السعر:</strong> @course.price جنيه</p>
+                                <p><strong>الوصف:</strong></p>
+                                <p class="course-desc">@course.description</p>
+                                <div class="d-flex justify-content-center mt-3 gap-2">
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("coursesDetails", "Instructor", new { id = course.CourseId })">
+                                        <i class="fa-solid fa-eye me-1"></i> عرض التفاصيل
+                                    </a>
 
-    <!-- Toast -->
-    <div class="toast-container">
-        <div class="toast align-items-center text-bg-success border-0" id="successToast" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">تم إضافة الكورس بنجاح 🎉</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                        data-bs-dismiss="toast"></button>
-            </div>
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("DeleteCourse", "Instructor", new { courseId = course.CourseId })">
+                                        <i class="fa-solid fa-trash me-1"></i> حذف
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
-<script>
-    const courseImgInput = document.getElementById('courseImgInput');
-    const courseImgPreview = document.getElementById('courseImgPreview');
-
-    courseImgInput.addEventListener('change', function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                courseImgPreview.src = e.target.result;
-                courseImgPreview.classList.remove('d-none');
-            };
-            reader.readAsDataURL(file);
-        } else {
-            courseImgPreview.src = "";
-            courseImgPreview.classList.add('d-none');
-        }
-    });
-</script>

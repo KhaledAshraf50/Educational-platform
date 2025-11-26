@@ -1,9 +1,13 @@
-﻿@{
+﻿@model List<Luno_platform.ViewModels.InvoiceVM>
+
+@{
     Layout = "_InstructorDashboard";
 }
+
 @section stylee {
     <link rel="stylesheet" href="~/assets/css/invoices.css">
 }
+
 <div class="content">
     <div class="top-icons">
         <button class="icon-btn" id="notification-btn">
@@ -14,38 +18,22 @@
             <i class="fa-solid fa-circle-user"></i>
         </button>
     </div>
-    <div class="notification d-none" id="notification">
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-        <div class="messages">
-            <p>
-                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
-            </p>
-        </div>
-    </div>
+
     <div class="InvoicesPage m-3" id="InvoicesPage">
-        <div class="container text-center mt-3 ">
+        <div class="container text-center mt-3">
             <div class="header d-flex justify-content-between align-items-center mb-3">
                 <div class="title">
                     <h3>الفواتير</h3>
-                    <p>آخر الفواتير الخاصة بالكورسات المشترك بها</p>
+                    <p>آخر الفواتير الخاصة بالكورسات</p>
                 </div>
-                <!-- Search Box -->
+
                 <form class="search-box" role="search">
-                    <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
-                    <!-- <i class="fa-solid fa-magnifying-glass"></i>س -->
+                    <input type="search" placeholder="ابحث عن فاتورة..." />
                 </form>
             </div>
+
             <div class="table-responsive">
-                <table class="table table table-hover text-center align-middle table_Edit">
+                <table class="table table-hover text-center align-middle table_Edit">
                     <thead>
                         <tr>
                             <th>رقم الفاتورة</th>
@@ -57,65 +45,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Unit 1 English</td>
-                            <td>2025-09-01</td>
-                            <td><span class="badgepaid">مدفوع</span></td>
-                            <td>45EG</td>
-                            <td>
-                                <button class="btn btn-sm btn-info">عرض</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Review Unit 1</td>
-                            <td>2025-09-05</td>
-                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                            <td>38EG</td>
-                            <td>
-                                <button class="btn btn-sm btn-info">عرض</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Review Unit 2</td>
-                            <td>2025-09-05</td>
-                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                            <td>38EG</td>
-                            <td>
-                                <button class="btn btn-sm btn-info">عرض</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Review Unit 3</td>
-                            <td>2025-09-05</td>
-                            <td><span class="badgepaid">مدفوع</span></td>
-                            <td>38EG</td>
-                            <td>
-                                <button class="btn btn-sm btn-info">عرض</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Review Unit 4</td>
-                            <td>2025-09-05</td>
-                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                            <td>38EG</td>
-                            <td>
-                                <button class="btn btn-sm btn-info">عرض</button>
-                            </td>
-                        </tr>
+                        @foreach (var invoice in Model)
+                        {
+                            <tr>
+                                <td>@invoice.InvoiceId</td>
+                                <td>@invoice.CourseName</td>
+                                <td>@invoice.Date.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    @if (invoice.Status == "Paid")
+                                    {
+                                        <span class="badgepaid">مدفوع</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badgeunpaid">غير مدفوع</span>
+                                    }
+                                </td>
+                                <td>@invoice.Amount EG</td>
+                                <td><button class="btn btn-sm btn-info">عرض</button></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
-                <div class="btnsNextPre">
-                    <button class="Previous">السابق</button>
-                    <button class="Next">التالي</button>
-                </div>
             </div>
         </div>
     </div>
 </div>
-<script src="~/assets/js/progressbar.js"></script>
-<script src="~/assets/js/invoices.js"></script>
+@* <p> *@
+@*     CurrentPage: @ViewBag.CurrentPage | *@
+   
+@*     TotalPages: @ViewBag.TotalPages dddddddddddddddddddddddddd *@
+@* </p> *@
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="d-flex justify-content-center mt-4">
+
+        <!-- Previous -->
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a href="@Url.Action("Instructorinvoices", new { page = ViewBag.CurrentPage - 1 })"
+               class="btn btn-secondary mx-2">
+                السابق
+            </a>
+        }
+
+        <!-- Next -->
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a href="@Url.Action("Instructorinvoices", new { page = ViewBag.CurrentPage + 1 })"
+               class="btn btn-primary mx-2">
+                التالي
+            </a>
+        }
+
+    </div>
+    
