@@ -1,11 +1,13 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno.Controllers
 {
-    
+   
+
     public class StudentController : Controller
     {
        public IstudentService istudentService;
@@ -13,10 +15,23 @@ namespace Luno.Controllers
         {
             istudentService = studentService;
         }
-        [Route("Student/MainPage/{id:int}")]
-        public IActionResult MainPage(int id)
+
+
+        [Authorize(Roles = "student")]
+        [Route("/Student/MainPage")]
+        public IActionResult MainPage()
         {
-            var student = istudentService.GetStudent(id);
+            // جلب الـ UserId من الـ Claims اللي اتخزنت مع تسجيل الدخول
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value); // ده Id اليوزر المتسجل فقط
+
+            // نجيب بيانات الطالب اللي مربوط باليوزر ده
+            var student = istudentService.GetStudent(userId);
             if (student == null)
             {
                 return NotFound("الطالب غير موجود");
@@ -25,11 +40,10 @@ namespace Luno.Controllers
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,
-                Courses = istudentService.GetStudentCourses(id)
+                Courses = istudentService.GetStudentCourses(userId)
             };
 
             return View(vm);
-
         }
         [Route("/Student/ReportsPage/{id}")]
         public IActionResult ReportsPage(int id)

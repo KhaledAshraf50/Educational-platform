@@ -11,12 +11,19 @@ namespace Luno_platform.Models
         public int StudentID { get; set; }
 
         [MaxLength(100)]
-        public string branch { get; set; }
+        public string? branch { get; set; }
 
-        public string Image { get; set; }
+
+        public int? parentnumber { get; set; }
+
+        public string? goverment { get; set; }
+
+        public string? city { get; set; }
         [Required]
 
+
         public int UserId { get; set; }
+
 
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }

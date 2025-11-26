@@ -75,10 +75,10 @@ namespace Luno_platform.Service
             ParentSettingVM pVM = new ParentSettingVM()
             {
                 ParentID = parent.ID,
-                Image = parent.Image,
+                //Image = parent.Image,
                 Name = parent.User.fname+" "+ parent.User.lastName,
-                Email = parent.User.email,
-                PhoneNumber = parent.User.phoneNumber,
+                Email = parent.User.Email,
+                PhoneNumber = parent.User.PhoneNumber,
                 NoOfChildren = parentRepo.GetNoOfStudents(ParentId)
                 //NoOfChildren = parent.Students.Count()
             };
@@ -92,8 +92,8 @@ namespace Luno_platform.Service
                 return false;
             parent.User.fname = pVM.Name.Split(' ')[0];
             parent.User.lastName = pVM.Name.Split(' ').Length > 1 ? pVM.Name.Split(' ')[1] : "";
-            parent.User.email = pVM.Email;
-            parent.User.phoneNumber = pVM.PhoneNumber;
+            parent.User.Email = pVM.Email;
+            parent.User.PhoneNumber = pVM.PhoneNumber;
             parent.User.nationalID = pVM.NationalId;
             parentRepo.Update(parent);
             parentRepo.Save();
@@ -104,23 +104,28 @@ namespace Luno_platform.Service
         {
             var parent = parentRepo.GetParent(parentId);
             if (parent == null) return false;
-            if (parent.User.password != oldPassword) return false;
-            parent.User.password = newPassword;
+            if (parent.User.PasswordHash != oldPassword) return false;
+            parent.User.PasswordHash = newPassword;
             parentRepo.Update(parent);
             parentRepo.Save();
             return true;
         }
+
         public void UpdateImage(int parentId, string imgUrl)
         {
-            var parent = parentRepo.GetParent(parentId);
-
-            if (parent == null || parent.User == null)
-                throw new Exception("Parent not found");
-
-            parent.Image = imgUrl;
-
-            parentRepo.Update(parent);
-            parentRepo.Save(); 
+            throw new NotImplementedException();
         }
+        //public void UpdateImage(int parentId, string imgUrl)
+        //{
+        //    var parent = parentRepo.GetParent(parentId);
+
+        //    if (parent == null || parent.User == null)
+        //        throw new Exception("Parent not found");
+
+        //    parent> = imgUrl;
+
+        //    parentRepo.Update(parent);
+        //    parentRepo.Save(); 
+        //}
     }
 }

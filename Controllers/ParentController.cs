@@ -63,7 +63,6 @@ namespace Luno_platform.Controllers
                 FullName = student.User.fname+" "+student.User.lastName,
                 NationalID = student.User.nationalID,
                 ParentID = childvm.ParentID,
-                ImageUrl = student.Image,
                 ClassName= student.Classes.ClassName
             };
             return View("ConfirmChild", vm);
@@ -127,15 +126,15 @@ namespace Luno_platform.Controllers
                 TempData["ErrorFile"] = "المستخدم غير موجود";
                 return RedirectToAction("Settings", new { ParentId = parentId });
             }
-            if (!string.IsNullOrEmpty(parent.Image))
-            {
-                string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", parent.Image.TrimStart('/'));
-                if (System.IO.File.Exists(imgPath))
-                {
-                    System.IO.File.Delete(imgPath);
-                }
-            }
-            parent.Image = "/assets/imgs/default.png";
+            //if (!string.IsNullOrEmpty(parent.Image))
+            //{
+            //    string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", parent.Image.TrimStart('/'));
+            //    if (System.IO.File.Exists(imgPath))
+            //    {
+            //        System.IO.File.Delete(imgPath);
+            //    }
+            //}
+            //parent.Image = "/assets/imgs/default.png";
             _parentService.Update(parent);
             _parentService.Save();
             TempData["SucessFile"] = "تم حذف الصوره بنجاح ";

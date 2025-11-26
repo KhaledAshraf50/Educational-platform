@@ -12,33 +12,30 @@ namespace Luno_platform.Repository
         public Student GetStudent(int id)
         {
             var student = _Context.Students
-     .Include(s => s.User)
-     .Include(s => s.Classes)
-     .Select(s => new Student
-     {
-         StudentID = s.StudentID,
-         Image = s.Image
-         ,
-         User = new Users
-         {
-             ID = s.User.ID,
-             fname = s.User.fname,
-             lastName = s.User.lastName
-         },
-         Classes = new Classes
-         {
-             ClassID = s.Classes.ClassID,
-             ClassName = s.Classes.ClassName
-         }
+                .Include(s => s.User)
+                .Include(s => s.Classes)
+                .Where(s => s.User.Id == id)  // البحث حسب User.Id
+                .Select(s => new Student
+                {
+                    StudentID = s.StudentID,
+                    
+                    User = new Users
+                    {
+                        Id = s.User.Id,
+                        fname = s.User.fname,
+                        lastName = s.User.lastName,
+                        Image = s.User.Image
 
-     }
-     )
-     .FirstOrDefault(s => s.StudentID == id);
-
-
+                    },
+                    Classes = new Classes
+                    {
+                        ClassID = s.Classes.ClassID,
+                        ClassName = s.Classes.ClassName
+                    }
+                })
+                .FirstOrDefault(); // هترجع أول طالب يطابق UserId
 
             return student;
-
         }
 
         public List<Courses> GetStudentCourses(int studentId)

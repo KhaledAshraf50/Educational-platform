@@ -10,12 +10,12 @@ namespace Luno_platform.Controllers
 {
     public class InstructorController : Controller
     {
-       
+
 
 
 
         private I_instructor_services _instructorService;
-        private  LunoDBContext _context;
+        private LunoDBContext _context;
 
         public InstructorController(I_instructor_services instructorService, Icourses_service courseService, LunoDBContext context)
         {
@@ -23,7 +23,7 @@ namespace Luno_platform.Controllers
             _courseService = courseService;
             _context = context;
         }
-       
+
 
         public IActionResult Index(int instructorId)
 
@@ -64,17 +64,17 @@ namespace Luno_platform.Controllers
 
             return View(viewModel);
         }
-      
-        private readonly Icourses_service _courseService; 
 
-        
+        private readonly Icourses_service _courseService;
+
+
         [HttpGet]
         public IActionResult AddCourse()
         {
             var model = new AddCourseViewModel
             {
                 Classes = _courseService.GetAllClasses(),
-                SubjectsList = _courseService.GetAllSubjects()   
+                SubjectsList = _courseService.GetAllSubjects()
             };
 
             return View(model);
@@ -113,11 +113,11 @@ namespace Luno_platform.Controllers
             int lastId = _context.Courses.Max(c => (int?)c.CourseId) ?? 32;
             int nextId = lastId + 1;
 
-         
+
             var course = new Courses
             {
                 CourseId = nextId,
-               
+
                 CourseName = model.Title,
                 classID = model.Grade,
                 SubjectId = model.SubjectId,
@@ -137,7 +137,7 @@ namespace Luno_platform.Controllers
 
         public IActionResult DeleteCourse(int courseId)
         {
-           
+
             bool hasStudents = _context.Student_Courses
                 .Any(sc => sc.CourseId == courseId);
 
@@ -147,7 +147,7 @@ namespace Luno_platform.Controllers
                 return RedirectToAction("Index");
             }
 
-           
+
             bool hasPayments = _context.Payments
                 .Any(p => p.courseId == courseId);
 
@@ -157,7 +157,7 @@ namespace Luno_platform.Controllers
                 return RedirectToAction("Index");
             }
 
- 
+
             var course = _context.Courses.FirstOrDefault(c => c.CourseId == courseId);
 
             if (course == null)
@@ -174,7 +174,7 @@ namespace Luno_platform.Controllers
 
                 .Include(c => c.Subjects)
                 .Include(c => c.Instructor)
-                .Include(c => c.CourseContent) 
+                .Include(c => c.CourseContent)
                 .FirstOrDefault(c => c.CourseId == courseId);
 
             if (course == null)
@@ -184,7 +184,7 @@ namespace Luno_platform.Controllers
         }
         public IActionResult ReportsCopy()
         {
-            int instructorId = 1; 
+            int instructorId = 1;
 
             var vm = new ReportsPageVM
             {
@@ -192,7 +192,7 @@ namespace Luno_platform.Controllers
                 Classes = _context.Classes.ToList()
             };
 
-           
+
             var courses = _context.Courses
                 .Include(c => c.classes)
                 .Include(c => c.Subjects)
@@ -217,7 +217,7 @@ namespace Luno_platform.Controllers
 
         public JsonResult FilterCourses(int? classId, int? subjectId)
         {
-            int instructorId = 1; 
+            int instructorId = 1;
 
             var courses = _context.Courses
                 .Include(c => c.classes)
@@ -442,6 +442,10 @@ namespace Luno_platform.Controllers
     }
 
 }
+
+
+
+
 
 
 

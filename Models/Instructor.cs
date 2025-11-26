@@ -9,7 +9,6 @@ namespace Luno_platform.Models
 
       
         public int instructorID { get; set; }
-        public string Image { get; set; }
         public string motto { get; set; }
         public string bio { get; set; }
         public string eligible { get; set; }

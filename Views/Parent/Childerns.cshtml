@@ -21,7 +21,7 @@
             @foreach(var std in Model.Students)
             {
                 <div class="child-card">
-                    <img src="@std.Image" alt="Child Photo" class="child-avatar">
+                    <img src="@std.User.Image" alt="Child Photo" class="child-avatar">
                     <h4>@std.User.fname @std.User.lastName</h4>
                     <p class="child-grade">@std.Classes.ClassName</p>
                     <!-- <p class="child-id">ID: <span>22101</span></p> -->
