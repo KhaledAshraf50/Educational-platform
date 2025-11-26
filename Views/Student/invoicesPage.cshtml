@@ -14,7 +14,7 @@
             </div>
             <!-- Search Box -->
             <form class="search-box" role="search">
-                <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+                <input type="search" id="invoiceSearch" placeholder="ابحث عن فاتورة..." aria-label="Search" />
                 <!-- <i class="fa-solid fa-magnifying-glass"></i>س -->
             </form>
         </div>
@@ -31,10 +31,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{
+                        int i = 1;
+                    }
                     @foreach (var payment in Model)
                     {
                         <tr>
-                            <td>1</td>
+                            <td>@i</td>
                         <td>@payment.Courses.CourseName</td>
                         <td>@payment.date</td>
                             @{
@@ -55,7 +58,8 @@
                         <td>
                             <button class="btn btn-sm btn-info">عرض</button>
                         </td>
-                    </tr>
+                        </tr>
+                        i++;
                     }
                    
                 </tbody>
