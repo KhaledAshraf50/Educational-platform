@@ -11,47 +11,64 @@
 <div class="Settingspage m-3 " id="Settingspage">
     <!-- الشمال: بروفايل -->
     <div class="settings-card left-profile">
+        @if (TempData["ErrorFile"] != null)
+        {
+            // alert-dismissible → تجعل الرسالة قابلة للإغلاق
+            //<button class="btn-close"...> → الزر اللي المستخدم يقدر يدوسه لإخفاء الرسالة
+            //fade show → لإضافة تأثير ظهور وخفاء لطيف
+            //data-bs-dismiss="alert" → يخلي Bootstrap يتعامل مع الزر ويخفي الرسالة تلقائيًا
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorFile"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (TempData["SucessFile"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SucessFile"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         <div class="avatar">
             <img src="@Model.Image" alt="avatar" style="width:100px">
         </div>
         <h3>@Model.Name</h3>
-        <h2>عدد الابناء المرتبطين: @Model.NoOfChildren </h2>
+        <h2>عدد الابناء المرتبطين: @Model.NoOfChildren</h2>
         <div class="btns">
             <button id="edit-btn" class="btn edit">
                 <i class="fa-solid fa-pen"></i> تعديل
                 الصورة
                 الشخصية
             </button>
-            
             <!-- input مخفي لاختيار الصورة -->
-            <form asp-action="UploadImage" enctype="multipart/form-data" method="post">
-                <input type="file" name="file" class="btn edit" />
+            <form id="imageForm" asp-action="UploadImage" enctype="multipart/form-data" method="post">
+                @* <input type="file" name="file" class="btn edit"  hidden/> *@
+                <input type="hidden" name="parentId" value="@Model.ParentID" />
+                <input type="file" name="file" id="fileInput" hidden />
             </form>
-            <button class="btn delete">حذف</button>
-            @if (TempData["ErrorFile"] != null)
-            {
-                // alert-dismissible → تجعل الرسالة قابلة للإغلاق
-                //<button class="btn-close"...> → الزر اللي المستخدم يقدر يدوسه لإخفاء الرسالة
-                //fade show → لإضافة تأثير ظهور وخفاء لطيف
-                //data-bs-dismiss="alert" → يخلي Bootstrap يتعامل مع الزر ويخفي الرسالة تلقائيًا
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    @TempData["ErrorFile"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @TempData.Remove("ErrorFile")
-            }
-            else
-            {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    @TempData["SucessFile"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @TempData.Remove("SucessFile")
-            }
+            <form asp-action="DeleteImage" method="post">
+                <input type="hidden" name="parentId" value="@Model.ParentID" />
+                <button type="submit" class="btn delete">حذف</button>
+            </form>
         </div>
     </div>
     <!-- اليمين: محتوى الإعدادات -->
     <section class="settings-card right-content">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["Sucess"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Sucess"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
         <div class="card-header">
             <h4>إعدادات الحساب</h4>
             <div class="settings-tabs">
@@ -60,51 +77,43 @@
                 <button>الإشعارات</button>
             </div>
         </div>
-        <form class="settings-form active" asp-action="ChangePassword" method="post">
+        <form class="settings-form active" asp-action="UpdateParentSetting" method="post">
+            <input type="hidden" asp-for="ParentID" />
+
             <div class="form-row">
-                <div class="form-group">
+                <div asp-for="Name" class="form-group">
                     <label class="form-label">الاسم</label>
-                    <input class="form-control " placeholder="أحمد عبد الناصر">
+                    <input asp-for="Name" class="form-control " placeholder="أحمد عبد الناصر">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">الصف</label>
-                    <input class="form-control" placeholder="الثالث الثانوي">
+                <div asp-for="NationalId" class="form-group">
+                    <label class="form-label">الرقم القومي</label>
+                    <input asp-for="NationalId" class="form-control" placeholder="30508251702466">
                 </div>
             </div>
 
-            <div class="form-row">
+            <div asp-for="Email" class="form-row">
                 <div class="form-group">
                     <label class="form-label">البريد الإلكتروني</label>
-                    <input class="form-control" placeholder="khaled@gmail.com">
+                    <input asp-for="Email" class="form-control" placeholder="khaled@gmail.com">
                 </div>
-                <div class="form-group">
+                <div asp-for="PhoneNumber" class="form-group">
                     <label class="form-label">رقم الهاتف</label>
-                    <input class="form-control" placeholder="01096541656">
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="01096541656">
                 </div>
             </div>
             <button class="btn-save">حفظ التغييرات</button>
         </form>
         <!-- change password  -->
-        <form class="settings-form">
+        <form class="settings-form" asp-action="ChangePassword">
+            <input type="hidden" asp-for="ParentID" />
             <div class=" form-row">
-                <div class="form-group">
+                <div  class="form-group">
                     <label class="form-label">كلمه المرور الحاليه </label>
-                    <input type="password" class="form-control" placeholder="current password">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="current password">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">تاكيد كلمه المرور الحاليه</label>
-                    <input type="password" class="form-control " placeholder="Sure current password">
-                </div>
-            </div>
-
-            <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">كلمه المرور الجديده </label>
-                    <input type="password" class="form-control" placeholder="New password">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">تاكيد كلمه المرور الجديده</label>
-                    <input type="password" class="form-control" placeholder="Sure New password">
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="New password">
                 </div>
             </div>
             <button class="btn btn-primary btn-save">حفظ التغييرات</button>
@@ -159,14 +168,25 @@
     </section>
 </div>
 @section script {
-    <script src="~/assets/js/Setting.js"></script>
     <script>
-         setTimeout(function(){
-        var alert = document.getElementById("tempError");
-        if(alert){
-            alert.classList.remove("show")
-            alert.style.display="none";
-        }
-        },5000);
+              setTimeout(() => {
+            document.querySelectorAll(".alert").forEach(a => a.remove());
+        }, 4000);
+
     </script>
+    <script>
+            // افتح اختيار الصورة لما أدوس على تعديل
+            document.getElementById("edit-btn").addEventListener("click", function () {
+                document.getElementById("fileInput").click();
+            });
+
+            // ابعت الفورم تلقائيًا بعد اختيار الصورة
+            document.getElementById("fileInput").addEventListener("change", function () {
+                if (this.files.length > 0) {
+                    document.getElementById("imageForm").submit();
+                }
+            });
+    </script>
+        <script src="~/assets/js/Setting.js"></script>
+    
 }
