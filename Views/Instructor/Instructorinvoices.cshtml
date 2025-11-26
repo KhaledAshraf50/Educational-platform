@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "_InstructorDashboard";
+}
+@section stylee {
+    <link rel="stylesheet" href="~/assets/css/invoices.css">
+}
+<div class="content">
+    <div class="top-icons">
+        <button class="icon-btn" id="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+
+        <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+            <i class="fa-solid fa-circle-user"></i>
+        </button>
+    </div>
+    <div class="notification d-none" id="notification">
+        <div class="messages">
+            <p>
+                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
+            </p>
+        </div>
+        <div class="messages">
+            <p>
+                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
+            </p>
+        </div>
+        <div class="messages">
+            <p>
+                تم شراء كورس الوحده الاولي في اللغه العربيه مع الاستاذ محمد ناصف
+            </p>
+        </div>
+    </div>
+    <div class="InvoicesPage m-3" id="InvoicesPage">
+        <div class="container text-center mt-3 ">
+            <div class="header d-flex justify-content-between align-items-center mb-3">
+                <div class="title">
+                    <h3>الفواتير</h3>
+                    <p>آخر الفواتير الخاصة بالكورسات المشترك بها</p>
+                </div>
+                <!-- Search Box -->
+                <form class="search-box" role="search">
+                    <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+                    <!-- <i class="fa-solid fa-magnifying-glass"></i>س -->
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table table-hover text-center align-middle table_Edit">
+                    <thead>
+                        <tr>
+                            <th>رقم الفاتورة</th>
+                            <th>اسم الدورة</th>
+                            <th>تاريخ الإصدار</th>
+                            <th>حالة الدفع</th>
+                            <th>إجمالي المبلغ</th>
+                            <th>عرض التفاصيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Unit 1 English</td>
+                            <td>2025-09-01</td>
+                            <td><span class="badgepaid">مدفوع</span></td>
+                            <td>45EG</td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Review Unit 1</td>
+                            <td>2025-09-05</td>
+                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                            <td>38EG</td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Review Unit 2</td>
+                            <td>2025-09-05</td>
+                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                            <td>38EG</td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Review Unit 3</td>
+                            <td>2025-09-05</td>
+                            <td><span class="badgepaid">مدفوع</span></td>
+                            <td>38EG</td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Review Unit 4</td>
+                            <td>2025-09-05</td>
+                            <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                            <td>38EG</td>
+                            <td>
+                                <button class="btn btn-sm btn-info">عرض</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btnsNextPre">
+                    <button class="Previous">السابق</button>
+                    <button class="Next">التالي</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/progressbar.js"></script>
+<script src="~/assets/js/invoices.js"></script>

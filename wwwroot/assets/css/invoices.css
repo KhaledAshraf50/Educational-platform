@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    direction: rtl;
+}
+
+:root {
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#InvoicesPage {
+    margin-right: 70px;
+    padding: 24px;
+    transition: margin-right 0.3s;
+    background-color: var(--content-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar:hover~#Subjectspage {
+    margin-right: 220px;
+}
+
+.InvoicesPage .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.InvoicesPage .title h3 {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.InvoicesPage .title p {
+    color: #777;
+    font-size: 16px;
+}
+
+.search-box {
+    position: relative;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 16px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 24px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: var(--content-bg);
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.badgepaid {
+    background-color: var(--Success-color);
+    color: var(--white-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.badgeunpaid {
+    background-color: var(--Error-color);
+    color: var(--white-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.badgeUnderReview {
+    background-color: var(--Warning-color);
+    color: var(--white-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.table_Edit {
+    background-color: var(--content-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    direction: rtl;
+}
+
+.table_Edit thead th {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table_Edit tbody tr button {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.table_Edit th,
+.table_Edit tr {
+    height: 64px;
+}
+
+.table_Edit tbody td button:hover {
+    background-color: var(--primary-color);
+    color: whit
+}
+
+.btnsNextPre {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 16px;
+    transition: 0.3s;
+    direction: ltr;
+}
+
+button.Next {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    margin-left: 4px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+button.Previous {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    margin-right: 4px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+@media (max-width: 992px) {
+    .search input {
+        width: 70%;
+    }
+}
+
+@media (max-width: 576px) {
+
+
+    .search {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .table_Edit {
+        font-size: 14px;
+    }
+}
+
+@media(max-width:768px) {
+    .badgeunpaid {
+        width: auto;
+        height: auto;
+    }
+
+}

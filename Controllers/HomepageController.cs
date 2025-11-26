@@ -1,16 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Luno_platform.Service;
+using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
 {
-  
     public class HomepageController : Controller
     {
-        public IActionResult mainpage()
+        public readonly I_homepage_serves _homeservice;
+        public readonly I_instructor_services _i_Instructor_Services;
+        public readonly Icourses_service _icourses_Service;
+        public readonly  IExam_service _exam_Service;
+
+
+
+
+        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service)
         {
-            return View();
+         
+            _homeservice = homeservice;
+
+            _i_Instructor_Services = i_Instructor_Services;
+
+            _icourses_Service = icourses_Service;
+            _exam_Service = exam_Service;
+
+
+
+
+
         }
 
+        public IActionResult mainpage()
+        {
+            var model = new homepage_viewmodel
+            {
+                subjects = _homeservice.GetSubjects,
+                instructor=_i_Instructor_Services.infoinstructors()
+           
 
+            };
+            return View(model);
+        }
+
+        
 
         public IActionResult login_in()
         {
@@ -25,24 +57,49 @@ namespace Luno_platform.Controllers
 
         public IActionResult show_all_teacher()
         {
-            return View();
+            var instructor = _i_Instructor_Services.GetAll_Instructors_With_User_with_subject();
+
+            return View(instructor);
         }
 
-        public IActionResult show_portfolio_teacher()
+        public IActionResult show_portfolio_teacher(int id )
         {
-            return View();
+            var teacher= _i_Instructor_Services.getprotfolioteacher(id);
+            return View(teacher);
         }
 
-        public IActionResult show_courses_teacher()
+        [Route("homepage/show_courses_teacher/{structorid}/{classId}")]
+        public IActionResult show_courses_teacher(int structorid,int classid)
         {
-            return View();
+            var courses = _icourses_Service.showAllcoursebyclassandinstructor(structorid, classid);
+
+            return View(courses);
         }
 
-
-        public IActionResult show_details_courses()
+        [Route("Homepage/show_details_courses/{courseid}")]
+        public IActionResult show_details_courses(int courseid)
         {
-            return View();
+            var course = _icourses_Service.Infocourse(courseid);
+            if (course == null) return NotFound();
+            return View(course);
         }
+
+
+        [Route("homepage/pageExam/{Examid}")]
+        public IActionResult pageExam(int Examid)
+        {
+            var model = new pageExam_viewmodel { 
+            
+                questions = _exam_Service.GetExamsbyid(Examid),
+                examinfo = _exam_Service.GetById(Examid)
+            };
+
+            
+
+            return View(model);
+        }
+
+
 
     }
 

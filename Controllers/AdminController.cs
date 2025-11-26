@@ -12,6 +12,25 @@ namespace Luno_platform.Controllers
         {
             return View();
         }
-
+        public IActionResult courses()
+        {
+            return View();
+        }
+        public IActionResult payments()
+        {
+            return View();
+        }
+        public IActionResult Report ()
+        {
+            return View();
+        }
+        public IActionResult Main()
+        {
+            return View();
+        }
+        public IActionResult setting()
+        {
+            return View();
+        }
     }
 }
