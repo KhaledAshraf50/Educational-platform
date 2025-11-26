@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luno_platform.Migrations
 {
     [DbContext(typeof(LunoDBContext))]
-    [Migration("20251126142201_v1")]
+    [Migration("20251126173312_v1")]
     partial class v1
     {
         /// <inheritdoc />

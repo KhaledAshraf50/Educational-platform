@@ -14,9 +14,18 @@ namespace Luno_platform.Controllers
         {
             _parentService = parentService;
         }
-        public IActionResult MainPage(int id)
+        public IActionResult MainPage()
+
         {
-            var parent = _parentService.GetParent(id);
+
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            var parent = _parentService.GetParent(userId);
             return View(parent);
         }
         //------------------------
