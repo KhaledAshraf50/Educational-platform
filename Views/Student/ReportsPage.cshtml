@@ -27,11 +27,31 @@
                     </button>
                     <ul class="dropdown-menu">
                         <a class="dropdown-item"  href="#" onclick="filterCourse('all')">الكل</a>
-                        @foreach (var course in Model){
+                        @{
+                            var uniqueSubjects = Model
+                            .Where(c => c.SubjectNameAR != null)
+                            .GroupBy(c => c.SubjectNameAR)
+                            .Select(g => g.Key) // اسم المادة فقط
+                            .ToList();
+                        }
+
+                        @foreach (var subject in uniqueSubjects)
+                        {
+                            <li>
+                                <a class="dropdown-item"
+                                   data-subject="@subject"
+                                   href="#"
+                                   onclick="filterCourse('@subject')">
+                                    @subject
+                                </a>
+                            </li>
+                        }
+
+                        @* @foreach (var course in Model){
                         <li>
                                 <a class="dropdown-item" data-subject="@course.SubjectNameAR" href="#" onclick="filterCourse('@(course.SubjectNameAR ?? "لا يوجد مادة")')">@course.SubjectNameAR</a>
                             </li>
-                        }
+                        } *@
                         
                     </ul>
                 </div>
