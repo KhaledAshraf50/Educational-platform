@@ -10,7 +10,7 @@
     <div class="container">
         <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
             <div class="img">
-                <img src=" @Model.Student.Image" alt="student_img" />
+                <img src="@Url.Content(Model.Student.Image)" alt="student_img" />
                 
             </div>
             <div class="text">
@@ -84,7 +84,7 @@
                 }
             </div>
 
-        <div class="courses">
+        @* <div class="courses">
             <div class="text"><p>الكورسات المقترحه لك</p></div>
             <div class="courses-card d-flex flex-column flex-md-row">
                 <div class="card-courses">
@@ -237,7 +237,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> *@
     </div>
 </div>
 @section script {

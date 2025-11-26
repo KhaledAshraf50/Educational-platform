@@ -13,12 +13,27 @@
         </div>
         <div class="mb-3 p-3 btns">
             <button class="btn-btn-secondary me-3" onclick="filterCourse('all')">الكل</button>
-            @foreach (var sub in Model)
+            @{
+                var uniqueSubjects = Model
+                .Where(c => c.Subjects != null)
+                .GroupBy(c => c.Subjects.SubjectNameAR)
+                .Select(g => g.First().Subjects.SubjectNameAR)
+                .ToList();
+            }
+
+            @foreach (var subjectName in uniqueSubjects)
+            {
+                <button class="btn-btn-secondary me-3" onclick="filterCourse('@subjectName')">
+                    @subjectName
+                </button>
+            }
+
+            @* @foreach (var sub in Model)
             {
                 <button class="btn-btn-secondary me-3" onclick="filterCourse('@(sub.Subjects.SubjectNameAR ?? "لا يوجد مادة")')">
                     @(sub.Subjects?.SubjectNameAR ?? "لا يوجد مادة")
                 </button>
-            }
+            } *@
             @* <button class="btn-btn-secondary me-3" onclick="filterCourse('عربي')">عربي</button>
             <button class="btn-btn-secondary me-3" onclick="filterCourse('انجليزي')">انجليزي</button>
             <button class="btn-btn-secondary me-3" onclick="filterCourse('كيمياء')">كيمياء</button> *@

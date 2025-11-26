@@ -13,7 +13,7 @@ namespace Luno.Controllers
         {
             istudentService = studentService;
         }
-        [Route("/Student/MainPage/{id}")]
+        [Route("Student/MainPage/{id:int}")]
         public IActionResult MainPage(int id)
         {
             var student = istudentService.GetStudent(id);
