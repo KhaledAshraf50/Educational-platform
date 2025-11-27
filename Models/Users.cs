@@ -24,17 +24,8 @@ namespace Luno_platform.Models
         public string role { get; set; }
 
         [Required]
-<<<<<<< HEAD
-//<<<<<<< HEAD
-//        //[DataType(DataType.Password)]
-//=======
-        [DataType(DataType.Password)]
-
-//>>>>>>> origin/back_homepage
-=======
 
         [DataType(DataType.Password)]
->>>>>>> 26244b97822fdd9460031f93add1d77dc2a3dab2
         public string password { get; set; }
         [Required]
         [EmailAddress]

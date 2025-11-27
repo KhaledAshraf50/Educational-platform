@@ -17,11 +17,7 @@ namespace Luno.Controllers
         public IActionResult MainPage(int id)
         {
             var student = istudentService.GetStudent(id);
-            if (student == null)
-            {
-                return NotFound("الطالب غير موجود");
-            }
-
+           
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,
