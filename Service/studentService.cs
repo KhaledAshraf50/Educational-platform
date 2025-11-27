@@ -63,6 +63,10 @@ namespace Luno_platform.Service
         {
             return _repository.GetPayments(studentId);
         }
+        public int? GetStudentIdByUserId(int userId)
+        {
+            return _repository.GetStudentIdByUserId(userId);
+        }
     }
 }
 //using Luno_platform.Models;

@@ -15,6 +15,14 @@ namespace Luno_platform.Repository
             _Context = lunoDBContext;
             Table = _Context.Set<T>();
         }
+        public int? GetStudentIdByUserId(int userId)
+        {
+            var student = _Context.Students
+                .Include(s => s.User)
+                .FirstOrDefault(s => s.User.Id == userId);
+
+            return student?.StudentID;   // لو مش طالب هترجع null
+        }
         public void Add(T entity)
         {
             Table.Add(entity);

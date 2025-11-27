@@ -11,7 +11,7 @@ namespace Luno_platform.Repository
         void Update(T entity);
         void Delete(T entity);
         void Save();
-        
+        int? GetStudentIdByUserId(int userId);
 
 
 

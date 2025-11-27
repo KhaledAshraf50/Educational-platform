@@ -11,7 +11,7 @@
         void Delete(T entity);
         void Save();
 
-        
+        int? GetStudentIdByUserId(int userId);
 
 
     }
