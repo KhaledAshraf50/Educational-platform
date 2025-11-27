@@ -21,10 +21,6 @@ namespace Luno.Controllers
         [Route("/Student/MainPage")]
         public IActionResult MainPage()
         {
-<<<<<<< HEAD
-            var student = istudentService.GetStudent(id);
-           
-=======
             // جلب الـ UserId من الـ Claims اللي اتخزنت مع تسجيل الدخول
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             if (userIdClaim == null)
@@ -41,7 +37,6 @@ namespace Luno.Controllers
                 return NotFound("الطالب غير موجود");
             }
 
->>>>>>> dev
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,

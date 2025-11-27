@@ -18,18 +18,7 @@ namespace Luno_platform.Models
         [MaxLength(50)]
         public string role { get; set; }
 
-<<<<<<< HEAD
-        [Required]
-
-        [DataType(DataType.Password)]
-        public string password { get; set; }
-        [Required]
-        [EmailAddress]
-        [MaxLength(256)]
-        public string email { get; set; }
-=======
         public string? Image { get; set; }
->>>>>>> dev
 
         [Required]
 
