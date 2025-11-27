@@ -1,20 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Luno_platform.Models
 {
-    public class Users
+    public class Users:IdentityUser<int>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int ID { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-        public string phoneNumber { get; set; }
 
-        public DateTime? BirthDate { get; set; }
+   
 
         [MaxLength(50)]
         public string nationalID { get; set; }
@@ -23,6 +18,7 @@ namespace Luno_platform.Models
         [MaxLength(50)]
         public string role { get; set; }
 
+<<<<<<< HEAD
         [Required]
 
         [DataType(DataType.Password)]
@@ -31,19 +27,25 @@ namespace Luno_platform.Models
         [EmailAddress]
         [MaxLength(256)]
         public string email { get; set; }
+=======
+        public string? Image { get; set; }
+>>>>>>> dev
 
         [Required]
+
         [MaxLength(100)]
         public string fname { get; set; }
 
 
-
         [Required]
-        [MaxLength(100)]
+        [MaxLength(100)] 
+
         public string lastName { get; set; }
 
 
         public Student student { get; set; }
+        public Admin admin { get; set; }
+
         public Instructor Instructor { get; set; }
         public Parent parent { get; set; }
 

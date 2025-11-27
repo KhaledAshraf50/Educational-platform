@@ -1,0 +1,74 @@
+﻿@using Luno_platform.Viewmodel.Account_viewmode
+@model LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+
+}
+
+<Section class="Login_page">
+
+
+    <div class="form-container">
+        <h2><b>تسجيل الدخول</b></h2>
+
+
+        <p class="subtitle">
+
+            ادخل على حسابك بادخال رقم الهاتف و كلمة المرور المسجل بهم من قبل
+
+        </p>
+        <span>لا يوجد لديك حساب؟</span>
+        <a href="/homepage/sign_up" id="link_create_m">انشئ حسابك الآن!</a>
+
+
+
+        <br>
+
+     
+
+
+        <!-- الحقول -->
+        <form id="form_login_m" asp-action="Login" method="post">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group mt-3">
+                <div style="position: relative;">
+                    <input asp-for="Email" type="email" id="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group mt-3 mb-3">
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" id="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div>
+                <input asp-for="RememberMe" type="checkbox" /> Remember Me
+            </div>
+
+            <button type="submit" class="buttom">تسجيل الدخول</button>
+        </form>
+
+
+    </div>
+
+</Section>
+
+
+
+
+
+
+
+

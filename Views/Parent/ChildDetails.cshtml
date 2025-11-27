@@ -16,12 +16,11 @@
     </div>
     <div class="details-content mt-4">
         <div class="child-info">
-            <img src="@Model.Image" alt="Child Photo" class="child-avatar-large">
+            <img src="@Model.User.Image" alt="Child Photo" class="child-avatar-large">
             <h3>@Model.User.fname @Model.User.lastName</h3>
             <p class="child-grade">الصف: @Model.Classes.ClassName</p>
-            <p class="child-email">البريد الإلكتروني: @Model.User.email</p>
-            <p class="child-phone">رقم الهاتف: @Model.User.phoneNumber</p>
-            <p class="child-address">تاريخ الميلاد: @Model.User.BirthDate</p>
+            <p class="child-email">البريد الإلكتروني: @Model.User.Email</p>
+            <p class="child-phone">رقم الهاتف: @Model.User.PhoneNumber</p>
             <p class="child-address">الرقم القومي: @Model.User.nationalID</p>
         </div>
     </div>

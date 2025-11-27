@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Models
 {
-    public class LunoDBContext : DbContext
+    public class LunoDBContext : IdentityDbContext<Users, ApplicationRole, int>
     {
         public LunoDBContext(DbContextOptions<LunoDBContext> options) : base(options)
         {
@@ -60,7 +60,7 @@ namespace Luno_platform.Models
     .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Users>()
-           .HasIndex(u => u.email)
+           .HasIndex(u => u.Email)
            .IsUnique();
          
 
@@ -102,6 +102,13 @@ namespace Luno_platform.Models
                 .HasOne(i => i.User)
                 .WithOne(u => u.Instructor)
                 .HasForeignKey<Instructor>(i => i.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // 2. admin -> Users (UserId) - One-to-One/Zero
+            modelBuilder.Entity<Admin>()
+                .HasOne(i => i.User)
+                .WithOne(u => u.admin)
+                .HasForeignKey<Admin>(i => i.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             // 3. Parents -> Users (UserId) - One-to-One
