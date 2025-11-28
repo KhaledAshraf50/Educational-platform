@@ -1,9 +1,5 @@
 ﻿@using Luno_platform.Viewmodel
-
 @model pageExam_viewmodel
-
-
-
 
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
@@ -15,115 +11,79 @@
 
 <div class="exam-container">
 
-    <!-- RIGHT PANEL -->
-    <div class="right-panel">
-        <div class="timer" id="timer">@Model.examinfo.Time</div>
-        <div class="questions-list" id="questionsList"></div>
+    <!-- Header يحتوي اسم الامتحان والوقت -->
+    <div class="exam-header">
+        <div>@Model.examinfo.ExamName</div>
+        <div class="timer-box" id="timer">00:00</div>
     </div>
 
-    <!-- LEFT PANEL -->
-    <div class="left-panel">
+    <form method="post" action="/Exam/SubmitExam" id="examForm">
+        <input type="hidden" name="ExamID" value="@Model.examinfo.ExamID" />
 
-        <div class="question-text" id="questionText"></div>
+        @for (int i = 0; i < Model.questions.Count; i++)
+        {
+            var q = Model.questions[i];
 
-        <div id="imageContainer" class="question-image-container"></div>
+            <div class="question-block">
 
-        <div class="options" id="optionsContainer"></div>
+                <h3 class="question-number">
+                    السؤال @(i + 1)
+                </h3>
 
-        <div class="buttons">
-            <button class="next-btn" id="nextBtn">التالي ➡️</button>
-            <button class="prev-btn" id="prevBtn">⬅️ السابق</button>
-            <button class="mark-btn" id="markBtn">🔖 مراجعة</button>
-            <button class="save-btn" id="saveBtn">💾 حفظ</button>
+                <p class="question-text">
+                    @Html.Raw(q.questionText)
+                </p>
+
+                <div class="options-container">
+
+                    <label class="option-item">
+                        <input type="radio" name="Answers[@q.questionID]" value="@q.chooseA" /> @q.chooseA
+                    </label>
+
+                    <label class="option-item">
+                        <input type="radio" name="Answers[@q.questionID]" value="@q.chooseB" /> @q.chooseB
+                    </label>
+
+                    <label class="option-item">
+                        <input type="radio" name="Answers[@q.questionID]" value="@q.chooseC" /> @q.chooseC
+                    </label>
+
+                    <label class="option-item">
+                        <input type="radio" name="Answers[@q.questionID]" value="@q.chooseD" /> @q.chooseD
+                    </label>
+
+                </div>
+
+            </div>
+        }
+
+        <div class="submit-section">
+            <button type="submit" class="save-btn">💾 تسليم الامتحان</button>
         </div>
 
-    </div>
+    </form>
 
 </div>
 
-
 <script>
-
-        const questions = [
-        @foreach (var q in Model.questions)
-        {
-                <text>
-                {
-                    id: @q.questionID,
-                    question: "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.questionText))",
-                    degree: @q.degree,
-                    options: [
-                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseA))",
-                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseB))",
-                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseC))",
-                        "@Html.Raw(System.Net.WebUtility.HtmlDecode(q.chooseD))"
-                    ]
-                },
-                </text>
-        }
-    ];
-
-
-    function GetTypeForQuestion(q) { return "mcq"; }
-
-    let currentIndex = 0;
-    let answers = {};
-    let marked = new Set();
-
-    const questionText = document.getElementById("questionText");
-    const optionsContainer = document.getElementById("optionsContainer");
-    const questionsList = document.getElementById("questionsList");
-    const imageContainer = document.getElementById("imageContainer");
-
-    // إنشاء أزرار الأسئلة
-    questions.forEach((q, i) => {
-        const btn = document.createElement("button");
-        btn.textContent = "Q" + (i + 1);
-        btn.className = "question-btn";
-        btn.onclick = () => loadQuestion(i);
-        questionsList.appendChild(btn);
-    });
-
-    function loadQuestion(index) {
-        currentIndex = index;
-        const q = questions[index];
-
-        questionText.textContent = `السؤال ${index + 1}: ${q.question}`;
-        optionsContainer.innerHTML = "";
-        imageContainer.innerHTML = "";
-
-        if (q.imageUrl && q.imageUrl.length > 0) {
-            const img = document.createElement("img");
-            img.src = q.imageUrl;
-            imageContainer.appendChild(img);
-        }
-
-        q.options.forEach(opt => {
-            if (opt && opt.trim() !== "") {
-                const label = document.createElement("label");
-                label.innerHTML = `<input type="radio" name="q${q.id}" value="${opt}"
-                    ${(answers[q.id] === opt ? "checked" : "")}> ${opt}`;
-                optionsContainer.appendChild(label);
-            }
-        });
-
-        document.querySelectorAll(".question-btn").forEach((b, i) => {
-            b.classList.toggle("active", i === index);
-        });
-    }
-
-    // مؤقت الامتحان
+    // -------- TIMER -------- //
     let time = @Model.examinfo.Time * 60;
-    const timerEl = document.getElementById('timer');
+    const timer = document.getElementById("timer");
 
-    function updateTimer() {
-        const m = Math.floor(time / 60);
-        const s = time % 60;
-        timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+    function tick() {
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+
+        timer.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
+
+        if (time <= 0) {
+            document.getElementById("examForm").submit(); // Auto submit
+            return;
+        }
+
         time--;
-        if (time >= 0) setTimeout(updateTimer, 1000);
+        setTimeout(tick, 1000);
     }
-    updateTimer();
 
-
+    tick();
 </script>

@@ -3,10 +3,13 @@ using Luno_platform.Models;
 using Luno_platform.Repository;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
 {
+    [Authorize(Roles = "parent")]
+
     public class ParentController : Controller
     {
         IParentService _parentService;

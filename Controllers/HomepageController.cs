@@ -1,4 +1,5 @@
-﻿using Luno_platform.Service;
+﻿using Luno_platform.Models;
+using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,7 @@ namespace Luno_platform.Controllers
         public readonly I_instructor_services _i_Instructor_Services;
         public readonly Icourses_service _icourses_Service;
         public readonly  IExam_service _exam_Service;
-
+        public readonly I_BaseService<Users> baseService;
 
 
 
@@ -30,19 +31,47 @@ namespace Luno_platform.Controllers
 
         }
 
+        public int getuserid()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return -1;
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            return userId;
+        }
         public IActionResult mainpage()
         {
+            var userid = getuserid();
             var model = new homepage_viewmodel
             {
                 subjects = _homeservice.GetSubjects,
-                instructor=_i_Instructor_Services.infoinstructors()
-           
+                instructor = _i_Instructor_Services.infoinstructors()
+              
+               
+
 
             };
+
             return View(model);
         }
 
-        
+        //public IActionResult imageportfolio()
+        //{
+        //    var userid = getuserid();
+
+        //    var image = baseService.GetImagePortfolio(userid);
+
+        //    ViewBag.image = image;
+
+          
+
+        //    return View("~/Views/Shared/_navbar.cshtml");
+        //}
+
+
 
         public IActionResult login_in()
         {

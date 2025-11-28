@@ -1,4 +1,7 @@
-﻿using Luno_platform.Repository;
+﻿using Luno_platform.Models;
+using Luno_platform.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Service
 {
@@ -28,7 +31,7 @@ namespace Luno_platform.Service
 
         public T GetById(int id)
         {
-            return Repo.GetById(id); 
+            return Repo.GetById(id);
         }
 
         public void Save()
@@ -39,6 +42,18 @@ namespace Luno_platform.Service
         public void Update(T entity)
         {
             Repo.Update(entity);
+        }
+        public int? GetStudentIdByUserId(int userId)
+        {
+            return Repo.GetStudentIdByUserId(userId);
+        }
+        public int? GetParentIdByUserId(int userId)
+        {
+            return Repo.GetParentIdByUserId(userId);
+        }
+        public int? GetInstructorIdByUserId(int userId)
+        {
+            return Repo.GetInstructorIdByUserId(userId);
         }
     }
 }

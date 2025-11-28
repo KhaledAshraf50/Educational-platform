@@ -19,25 +19,28 @@
         </div>
         <ul>
             <li>
-                <a asp-controller="Student" asp-action="MainPage" asp-route-id="1"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
+                <a asp-controller="Student" asp-action="MainPage"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="SubjectsPage" asp-route-id="1"><i class="fa-solid fa-book mx-2"></i> <span>المواد </span></a>
+                <a asp-controller="Student" asp-action="SubjectsPage"><i class="fa-solid fa-book mx-2"></i> <span>المواد </span></a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="ReportsPage" asp-route-id="1">
+                <a asp-controller="Student" asp-action="ReportsPage">
                     <i class="fa-solid fa-chart-line mx-2"></i>
                     <span>التقارير</span>
                 </a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="invoicesPage" asp-route-id="1">
+                <a asp-controller="Student" asp-action="invoicesPage">
                     <i class="fa-regular fa-money-bill-1 mx-2"></i>
                     <span>الفواتير</span>
                 </a>
             </li>
             <li>
                 <a asp-controller="Student" asp-action="SettingPage"><i class="fa-solid fa-gear mx-2"></i> <span>الإعدادات</span></a>
+            </li>
+            <li>
+                <a asp-controller="Homepage" asp-action="mainpage"><i class="fa-solid fa-circle-arrow-left mx-2"></i> <span>الرجوع</span></a>
             </li>
         </ul>
     </div>

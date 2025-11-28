@@ -26,7 +26,6 @@ namespace Luno_platform.Repository
                           .Select(i => new Instructor
                           {
                               instructorID = i.instructorID,
-                              //Image = i.Image,
                               motto = i.motto,
                               bio = i.bio,
                               eligible = i.eligible,
@@ -36,7 +35,9 @@ namespace Luno_platform.Repository
                                   fname = i.User.fname,
                                   lastName = i.User.lastName,
                                   Email=i.User.Email,
-                                  PhoneNumber=i.User.PhoneNumber
+                                  PhoneNumber=i.User.PhoneNumber,
+                                  Image = i.User.Image
+
 
                               },
 

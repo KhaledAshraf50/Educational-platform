@@ -111,21 +111,21 @@ namespace Luno_platform.Service
             return true;
         }
 
-        public void UpdateImage(int parentId, string imgUrl)
-        {
-            throw new NotImplementedException();
-        }
         //public void UpdateImage(int parentId, string imgUrl)
         //{
-        //    var parent = parentRepo.GetParent(parentId);
-
-        //    if (parent == null || parent.User == null)
-        //        throw new Exception("Parent not found");
-
-        //    parent> = imgUrl;
-
-        //    parentRepo.Update(parent);
-        //    parentRepo.Save(); 
+        //    throw new NotImplementedException();
         //}
+        public void UpdateImage(int parentId, string imgUrl)
+        {
+            var parent = parentRepo.GetParent(parentId);
+
+            if (parent == null || parent.User == null)
+                throw new Exception("Parent not found");
+
+            parent.User.Image  = imgUrl;
+
+            parentRepo.Update(parent);
+            parentRepo.Save();
+        }
     }
 }

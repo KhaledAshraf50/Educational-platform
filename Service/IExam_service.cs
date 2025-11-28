@@ -6,5 +6,7 @@ namespace Luno_platform.Service
     {
         List<Question> GetExamsbyid(int Examid);
 
+        int CorrectExamAndSave(int examId, int studentId, Dictionary<int, string> answers);
+
     }
 }

@@ -56,7 +56,10 @@
                             <div class="swiper-slide">
                                 <div class="card">
                                     <div class="p-2 imgs">
-                                        <img class=" " src="@Url.Content(teac.User.Image)" alt="@teac.User.fname">
+                                        <img class=""
+                                             src="@Url.Content(string.IsNullOrEmpty(teac.User.Image) ? "~/assets/imgs/user_image.png" : teac.User.Image)"
+                                             alt="@teac.User.fname" />
+
                                     </div>
 
                                     <div class="card-body">
@@ -92,7 +95,7 @@
 
                      
 
-                        <div class="swiper-slide">
+                        @* <div class="swiper-slide">
                             <div class="card">
                                 <div class="p-2 imgs">
                                     <img class=" " src="~/assets/imgs/c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg" alt="">
@@ -118,7 +121,7 @@
 
 
                                     </div>
-                                </div>
+                                </div> *@
                             </div>
 
 

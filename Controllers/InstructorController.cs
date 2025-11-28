@@ -1,13 +1,16 @@
-﻿using System;
-using Luno_platform.Models;
+﻿using Luno_platform.Models;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Luno_platform.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Luno_platform.Controllers
 {
+    [Authorize(Roles = "instructor")]
+
     public class InstructorController : Controller
     {
 
