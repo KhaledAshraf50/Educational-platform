@@ -1,0 +1,150 @@
+/* support */
+.complaint-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .complaint-card:hover {
+      transform: scale(1.02);
+    }
+
+    .status-badge {
+      font-size: 0.85rem;
+      border-radius: 8px;
+      padding: 6px 10px;
+    }
+
+   
+    .status-solved {
+      background-color: #d1e7dd;
+      color:   #092c4c;;
+    }
+
+    .status-inprogress {
+      background-color: #cfe2ff;
+      color: #092c4c;
+    }
+
+    .reply-box {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .status-pending {
+  background-color: #ffe69c !important;
+  color: #092c4c !important;
+}
+/* 🎨 ألوان المشروع */
+:root {
+  --primary: #092c4c;
+  --secondary: #F2994A;
+}
+
+/* الأزرار */
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-primary:hover {
+  background-color: #0b3a6e !important; /* درجة أفتح شوي */
+}
+
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+
+.status-pending {
+  background-color: var(--secondary) !important;
+  color: #fff !important;
+}
+.status-inprogress {
+  background-color: #fce4c4 !important;
+  color: var(--primary) !important;
+}
+.status-solved {
+  background-color: #d1e7dd !important;
+  color: var(--primary) !important;
+}
+
+
+.navbar-brand {
+  color: var(--primary) !important;
+}
+
+
+.icon-btn i {
+  color: var(--primary) !important;
+}
+
+
+.sidebar ul li a:hover {
+  background-color: var(--secondary) !important;
+  color: #fff !important;
+}
+
+    /* notification  */
+
+ 
+    .notif-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 1rem 1.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .notif-card.unread {
+      background-color: #e9f3ff;
+      border-right: 4px solid   #092c4c;;
+    }
+
+    .notif-text {
+      flex-grow: 1;
+      margin-right: 15px;
+    }
+
+    .notif-time {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+
+    .btn-action {
+      background: none;
+      border: none;
+      color:   #092c4c;;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .btn-action:hover {
+      color: #F2994A;
+    }
+
+    .mark-read-btn {
+      background-color: #092c4c;;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .mark-read-btn:hover {
+      background-color: #F2994A;
+    }
+

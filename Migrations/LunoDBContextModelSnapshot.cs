@@ -722,6 +722,32 @@ namespace Luno_platform.Migrations
                     b.ToTable("instructor_classescs");
                 });
 
+            modelBuilder.Entity("Luno_platform.Models.studentstaistics_in_task", b =>
+                {
+                    b.Property<int>("StatisticsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatisticsID"));
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("degree")
+                        .HasColumnType("int");
+
+                    b.HasKey("StatisticsID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("Studentstaistics_In_Tasks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -1159,6 +1185,24 @@ namespace Luno_platform.Migrations
                     b.Navigation("classes");
                 });
 
+            modelBuilder.Entity("Luno_platform.Models.studentstaistics_in_task", b =>
+                {
+                    b.HasOne("Luno_platform.Models.Student", "Student")
+                        .WithMany("Studentstaistics_In_task")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Luno_platform.Models.Tasks", "Tasks")
+                        .WithMany("Studentstaistics_In_task")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Luno_platform.Models.ApplicationRole", null)
@@ -1285,6 +1329,8 @@ namespace Luno_platform.Migrations
                     b.Navigation("StudentStatistics");
 
                     b.Navigation("Student_Courses");
+
+                    b.Navigation("Studentstaistics_In_task");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Subject", b =>
@@ -1307,6 +1353,8 @@ namespace Luno_platform.Migrations
                     b.Navigation("StudentAnswers");
 
                     b.Navigation("StudentStatistics");
+
+                    b.Navigation("Studentstaistics_In_task");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Users", b =>

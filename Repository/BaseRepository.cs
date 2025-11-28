@@ -1,5 +1,4 @@
-﻿
-using Luno_platform.Models;
+﻿using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Repository
@@ -10,7 +9,7 @@ namespace Luno_platform.Repository
         public LunoDBContext _Context;
         public DbSet<T> Table;
 
-        public BaseRepository( LunoDBContext lunoDBContext)
+        public BaseRepository(LunoDBContext lunoDBContext)
         {
             _Context = lunoDBContext;
             Table = _Context.Set<T>();
@@ -69,7 +68,7 @@ namespace Luno_platform.Repository
         }
         public void Save()
         {
-          _Context.SaveChanges();
+            _Context.SaveChanges();
         }
         public void Update(T entity)
         {

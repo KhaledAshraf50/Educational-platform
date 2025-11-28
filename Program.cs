@@ -70,6 +70,8 @@ namespace Luno_platform
 
             builder.Services.AddScoped<IExam_repo, Exam_repo>();
             builder.Services.AddScoped<IExam_service, Exam_service>();
+            builder.Services.AddScoped<ITask_repo, Task_repo>();
+            builder.Services.AddScoped<ITask_service, Task_service>();
 
             builder.Services.AddScoped<IParentService, ParentService>();
             builder.Services.AddScoped<IParentRepo, ParentRepo>();

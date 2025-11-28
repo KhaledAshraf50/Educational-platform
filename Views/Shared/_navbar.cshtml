@@ -26,8 +26,46 @@
     <title> Educational</title>
 </head>
 
+<style>
+    .image_porfoile_simple {
+        display: flex; /* لترتيب العناصر جنباً إلى جنب */
+        align-items: center; /* لمحاذاة الصورة والرابط عمودياً في المنتصف */
+        gap: 10px; /* مسافة بسيطة بين الصورة والرابط */
+        cursor: pointer;
+        margin-right: 20px;
+    }
 
+        /* -------------------------------------- */
+        /* تنسيقات الصورة (Avatar) */
+        /* -------------------------------------- */
 
+        .image_porfoile_simple img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; /* لجعل الصورة دائرية */
+            object-fit: cover;
+            display: block;
+        }
+
+    /* -------------------------------------- */
+    /* تنسيقات رابط الخروج (Logout Link) */
+    /* -------------------------------------- */
+
+    .logout-link-simple {
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        color: #e74c3c; /* اللون الأحمر الذي طلبته (القيمة الثابتة لـ --accent-color) */
+        transition: opacity 0.3s ease;
+        padding: 5px 10px; /* لإعطائه مساحة عند المرور */
+        border-radius: 4px;
+    }
+
+        .logout-link-simple:hover {
+            color: #c0392b; /* لون أحمر أغمق قليلاً عند المرور */
+            background-color: #ffeaea; /* خلفية فاتحة عند المرور */
+        }
+</style>
 
 <!--  -->
 
@@ -60,28 +98,34 @@
                     <a href="/Admin/users" class="nav-item-link">الادمن </a>
                 </div>
             </div>
-
             <!-- Buttons + Menu -->
             <div class="buttons-container">
 
-                <form action="/Account/Login">
-                    <button type="submit" class="btn1 loginbtn">تسجيل دخول</button>
-                </form>
-                <form action="/Account/register">
-                    <button type="submit" class="btn1">إنشاء حساب</button>
-                </form>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- لو المستخدم داخل -->
+                    <div class="image_porfoile_simple">
+                        <a href="/Account/Profile">
+                            <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                        </a>
+                        <a href="/Account/Logout" class="logout-link-simple">خروج</a>
+                    </div>
+                }
+                else
+                {
+                    <!-- لو المستخدم مش عامل تسجيل دخول -->
+                    <form action="/Account/Login">
+                        <button type="submit" class="btn1 loginbtn">تسجيل دخول</button>
+                    </form>
+                    <form action="/Account/register">
+                        <button type="submit" class="btn1">إنشاء حساب</button>
+                    </form>
+                }
 
                 <i class="fas fa-bars iconmenu"></i>
+
             </div>
 
-        <!-- Mobile Menu -->
-        <div class="buttomsmallscreen">
-            <span class="close-btn">&times;</span>
-                <a href="/Homepage/mainpage" class="">الرئيسية </a>
-
-                <a href="/Homepage/login_in">تسجيل دخول</a>
-                <a href="/Homepage/sign_up" >إنشاء حساب</a>
-        </div>
     </div>
 </div>
 <!-- End Navbar -->
