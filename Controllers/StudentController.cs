@@ -11,7 +11,11 @@ namespace Luno.Controllers
     [Authorize(Roles = "student")]
     public class StudentController : Controller
     {
+<<<<<<< HEAD
        public IstudentService istudentService;
+=======
+        public IstudentService istudentService;
+>>>>>>> origin/back_homepage
         public IParentRepo parentRepo;
         public StudentController(IstudentService studentService, IParentRepo parentRepo)
         {
@@ -31,7 +35,11 @@ namespace Luno.Controllers
         }
 
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/back_homepage
         [Route("/Student/MainPage")]
         public IActionResult MainPage()
         {
@@ -56,6 +64,9 @@ namespace Luno.Controllers
 
             
 
+
+
+
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,
@@ -72,7 +83,11 @@ namespace Luno.Controllers
             return View(courses);
         }
         [Route("/Student/SubjectsPage")]
+<<<<<<< HEAD
         public IActionResult SubjectsPage( int page = 1)
+=======
+        public IActionResult SubjectsPage(int page = 1)
+>>>>>>> origin/back_homepage
         {
             int userId = GetUserId();
             int pageSize = 10;

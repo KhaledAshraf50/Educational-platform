@@ -39,7 +39,7 @@ namespace Luno_platform.Repository
         }
         public Parent GetParent(int id)
         {
-            var parent = _Context.Parents.Include(u => u.User).FirstOrDefault(p => p.User.Id == id);
+            var parent = _Context.Parents.Include(u => u.User).FirstOrDefault(p => p.ID == id);
             if(parent == null)
             {
                 throw new Exception("Parent not found");

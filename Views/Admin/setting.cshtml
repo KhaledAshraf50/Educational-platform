@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+<link rel="stylesheet" href="~/assets/css/style.css" />
+<link rel="stylesheet" href="~/assets/css/adminSetting.css" />
+
+
+
+    <div class="content">
+        <div class="top-icons">
+            <button class="icon-btn" aria-label="الإشعارات">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+                <i class="fa-solid fa-circle-user"></i>
+            </button>
+        </div>
+        <div class="main-content">
+            <nav class="navbar navbar-light mb-4 p-3 rounded">
+                <span class="navbar-brand fw-bold text-primary fs-4"><i class="fa-solid fa-gear me-2"></i> إعدادات
+                    النظام</span>
+            </nav>
+
+            <div class="settings-card">
+                <div class="d-flex border-bottom mb-3">
+                    <button class="tab-btn active" data-tab="platform">بيانات المنصة</button>
+                    <button class="tab-btn" data-tab="permissions">صلاحيات المستخدمين</button>
+                    <button class="tab-btn" data-tab="notifications">إعداد الإشعارات</button>
+                </div>
+
+                <!-- بيانات المنصة -->
+                <div class="tab-content active" id="platform">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>اسم المنصة</label>
+                            <input type="text" class="form-control" placeholder="أدخل اسم المنصة">
+                        </div>
+                        <div class="col-md-6">
+                            <label>شعار المنصة (Logo)</label>
+                            <input type="file" class="form-control">
+                        </div>
+                <!-- صلاحيات المستخدمين -->
+                <div class="tab-content table-responsive" id="permissions">
+                    <table class="table table-hover text-center align-middle table_Edit">
+                        <thead>
+                            <tr>
+                                <th>المستخدم</th>
+                                <th>إضافة كورسات</th>
+                                <th>حذف كورسات</th>
+                                <th>عرض تقارير</th>
+                                <th>إدارة مستخدمين</th>
+                                <th>إدارة الشكاوي</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>المدير (Admin)</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td>المعلم (Teacher)</td>
+                                <td>✅</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td>الطالب (Student)</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                                <td>❌</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="save-btn">حفظ التعديلات</button>
+                </div>
+
+                <!-- إعداد الإشعارات -->
+                <div class="tab-content" id="notifications">
+                    <div class="settings-form">
+                        <div class="card shadow-sm p-3 mb-4 rounded-3">
+                            <h5 class="fw-bold mb-3">
+                                <img src="/assets/img/Clock-fill (1).svg" alt=""> إعدادات الإشعارات
+                            </h5>
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll1" class="toggle-input" checked>
+                                <label for="notifyAll1" class="toggle-label"></label>
+                                <span class="toggle-text">تفعيل كل الإشعارات</span>
+                            </div>
+
+                            <hr>
+
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll2" class="toggle-input" checked>
+                                <label for="notifyAll2" class="toggle-label"></label>
+                                <span class="toggle-text">إشعارات البريد الإلكتروني</span>
+                            </div>
+
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll3" class="toggle-input" checked>
+                                <label for="notifyAll3" class="toggle-label"></label>
+                                <span class="toggle-text">إشعار عند إضافة واجبات او امتحانات</span>
+                            </div>
+
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll4" class="toggle-input" checked>
+                                <label for="notifyAll4" class="toggle-label"></label>
+                                <span class="toggle-text">إشعارات Push (المتصفح)</span>
+                            </div>
+
+                            <hr>
+
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll5" class="toggle-input" checked>
+                                <label for="notifyAll5" class="toggle-label"></label>
+                                <span class="toggle-text">إشعارات الرسائل القصيرة (SMS)</span>
+                            </div>
+
+                            <div class="toggle-container">
+                                <input type="checkbox" id="notifyAll6" class="toggle-input" checked>
+                                <label for="notifyAll6" class="toggle-label"></label>
+                                <span class="toggle-text">البريد المرسل منه الإشعارات</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="save-btn">حفظ التعديلات</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+<script src="~/assets/js/dashbordadmin.js"></script>
+<script src="~/assets/js/main.js"></script>
+<script src="~/assets/js/adminSetting.js"></script>

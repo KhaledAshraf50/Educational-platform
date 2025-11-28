@@ -1,4 +1,6 @@
 ﻿
+
+
 :root {
     --primary-color: #092C4C; /* أزرق أساسي */
     --secondary-color: #F2994A; /* أخضر */
@@ -232,3 +234,6 @@ a {
         height: 60px;
     }
 }
+
+
+

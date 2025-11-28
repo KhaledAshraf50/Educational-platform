@@ -1,0 +1,206 @@
+<style>
+
+    .page-title {
+      background-color: #092C4C;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    th {
+      background-color: #092C4C !important;
+      color: white !important;
+    }
+    .filter-container {
+      margin-bottom: 20px;
+    }
+    .filter-container select {
+      width: 200px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-weight: 600;
+    }
+
+
+  .table_Edit {
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    direction: rtl;
+  }
+
+  .table_Edit thead th {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    vertical-align: middle;
+    height: 64px;
+  }
+
+  .table_Edit tbody td,
+  .table_Edit tbody th {
+    text-align: center;
+    vertical-align: middle;
+    height: 64px;
+  }
+
+  .table_Edit tbody tr:hover {
+    background-color: rgba(9, 44, 76, 0.05);
+    transition: 0.3s ease;
+  }
+
+  /* زر إضافة امتحان */
+  .add-btn {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
+    transition: 0.3s ease;
+    /* Ensure it fits nicely on small screens */
+    white-space: nowrap;
+  }
+
+  .add-btn:hover {
+    background-color: #e88c3b;
+    box-shadow: var(--hover-shadow);
+  }
+
+  /* أزرار الأكشن */
+  .action-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    color: var(--white-color);
+    font-size: 14px;
+    transition: 0.3s ease;
+  }
+
+  .btn-view {
+    background-color: var(--Info-color);
+  }
+
+  .btn-edit {
+    background-color: var(--secondary-color);
+  }
+
+  .btn-view:hover {
+    background-color: #1b65d8;
+    box-shadow: var(--hover-shadow);
+  }
+
+  .btn-edit:hover {
+    background-color: #e88c3b;
+    box-shadow: var(--hover-shadow);
+  }
+  .btn-questions {
+    background-color: #22265d;
+    box-shadow: var(--hover-shadow);
+}
+
+.btn-questions:hover {
+    background-color: #c69444;
+    box-shadow: var(--hover-shadow);
+}
+
+
+  /* لينك عدد الأسئلة */
+  .question-link {
+    color: var(--Info-color);
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .question-link:hover {
+    color: var(--primary-color);
+  }
+
+  /* المودال */
+  .modal-header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+
+  .modal-footer button {
+    min-width: 100px;
+  }
+
+  /* === RESPONSIVENESS ENHANCEMENT === */
+  /* On extra-small screens (mobile portrait) */
+  @media (max-width: 576px) {
+
+    /* General Table Font Size */
+    .table_Edit {
+      font-size: 14px;
+    }
+
+    /* Header and Button Management for very small screens */
+    .d-flex.justify-content-between.align-items-center.mb-3 {
+      flex-direction: column;
+      /* Stack header and button */
+      align-items: flex-start !important;
+    }
+
+    .d-flex.justify-content-between.align-items-center.mb-3 h3 {
+      margin-bottom: 10px;
+    }
+
+    /* Enhanced Action Button Layout */
+    /* The table is already scrollable due to .table-responsive */
+    /* This ensures the buttons stack gracefully if needed */
+    .table_Edit tbody td:last-child .d-flex {
+      flex-direction: column;
+      /* Force buttons to stack in the controls column */
+      align-items: center;
+    }
+
+    .action-btn {
+      width: 100%;
+      margin: 5px 0 !important;
+      /* Adjust margins for stacking */
+    }
+
+    .action-btn.me-1 {
+      margin-right: 0 !important;
+      /* Remove Bootstrap's margin-right on the view button */
+    }
+  }
+  h4 { margin-bottom:20px; }
+.stats { display:flex; flex-wrap:wrap; gap:15px; margin-bottom:20px; }
+.stats .card { flex:1; min-width:150px; text-align:center; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); background:#fff; }
+.stats .card h5 { margin:0; font-size:24px; color:#092C4C; }
+.stats .card p { margin:0; font-size:14px; color:#555; }
+.filter-bar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+.filter-bar select, .filter-bar input { padding:5px 10px; border-radius:8px; border:1px solid #ccc; }
+.btn-create { background:#092C4C; color:#fff; border:none; padding:6px 12px; border-radius:8px; cursor:pointer; }
+.btn-create:hover { background:#0b5ed7; }
+.card-item { border-radius:15px; padding:15px; margin-bottom:15px; transition: transform 0.3s, box-shadow 0.3s, background 0.3s; background:#fff; }
+.card-item:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); background:#f0f8ff; }
+.status { font-weight:bold; display:flex; align-items:center; gap:5px; padding:3px 8px; border-radius:8px; width:fit-content; }
+.status.pending { background:#ffe5e5; color:red; }
+.status.completed { background:#e5ffe5; color:green; }
+.status.upcoming { background:#e5f0ff; color:blue; }
+.status.finished { background:#e5ffe5; color:green; }
+.action-btn { margin-right:5px; margin-bottom:5px; }
+.btn-primary.action-btn { background:#3399ff; border:none; }
+.btn-warning.action-btn { background:#ffcc33; border:none; color:#000; }
+.btn-danger.action-btn { background:#ff6666; border:none; }
+.btn-success.action-btn { background:#33cc66; border:none; }
+.btn-primary.action-btn:hover { background:#1a8cff; }
+.btn-warning.action-btn:hover { background:#e6b800; }
+.btn-danger.action-btn:hover { background:#ff4d4d; }
+.btn-success.action-btn:hover { background:#28a745; }
+
+
+  /* =================================== */
+</style>

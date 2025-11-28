@@ -1,0 +1,69 @@
+/* 🎨 تنسيقات عامة */
+body {
+  background-color: #f4f6fa;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* 📋 الشريط الجانبي */
+/* .sidebar {
+  height: 100vh;
+  background-color: #1e3a8a;
+  color: white;
+  padding: 20px 10px;
+}
+
+.sidebar h4 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #2563eb;
+  color: white;
+} */
+
+/* 🧩 محتوى الصفحة */
+.content {
+  padding: 30px;
+}
+
+/* 🧱 الجداول */
+.table-container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+/* ✨ تحسين المودال */
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+/* 🌙 الأزرار */
+button.btn {
+  transition: 0.2s ease-in-out;
+}
+
+button.btn:hover {
+  transform: scale(1.05);
+}
