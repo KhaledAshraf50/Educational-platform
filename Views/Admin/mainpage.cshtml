@@ -4,17 +4,12 @@
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
 }
 
-<link rel="stylesheet" href="~/assets/css/dashboard.css" />
-<link rel="stylesheet" href="~/assets/css/all.min.css" />
-<link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
-<link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
-
 <main class="main">
     <div class="topbar d-flex flex-column flex-md-row">
         <div class="actions">
             <div style="display: flex; align-items: center; gap: 8px">
-                <img src="@Url.Action(Model.AdminImage)" style="border-radius: 8px" />
+                <img src="@Model.AdminImage" style="border-radius: 8px; width:60px; height:60px;" />
+
                 <div style="text-align: center; margin-left: 8px">
                     <div style="font-weight: 700">@Model.AdminName</div>
                     <div class="small">أدمن</div>
@@ -166,7 +161,4 @@
     </div>
 </main>
 
-<script src="~/assets/js/all.min.js"></script>
-<script src="~/assets/js/bootstrap.bundle.min.js"></script>
-<script src="~/assets/js/dashbord.js"></script>
-<script src="~/assets/js/adminmainpage.js"></script>
+

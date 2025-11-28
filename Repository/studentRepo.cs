@@ -187,7 +187,7 @@ namespace Luno_platform.Repository
                                 .Where(ss => ss.StudentID == x.sc.StudentId && ss.ExamId == x.cc.ExamId)
                                 .Select(ss => ss.degree.ToString())
                                 .FirstOrDefault(),
-                    Degree_task=_Context.StudentStatistics
+                    Degree_task=_Context.Studentstaistics_In_Tasks
                                 .Where(ss => ss.StudentID == x.sc.StudentId && ss.TaskId == x.cc.taskId)
                                 .Select(ss => ss.degree.ToString())
                                 .FirstOrDefault()
