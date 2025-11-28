@@ -32,23 +32,26 @@ body {
 }
 
 #Subjectspage .search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#Subjectspage .search input {
-  direction: rtl;
-  padding: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    #Subjectspage .search input {
+        direction: rtl;
+        padding: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border-color);
+    }
 
-#Subjectspage .search .icon {
-  color: var(--secondary-color);
-  background-color: var(--white-color);
-  border: 2px solid var(--primary-color);
-  transition: 0.3s;
-}
+    #Subjectspage .search .icon {
+        font-size: 24px;
+        color: var(--secondary-color);
+        background-color: var(--white-color);
+        border: 1px solid var(--border-color);
+        transition: 0.3s;
+        padding: 8px 16px;
+    }
 
 #Subjectspage .search .icon:hover {
   color: var(--secondary-color);
@@ -62,16 +65,29 @@ body {
   margin-top: 12px;
   direction: rtl;
 }
-
-.btns button {
-  border: none;
-  background-color: var(--content-bg);
-  padding: 8px 16px;
-  font-size: 18px;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s;
+.showbtn {
+    border: none;
+    background-color: var(--secondary-color);
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+    transition: color 0.3s;
+    color:white;
 }
+    .showbtn:hover{
+        background-color:var(--primary-color);
+        color:white
+    }
+    .btns button {
+        border: none;
+        background-color: var(--content-bg);
+        padding: 8px 16px;
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s;
+    }
 
 .btns button::before {
   content: "";
@@ -104,24 +120,30 @@ body {
 }
 
 .table_Edit {
-  background-color: var(--content-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  direction: rtl;
+    background-color: var(--content-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    direction: rtl;
 }
 
-.table_Edit thead th {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-}
+    .table_Edit thead th {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        text-align: center;
+        vertical-align: middle;
+    }
 
-.table_Edit tbody tr button {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  padding: 8px 12px;
-  border: none;
-  transition: 0.3s ease;
-}
+    .table_Edit tbody tr button, .table_Edit tbody tr a {
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 16px;
+        border: none;
+        transition: 0.3s ease;
+    }
+    .table_Edit th,
+    .table_Edit tr {
+        height: 64px;
+    }
 
 .table_Edit tbody td button:hover {
   background-color: var(--primary-color);

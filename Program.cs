@@ -3,6 +3,7 @@ using Luno_platform.Repository;
 using Luno_platform.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static Luno_platform.Service.PaymentService;
 
 namespace Luno_platform
 {
@@ -72,6 +73,12 @@ namespace Luno_platform
 
             builder.Services.AddScoped<IParentService, ParentService>();
             builder.Services.AddScoped<IParentRepo, ParentRepo>();
+            builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
+            builder.Services.AddScoped<studentRepo>();
+            builder.Services.AddScoped<IstudentRepo, studentRepo>();
+
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 
             // =============================
             // Build the app

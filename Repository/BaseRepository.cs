@@ -23,6 +23,26 @@ namespace Luno_platform.Repository
 
             return student?.StudentID;   // لو مش طالب هترجع null
         }
+        // ترجع ParentID بناءً على UserId
+        public int? GetParentIdByUserId(int userId)
+        {
+            var parent = _Context.Parents
+                .Include(p => p.User)
+                .FirstOrDefault(p => p.User.Id == userId);
+
+            return parent?.ID;   // لو مش موجود بيرجع null
+        }
+
+        // ترجع InstructorID بناءً على UserId
+        public int? GetInstructorIdByUserId(int userId)
+        {
+            var instructor = _Context.Instructors
+                .Include(i => i.User)
+                .FirstOrDefault(i => i.User.Id == userId);
+
+            return instructor?.instructorID;   // لو مش موجود بيرجع null
+        }
+
         public void Add(T entity)
         {
             Table.Add(entity);

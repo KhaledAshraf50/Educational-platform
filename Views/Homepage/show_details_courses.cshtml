@@ -19,7 +19,16 @@
                     <span>@Model.Instructor.User.fname @Model.Instructor.User.lastName</span>
                 </p>
                 <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.price</span></p>
-                <button class="enroll-btn">اشترك الآن</button>
+                @* <a class="enroll-btn btn" asp-controller="Payment" asp-action="Pay" asp-route-courseId="@Model.CourseId">اشترك الآن</a> *@
+                <!-- زرار الدفع -->
+                <form asp-controller="Payment" asp-action="Pay" method="post">
+                    <input type="hidden" name="courseId" value="@Model.CourseId" />
+                    <input type="hidden" name="amount" value="@Model.price" />
+                    <button type="submit" class="enroll-btn btn">
+                        اشترك الآن - @Model.price ج.م
+                    </button>
+                </form>
+
             </div>
         </div>
 
