@@ -11,6 +11,8 @@ namespace Luno_platform.Controllers
         public readonly I_instructor_services _i_Instructor_Services;
         public readonly Icourses_service _icourses_Service;
         public readonly  IExam_service _exam_Service;
+        public readonly ITask_service _Task_Service;
+
         public readonly I_BaseService<Users> baseService;
 
 
@@ -124,6 +126,22 @@ namespace Luno_platform.Controllers
             };
 
             
+
+            return View(model);
+        }
+
+
+        [Route("homepage/pageTask/{Taskid}")]
+        public IActionResult pageTask(int Taskid)
+        {
+            var model = new pageTask_viewmodel
+            {
+
+                questions = _Task_Service.GetTaskbyid(Taskid),
+                Taskinfo= _Task_Service.GetById(Taskid)
+            };
+
+
 
             return View(model);
         }
