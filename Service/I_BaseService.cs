@@ -12,8 +12,17 @@
         void Save();
 
         int? GetStudentIdByUserId(int userId);
+<<<<<<< HEAD
         public int? GetParentIdByUserId(int userId);
         public int? GetInstructorIdByUserId(int userId);
+=======
+<<<<<<< HEAD
+
+=======
+        public int? GetParentIdByUserId(int userId);
+        public int? GetInstructorIdByUserId(int userId);
+>>>>>>> origin/back_homepage
+>>>>>>> dev
 
     }
 }
