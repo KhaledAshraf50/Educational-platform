@@ -63,10 +63,7 @@ body {
     margin-top: 12px;
     direction: rtl;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/back_homepage
 .showbtn {
     border: none;
     background-color: var(--secondary-color);
@@ -75,9 +72,7 @@ body {
     font-weight: 400;
     position: relative;
     transition: color 0.3s;
-<<<<<<< HEAD
-    color:white;
-=======
+
     color: white;
 }
 
@@ -94,7 +89,7 @@ body {
     font-weight: 500;
     position: relative;
     transition: color 0.3s;
->>>>>>> origin/back_homepage
+
 }
     .showbtn:hover{
         background-color:var(--primary-color);
@@ -161,13 +156,11 @@ body {
         border: none;
         transition: 0.3s ease;
     }
-<<<<<<< HEAD
+
     .table_Edit th,
     .table_Edit tr {
         height: 64px;
     }
-=======
->>>>>>> origin/back_homepage
 
     .table_Edit th,
     .table_Edit tr {
