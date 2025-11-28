@@ -1,0 +1,329 @@
+body {
+  margin: 0;
+  font-family: DIN Next LT Arabic;
+  background: #f8f9fa;
+}
+:root {
+  --primary-color: #092c4c;
+  --secondary-color: #f2994a;
+  --Info-color: #2f80ed;
+  --Success-color: #27ae60;
+  --Warning-color: #e2b93b;
+  --Error-color: #eb5757;
+  --sidebar-bg: #ffffff;
+  --content-bg: #f8fafc;
+  --white-color: #fff;
+  --hover-color: #e0e0e0;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 70px;
+  background: var(--primary-color);
+  color: var(--white-color);
+  overflow: hidden;
+  z-index: 1000;
+  transition: width 0.3s, right 0.3s;
+}
+
+.sidebar:hover {
+  width: 220px;
+}
+
+.sidebar .logo {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.sidebar .logo img {
+  width: 40px;
+  transition: width 0.3s;
+  background-color: #f8f9fa;
+  border-radius: 50%;
+}
+
+.sidebar:hover .logo img {
+  width: 60px;
+}
+
+.sidebar .logo span {
+  display: block;
+  opacity: 0;
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--white-color);
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.sidebar:hover .logo span,
+.sidebar.active .logo span {
+  opacity: 1;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin: 16px 0;
+}
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  color: var(--white-color);
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar ul li a i {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.sidebar ul li a span {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar:hover ul li a span,
+.sidebar.active ul li a span {
+  opacity: 1;
+}
+
+/* Content */
+.content {
+  margin-right: 70px;
+  padding: 20px;
+  transition: margin-right 0.3s;
+}
+
+.sidebar:hover ~ .content {
+  margin-right: 220px;
+}
+.top-icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.icon-btn {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--primary-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--primary-color);
+  color: var(--Warning-color);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  /* Sidebar - القائمة الجانبية */
+  .sidebar {
+    width: 250px; /* عرض ثابت للقائمة عند ظهورها */
+    right: -250px; /* إخفاء القائمة بالكامل خارج الشاشة */
+    /* عند التفعيل، تتحرك للداخل */
+    transition: right 0.3s ease-in-out;
+  }
+
+  /* عند إضافة كلاس active تظهر القائمة */
+  .sidebar.active {
+    right: 0;
+  }
+
+  /* Content - المحتوى الرئيسي */
+  .content {
+    margin-right: 0; /* المحتوى يأخذ عرض الشاشة بالكامل */
+    padding-right: 15px; /* تصحيح البادينج */
+    padding-left: 15px; /* تصحيح البادينج */
+  }
+
+  /* إلغاء سلوك التمرير (Hover) على الشاشات الصغيرة */
+  .sidebar:hover {
+    width: 250px; /* تثبيت العرض لمنع أي تغييرات غير مرغوبة */
+  }
+
+  /* إظهار النص وأيقونة اللوجو دائمًا على الجوال بمجرد ظهور القائمة */
+  .sidebar.active .logo img {
+    width: 60px;
+  }
+  .sidebar.active .logo span {
+    opacity: 1;
+  }
+  .sidebar.active ul li a span {
+    opacity: 1;
+  }
+
+  /* Overlay - إضافة تنسيق للطبقة الشفافة التي تغطي المحتوى */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    display: block; /* نجعله مرئيًا ليعمل الـ transition */
+  }
+
+  /* Top Icons - تعديل موقع الزرار لفتح القائمة على الجوال */
+  .top-icons {
+    justify-content: end !important; /* وزع الأيقونات والزرار*/
+  }
+}
+
+/* شاشات أكبر من 768 بكسل (إلغاء سلوك الشاشات الصغيرة) */
+@media (min-width: 769px) {
+  /* التأكد من إزالة أي تنسيقات خاصة بالجوال على الشاشات الكبيرة */
+  .sidebar.active {
+    right: 0; /* لإلغاء القيمة -250px */
+    width: 70px; /* العودة لحجم التمرير الافتراضي */
+  }
+  .overlay {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  /* Sidebar - القائمة الجانبية */
+  .sidebar {
+    width: 250px;
+    right: -250px;
+    transition: right 0.3s ease-in-out;
+  }
+
+  /* عند إضافة كلاس active تظهر القائمة */
+  .sidebar.active {
+    right: 0;
+  }
+
+  /* Content - المحتوى الرئيسي */
+  .content {
+    margin-right: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  /* إلغاء سلوك التمرير (Hover) على الشاشات الصغيرة */
+  .sidebar:hover {
+    width: 250px;
+  }
+
+  /* إظهار النص وأيقونة اللوجو دائمًا على الجوال بمجرد ظهور القائمة */
+  .sidebar.active .logo img {
+    width: 60px;
+  }
+  .sidebar.active .logo span {
+    opacity: 1;
+  }
+  .sidebar.active ul li a span {
+    opacity: 1;
+  }
+
+  /* Overlay - الطبقة الشفافة */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    display: block;
+  }
+
+  /* Top Icons - إضافة زر القائمة على الجوال */
+  .top-icons {
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .overlay {
+    display: none !important;
+  }
+}
+.notification {
+  width: 320px;
+  position: absolute;
+  background-color: var(--white-color);
+  left: 60px;
+  z-index: 100;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+}
+.notification .messages {
+  border-bottom: 1px solid var(--border-color);
+  padding-top: 8px;
+}
+.notification .messages p {
+  color: #666;
+}
+.notification::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-top: 1px solid var(--border-color); /* لون السهم */
+  border-right: 1px solid var(--border-color);
+  position: absolute;
+  top: -7px; /* فوق العنصر */
+  left: 32px;
+  background-color: var(--white-color);
+  transform: translateX(-50%) rotate(-45deg); /* لفوق */
+  z-index: 101;
+}
+@media (max-width: 320px) {
+  .notification {
+    left: 20px;
+    width: 250px;
+  }
+  .notification::after {
+    left: 70px;
+  }
+}

@@ -1,0 +1,109 @@
+﻿@model Luno_platform.Viewmodel.ReportsPageVM
+@{
+    Layout = "_InstructorDashboard";
+}
+
+@section stylee {
+    <link rel="stylesheet" href="~/assets/css/Reports.css">
+}
+
+<div class="content">
+    <div class="Reportspage m-3 bodycontent">
+
+        <div class="container text-center mt-3">
+
+            <!-- البحث -->
+            <div class="search d-flex mb-3">
+                <input type="search" class="form-control me-3" placeholder="اكتب للبحث" asp-for="Search">
+            </div>
+
+            <!-- اختيار الصف والمادة -->
+            <div class="flexToProg mb-3">
+                <div class="sub-choose d-flex">
+
+                    <select asp-for="SelectedSubjectId" class="form-select mx-2">
+                        <option value="">اختر المادة</option>
+                        @foreach (var s in Model.Subjects)
+                        {
+                            <option value="@s.SubjectID">@s.SubjectNameAR</option>
+                        }
+                    </select>
+
+                    <select asp-for="SelectedClassId" class="form-select mx-2">
+                        <option value="">اختر الصف</option>
+                        @foreach (var c in Model.Classes)
+                        {
+                            <option value="@c.ClassID">@c.ClassName</option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+
+            <!-- جدول التقارير -->
+            <div class="table-responsive">
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit"
+                       id="arabic">
+                    <thead class="table-light">
+                        <tr>
+                            <th>الكورس</th>
+                            <th>المادة</th>
+                            <th>الصف</th>
+                            <th>عدد الطلاب</th>
+                            <th>الأرباح</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Courses)
+                        {
+                            <tr>
+                                <td>@item.CourseName</td>
+                                <td>@item.SubjectName</td>
+                                <td>@item.ClassName</td>
+                                <td>@item.StudentsCount</td>
+                                <td>@item.Earnings</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // لما تختاري الصف أو المادة
+        $('#SelectedClassId, #SelectedSubjectId').change(function () {
+
+            var classId = $('#SelectedClassId').val();
+            var subjectId = $('#SelectedSubjectId').val();
+
+            // نطلب من الكونترولر يرجع الكورسات المناسبة
+            $.get('/Instructor/FilterCourses', { classId: classId, subjectId: subjectId }, function (data) {
+
+                var tbody = $('#arabic tbody');
+                tbody.empty(); // نمسح الجدول القديم
+
+                // نضيف الصفوف الجديدة
+                $.each(data, function (i, c) {
+                    tbody.append(`
+                        <tr>
+                            <td>${c.courseName}</td>
+                            <td>${c.subjectName}</td>
+                            <td>${c.className}</td>
+                            <td>${c.studentsCount}</td>
+                            <td>${c.earnings}</td>
+                        </tr>
+                    `);
+                });
+            });
+
+        });
+
+    });
+</script>
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@

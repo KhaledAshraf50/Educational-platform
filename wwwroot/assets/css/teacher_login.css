@@ -1,0 +1,135 @@
+/* ---------------------------- Textarea as Button ---------------------------- */
+.Teacher_registration_page_m .form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  background-color: #0ea5e9; /* لون أزرق */
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.Teacher_registration_page_m .form-group textarea:focus {
+  background-color: #0284c7;
+  outline: none;
+}
+
+/* Label فوق textarea */
+.Teacher_registration_page_m .form-group textarea + label {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #0ea5e9;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+/* ---------------------------- File Inputs as Buttons ---------------------------- */
+.Teacher_registration_page_m .form-group input[type="file"] {
+  display: none; /* نخفي الحقل الأصلي */
+}
+
+.Teacher_registration_page_m .file-upload-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 14px;
+  background-color: #0ea5e9;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.Teacher_registration_page_m .file-upload-btn:hover {
+  background-color: #0284c7;
+}
+
+/* اسم الملف بعد الاختيار */
+.Teacher_registration_page_m .file-upload-filename {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #374151;
+  text-align: left;
+}
+
+/* ---------------------------- Dark Mode ---------------------------- */
+
+/* ---------------- Textarea خبرة العمل ---------------- */
+.form-group.full-width textarea {
+  width: 100%;
+  padding: 20px;
+  min-height: 100px;
+  border-radius: 15px;
+  border: none;
+  background-color: #0ea5e9; /* أزرق */
+  color: #fff;
+  font-size: 16px;
+  resize: vertical;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-group.full-width textarea:hover {
+  background-color: #0284c7;
+  transform: scale(1.02);
+}
+
+.form-group.full-width textarea:focus {
+  outline: none;
+  background-color: #0284c7;
+}
+
+/* Label فوق Textarea */
+.form-group.full-width label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ---------------- رفع الملفات ---------------- */
+.file-upload-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background-color: #0ea5e9;
+  color: #fff;
+  text-align: center;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.file-upload-btn:hover {
+  background-color: #0284c7;
+}
+
+/* إخفاء input الافتراضي */
+input[type="file"] { display: none; }
+
+/* عرض اسم الملف */
+.file-upload-filename {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #374151;
+  padding: 6px 10px;
+  background: #e5e7eb;
+  border-radius: 8px;
+}
+select option:hover
+ {
+  /* يمكنك تغيير لون الخلفية (اللون الأزرق في صورتك) */
+  background-color: #ffcc00 !important; /* مثال: لون أصفر */
+  /* يمكنك تغيير لون النص */
+  color: #333; /* مثال: لون رمادي داكن */
+}

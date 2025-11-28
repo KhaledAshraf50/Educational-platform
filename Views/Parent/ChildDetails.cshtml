@@ -1,0 +1,28 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Child Details";
+    Layout = "_ParentDashboard";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/parentchildren.css" />
+    <link rel="stylesheet" href="~/assets/css/parentmain.css" />
+}
+<div class="m-3 bodycontent child-details">
+    <div class="details-header">
+        <h2><i class="fa-solid fa-child me-2"></i> تفاصيل الابن</h2>
+        <a asp-controller="Parent" asp-action="Childerns" asp-route-id="@Model.ParentId" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> العودة إلى قائمة الأبناء
+        </a>
+    </div>
+    <div class="details-content mt-4">
+        <div class="child-info">
+            <img src="@Model.User.Image" alt="Child Photo" class="child-avatar-large">
+            <h3>@Model.User.fname @Model.User.lastName</h3>
+            <p class="child-grade">الصف: @Model.Classes.ClassName</p>
+            <p class="child-email">البريد الإلكتروني: @Model.User.Email</p>
+            <p class="child-phone">رقم الهاتف: @Model.User.PhoneNumber</p>
+            <p class="child-address">الرقم القومي: @Model.User.nationalID</p>
+        </div>
+    </div>
+</div>
+

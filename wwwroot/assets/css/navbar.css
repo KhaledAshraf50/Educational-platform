@@ -1,0 +1,234 @@
+﻿
+:root {
+    --primary-color: #092C4C; /* أزرق أساسي */
+    --secondary-color: #F2994A; /* أخضر */
+    --accent-color: #e74c3c; /* أحمر */
+    --background-color: #f4f4f4; /* رمادي فاتح */
+    --text-color: #333333; /* أسود غامق */
+}
+@font-face {
+    font-family: 'DIN Next LT Arabic';
+    src: url('~/ahmed_morsi/assets/fonts/DINNextLTArabic-Regular-3 (1).ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+}
+input{
+    border-radius:8px  !important;
+}
+select {
+    border-radius: 8px !important;
+}
+
+button {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 20px;
+    cursor: pointer;
+    color:#fff
+}
+
+
+    button:hover {
+        color:#fff;
+        background-color: #364266cc;
+        transform: scale(1.03);
+    }
+
+a {
+    text-decoration: none; /* شيل الخط */
+    color: inherit; /* يخلي لون اللينك نفس لون النص العادي */
+}
+
+
+/* أزرار */
+.btn1 {
+    font-size: 14px;
+    width: 241px;
+    height: 48px;
+    background-color: #092C4C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.buttom {
+    font-size: 14px;
+    padding: 10px 20px;
+    height: 48px;
+    background-color: #092C4C;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; /* يخليه في النص */
+}
+
+    .buttom:hover {
+        background-color: #0b8ed3;
+        transform: scale(1.03);
+    }
+
+
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    height: 85px;
+    background-color: white;
+}
+
+/* اللينكات */
+.nav-item-link {
+    text-decoration: none;
+    color: #092C4C;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+    .nav-item-link:hover {
+        color: #ff8c00;
+    }
+
+/* ترتيب اللوجو واللينكات */
+.part1nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-logo {
+    height: 85px;
+    transition: all 0.3s ease;
+}
+
+/* الأزرار */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconmenu {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* القائمة المنسدلة للموبايل */
+.buttomsmallscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(14, 165, 233, 0.95);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: height 0.4s ease;
+    z-index: 9999;
+}
+
+    .buttomsmallscreen a {
+        display: block;
+        margin: 20px 0;
+        width: 80%;
+        font-size: 24px;
+        text-decoration: none;
+        color: #fff;
+        background: #0ea5e9;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+        .buttomsmallscreen a:hover {
+            background: #fff;
+            color: #0ea5e9;
+        }
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttomsmallscreen.active {
+    height: 100%;
+}
+
+/* ______________________________________ */
+/* 🌐 Media Queries */
+
+/* 🖥️ Desktop 1024px */
+@media (max-width: 1024px) {
+    .main-logo {
+        height: 70px;
+    }
+
+    .nav-item-link {
+        font-size: 16px;
+    }
+
+    .btn1 {
+        width: 200px;
+        height: 42px;
+        font-size: 13px;
+    }
+}
+
+/* 📱 Tablet 768px */
+@media (max-width: 844px) {
+
+    .btn1 {
+        display: none; /* اخفاء الزرار */
+    }
+
+    .iconmenu {
+        display: block !important; /* اظهار المنيو */
+    }
+
+    .logo {
+        /* border: 1px solid green !important; */
+        margin-right: -30px;
+    }
+
+    .part1nav {
+        gap: 20px;
+    }
+}
+
+/* 📞 Mobile 320px */
+@media (max-width: 480px) {
+    .nav-links {
+        display: none !important; /* تأكيد إخفاء اللينكات */
+    }
+
+    .main-logo {
+        height: 60px;
+    }
+}

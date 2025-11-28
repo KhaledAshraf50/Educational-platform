@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+<link rel="stylesheet" href="~/assets/css/style.css" />
+
+
+<div class="container-fluid mt-4">
+    <h2 class="fw-bold mb-4 text-center">إدارة المستخدمين</h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs justify-content-center" id="userTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab">👨‍🎓 الطلاب</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab">👨‍🏫 المعلمين</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="parents-tab" data-bs-toggle="tab" data-bs-target="#parents" type="button" role="tab">👨‍👩‍👦 أولياء الأمور</button>
+        </li>
+    </ul>
+
+    <!-- Tabs Content -->
+    <div class="tab-content p-4" id="userTabsContent">
+        <!-- Students -->
+        <div class="tab-pane fade show active" id="students" role="tabpanel">
+            <h5 class="mb-3 text-primary">قائمة الطلاب</h5>
+            <table class="table table-hover align-middle text-center shadow-sm">
+                <thead class="table-primary">
+                    <tr>
+                        <th>الاسم</th>
+                        <th>الإيميل</th>
+                        <th>رقم الهاتف</th>
+                        <th>عدد الكورسات</th>
+                        <th>الحالة</th>
+                        <th>التحكم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>أحمد محمد</td>
+                        <td>ahmed@email.com</td>
+                        <td>01012345678</td>
+                        <td>4</td>
+                        <td><span class="badge bg-success">نشط</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#studentModal">تفاصيل</button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Teachers -->
+        <div class="tab-pane fade" id="teachers" role="tabpanel">
+            <h5 class="mb-3 text-info">قائمة المعلمين</h5>
+            <table class="table table-hover align-middle text-center shadow-sm">
+                <thead class="table-info">
+                    <tr>
+                        <th>الاسم</th>
+                        <th>التخصص</th>
+                        <th>عدد الكورسات</th>
+                        <th>التقييم</th>
+                        <th>الحالة</th>
+                        <th>التحكم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>منى علي</td>
+                        <td>رياضيات</td>
+                        <td>5</td>
+                        <td>⭐ 4.8</td>
+                        <td><span class="badge bg-success">نشط</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger" onclick="freezeAccount(this)">تجميد</button>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#teacherModal">تفاصيل</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Parents -->
+        <div class="tab-pane fade" id="parents" role="tabpanel">
+            <h5 class="mb-3 text-warning">قائمة أولياء الأمور</h5>
+            <table class="table table-hover align-middle text-center shadow-sm">
+                <thead class="table-warning">
+                    <tr>
+                        <th>الاسم</th>
+                        <th>الإيميل</th>
+                        <th>الطلاب المرتبطين</th>
+                        <th>الحالة</th>
+                        <th>التحكم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>خالد حسن</td>
+                        <td>khaled@email.com</td>
+                        <td>أحمد، سارة</td>
+                        <td><span class="badge bg-success">نشط</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#parentModal">تنبيه</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/dashbordadmin.js"></script>
+<script src="~/assets/js/main.js"></script>

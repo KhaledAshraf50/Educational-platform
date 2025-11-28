@@ -1,0 +1,61 @@
+﻿@model List<Instructor>
+
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/portfolio_teacher.css" />
+
+
+@foreach(var ins in Model)
+{
+    <div class="teacher-profile-container" style="margin-top: 100px;">
+
+
+
+
+
+        <div class="teacher-info">
+            <img src="@Url.Content(ins.User.Image)" alt="@ins.User.fname">
+            <h2>@ins.User.fname @ins.User.lastName</h2>
+            <p>مدرس @ins.Subject.SubjectNameAR</p>
+            <div class="teacher-details">
+                <ul>
+                    <li><i class="fa-solid fa-graduation-cap"></i> المؤهل:@ins.eligible</li>
+                    <li><i class="fa-solid fa-briefcase"></i> الخبرة: 10 سنوات في تدريس @ins.Subject.SubjectNameAR</li>
+                    <li><i class="fa-solid fa-envelope"></i> البريد:@ins.User.Email</li>
+                    <li><i class="fa-solid fa-phone"></i> الهاتف: @ins.User.PhoneNumber</li>
+                </ul>
+            </div>
+
+            <div class="teacher-bio">
+               @ins.bio
+            </div>
+        </div>
+
+        <!-- 📚 الصفوف -->
+        <div class="teacher-classes">
+            <h3><i class="fa-solid fa-layer-group"></i> الصفوف التي يدرّسها</h3>
+
+            <div class="class-cards">
+
+                @foreach(var classe in @ins.instructor_classescs)
+                {
+                    <div class="class-card">
+                        <i class="fa-solid fa-book"></i>
+                        <h4>@classe.classes.ClassName</h4>
+                        <form action="/homepage/show_courses_teacher/@ins.instructorID/@classe.classId" method="get">
+                            <button type="submit">تصفح الكورسات</button>
+
+                        </form>
+                    </div>
+
+                }
+
+               
+            </div>
+
+        </div>
+    </div>
+}
+

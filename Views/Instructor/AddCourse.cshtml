@@ -1,0 +1,70 @@
+﻿@model Luno_platform.Models.AddCourseViewModel
+@{
+    Layout = "_InstructorDashboard";
+}
+
+<div class="container mt-5">
+    <h4 class="mb-4">إضافة كورس جديد</h4>
+
+    <form asp-action="AddCourse" asp-controller="Instructor" method="post" enctype="multipart/form-data">
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label class="form-label">عنوان الكورس</label>
+                <input asp-for="Title" class="form-control" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">الصف الدراسي</label>
+                <select asp-for="Grade" class="form-select" required>
+                    <option value="">اختر الصف</option>
+                    @foreach (var cls in Model.Classes)
+                    {
+                        <option value="@cls.ClassID">@cls.ClassName</option>
+                    }
+                </select>
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">المادة</label>
+                <select asp-for="SubjectId" class="form-select" required>
+                    <option value="">اختر المادة</option>
+                    @foreach (var s in Model.SubjectsList)
+                    {
+                        <option value="@s.SubjectID">@s.SubjectNameEN</option>
+                    }
+                </select>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">السعر</label>
+                <input asp-for="Price" class="form-control" type="number" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">الوصف</label>
+                <textarea asp-for="Description" class="form-control" rows="4" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">صورة الكورس</label>
+                <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" required />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-success">حفظ الكورس</button>
+                <a asp-action="InstractorHomePage" class="btn btn-outline-dark">إلغاء</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

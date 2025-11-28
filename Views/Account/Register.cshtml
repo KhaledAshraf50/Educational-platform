@@ -1,0 +1,438 @@
+﻿@model Luno_platform.Viewmodel.Register_User_Viewmode
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+
+<section class="registration_page Student_registration_page_m">
+
+    <div class="form-container">
+        <h2><b>طلب انشاء حساب :</b></h2>
+        <p class="subtitle">
+            ادخل بياناتك بشكل صحيح وسيتم التواصل معك خلال ساعات قليلة لتفعيل الحساب!<br>
+            يوجد لديك حساب بالفعل؟ <span>
+                <a href="" class="subtitle_link_login_as_user">ادخل إلى حسابك الآن!</a>
+            </span>
+        </p>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group form-group1" style="margin-bottom: 17px;">
+            <select id="gender" required>
+                <option value="" disabled selected hidden></option>
+                <option value="student">طالب</option>
+                <option value="teacher">مدرس</option>
+                <option value="parent">ولي امر</option>
+            </select>
+            <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
+        </div>
+
+
+        <!-- ===========================
+             فورم الطالب
+        ============================ -->
+        <form asp-action="Register" asp-controller="Account" method="post"
+              class="grid-form Student_registration_page_m" id="registerForm" style="display: none;">
+
+
+            <script>
+                const genderSelect = document.getElementById("gender");
+                const hiddenInputs = document.querySelectorAll(".role-hidden");
+
+                genderSelect.addEventListener("change", function () {
+                    const selectedValue = this.value;
+                    hiddenInputs.forEach(input => input.value = selectedValue);
+                });
+            </script>
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Fname" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="LastName" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- هاتف الطالب -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="PhoneNumber" type="tel" id="student-phone" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> هاتف الطالب</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- رقم هاتف الأب -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="parentnumber" type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> رقم هاتف الأب</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="parentnumber" class="text-danger"></span>
+            </div>
+
+            <!-- الرقم القومي -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="NationalID" type="number" required placeholder=" ">
+                    <label><i class="fa-solid fa-id-card"></i> الرقم القومي</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="NationalID" class="text-danger"></span>
+            </div>
+
+            <!-- النوع -->
+            <div class="form-group form-group1" style="margin-bottom: 17px;">
+                <select id="gender" required asp-for="Role">
+                    <option value="" disabled selected hidden></option>
+                    <option value="student">طالب</option>
+                    <option value="instructor">مدرس</option>
+                    <option value="parent">ولي امر</option>
+                </select>
+                <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <!-- المحافظة -->
+            <div class="form-group form-group1">
+                <div style="position: relative;">
+                    <select id="governorate" asp-for="goverment">
+                        <option value="" disabled selected hidden></option>
+                    </select>
+                    <label><i class="fa-solid fa-map-location-dot"></i> المحافظة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="goverment" class="text-danger"></span>
+            </div>
+
+            <!-- الإدارة -->
+            <div class="form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="admin" asp-for="city">
+                        <option value="" disabled selected hidden></option>
+                    </select>
+                    <label><i class="fa-solid fa-building"></i> الإدارة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="city" class="text-danger"></span>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="Email" type="email" id="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" id="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="ConfirmPassword" type="password" id="confirm-password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- الصف الدراسي -->
+            <div class="alsaf form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="alsaf" required asp-for="ClassId">
+                        <option value="" disabled selected hidden></option>
+                        <option value="1">الصف الاول الثانوي</option>
+                        <option value="2">الصف الثاني الثانوي</option>
+                        <option value="3">الصف الثالث الثانوي</option>
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> الصف الدراسي </label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="ClassId" class="text-danger"></span>
+            </div>
+
+            <!-- الشعبة -->
+            <div class="shueba form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="shueba" asp-for="branch">
+                        <option value="" disabled selected hidden></option>
+                        <option value="science">علمي</option>
+                        <option value="arts">أدبي</option>
+                        <option value="math">رياضة</option>
+                        <option value="science-sc">علمي علوم </option>
+                        <option value="science-ma">علمي رياضة</option>
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> الشعبة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span asp-validation-for="branch" class="text-danger"></span>
+            </div>
+
+            <!-- زر التسجيل -->
+            <button class="submit-student" type="submit">
+                <i class="fa-solid fa-user-plus"></i> إنشاء الحساب
+            </button>
+
+        </form>
+
+
+
+
+        <!-- ===========================
+             فورم ولي الأمر
+        ============================ -->
+        <form asp-action="Register" asp-controller="Account" method="post"
+              class="grid-form loginaspartient_page" id="parentRegisterForm" style="display: none;">
+
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Fname" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                </div>
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="LastName" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                </div>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- هاتف ولي الأمر -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="PhoneNumber" type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> هاتف ولي الأمر</label>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- الرقم القومي -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="NationalID" type="number" required placeholder=" ">
+                    <label><i class="fa-solid fa-id-card"></i> الرقم القومي</label>
+                </div>
+                <span asp-validation-for="NationalID" class="text-danger"></span>
+            </div>
+
+            <!-- النوع -->
+            <div class="form-group form-group1" style="margin-bottom: 17px;">
+                <select id="gender" required asp-for="Role">
+                    <option value="" disabled selected hidden></option>
+                    <option value="student">طالب</option>
+                    <option value="instructor">مدرس</option>
+                    <option value="parent">ولي امر</option>
+                </select>
+                <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="Email" type="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="ConfirmPassword" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- زر التسجيل -->
+            <button class="submit-Parent" type="submit">
+                <i class="fa-solid fa-user-plus"></i> إنشاء الحساب
+            </button>
+        </form>
+
+
+
+
+        <!-- ===========================
+             فورم المدرس
+        ============================ -->
+        <form asp-action="Register" asp-controller="Account" method="post"
+              class="grid-form Teacher_registration_page_m" id="teacherRegisterForm" style="display: none;">
+
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Fname" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                </div>
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="LastName" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                </div>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- رقم الهاتف -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="PhoneNumber" type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- الرقم القومي -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="NationalID" type="number" required placeholder=" ">
+                    <label><i class="fa-solid fa-id-card"></i> الرقم القومي</label>
+                </div>
+                <span asp-validation-for="NationalID" class="text-danger"></span>
+            </div>
+
+            <!-- النوع -->
+            <div class="form-group form-group1" style="margin-bottom: 17px;">
+                <select id="gender" required asp-for="Role">
+                    <option value="" disabled selected hidden></option>
+                    <option value="student">طالب</option>
+                    <option value="instructor">مدرس</option>
+                    <option value="parent">ولي امر</option>
+                </select>
+                <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <!-- المادة -->
+            <div class="form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select required asp-for="SubjectID">
+                        <option value="" disabled selected hidden></option>
+                        <option value="1">اللغة العربية</option>
+                        <option value="2">اللغة الإنجليزية</option>
+                        <option value="3">الرياضيات</option>
+                        <option value="4">العلوم</option>
+                        <option value="5">الفيزياء</option>
+                        <option value="6">الكيمياء</option>
+                        <option value="7">الأحياء</option>
+                        <option value="8">اللغة الفرنسية</option>
+                        <option value="9">اللغة الألمانية</option>
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> المادة التخصص</label>
+                </div>
+                <span asp-validation-for="SubjectID" class="text-danger"></span>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="Email" type="email" placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- المؤهل -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Eligible" type="text" placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> المواهل</label>
+                </div>
+                <span asp-validation-for="Eligible" class="text-danger"></span>
+            </div>
+
+            <!-- الشعار -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Motto" type="text" placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الشعار</label>
+                </div>
+                <span asp-validation-for="Motto" class="text-danger"></span>
+            </div>
+
+            <!-- نبذة عنك -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="Bio" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> نبذه عنك</label>
+                </div>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="ConfirmPassword" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- زر الانضمام -->
+            <button class="submit_teacher" type="submit">
+                <i class="fa-solid fa-user-plus"></i> انضم الآن
+            </button>
+
+        </form>
+
+
+    </div>
+
+</section>

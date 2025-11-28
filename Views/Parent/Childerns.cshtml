@@ -1,0 +1,33 @@
+﻿@using Luno_platform.Viewmodel
+@model ParentChildrenViewModel
+@{
+    ViewData["Title"] = "Childerns";
+    Layout = "_ParentDashboard";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/parentchildren.css" />
+    <link rel="stylesheet" href="~/assets/css/mainpage.css" />
+}
+<div class="m-3 bodycontent children" id="children">
+    <div class="children-header">
+        <h2><i class="fa-solid fa-children me-2"></i> قائمة الأبناء</h2>
+        <a class="btn-add-child" asp-controller="Parent" asp-action="AddChild"
+           asp-route-parentId="@Model.ParentID">
+            <i class="fa-solid fa-plus"></i> إضافة ابن
+        </a>
+    </div>
+    <div id="childrenList" class="mt-4">
+        <div class="children-grid">
+            @foreach (var std in Model.Students)
+            {
+                <div class="child-card">
+                    <img src="@std.User.Image" alt="Child Photo" class="child-avatar">
+                    <h4>@std.User.fname @std.User.lastName</h4>
+                    <p class="child-grade">@std.Classes.ClassName</p>
+                    <!-- <p class="child-id">ID: <span>22101</span></p> -->
+                    <a asp-controller="Parent" asp-action="ChildDetails" asp-route-id="@std.StudentID" class="btn-details">عرض التفاصيل</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

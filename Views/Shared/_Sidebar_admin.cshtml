@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="~/assets/imgs/logo.svg" alt="Logo" id="logo" />
+            <span>أكاديمية تعليمية</span>
+        </div>
+        <ul>
+            <li>
+                <a href="#"><i class="fa-solid fa-house mx-2"></i> <span>اداره المستخدمين </span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-book mx-2"></i> <span>اداره الكورسات  </span></a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-chart-line mx-2"></i>
+                    <span>التقارير</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-regular fa-money-bill-1 mx-2"></i>
+                    <span>الفواتير</span>
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-gear mx-2"></i> <span>الإعدادات</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <button class="icon-btn d-lg-none"
+            aria-label="فتح القائمة"
+            onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <!-- Main Content -->
+    <div class="content">
+        <div class="top-icons">
+            <button class="icon-btn" aria-label="الإشعارات">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <button class="icon-btn"
+                    aria-label="الملف الشخصي"
+                    onclick="window.location.href='#'">
+                <i class="fa-solid fa-circle-user"></i>
+            </button>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    <script src="/assets/js/progressbar.js"></script>
+    <script src="/assets/js/all.min.js"></script>
+    <script src="/assets/js/dashbord.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("script", required: false)
+
+</body>
+</html>
+

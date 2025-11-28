@@ -1,0 +1,92 @@
+/* ---------------------------- Alt Login ---------------------------- */
+.alt_login_m {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #4b5563; /* لون رمادي متوسط */
+}
+
+/* ---------------------------- Switch Toggle ---------------------------- */
+.switch_toggle_m {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.checkbox_toggle_m {
+  display: none;
+}
+
+.slider_toggle_m {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.slider_toggle_m:before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.checkbox_toggle_m:checked + .slider_toggle_m {
+  background-color: #0ea5e9; /* أزرق عند التفعيل */
+}
+
+.checkbox_toggle_m:checked + .slider_toggle_m:before {
+  transform: translateX(20px);
+}
+
+/* ---------------------------- Links Section ---------------------------- */
+.links_section_m {
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #4b5563;
+}
+
+.links_section_m a {
+  color: #0ea5e9;
+  text-decoration: none;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+.links_section_m a:hover {
+  color: #0284c7;
+  text-decoration: underline;
+}
+
+/* ---------------------------- Login Button ---------------------------- */
+.btn_login_m {
+  width: 100%;
+  padding: 14px;
+  background-color: #0ea5e9;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.btn_login_m:hover {
+  background-color: #0284c7;
+}
+
+/* ---------------------------- Dark Mode ---------------------------- */

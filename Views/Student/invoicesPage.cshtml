@@ -1,0 +1,76 @@
+﻿@model List<Payments>
+@{
+    Layout = "_SideBarDashbord";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/invoices.css">
+}
+<div class="InvoicesPage m-3" id="InvoicesPage">
+    <div class="container text-center mt-3 ">
+        <div class="header d-flex justify-content-between align-items-center mb-3">
+            <div class="title">
+                <h3>الفواتير</h3>
+                <p>آخر الفواتير الخاصة بالكورسات المشترك بها</p>
+            </div>
+            <!-- Search Box -->
+            <form class="search-box" role="search">
+                <input type="search" id="invoiceSearch" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+                <!-- <i class="fa-solid fa-magnifying-glass"></i>س -->
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table table-hover text-center align-middle table_Edit">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الكورس</th>
+                        <th>تاريخ الفاتورة</th>
+                        <th>الحالة</th>
+                        <th>المبلغ</th>
+                        <th>عرض الفاتورة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var payment in Model)
+                    {
+                        <tr>
+                            <td>@i</td>
+                        <td>@payment.Courses.CourseName</td>
+                        <td>@payment.date</td>
+                            @{
+                                if (payment.status == "مدفوع"){
+                            
+                                <td><span class="badgepaid">مدفوع</span></td>
+                            }
+                            else if (payment.status == "غيرمدفوع")
+                            {
+                                <td><span class="badgeunpaid">غيرمدفوع</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
+                            }
+                            }
+                        <td>@payment.amountPayment</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">عرض</button>
+                        </td>
+                        </tr>
+                        i++;
+                    }
+                   
+                </tbody>
+            </table>
+            <div class="btnsNextPre">
+                <button class="Previous">السابق</button>
+                <button class="Next">التالي</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script {
+    <script src="~/assets/js/invoices.js"></script>
+}
