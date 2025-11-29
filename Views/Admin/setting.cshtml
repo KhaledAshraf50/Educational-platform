@@ -1,146 +1,228 @@
-﻿@{
-    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+﻿@using Luno_platform.Viewmodel
+@model AdminSettingVM
+
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "_Sidebar_admin";
 }
-<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
-<link rel="stylesheet" href="~/assets/css/style.css" />
-<link rel="stylesheet" href="~/assets/css/adminSetting.css" />
 
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/mainpage.css" />
+    <link rel="stylesheet" href="~/assets/css/Setting.css" />
+}
 
+<div class="Settingspage m-3" id="Settingspage">
 
-    <div class="content">
-        <div class="top-icons">
-            <button class="icon-btn" aria-label="الإشعارات">
-                <i class="fa-solid fa-bell"></i>
-            </button>
-            <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
-                <i class="fa-solid fa-circle-user"></i>
-            </button>
+    <!-- الشمال: بروفايل -->
+    <div class="settings-card left-profile">
+
+        @if (TempData["ErrorFile"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorFile"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["SucessFile"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SucessFile"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="avatar">
+            <img src="@Model.Image" alt="avatar" style="width:100px">
         </div>
-        <div class="main-content">
-            <nav class="navbar navbar-light mb-4 p-3 rounded">
-                <span class="navbar-brand fw-bold text-primary fs-4"><i class="fa-solid fa-gear me-2"></i> إعدادات
-                    النظام</span>
-            </nav>
 
-            <div class="settings-card">
-                <div class="d-flex border-bottom mb-3">
-                    <button class="tab-btn active" data-tab="platform">بيانات المنصة</button>
-                    <button class="tab-btn" data-tab="permissions">صلاحيات المستخدمين</button>
-                    <button class="tab-btn" data-tab="notifications">إعداد الإشعارات</button>
+        <h3>@Model.Name</h3>
+        <h2>الرقم القومي: @Model.NationalId</h2>
+
+        <div class="btns">
+            <button id="edit-btn" class="btn edit">
+                <i class="fa-solid fa-pen"></i> تعديل
+                الصورة
+                الشخصية
+            </button>
+            <!-- input مخفي لاختيار الصورة -->
+            <form id="imageForm" asp-action="UploadImage" enctype="multipart/form-data" method="post">
+                @* <input type="file" name="file" class="btn edit"  hidden/> *@
+                <input type="hidden" name="AdminId" value="@Model.AdminId" />
+                <input type="file" name="file" id="fileInput" hidden />
+            </form>
+            @* <form asp-action="DeleteImage" method="post">
+                <input type="hidden" name="AdminId" value="@Model.AdminId" />
+                <button type="submit" class="btn delete">حذف</button>
+            </form> *@
+        </div>
+
+    </div>
+
+    <!-- اليمين: الإعدادات -->
+    <section class="settings-card right-content">
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["Sucess"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Sucess"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="card-header">
+            <h4>إعدادات الحساب</h4>
+            <div class="settings-tabs">
+                <button class="active">البيانات</button>
+                <button>كلمة المرور</button>
+                <button>الإشعارات</button>
+            </div>
+        </div>
+
+        <!-- بيانات الأدمن -->
+        <form class="settings-form active" asp-action="UpdateAdminSetting" method="post">
+            <input type="hidden" asp-for="AdminId" />
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label class="form-label">الاسم</label>
+                    <input asp-for="Name" class="form-control" placeholder="مثال: محمد خالد">
                 </div>
 
-                <!-- بيانات المنصة -->
-                <div class="tab-content active" id="platform">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>اسم المنصة</label>
-                            <input type="text" class="form-control" placeholder="أدخل اسم المنصة">
-                        </div>
-                        <div class="col-md-6">
-                            <label>شعار المنصة (Logo)</label>
-                            <input type="file" class="form-control">
-                        </div>
-                <!-- صلاحيات المستخدمين -->
-                <div class="tab-content table-responsive" id="permissions">
-                    <table class="table table-hover text-center align-middle table_Edit">
-                        <thead>
-                            <tr>
-                                <th>المستخدم</th>
-                                <th>إضافة كورسات</th>
-                                <th>حذف كورسات</th>
-                                <th>عرض تقارير</th>
-                                <th>إدارة مستخدمين</th>
-                                <th>إدارة الشكاوي</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>المدير (Admin)</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                            </tr>
-                            <tr>
-                                <td>المعلم (Teacher)</td>
-                                <td>✅</td>
-                                <td>❌</td>
-                                <td>✅</td>
-                                <td>❌</td>
-                                <td>✅</td>
-                            </tr>
-                            <tr>
-                                <td>الطالب (Student)</td>
-                                <td>❌</td>
-                                <td>❌</td>
-                                <td>❌</td>
-                                <td>❌</td>
-                                <td>❌</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button class="save-btn">حفظ التعديلات</button>
-                </div>
-
-                <!-- إعداد الإشعارات -->
-                <div class="tab-content" id="notifications">
-                    <div class="settings-form">
-                        <div class="card shadow-sm p-3 mb-4 rounded-3">
-                            <h5 class="fw-bold mb-3">
-                                <img src="/assets/img/Clock-fill (1).svg" alt=""> إعدادات الإشعارات
-                            </h5>
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll1" class="toggle-input" checked>
-                                <label for="notifyAll1" class="toggle-label"></label>
-                                <span class="toggle-text">تفعيل كل الإشعارات</span>
-                            </div>
-
-                            <hr>
-
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll2" class="toggle-input" checked>
-                                <label for="notifyAll2" class="toggle-label"></label>
-                                <span class="toggle-text">إشعارات البريد الإلكتروني</span>
-                            </div>
-
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll3" class="toggle-input" checked>
-                                <label for="notifyAll3" class="toggle-label"></label>
-                                <span class="toggle-text">إشعار عند إضافة واجبات او امتحانات</span>
-                            </div>
-
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll4" class="toggle-input" checked>
-                                <label for="notifyAll4" class="toggle-label"></label>
-                                <span class="toggle-text">إشعارات Push (المتصفح)</span>
-                            </div>
-
-                            <hr>
-
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll5" class="toggle-input" checked>
-                                <label for="notifyAll5" class="toggle-label"></label>
-                                <span class="toggle-text">إشعارات الرسائل القصيرة (SMS)</span>
-                            </div>
-
-                            <div class="toggle-container">
-                                <input type="checkbox" id="notifyAll6" class="toggle-input" checked>
-                                <label for="notifyAll6" class="toggle-label"></label>
-                                <span class="toggle-text">البريد المرسل منه الإشعارات</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="save-btn">حفظ التعديلات</button>
-
+                <div class="form-group">
+                    <label class="form-label">الرقم القومي</label>
+                    <input asp-for="NationalId" class="form-control" placeholder="30508251702466">
                 </div>
 
             </div>
-        </div>
-    </div>
-    </div>
 
-<script src="~/assets/js/dashbordadmin.js"></script>
-<script src="~/assets/js/main.js"></script>
-<script src="~/assets/js/adminSetting.js"></script>
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input asp-for="Email" class="form-control" placeholder="admin@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="01000000000">
+                </div>
+
+            </div>
+
+            <button class="btn-save">حفظ التغييرات</button>
+        </form>
+
+        <!-- تغيير كلمة المرور -->
+        <form class="settings-form" asp-action="ChangePassword" method="post">
+            <input type="hidden" asp-for="AdminId" />
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور الحالية</label>
+                    <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="current password">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور الجديدة</label>
+                    <input asp-for="NewPassword" type="password" class="form-control" placeholder="new password">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">تأكيد كلمة المرور</label>
+                    <input asp-for="ConfirmNewPassword" type="password" class="form-control" placeholder="confirm password">
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary btn-save">حفظ التغييرات</button>
+
+        </form>
+
+        <!-- الإشعارات (كما هي بدون تعديل) -->
+        <div class="settings-form">
+
+            <div class="card shadow-sm p-3 mb-4 rounded-3">
+                <h5 class="fw-bold mb-3">
+                    <img src="/assets/img/logo.svg" alt="">
+                    إعدادات الإشعارات
+                </h5>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll1" class="toggle-input" checked>
+                    <label for="notifyAll1" class="toggle-label"></label>
+                    <span class="toggle-text">تفعيل كل الإشعارات</span>
+                </div>
+
+                <hr>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll2" class="toggle-input" checked>
+                    <label for="notifyAll2" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند إضافة كورسات جديدة</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll3" class="toggle-input" checked>
+                    <label for="notifyAll3" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند إضافة واجبات أو امتحانات</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll4" class="toggle-input" checked>
+                    <label for="notifyAll4" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند استلام رسالة جديدة</span>
+                </div>
+
+                <hr>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll5" class="toggle-input" checked>
+                    <label for="notifyAll5" class="toggle-label"></label>
+                    <span class="toggle-text">استقبال إشعارات عبر البريد الإلكتروني</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll6" class="toggle-input" checked>
+                    <label for="notifyAll6" class="toggle-label"></label>
+                    <span class="toggle-text">استقبال إشعارات داخل الموقع فقط</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+@section script {
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll(".alert").forEach(a => a.remove());
+        }, 4000);
+    </script>
+
+    <script>
+        document.getElementById("edit-btn").addEventListener("click", function () {
+            document.getElementById("fileInput").click();
+        });
+
+        document.getElementById("fileInput").addEventListener("change", function () {
+            if (this.files.length > 0) {
+                document.getElementById("imageForm").submit();
+            }
+        });
+    </script>
+    <script src="~/assets/js/Setting.js"></script>
+}
