@@ -47,6 +47,12 @@ namespace Luno_platform.Repository
 
             return student;
         }
+        public Student GetByUserId(int userId)
+        {
+            return _Context.Students
+                           .Include(s => s.Classes) // ⬅️ مهم
+                           .FirstOrDefault(s => s.UserId == userId);
+        }
 
         public List<Courses> GetStudentCourses(int userId)
         {

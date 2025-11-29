@@ -3,6 +3,7 @@ using Luno_platform.Repository;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno.Controllers
@@ -12,12 +13,16 @@ namespace Luno.Controllers
     public class StudentController : Controller
     {
        public IstudentService istudentService;
+        private readonly SettingsService _service;
+        private readonly UserManager<Users> _userManager;
 
         public IParentRepo parentRepo;
-        public StudentController(IstudentService studentService, IParentRepo parentRepo)
+        public StudentController(IstudentService studentService, IParentRepo parentRepo ,SettingsService service, UserManager<Users> userManager)
         {
             istudentService = studentService;
             this.parentRepo = parentRepo;
+            _service = service;
+            _userManager = userManager;
         }
         public int GetUserId()
         {
@@ -90,7 +95,47 @@ namespace Luno.Controllers
         public IActionResult SettingPage()
         {
             int userId = GetUserId();
-            return View("SettingPage");
+            var model = _service.GetSettings(userId);
+            return View(model);
         }
+        [HttpPost]
+        public IActionResult Save(UserSettingsVM model)
+        {
+            _service.UpdateSettings(model);
+            return RedirectToAction("SettingPage");
+        }
+        //[HttpPost]
+        //public async Task<IActionResult> ChangePassword(ChangePasswordVM model)
+        //{
+        //    if (model.NewPassword != model.ConfirmPassword)
+        //    {
+        //        ModelState.AddModelError("", "كلمة السر الجديدة غير متطابقة");
+        //        return View(model);
+        //    }
+
+        //    var userId = GetUserId();
+        //    var user = await _userManager.FindByIdAsync(userId.ToString());
+
+        //    var result = await _userManager.ChangePasswordAsync(
+        //        user,
+        //        model.CurrentPassword,
+        //        model.NewPassword
+        //    );
+
+        //    if (!result.Succeeded)
+        //    {
+        //        foreach (var error in result.Errors)
+        //            ModelState.AddModelError("", error.Description);
+
+        //        return View(model);
+        //    }
+
+        //    ModelState.AddModelError("", "كلمة السر الجديدة غير متطابقة");
+        //    var settings = _service.GetSettings(userId);
+        //    settings.PasswordModel = model;
+        //    return View("SettingPage", settings);
+        //    // يرجع لصفحة الإعدادات
+        //}
+
     }
 }
