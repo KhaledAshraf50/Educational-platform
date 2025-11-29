@@ -7,9 +7,9 @@ namespace Luno_platform.Service
     public class ReportsService : IReportsService
     {
 
-        private readonly IPaymentRepository _paymentRepo;
+        private readonly IPaymentRepo _paymentRepo;
 
-        public ReportsService(IPaymentRepository paymentRepo) 
+        public ReportsService(IPaymentRepo paymentRepo) 
         {
             _paymentRepo = paymentRepo;
         }

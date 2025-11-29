@@ -30,7 +30,6 @@ namespace Luno_platform.Controllers
 
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
