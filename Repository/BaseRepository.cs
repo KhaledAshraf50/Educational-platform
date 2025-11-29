@@ -10,7 +10,7 @@ namespace Luno_platform.Repository
         public LunoDBContext _Context;
         public DbSet<T> Table;
 
-        public BaseRepository( LunoDBContext lunoDBContext)
+        public BaseRepository(LunoDBContext lunoDBContext)
         {
             _Context = lunoDBContext;
             Table = _Context.Set<T>();
@@ -23,6 +23,7 @@ namespace Luno_platform.Repository
 
             return student?.StudentID;   // لو مش طالب هترجع null
         }
+
         // ترجع ParentID بناءً على UserId
         public int? GetParentIdByUserId(int userId)
         {
@@ -42,6 +43,8 @@ namespace Luno_platform.Repository
 
             return instructor?.instructorID;   // لو مش موجود بيرجع null
         }
+
+
         public void Add(T entity)
         {
             Table.Add(entity);
@@ -68,11 +71,21 @@ namespace Luno_platform.Repository
         }
         public void Save()
         {
-          _Context.SaveChanges();
+            _Context.SaveChanges();
         }
         public void Update(T entity)
         {
             Table.Update(entity);
+        }
+        public bool HasStudentTakenExam(int studentId, int examId)
+        {
+            return _Context.StudentStatistics.Any(s => s.StudentID == studentId && s.ExamId == examId);
+        }
+
+
+        public bool HasStudentTakenTask(int studentId, int examId)
+        {
+            return _Context.Studentstaistics_In_Tasks.Any(s => s.StudentID == studentId && s.TaskId == examId);
         }
     }
 }

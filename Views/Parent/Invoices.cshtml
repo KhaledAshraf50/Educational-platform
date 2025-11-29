@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="~/assets/css/invoices.css" />
     <link rel="stylesheet" href="~/assets/css/mainpage.css" />
 }
+
 <div class="InvoicesPage m-3" id="InvoicesPage">
     <div class="container mt-3">
+
         <!-- العنوان -->
         <div class="d-flex justify-content-between align-items-center mb-3 header">
             <div class="title">
@@ -20,6 +22,17 @@
             <form class="search-box" role="search">
                 <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
             </form>
+        </div>
+
+        <!-- فلاتر Static -->
+        <div class="d-flex align-items-center mb-3 gap-3">
+
+            <!-- فلتر باسم الطالب -->
+            <select class="form-select w-auto">
+                <option selected>كل الطلاب</option>
+                <option>محمد خالد</option>
+                <option>سارة خالد</option>
+            </select>
         </div>
         <!-- كروت الملخص -->
         <div class="row text-center mb-4">
@@ -50,6 +63,7 @@
                         <th>المبلغ</th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     <!-- داتا فيك - الطالب الأول -->
@@ -74,11 +88,14 @@
                 </tbody>
             </table>
         </div>
+
         <p class="mt-3 text-muted small">
             في حالة وجود أي مشكلة في الفواتير يرجى التواصل مع الدعم الفني.
         </p>
+
     </div>
 </div>
+
 @section Script {
     <script src="~/assets/js/invoices.js"></script>
     <script src="~/assets/js/progressbar.js"></script>

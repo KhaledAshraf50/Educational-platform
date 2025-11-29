@@ -4,7 +4,20 @@
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
+
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
+
+@if (TempData["Error"] != null)
+{
+    // alert-dismissible → تجعل الرسالة قابلة للإغلاق
+    //<button class="btn-close"...> → الزر اللي المستخدم يقدر يدوسه لإخفاء الرسالة
+    //fade show → لإضافة تأثير ظهور وخفاء لطيف
+    //data-bs-dismiss="alert" → يخلي Bootstrap يتعامل مع الزر ويخفي الرسالة تلقائيًا
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
@@ -19,7 +32,16 @@
                     <span>@Model.Instructor.User.fname @Model.Instructor.User.lastName</span>
                 </p>
                 <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.price</span></p>
-                <button class="enroll-btn">اشترك الآن</button>
+                @* <a class="enroll-btn btn" asp-controller="Payment" asp-action="Pay" asp-route-courseId="@Model.CourseId">اشترك الآن</a> *@
+                <!-- زرار الدفع -->
+                <form asp-controller="Payment" asp-action="Pay" method="post">
+                    <input type="hidden" name="courseId" value="@Model.CourseId" />
+                    <input type="hidden" name="amount" value="@Model.price" />
+                    <button type="submit" class="enroll-btn btn">
+                        اشترك الآن - @Model.price ج.م
+                    </button>
+                </form>
+
             </div>
         </div>
 
@@ -89,7 +111,7 @@
                                 {
                                     <div class="desc_content">
                                         <p>@Model.CourseContent.Tasks.TaskName</p>
-                                        <a href="/Exam/Details/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                        <a href="/homepage/pageTask/@Model.CourseContent.Tasks.TaskID">عرض</a>
                                     </div>
                                 }
                             }
@@ -107,3 +129,11 @@
 
     </div>
 </section>
+
+
+<script>
+          setTimeout(() => {
+        document.querySelectorAll(".alert").forEach(a => a.remove());
+    }, 4000);
+
+</script>

@@ -17,9 +17,9 @@ namespace Luno_platform.Service
         // دالة جلب بيانات الطالب
         public Student GetStudent(int id)
         {
-           
+
             var student = _repository.GetStudent(id);
-        
+
             if (student == null)
                 throw new InvalidOperationException("الطالب غير موجود");
 
@@ -62,6 +62,10 @@ namespace Luno_platform.Service
         public List<Payments> GetPayments(int studentId)
         {
             return _repository.GetPayments(studentId);
+        }
+        public int? GetStudentIdByUserId(int userId)
+        {
+            return _repository.GetStudentIdByUserId(userId);
         }
     }
 }

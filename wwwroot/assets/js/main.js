@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const selected = genderSelect.value;
 if (selected === "student") studentForm.style.display = "grid";
-else if (selected === "teacher") teacherForm.style.display = "grid";
+else if (selected === "instructor") teacherForm.style.display = "grid";
 else if (selected === "parent") parentForm.style.display = "grid";
   });
 });

@@ -22,6 +22,7 @@ namespace Luno_platform.Controllers
         }
         public int GetUserId()
         {
+
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             if (userIdClaim == null)
             {
@@ -54,7 +55,7 @@ namespace Luno_platform.Controllers
                 vm.ExamProgressDict[std.StudentID] = progress.ExamProgress;
                 vm.TaskProgressDict[std.StudentID] = progress.TaskProgress;
                 vm.OverallProgressDict[std.StudentID] = progress.OverallProgress;
-            }
+        }
             return View(vm);
         }
         //------------------------
@@ -171,6 +172,7 @@ namespace Luno_platform.Controllers
             var vm = _parentService.GetParentSetting(parent.ID);
             return View(vm);
         }
+   
         [HttpPost]
         public IActionResult UploadImage(IFormFile file)
         {
@@ -272,7 +274,7 @@ namespace Luno_platform.Controllers
             {
                 TempData["Error"] = "كلمه المرور غير صحيحة!!";
                 return RedirectToAction("Settings");
-            }
+        }
 
             TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
             return RedirectToAction("Settings");

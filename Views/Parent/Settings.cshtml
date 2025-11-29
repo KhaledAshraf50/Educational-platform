@@ -79,6 +79,7 @@
         </div>
         <form class="settings-form active" asp-action="UpdateParentSetting" method="post">
             <input type="hidden" asp-for="ParentID" />
+
             <div class="form-row">
                 <div asp-for="Name" class="form-group">
                     <label class="form-label">الاسم</label>
@@ -172,6 +173,7 @@
               setTimeout(() => {
             document.querySelectorAll(".alert").forEach(a => a.remove());
         }, 4000);
+
     </script>
     <script>
             // افتح اختيار الصورة لما أدوس على تعديل
@@ -187,4 +189,5 @@
             });
     </script>
         <script src="~/assets/js/Setting.js"></script>
+    
 }

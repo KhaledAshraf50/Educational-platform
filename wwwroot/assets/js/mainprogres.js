@@ -9,25 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
         // إزالة أي semi-circle موجود
         if (progressBars[containerId]) {
             progressBars[containerId].destroy();
-        }
+}
 
         progressBars[containerId] = new ProgressBar.SemiCircle(el, {
-            strokeWidth: 10,
-            trailColor: "#eee",
-            trailWidth: 10,
-            easing: "easeInOut",
-            duration: 1400,
+    strokeWidth: 10,
+    trailColor: "#eee",
+    trailWidth: 10,
+    easing: "easeInOut",
+    duration: 1400,
             text: { value: "", alignToBottom: false },
-            step: function (state, bar) {
+    step: function (state, bar) {
                 const value = Math.round(bar.value() * 100);
                 bar.path.setAttribute("stroke", value < 50 ? "#eb5757" : value < 75 ? "#E2B93B" : "#27AE60");
-                bar.setText(value + "%");
+      bar.setText(value + "%");
             }
-        });
+  });
 
         progressBars[containerId].text.style.fontFamily = "DIN Next LT Arabic";
         progressBars[containerId].animate(percentage);
-    }
+}
 
     // ===== حالة ولي الأمر =====
     const dropdown = document.getElementById("childrenDropdown");
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         initProgress(`semiContainer_${studentId}`, overallProgress / 100);
         initProgress(`semiContainerEXAM_${studentId}`, examProgress / 100);
         initProgress(`semiContainerTASK_${studentId}`, taskProgress / 100);
-    }
+}
 
 });
 function renderSemiProgress(value) {

@@ -8,7 +8,8 @@
             public List<Classes> Classes { get; set; }
             public int TotalClasses { get; set; }
             public int TotalSales { get; set; }
-            public int AvailableCourses { get; set; }
-        
+        public int AvailableCourses { get; set; }
+        public int InstructorID { get; set; }
+
     }
 }

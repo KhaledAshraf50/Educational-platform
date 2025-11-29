@@ -87,10 +87,10 @@ namespace Luno_platform.Service
             };
             return pVM;
         }
-  
+
         public bool UpdateParentSetting(ParentSettingVM pVM)
-        {
-            var parent = parentRepo.GetParent(pVM.ParentID);
+        { 
+           var parent = parentRepo.GetParent(pVM.ParentID);
             if (parent == null || parent.User == null)
                 return false;
             parent.User.fname = pVM.Name.Split(' ')[0];

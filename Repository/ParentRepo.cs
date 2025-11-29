@@ -34,10 +34,10 @@ namespace Luno_platform.Repository
         {
             return _Context.Students.Include(u => u.User).Include(c => c.Classes).FirstOrDefault(s => s.User.nationalID == nationalID);
         }
-        public Student GetStudentById(int id)
-        {
+       public Student GetStudentById(int id)
+       {
             return _Context.Students.Find(id);
-        }
+       }
         public void UpdateStudent(Student student)
         {
             _Context.Students.Update(student);

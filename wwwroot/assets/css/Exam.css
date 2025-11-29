@@ -1,12 +1,4 @@
-﻿body {
-    font-family: 'Tajawal', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8faff;
-    font-size: 16px; /* حجم خط أساسي باستخدام px */
-}
-
-.exam-container {
+﻿.exam-header {
     display: flex;
     margin-top:100px;
     flex-direction: row;
@@ -26,13 +18,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
-    height: fit-content;
-    position: sticky; /* تثبيت اللوحة على الشاشات الكبيرة */
-    top: 1.5rem;
-}
+    background: #f5f7fa;
+    padding: 15px 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:100px;
 
 .timer {
     font-size: 1.8rem; /* حجم خط نسبي */
@@ -43,35 +36,30 @@
     border-radius: 0.5rem;
 }
 
-.questions-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    max-width: 100%;
-}
-
-.question-btn {
-    width: clamp(2.5rem, 4.5vw, 3.5rem);
-    height: clamp(2.5rem, 4.5vw, 3.5rem);
-    background-color: #f2994a;
-    border: none;
-    border-radius: 50%;
-    color: white;
+.timer-box {
+    background: #ffefef;
+    padding: 8px 18px;
+    border-radius: 8px;
+    color: #c30000;
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 0.9rem;
-    flex-shrink: 0;
+    border: 1px solid #c30000;
+    font-size: 18px;
 }
 
-    .question-btn.active {
-        background-color: #27ae60;
-    }
+.question-block {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-    .question-btn.marked {
-        background-color: #e74c3c;
-    }
+.question-number {
+    font-size: 22px;
+    color: #003366;
+    margin-bottom: 10px;
+}
 
 /* العمود اليسار */
 .left-panel {
@@ -83,223 +71,46 @@
 }
 
 .question-text {
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: #092c4c;
-    line-height: 1.6;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
-/* تنسيق حاوية الصور */
-.question-image-container {
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-    /* تنسيق الصورة نفسها (لضمان التجاوب) */
-    .question-image-container img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-        box-shadow: 0 0.3rem 1rem rgba(0,0,0,0.1);
-        height: 70vh;
-    }
-
-.options label {
-    display: block;
-    background: white;
-    padding: 1rem;
-    border: 0.1rem solid #ccc;
-    border-radius: 0.5rem;
-    margin-bottom: 0.8rem;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-    .options label:hover {
-        background-color: #f0f4ff;
-    }
-
-.options input[type="radio"] {
-    width: 1.2rem;
-    height: 1.2rem;
-    vertical-align: middle;
-    margin-left: 0.5rem;
-}
-
-.options input[type="text"] {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    border: 0.1rem solid #ccc;
-    box-sizing: border-box;
-}
-
-/* الأزرار */
-.buttons {
-    margin-top: 2rem;
+.options-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
 }
 
-    .buttons button {
-        flex: 1;
-        min-width: 120px;
-        padding: 1rem 0.5rem;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
+.option-item {
+    background: #f8f9fb;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
         font-weight: 700;
         font-size: 1.1rem;
         transition: 0.2s;
+}
+
+    .option-item input {
+        margin-right: 8px;
     }
+
+.submit-section {
+    text-align: center;
+    margin-top: 30px;
+}
 
 .save-btn {
-    background-color: #27ae60;
+    background: #007bff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
     color: white;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.next-btn, .prev-btn {
-    background-color: #2980b9;
-    color: white;
-}
-
-.mark-btn {
-    background-color: #f39c12;
-    color: white;
-}
-
-/* ====== تجاوبية الشاشات المتوسطة (Tablet) - أقل من 992px ====== */
-@media (max-width: 992px) {
-    .exam-container {
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
+    .save-btn:hover {
+        background: #0056b3;
     }
-
-    .right-panel {
-        width: 100%;
-        order: 1;
-        position: static;
-        padding: 1rem;
-    }
-
-    .left-panel {
-        width: 100%;
-        order: 2;
-        padding: 1.5rem;
-    }
-
-    .right-panel {
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        overflow-x: auto; /* تمرير أفقي لقائمة الأسئلة */
-        white-space: nowrap;
-    }
-
-    .timer {
-        font-size: 1.5rem;
-        margin-left: 1rem;
-        margin-bottom: 0;
-        flex-shrink: 0;
-    }
-
-    .questions-list {
-        flex-wrap: nowrap;
-        gap: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-
-    .question-btn {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 0.8rem;
-        flex-shrink: 0;
-    }
-
-    .question-text {
-        font-size: 1.3rem;
-    }
-
-    .options label {
-        font-size: 0.95rem;
-        padding: 0.8rem;
-    }
-
-    .options input[type="text"] {
-        font-size: 0.95rem;
-        padding: 0.8rem;
-    }
-
-    .buttons button {
-        font-size: 1rem;
-        padding: 0.8rem;
-        min-width: 100px;
-    }
-
-    .question-image-container img {
-        height: 50vh;
-    }
-}
-
-
-/* ====== تجاوبية الشاشات الصغيرة جداً (Mobile) - أقل من 600px ====== */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
-    .exam-container {
-        padding: 0.5rem;
-        gap: 0.5rem;
-    }
-
-    .right-panel {
-        padding: 0.8rem;
-    }
-
-    .timer {
-        font-size: 1.4rem;
-    }
-
-    .questions-list {
-        gap: 0.3rem;
-    }
-
-    .question-btn {
-        width: 2.2rem;
-        height: 2.2rem;
-        font-size: 0.75rem;
-    }
-
-    .left-panel {
-        padding: 1rem;
-    }
-
-    .question-text {
-        font-size: 1.15rem;
-        margin-bottom: 1rem;
-    }
-
-    .options label {
-        font-size: 0.9rem;
-        padding: 0.7rem;
-    }
-
-    .buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-        .buttons button {
-            width: 100%;
-            min-width: auto;
-            font-size: 1rem;
-        }
-}

@@ -5,8 +5,8 @@ namespace Luno_platform.Service
 {
     public interface IParentService : I_BaseService<Parent>
     {
-        public List<Student> GetStds(int id);
-        public List<Classes> GetClasses();
+        public List<Student> GetStds(int id); 
+        public List<Classes> GetClasses(); 
         List<Courses> GetStudentCourses(int id);
         List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10);
         public Student GetStudentDetails(int id);

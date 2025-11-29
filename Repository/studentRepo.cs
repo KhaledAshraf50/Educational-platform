@@ -9,16 +9,26 @@ namespace Luno_platform.Repository
         {
         }
 
-        public Student GetStudent(int id)
+        //public int? GetStudentIdByUserId(int userId)
+        //{
+        //    var student = _Context.Students
+        //        .Include(s => s.User)
+        //        .FirstOrDefault(s => s.User.Id == userId);
+
+        //    return student?.StudentID;   // لو مش طالب هترجع null
+        //}
+
+        public Student GetStudent(int userId)
         {
+            //int? studentId = GetStudentIdByUserId(userId);
             var student = _Context.Students
                 .Include(s => s.User)
                 .Include(s => s.Classes)
-                .Where(s => s.User.Id == id)  // البحث حسب User.Id
+                .Where(s => s.User.Id == userId)  // البحث حسب User.Id
                 .Select(s => new Student
                 {
                     StudentID = s.StudentID,
-                    
+
                     User = new Users
                     {
                         Id = s.User.Id,
@@ -38,8 +48,9 @@ namespace Luno_platform.Repository
             return student;
         }
 
-        public List<Courses> GetStudentCourses(int studentId)
+        public List<Courses> GetStudentCourses(int userId)
         {
+            int? studentId = GetStudentIdByUserId(userId);
             var courses = _Context.Student_Courses
      .Where(sc => sc.StudentId == studentId)
      .Include(sc => sc.Course)
@@ -66,8 +77,9 @@ namespace Luno_platform.Repository
 
             return courses;
         }
-        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        public List<Courses> GetStudentCourses(int userId, int page = 1, int pageSize = 10)
         {
+            int? studentId = GetStudentIdByUserId(userId);
             var coursesQuery = _Context.Student_Courses
                 .Where(sc => sc.StudentId == studentId)
                 .Include(sc => sc.Course)            // Include قبل الـ Select
@@ -145,8 +157,9 @@ namespace Luno_platform.Repository
         //        })
         //        .ToList();
         //}
-        public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int studentId)
+        public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int userId)
         {
+            int? studentId = GetStudentIdByUserId(userId);
             var query =
                 from sc in _Context.Student_Courses
                 where sc.StudentId == studentId
@@ -173,6 +186,10 @@ namespace Luno_platform.Repository
                     Degree = _Context.StudentStatistics
                                 .Where(ss => ss.StudentID == x.sc.StudentId && ss.ExamId == x.cc.ExamId)
                                 .Select(ss => ss.degree.ToString())
+                                .FirstOrDefault(),
+                    Degree_task=_Context.Studentstaistics_In_Tasks
+                                .Where(ss => ss.StudentID == x.sc.StudentId && ss.TaskId == x.cc.taskId)
+                                .Select(ss => ss.degree.ToString())
                                 .FirstOrDefault()
                 });
 
@@ -189,11 +206,17 @@ namespace Luno_platform.Repository
                 if (string.IsNullOrEmpty(r.Degree))
                     r.Degree = "لا يوجد بيانات";
             });
+            result.ForEach(r =>
+            {
+                if (string.IsNullOrEmpty(r.Degree_task))
+                    r.Degree_task = "لا يوجد بيانات";
+            });
 
             return result;
         }
-        public List<Payments> GetPayments(int studentId)
+        public List<Payments> GetPayments(int userId)
         {
+            int? studentId = GetStudentIdByUserId(userId);
             var payments = _Context.Payments
          .Where(p => p.StudentID == studentId)
          .Include(p => p.Courses)
@@ -211,7 +234,14 @@ namespace Luno_platform.Repository
              }
          })
          .ToList();
+
+
+
             return payments;
+
+
+
+
         }
 
 

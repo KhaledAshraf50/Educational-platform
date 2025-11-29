@@ -36,7 +36,9 @@ namespace Luno_platform.Repository
                                   fname = i.User.fname,
                                   lastName = i.User.lastName,
                                   Email=i.User.Email,
-                                  PhoneNumber=i.User.PhoneNumber
+                                  PhoneNumber=i.User.PhoneNumber,
+                                  Image = i.User.Image
+
 
                               },
 

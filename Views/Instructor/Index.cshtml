@@ -78,7 +78,13 @@
                                 عدد الكورسات: <span class="course-count fw-semibold text-dark">@cls.Courses.Count</span>
                             </p>
                             <div class="d-flex justify-content-center gap-2">
-                                <a class="btn btn-orange btn-sm" href="@Url.Action("CoursesByClass", "Instructor", new { classId = cls.ClassID })">تصفح الكورسات</a>
+                                <a class="btn btn-orange btn-sm"
+                                   href="@Url.Action("ShowCoursesTeacher", "Instructor",
+                                    new { structorid = Model.InstructorID, classId = cls.ClassID })">
+                                    تصفح الكورسات
+                                </a>
+
+                                @* <a class="btn btn-orange btn-sm" href="@Url.Action("CoursesByClass", "Instructor", new { classId = cls.ClassID })">تصفح الكورسات</a> *@
                                 <a class="btn btn-primary btn-sm" href="@Url.Action("AddCourse", "Instructor", new { classId = cls.ClassID })">إضافة كورس للصف</a>
                             </div>
                         </div>
@@ -118,7 +124,7 @@
                                 <p><strong>الوصف:</strong></p>
                                 <p class="course-desc">@course.description</p>
                                 <div class="d-flex justify-content-center mt-3 gap-2">
-                                    <a class="btn btn-sm btn-primary" href="@Url.Action("coursesDetails", "Instructor", new { id = course.CourseId })">
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("courseDetails", "Instructor", new { id = course.CourseId })">
                                         <i class="fa-solid fa-eye me-1"></i> عرض التفاصيل
                                     </a>
 

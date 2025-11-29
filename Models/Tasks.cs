@@ -43,6 +43,9 @@ namespace Luno_platform.Models
         public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }
         public virtual ICollection<StudentStatistics> StudentStatistics { get; set; }
 
+        public virtual ICollection<studentstaistics_in_task> Studentstaistics_In_task { get; set; }
+
+
 
 
 

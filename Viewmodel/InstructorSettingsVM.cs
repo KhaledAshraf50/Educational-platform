@@ -4,16 +4,31 @@
     {
         // بيانات المدرس الأساسية
         public int InstructorID { get; set; }
-        public string FullName { get; set; }
+        public int UserId { get; set; } 
+
+        // بيانات من جدول Users
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public string Image { get; set; }
+        public IFormFile ImageFile { get; set; }
+
+        // بيانات من جدول Instructor
+        public string Motto { get; set; }
+        public string Bio { get; set; }
+        public string Eligible { get; set; }
+
+        // المادة
+        public int SubjectID { get; set; }
         public string SubjectName { get; set; }
         public string AvatarUrl { get; set; }
 
-        // لتغيير الصورة
-        public IFormFile AvatarFile { get; set; }
+        // إشعارات
+        public List<string> Notifications { get; set; } = new();
 
-        // لتغيير كلمة المرور
+        public List<NotificationSettingVM> NotificationSettings { get; set; } = new();
+        // الحقول الخاصة بتغيير كلمة المرور
         public string CurrentPassword { get; set; }
         public string ConfirmCurrentPassword { get; set; }
         public string NewPassword { get; set; }
@@ -32,10 +47,11 @@
         };
     }
 
-    public class NotificationSetting
+    public class NotificationSettingVM
     {
         public string Label { get; set; }
         public bool IsEnabled { get; set; }
     }
+
 
 }
