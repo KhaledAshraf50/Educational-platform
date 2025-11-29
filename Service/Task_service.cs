@@ -1,5 +1,6 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
 {
@@ -15,10 +16,7 @@ namespace Luno_platform.Service
             return _taskRepo.GetTasksbyid(Examid);
         }
 
-        //public bool HasStudentTakenExam(int studentId, int examId)
-        //{
-        //    return Repo.StudentStatistics.Any(s => s.StudentID == studentId && s.ExamId == examId);
-        //}
+  
 
 
         public int CorrectTaskAndSave(int taskid, int studentId, Dictionary<int, string> answers)

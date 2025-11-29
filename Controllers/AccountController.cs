@@ -30,7 +30,6 @@ namespace Luno_platform.Controllers
 
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -124,6 +123,7 @@ namespace Luno_platform.Controllers
                 return View(model);
             }
 
+
             // إنشاء اليوزر الأساسي
             var user = new Users
             {
@@ -143,6 +143,8 @@ namespace Luno_platform.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
+
+
 
             if (!result.Succeeded)
             {

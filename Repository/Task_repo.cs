@@ -9,10 +9,10 @@ namespace Luno_platform.Repository
         {
         }
 
-        public List<Question> GetTasksbyid(int Examid)
+        public List<Question> GetTasksbyid(int taskid)
         {
             return _Context.Questions
-                 .Where(q => q.ExamId == Examid)
+                 .Where(q => q.TaskId == taskid)
                 .ToList();
         }
 

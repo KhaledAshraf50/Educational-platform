@@ -27,6 +27,7 @@ namespace Luno_platform.Repository
         {
             _Context.StudentStatistics.Add(stats);
             _Context.SaveChanges();
-        }   
+        }
+       
     }
 }

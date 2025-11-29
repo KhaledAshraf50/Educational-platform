@@ -31,6 +31,21 @@ body {
     direction: rtl;
     align-items: start;
 }
+.Settingspage {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px; /* حسب الحاجة */
+    align-items: flex-start; /* عشان البروفايل يبقى فوق */
+}
+
+.left-profile {
+    flex: 0 0 250px; /* عرض ثابت للبروفايل */
+}
+
+.right-content {
+    flex: 1; /* يبقى باقي المساحة للفورم */
+}
+
 
 .sidebar:hover~#Settingspage {
     margin-right: 220px;

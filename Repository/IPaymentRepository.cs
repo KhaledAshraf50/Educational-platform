@@ -7,5 +7,7 @@ namespace Luno_platform.Repository
     {
         void AddPayment(Payments payment);
         List<Payments> GetStudentPayments(int studentId);
+        IEnumerable<Payments> GetPayments(DateTime start, DateTime end);
+
     }
 }
