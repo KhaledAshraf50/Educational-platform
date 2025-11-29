@@ -1,0 +1,54 @@
+﻿@model Luno_platform.Viewmodel.ShowCoursesTeacherVM
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/show_courses.css" />
+
+<h1 class="teacher-courses-title">كورسات <span>@Model.ClassName</span></h1>
+
+<section class="courses" style="margin-top: 0px;">
+
+    @if (Model.Courses.Count == 0)
+    {
+        <div class="text-center py-5 text-muted">
+            <i class="fa-solid fa-box-open fa-2x mb-3"></i>
+            <p>لا توجد كورسات لهذا الصف بعد.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var course in Model.Courses)
+        {
+            <div class="card-courses">
+                <div class="image-courses">
+                    <img src="@Url.Content(course.Image)" alt="">
+                </div>
+                <div class="body-course">
+                    <div class="bodytop">
+                        <div class="bodyright">
+                            <div class="brtop">
+                                <p>@course.CourseName</p>
+                            </div>
+                            <div class="brmid">
+                                <p>@course.description</p>
+                            </div>
+                        </div>
+                        <div class="bodyleft">
+                            <a href="@Url.Action("CourseDetails", "Instructor", new { courseId = course.CourseId })" class="mt-2 btn btn-primary btn-sm">
+                                عرض التفاصيل
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bodybuttom">
+                        <div class="price">
+                            <span>@course.price</span> جنيهًا
+                        </div>
+                        <div class="date">
+                            <h3>@course.createdAt.ToShortDateString()</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</section>

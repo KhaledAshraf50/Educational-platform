@@ -46,6 +46,7 @@ namespace Luno_platform.Viewmodel
 
         public string? Image { get; set; }
 
+
         // ===========================
         // بيانات الطالب
         // ===========================

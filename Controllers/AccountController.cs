@@ -83,7 +83,7 @@ namespace Luno_platform.Controllers
             }
 
             // 2) تسجيل الدخول فعليًا + إنشاء Cookie
-            var result = await _signInManager.PasswordSignInAsync(
+                var result = await _signInManager.PasswordSignInAsync(
                 user.UserName,           // مهم جدًا: هنا اليوزر نيم مش اليوزر نفسه
                 model.Password,
                 model.RememberMe,        // تفعيل Remember Me
