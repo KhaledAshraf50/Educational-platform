@@ -704,6 +704,10 @@ namespace Luno_platform.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("nationalID")
+                        .IsUnique()
+                        .HasFilter("[nationalID] IS NOT NULL");
+
                     b.ToTable("AspNetUsers", (string)null);
                 });
 

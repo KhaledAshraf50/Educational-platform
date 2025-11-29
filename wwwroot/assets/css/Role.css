@@ -1,0 +1,97 @@
+﻿
+body {
+    background: #f4f6f8;
+/*    font-family: 'Cairo', sans-serif;*/
+}
+
+.role-container {
+    max-width: 450px;
+    margin: 60px auto;
+    text-align: center;
+    animation: fadeIn 0.9s ease;
+}
+
+.title {
+    color: #092C4C;
+    font-size: 28px;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+.role-card {
+    background: #092C4C;
+    color: white;
+    padding: 18px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.7s ease backwards;
+}
+
+    /* لمعة بسيطة على الهـ Hover */
+    .role-card:hover {
+        background: #fff;
+        color: #092C4C;
+        border-color: #F2994A;
+        transform: scale(1.03);
+        box-shadow: 0px 8px 20px rgba(9, 44, 76, 0.25);
+    }
+
+/* السهم المتحرك */
+.arrow {
+    font-size: 26px;
+    animation: arrowMove 1s infinite ease-in-out;
+    color: #F2994A;
+    font-weight: bold;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* الكروت تطلع واحد ورا التاني */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* حركة السهم */
+@keyframes arrowMove {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(6px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+

@@ -16,7 +16,7 @@ namespace Luno_platform.Models
 
         [Required]
         [MaxLength(50)]
-        public string role { get; set; }
+        public string? role { get; set; }
 
         public string? Image { get; set; }
 
