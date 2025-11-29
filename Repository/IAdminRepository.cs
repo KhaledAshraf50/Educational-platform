@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Luno_platform.Repository
 {
-    public interface IAdminRepository
+    public interface IAdminRepository:I_BaseRepository<Admin>
     {
         Users GetAdminByUserId(int userId);
         int GetTotalStudents();
@@ -11,5 +11,6 @@ namespace Luno_platform.Repository
         int GetTotalCoursesByStatus(string status);
         int GetTotalCoursesPending();
         decimal GetTotalPayments();
+        public Admin GetAdmin(int userId);
     }
 }

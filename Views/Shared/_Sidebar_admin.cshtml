@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/assets/css/all.min.css" />
     <link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="~/assets/img/icon.svg" type="image/x-icon" />
@@ -81,6 +82,7 @@
     <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <script src="~/assets/js/dashbord.js"></script>
     <script src="~/assets/js/adminmainpage.js"></script>
+    @RenderSection("script", required: false)
 
 
 </body>
