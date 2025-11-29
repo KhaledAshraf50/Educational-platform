@@ -243,6 +243,11 @@ namespace Luno_platform.Repository
 
 
         }
+        public void AddStudentCourse(Student_Courses studentCourse)
+        {
+            _Context.Student_Courses.Add(studentCourse);
+            _Context.SaveChanges();
+        }
 
 
     }
