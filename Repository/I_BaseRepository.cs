@@ -17,5 +17,6 @@ namespace Luno_platform.Repository
         bool HasStudentTakenExam(int studentId, int examId);
         bool HasStudentTakenTask(int studentId, int examId);
 
+
     }
 }

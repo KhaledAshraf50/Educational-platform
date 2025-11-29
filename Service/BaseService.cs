@@ -46,15 +46,14 @@ namespace Luno_platform.Service
         }
         public int? GetStudentIdByUserId(int userId)
         {
-            return Repo.GetStudentIdByUserId(userId);
+         return Repo.GetStudentIdByUserId(userId);
         }
-        public int? GetParentIdByUserId(int userId)
-        {
-            return Repo.GetParentIdByUserId(userId);
+        public int? GetParentIdByUserId(int userId) { 
+         return Repo.GetParentIdByUserId(userId);
         }
         public int? GetInstructorIdByUserId(int userId)
         {
-            return Repo.GetInstructorIdByUserId(userId);
+         return Repo.GetInstructorIdByUserId(userId);
         }
 
         public bool HasStudentTakenExam(int studentId, int examId)

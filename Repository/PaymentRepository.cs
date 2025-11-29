@@ -3,15 +3,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Repository
 {
-    public class PaymentRepository : BaseRepository<Payments>, IPaymentRepository
+    public class PaymentRepo : BaseRepository<Payments>, IPaymentRepo
     {
-
-
-        public PaymentRepository(LunoDBContext db) : base(db)
+        public PaymentRepo(LunoDBContext db) : base(db)
         {
 
         }
 
+        public void AddPayment(Payments payment)
+        {
+            Table.Add(payment);
+            Save();
+        }
 
         public IEnumerable<Payments> GetPayments(DateTime start, DateTime end)
         {
@@ -23,6 +26,10 @@ namespace Luno_platform.Repository
                 .ToList();
         }
 
+        public List<Payments> GetStudentPayments(int studentId)
+        {
+            return Table.Where(p => p.StudentID == studentId).ToList();
+        }
     }
 }
 

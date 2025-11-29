@@ -64,7 +64,7 @@ namespace Luno_platform.Repository
 
         public List<Instructor> infoinstructors()
         {
-            return _Context.Instructors
+           return _Context.Instructors
                .Include(i => i.User)
                .Include(i => i.Subject)
                .Include(i => i.instructor_classescs)

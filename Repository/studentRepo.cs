@@ -186,6 +186,10 @@ namespace Luno_platform.Repository
                     Degree = _Context.StudentStatistics
                                 .Where(ss => ss.StudentID == x.sc.StudentId && ss.ExamId == x.cc.ExamId)
                                 .Select(ss => ss.degree.ToString())
+                                .FirstOrDefault(),
+                    Degree_task=_Context.Studentstaistics_In_Tasks
+                                .Where(ss => ss.StudentID == x.sc.StudentId && ss.TaskId == x.cc.taskId)
+                                .Select(ss => ss.degree.ToString())
                                 .FirstOrDefault()
                 });
 
@@ -201,6 +205,11 @@ namespace Luno_platform.Repository
             {
                 if (string.IsNullOrEmpty(r.Degree))
                     r.Degree = "لا يوجد بيانات";
+            });
+            result.ForEach(r =>
+            {
+                if (string.IsNullOrEmpty(r.Degree_task))
+                    r.Degree_task = "لا يوجد بيانات";
             });
 
             return result;

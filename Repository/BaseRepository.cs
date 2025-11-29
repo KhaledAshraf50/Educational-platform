@@ -22,6 +22,7 @@ namespace Luno_platform.Repository
 
             return student?.StudentID;   // لو مش طالب هترجع null
         }
+
         // ترجع ParentID بناءً على UserId
         public int? GetParentIdByUserId(int userId)
         {
@@ -41,6 +42,7 @@ namespace Luno_platform.Repository
 
             return instructor?.instructorID;   // لو مش موجود بيرجع null
         }
+
 
         public void Add(T entity)
         {
