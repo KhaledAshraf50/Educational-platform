@@ -2,6 +2,7 @@
 {
     public class InstructorSettingsVM
     {
+        // بيانات المدرس الأساسية
         public int InstructorID { get; set; }
         public int UserId { get; set; } 
 
@@ -21,9 +22,9 @@
         // المادة
         public int SubjectID { get; set; }
         public string SubjectName { get; set; }
+        public string AvatarUrl { get; set; }
 
         // إشعارات
-        public List<string> Notifications { get; set; } = new();
 
         public List<NotificationSettingVM> NotificationSettings { get; set; } = new();
         // الحقول الخاصة بتغيير كلمة المرور
@@ -32,6 +33,17 @@
         public string NewPassword { get; set; }
         public string ConfirmNewPassword { get; set; }
 
+        // الإشعارات
+        public List<string> Notifications { get; set; } = new List<string>();
+
+        // إعدادات الإشعارات (مثلاً: إشعارات الدفع، التقييمات، إلخ)
+        public List<NotificationSettingVM> NotificationSetting { get; set; } = new List<NotificationSettingVM>
+        {
+            new NotificationSettingVM { Label = "إشعارات الدفعات الجديدة", IsEnabled = true },
+            new NotificationSettingVM { Label = "إشعارات تقييمات الطلاب", IsEnabled = true },
+            new NotificationSettingVM { Label = "إشعارات طلبات الانضمام للكورسات", IsEnabled = true },
+            new NotificationSettingVM { Label = "تذكيرات بالمهام والامتحانات", IsEnabled = false }
+        };
     }
 
     public class NotificationSettingVM

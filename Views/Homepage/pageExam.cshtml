@@ -1,5 +1,9 @@
 ﻿@using Luno_platform.Viewmodel
+
 @model pageExam_viewmodel
+
+
+
 
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
@@ -81,9 +85,19 @@
             return;
         }
 
+    // مؤقت الامتحان
+    let time = @Model.examinfo.Time * 60;
+    const timerEl = document.getElementById('timer');
+
+    function updateTimer() {
+        const m = Math.floor(time / 60);
+        const s = time % 60;
+        timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
         time--;
         setTimeout(tick, 1000);
     }
+    updateTimer();
+
 
     tick();
 </script>

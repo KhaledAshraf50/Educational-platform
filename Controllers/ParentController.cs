@@ -5,57 +5,98 @@ using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Luno_platform.Controllers
 {
-    [Authorize(Roles = "parent")]
-
+    [Authorize(Roles ="parent")]
     public class ParentController : Controller
     {
         IParentService _parentService;
-        public ParentController(IParentService parentService)
+        IParentRepo _parentRepo;
+
+        public ParentController(IParentService parentService, IParentRepo parentRepo)
         {
             _parentService = parentService;
+            _parentRepo = parentRepo;
         }
-        public IActionResult MainPage()
-
+        public int GetUserId()
         {
 
             var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             if (userIdClaim == null)
             {
-                return Unauthorized();
+                return -1;
             }
+            return int.Parse(userIdClaim.Value);
+        }
+        public IActionResult MainPage()
+        {
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
 
-            int userId = int.Parse(userIdClaim.Value);
-            var parent = _parentService.GetParent(userId);
-            return View(parent);
+            int parentId = parent.ID;
+
+            var parentData = _parentService.GetParent(parentId);
+            var students = _parentService.GetStds(parentId);
+            var vm = new MainPageParentVM
+            {
+                Student = students,
+                parent = parentData,
+                Courses = _parentService.GetStudentCourses(parentId),
+                ExamProgressDict = new Dictionary<int, double>(),
+                TaskProgressDict = new Dictionary<int, double>(),
+                OverallProgressDict = new Dictionary<int, double>()
+            };
+            foreach (var std in students)
+            {
+                var progress = _parentRepo.GetStudentProgress(std.StudentID);
+                vm.ExamProgressDict[std.StudentID] = progress.ExamProgress;
+                vm.TaskProgressDict[std.StudentID] = progress.TaskProgress;
+                vm.OverallProgressDict[std.StudentID] = progress.OverallProgress;
+        }
+            return View(vm);
         }
         //------------------------
-        public IActionResult Childerns(int id)
+        public IActionResult Childerns()
         {
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+
             var vm = new ParentChildrenViewModel
             {
-                ParentID = id,
-                Students = _parentService.GetStds(id)
+                ParentID = parent.ID,
+                Students = _parentService.GetStds(parent.ID)
             };
+
             return View(vm);
         }
+
         public IActionResult ChildDetails(int id)
         {
-            if (id <= 0)
-                return RedirectToAction("Childerns");
+            if (id <= 0) return RedirectToAction("Childerns");
+
             Student std = _parentService.GetStudentDetails(id);
-            if (std == null)
-                return RedirectToAction("Childerns");
+            if (std == null) return RedirectToAction("Childerns");
+
             return View(std);
         }
-        public IActionResult AddChild(int parentId)
+
+        public IActionResult AddChild()
         {
-            ChildViewModel vm = new ChildViewModel();
-            vm.ParentID = parentId;
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+
+            ChildViewModel vm = new ChildViewModel
+            {
+                ParentID = parent.ID
+            };
+
             return View(vm);
         }
+
         [HttpPost]
         public IActionResult SaveAddChild(ChildViewModel childvm)
         {
@@ -96,85 +137,147 @@ namespace Luno_platform.Controllers
 
         public IActionResult Invoices()
         {
-            return View();
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            var students = _parentRepo.GetStudentBelongToParent(parent.ID);
+            List<Payments> allPayments = new List<Payments>();
+
+            foreach (var student in students)
+            {
+                int studentId = student.StudentID;
+                var payments = _parentRepo.GetPayments(studentId);
+
+                allPayments.AddRange(payments);
+            }
+
+            var totalPaid = allPayments
+             .Where(p => p.status == "مقبول")
+             .Sum(p => p.amountPayment);
+
+            // إجمالي الغير مدفوع (مرفوض أو قيد المراجعة)
+            var totalUnpaid = allPayments
+                .Where(p => p.status == "مرفوض" || p.status == "قيد المراجعة")
+                .Sum(p => p.amountPayment);
+
+            ViewBag.TotalPaid = totalPaid;
+            ViewBag.TotalUnpaid = totalUnpaid;
+            return View(allPayments);  
         }
         //------------------------
-        public IActionResult Settings(int ParentId)
+        public IActionResult Settings()
         {
-            var vm = _parentService.GetParentSetting(ParentId);
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+
+            var vm = _parentService.GetParentSetting(parent.ID);
             return View(vm);
         }
    
         [HttpPost]
-        public IActionResult UploadImage(int parentID, IFormFile file)
+        public IActionResult UploadImage(IFormFile file)
         {
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+
+            int parentID = parent.ID;
+
             if (file == null || file.Length == 0)
             {
                 TempData["ErrorFile"] = "من فضلك اختر صورة صحيحة";
-                return RedirectToAction("Settings", new { ParentId = parentID });
+                return RedirectToAction("Settings");
             }
+
             string[] validExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
             string ext = Path.GetExtension(file.FileName).ToLower();
-            if(!validExtensions.Contains(ext))
+
+            if (!validExtensions.Contains(ext))
             {
                 TempData["ErrorFile"] = "الملف غير مسموح. الرجاء رفع صورة فقط (JPG - PNG - GIF - WEBP)";
-                return RedirectToAction("Settings", new { ParentId = parentID });
+                return RedirectToAction("Settings");
             }
+
             string imageUrl = FileUploader.UploadImage(file);
             if (imageUrl == "null")
             {
                 TempData["ErrorFile"] = "فشل رفع الصوره حاول مره اخري";
-                return RedirectToAction("Settings", new { ParentId = parentID });
+                return RedirectToAction("Settings");
             }
+
             _parentService.UpdateImage(parentID, imageUrl);
             TempData["SucessFile"] = "تم تغيير الصوره بنجاح ";
-            return RedirectToAction("Settings", new { ParentId = parentID });
+
+            return RedirectToAction("Settings");
         }
-        public IActionResult DeleteImage(int parentId)
+        public IActionResult DeleteImage()
         {
-            var parent = _parentService.GetById(parentId);
-            if (parent == null)
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+
+            int parentId = parent.ID;
+
+            if (!string.IsNullOrEmpty(parent.User.Image))
             {
-                TempData["ErrorFile"] = "المستخدم غير موجود";
-                return RedirectToAction("Settings", new { ParentId = parentId });
+                string imgPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    parent.User.Image.TrimStart('/')
+                );
+
+                if (System.IO.File.Exists(imgPath))
+                    System.IO.File.Delete(imgPath);
             }
-            //if (!string.IsNullOrEmpty(parent.Image))
-            //{
-            //    string imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", parent.Image.TrimStart('/'));
-            //    if (System.IO.File.Exists(imgPath))
-            //    {
-            //        System.IO.File.Delete(imgPath);
-            //    }
-            //}
-            //parent.Image = "/assets/imgs/default.png";
+
+            parent.User.Image = "~/assets/imgs/user_image.png";
+
             _parentService.Update(parent);
             _parentService.Save();
+
             TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
-            return RedirectToAction("Settings", new { ParentId = parentId });
+
+            return RedirectToAction("Settings");
         }
+
         [HttpPost]
         public IActionResult UpdateParentSetting(ParentSettingVM pVM)
         {
-            bool ok =_parentService.UpdateParentSetting(pVM);
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+
+            pVM.ParentID = parent.ID;   // إجبارًا نستخدم ParentId الصحيح
+
+            bool ok = _parentService.UpdateParentSetting(pVM);
+
             if (!ok)
             {
                 TempData["Error"] = "حدث خطأ أثناء تحديث البيانات";
-                return RedirectToAction("Settings", new { ParentId = pVM.ParentID });
+                return RedirectToAction("Settings");
             }
+
             TempData["Sucess"] = "تم تحديث البيانات بنجاح";
-            return RedirectToAction("Settings", new { parentId = pVM.ParentID });
+            return RedirectToAction("Settings");
         }
+
         public IActionResult ChangePassword(ParentSettingVM vm)
         {
-            bool ok = _parentService.ChangeParentPassword(vm.ParentID, vm.Password, vm.ConfirmPassword);
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+
+            int parentId = parent.ID;
+
+            bool ok = _parentService.ChangeParentPassword(parentId, vm.Password, vm.ConfirmPassword);
+
             if (!ok)
             {
                 TempData["Error"] = "كلمه المرور غير صحيحة!!";
-                return RedirectToAction("Settings", new { parentId = vm.ParentID });
-            }
-            TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح ";
-            return RedirectToAction("Settings", new { parentId = vm.ParentID });
+                return RedirectToAction("Settings");
         }
 
+            TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
+            return RedirectToAction("Settings");
+        }
     }
 }

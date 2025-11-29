@@ -26,6 +26,7 @@ namespace Luno_platform.Repository
                           .Select(i => new Instructor
                           {
                               instructorID = i.instructorID,
+                              //Image = i.Image,
                               motto = i.motto,
                               bio = i.bio,
                               eligible = i.eligible,

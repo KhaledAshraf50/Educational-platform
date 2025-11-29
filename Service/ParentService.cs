@@ -1,15 +1,19 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
 using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
 {
     public class ParentService : BaseService<Parent>, IParentService
     {
         IParentRepo parentRepo;
-        public ParentService(IParentRepo repo):base(repo)
+        IstudentRepo studentRepo;
+        public ParentService(IParentRepo repo, IstudentRepo studentRepo) : base(repo)
         {
             parentRepo = repo;
+            this.studentRepo = studentRepo;
         }
         public List<Student> GetStds(int id)
         {
@@ -22,7 +26,7 @@ namespace Luno_platform.Service
 
         public Student GetStudentDetails(int id)
         {
-            if(id <= 0)
+            if (id <= 0)
             {
                 throw new ArgumentException("Invalid student ID");
             }
@@ -46,7 +50,7 @@ namespace Luno_platform.Service
         {
             return parentRepo.GetStudentByNationalID(nationalID);
         }
-        public bool LinkChild(int parentID, int studentID,out string errorMessage)
+        public bool LinkChild(int parentID, int studentID, out string errorMessage)
         {
             errorMessage = null;
             var student = parentRepo.GetStudentById(studentID);
@@ -55,7 +59,7 @@ namespace Luno_platform.Service
                 errorMessage = "No Exist Student With This ID";
                 return false;
             }
-            if(student.ParentId!=null && student.ParentId != parentID)
+            if (student.ParentId != null && student.ParentId != parentID)
             {
                 errorMessage = "This Student Is Linked With Another Parent";
                 return false;
@@ -69,18 +73,17 @@ namespace Luno_platform.Service
             return parentRepo.GetParent(id);
         }
 
-        public ParentSettingVM GetParentSetting(int ParentId)
+        public ParentSettingVM GetParentSetting(int id)
         {
-           var parent = parentRepo.GetParent(ParentId);
+            var parent = parentRepo.GetParent(id);
             ParentSettingVM pVM = new ParentSettingVM()
             {
                 ParentID = parent.ID,
-                //Image = parent.Image,
-                Name = parent.User.fname+" "+ parent.User.lastName,
+                Image = parent.User.Image,
+                Name = parent.User.fname + " " + parent.User.lastName,
                 Email = parent.User.Email,
                 PhoneNumber = parent.User.PhoneNumber,
-                NoOfChildren = parentRepo.GetNoOfStudents(ParentId)
-                //NoOfChildren = parent.Students.Count()
+                NoOfChildren = parentRepo.GetNoOfStudents(id)
             };
             return pVM;
         }
@@ -104,17 +107,29 @@ namespace Luno_platform.Service
         {
             var parent = parentRepo.GetParent(parentId);
             if (parent == null) return false;
-            if (parent.User.PasswordHash != oldPassword) return false;
+            var hasher = new PasswordHasher<Users>();
+            var result = hasher.VerifyHashedPassword(parent.User, parent.User.PasswordHash, oldPassword);
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return false;
+            }
             parent.User.PasswordHash = newPassword;
             parentRepo.Update(parent);
             parentRepo.Save();
             return true;
         }
 
-        //public void UpdateImage(int parentId, string imgUrl)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public List<Courses> GetStudentCourses(int id)
+        {
+            return studentRepo.GetStudentCourses(id);
+        }
+
+        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        {
+            return studentRepo.GetStudentCourses(studentId, page, pageSize);
+        }
+
+  
         public void UpdateImage(int parentId, string imgUrl)
         {
             var parent = parentRepo.GetParent(parentId);
@@ -122,10 +137,14 @@ namespace Luno_platform.Service
             if (parent == null || parent.User == null)
                 throw new Exception("Parent not found");
 
-            parent.User.Image  = imgUrl;
+            parent.User.Image= imgUrl;
 
             parentRepo.Update(parent);
             parentRepo.Save();
+        }
+        public List<Payments> GetPayments(int studentId)
+        {
+            return parentRepo.GetPayments(studentId);
         }
     }
 }
