@@ -1,180 +1,224 @@
 body {
-  margin: 0;
-  font-family: DIN Next LT Arabic;
-  background: #f8f9fa;
+    margin: 0;
+    font-family: DIN Next LT Arabic;
+    background: #f8f9fa;
 }
 
 :root {
-  --primary-color: #092c4c;
-  --secondary-color: #f2994a;
-  --Info-color: #2f80ed;
-  --Success-color: #27ae60;
-  --Warning-color: #e2b93b;
-  --Error-color: #eb5757;
-  --sidebar-bg: #ffffff;
-  --content-bg: #f8fafc;
-  --white-color: #fff;
-  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Start Subjectspage */
 #Subjectspage {
-  margin-right: 70px;
-  padding: 20px;
-  transition: margin-right 0.3s;
+    margin-right: 70px;
+    padding: 20px;
+    transition: margin-right 0.3s;
 }
 
 .sidebar:hover ~ #Subjectspage {
-  margin-right: 220px;
+    margin-right: 220px;
 }
 
 #Subjectspage .search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#Subjectspage .search input {
-  direction: rtl;
-  padding: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    #Subjectspage .search input {
+        direction: rtl;
+        padding: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border-color);
+    }
 
-#Subjectspage .search .icon {
-  color: var(--secondary-color);
-  background-color: var(--white-color);
-  border: 2px solid var(--primary-color);
-  transition: 0.3s;
-}
+    #Subjectspage .search .icon {
+        font-size: 24px;
+        color: var(--secondary-color);
+        background-color: var(--white-color);
+        border: 1px solid var(--border-color);
+        transition: 0.3s;
+        padding: 8px 16px;
+    }
 
-#Subjectspage .search .icon:hover {
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
-}
+        #Subjectspage .search .icon:hover {
+            color: var(--secondary-color);
+            background-color: var(--primary-color);
+        }
 
 .btns {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  margin-top: 12px;
-  direction: rtl;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 12px;
+    direction: rtl;
 }
+
+.showbtn {
+    border: none;
+    background-color: var(--secondary-color);
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+    transition: color 0.3s;
+
+    color: white;
+}
+
+    .showbtn:hover {
+        background-color: var(--primary-color);
+        color: white
+    }
 
 .btns button {
-  border: none;
-  background-color: var(--content-bg);
-  padding: 8px 16px;
-  font-size: 18px;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s;
-}
+    border: none;
+    background-color: var(--content-bg);
+    padding: 8px 16px;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
 
-.btns button::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background-color: var(--primary-color);
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  /* hidden in normal */
-  transition: opacity 0.3s ease;
 }
+    .showbtn:hover{
+        background-color:var(--primary-color);
+        color:white
+    }
+    .btns button {
+        border: none;
+        background-color: var(--content-bg);
+        padding: 8px 16px;
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s;
+    }
 
-.btns button:hover::before,
-.btns button.active::before {
-  opacity: 1;
-}
+    .btns button::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-color);
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        /* hidden in normal */
+        transition: opacity 0.3s ease;
+    }
 
-.btns button:hover,
-.btns button.active {
-  color: var(--primary-color);
-}
+    .btns button:hover::before,
+    .btns button.active::before {
+        opacity: 1;
+    }
+
+    .btns button:hover,
+    .btns button.active {
+        color: var(--primary-color);
+    }
 
 .progress {
-  width: 120px;
-  margin: 0 auto;
-  height: 10px;
-  border-radius: 20px;
+    width: 120px;
+    margin: 0 auto;
+    height: 10px;
+    border-radius: 20px;
 }
 
 .table_Edit {
-  background-color: var(--content-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  direction: rtl;
+    background-color: var(--content-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    direction: rtl;
 }
 
-.table_Edit thead th {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-}
+    .table_Edit thead th {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        text-align: center;
+        vertical-align: middle;
+    }
 
-.table_Edit tbody tr button {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  padding: 8px 12px;
-  border: none;
-  transition: 0.3s ease;
-}
+    .table_Edit tbody tr button, .table_Edit tbody tr a {
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        padding: 8px 16px;
+        border: none;
+        transition: 0.3s ease;
+    }
 
-.table_Edit tbody td button:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
+    .table_Edit th,
+    .table_Edit tr {
+        height: 64px;
+    }
+
+    .table_Edit th,
+    .table_Edit tr {
+        height: 64px;
+    }
+
+    .table_Edit tbody td button:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
 
 .btnsNextPre {
-  display: flex;
-  justify-content: end;
-  gap: 8px;
-  align-items: center;
-  margin-top: 16px;
-  transition: 0.3s;
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+    align-items: center;
+    margin-top: 16px;
+    transition: 0.3s;
 }
 
 #Subjectspage button.Next {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  margin-left: 6px;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    margin-left: 6px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 #Subjectspage button.Previous {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  margin-right: 6px;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    margin-right: 6px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 @media (max-width: 992px) {
-  .search input {
-    width: 70%;
-  }
+    .search input {
+        width: 70%;
+    }
 }
 
 @media (max-width: 576px) {
-  .search {
-    flex-direction: column;
-    gap: 10px;
-  }
+    .search {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-  .btns {
-    flex-direction: column;
-    gap: 10px;
-  }
+    .btns {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-  .table_Edit {
-    font-size: 14px;
-  }
+    .table_Edit {
+        font-size: 14px;
+    }
 }
 
 /* End Subjectspage */

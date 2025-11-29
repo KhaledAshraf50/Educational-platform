@@ -1,0 +1,37 @@
+﻿@model Luno_platform.Models.Courses
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4" style="max-width: 500px; margin: auto;">
+        <h3 class="text-center mb-4">إتمام عملية الدفع</h3>
+
+        <div class="mb-3">
+            <label class="fw-bold">اسم الكورس:</label>
+            <p>@Model.CourseName</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold">السعر:</label>
+            <p>@Model.price جنيه</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold">الوصف:</label>
+            <p>@Model.description</p>
+        </div>
+
+        <form asp-action="PayConfirm" method="post">
+            <input type="hidden" name="courseId" value="@Model.CourseId" />
+            <input type="hidden" name="amount" value="@Model.price" />
+
+            <button type="submit" class="btn btn-success w-100">
+                <i class="fa-solid fa-money-bill"></i> دفع الآن
+            </button>
+        </form>
+    </div>
+
+</div>

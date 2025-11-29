@@ -14,15 +14,41 @@
                 <a href="" class="subtitle_link_login_as_user">ادخل إلى حسابك الآن!</a>
             </span>
         </p>
+        
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group form-group1" style="margin-bottom: 17px;">
+
             <select id="gender" required>
-                <option value="" disabled selected hidden></option>
-                <option value="student">طالب</option>
-                <option value="teacher">مدرس</option>
-                <option value="parent">ولي امر</option>
+                <option value="" disabled hidden>اختر النوع</option>
+
+                @if (Model.Role == "student")
+                {
+                    <option value="student" selected>طالب</option>
+                }
+                else
+                {
+                    <option value="student">طالب</option>
+                }
+
+                @if (Model.Role == "instructor")
+                {
+                    <option value="instructor" selected>مدرس</option>
+                }
+                else
+                {
+                    <option value="instructor">مدرس</option>
+                }
+
+                @if (Model.Role == "parent")
+                {
+                    <option value="parent" selected>ولي امر</option>
+                }
+                else
+                {
+                    <option value="parent">ولي امر</option>
+                }
             </select>
             <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
         </div>
@@ -249,7 +275,7 @@
 
             <!-- النوع -->
             <div class="form-group form-group1" style="margin-bottom: 17px;">
-                <select id="gender" required asp-for="Role">
+                <select  required asp-for="Role">
                     <option value="" disabled selected hidden></option>
                     <option value="student">طالب</option>
                     <option value="instructor">مدرس</option>
@@ -341,7 +367,7 @@
 
             <!-- النوع -->
             <div class="form-group form-group1" style="margin-bottom: 17px;">
-                <select id="gender" required asp-for="Role">
+                <select  required asp-for="Role">
                     <option value="" disabled selected hidden></option>
                     <option value="student">طالب</option>
                     <option value="instructor">مدرس</option>

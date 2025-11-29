@@ -3,7 +3,7 @@ using Luno_platform.Viewmodel;
 
 namespace Luno_platform.Repository
 {
-    public interface IstudentRepo: I_BaseRepository<Student>
+    public interface IstudentRepo : I_BaseRepository<Student>
     {
         Student GetStudent(int id);
         List<Courses> GetStudentCourses(int id);

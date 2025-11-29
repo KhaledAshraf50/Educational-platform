@@ -1,0 +1,442 @@
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --accent: #092c4c;
+  --accent-2: #2f80ed;
+  --muted: #6b7280;
+  --success: #27ae60;
+  --warning: #e2b93b;
+  --danger: #eb5757;
+  --border: #e6eef8;
+  --glass: rgba(255, 255, 255, 0.6);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+* {
+  box-sizing: border-box;
+  font-family: DIN Next LT Arabic;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  /* color: #092c4c;w */
+}
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+/* .sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, var(--accent), #16325a);
+  color: #fff;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+} */
+/* .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand .logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-2), #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.brand h1 {
+  font-size: 18px;
+  margin: 0;
+}
+.nav {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.nav a.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+.nav a i {
+  width: 26;
+  text-align: center;
+}
+.sidebar .footer {
+  margin-top: auto;
+  font-size: 13px;
+  opacity: 0.9;
+} */
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+.topbar {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.search {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.search input {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.btns {
+  background: var(--accent);
+  color: var(--card);
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* border: 1px solid var(--border); */
+  border: none;
+}
+.card .title {
+  font-size: 13px;
+  color: var(--muted);
+}
+.card .num {
+  font-size: 22px;
+  font-weight: 700;
+}
+.card .meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Charts & content */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+.panel {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+.activities {
+  margin-top: 16px;
+}
+.activity {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #eef2ff;
+}
+.activity:last-child {
+  border-bottom: none;
+}
+.act-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.act-text {
+  font-size: 14px;
+}
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .card-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+/* RTL tweaks */
+:dir(rtl) .search input {
+  direction: ltr;
+}
+/* ---------- Responsive Drawer + Menu button (no color changes) ---------- */
+
+/* Make the menu icon fixed at top-right, visible on all screens (as requested) */
+.menu-toggle {
+  position: fixed;
+  top: 14px;
+  right: 18px; /* since RTL the sidebar is on right */
+  z-index: 1102;
+  background: transparent;
+  border: none;
+  color: var(--white-color); /* keep color consistent with icons */
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* subtle hover on desktop */
+.menu-toggle:hover {
+  transform: translateY(-1px);
+}
+
+/* Sidebar open/closed states (works with classes .open/.closed/.active) */
+.sidebar {
+  transition: transform 320ms cubic-bezier(0.22, 0.9, 0.12, 1), width 300ms;
+  will-change: transform;
+}
+
+/* For mobile (drawer hidden by default) we translate it out of view */
+.sidebar.closed {
+  transform: translateX(110%); /* push fully to right */
+}
+
+/* when opened, bring it back */
+.sidebar.open {
+  transform: translateX(0) !important;
+}
+
+/* Overlay styles */
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 1100;
+  transition: opacity 0.25s;
+  opacity: 0;
+}
+
+/* show overlay */
+#overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+/* On large screens keep original sidebar behavior (collapsed/hover) */
+/* We'll only force drawer behaviour under 1024px */
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  } /* hide fixed menu-toggle on desktop */
+  #overlay {
+    display: none !important;
+  }
+  .sidebar {
+    transform: none !important;
+  }
+  /* .content { margin-right: 260px; transition: margin-right .3s; } reserve space */
+}
+
+/* Mobile & tablet: use drawer */
+@media (max-width: 1023px) {
+  /* make sidebar full height and overlay-ready */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 260px;
+    max-width: 86%;
+    background: var(
+      --primary-color,
+      var(--accent)
+    ); /* uses your existing colors */
+    color: var(--white-color);
+    padding: 20px;
+    z-index: 1101;
+  }
+
+  /* start hidden */
+  .sidebar.closed {
+    transform: translateX(110%);
+  }
+
+  /* content takes full width when sidebar closed */
+  .content {
+    margin-right: 0 !important;
+    padding: 18px;
+  }
+
+  /* show menu button on all small screens */
+  .menu-toggle {
+    display: inline-flex;
+    color: var(--white-color);
+  }
+
+  /* Ensure top-icons area doesn't overlap the menu button */
+  .top-icons {
+    padding-left: 60px;
+  }
+
+  /* keep overlay visible on activation */
+  #overlay.show {
+    display: block;
+  }
+}
+
+/* ---------------- Grid system per your spec ---------------- */
+
+/* container-main controls max width simulating columns + gutters */
+.container-main {
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Desktop 1440: 12 * 65 + 11 * 30 = calc width */
+@media (min-width: 1440px) {
+  .container-main {
+    max-width: calc(12 * 65px + 11 * 30px);
+  } /* 1110px */
+}
+
+/* Desktop 1024: 12 * 50 + 11 * 30 = 930px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container-main {
+    max-width: calc(12 * 50px + 11 * 30px);
+  } /* 930px */
+}
+
+/* Tablet 768: 6 * 88 + 5 * 30 = 678px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container-main {
+    max-width: calc(6 * 88px + 5 * 30px);
+  } /* 678px */
+}
+
+/* Mobile 320: 2 * 130 + 1 * 30 = 290px */
+@media (max-width: 767px) {
+  .container-main {
+    max-width: calc(2 * 130px + 1 * 30px);
+    padding: 0 12px;
+  }
+}
+
+/* ------------- Cards & grid responsiveness (keep visual same) ------------- */
+.card-row {
+  gap: 16px;
+  display: grid;
+}
+
+@media (min-width: 1440px) {
+  .card-row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .card-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .card-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* grid-2 panels */
+@media (min-width: 1024px) {
+  .grid-2 {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+@media (max-width: 1023px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------- Charts responsive tweaks (no color changes) ------------- */
+.panel canvas {
+  width: 100% !important;
+  height: 220px;
+  display: block;
+}
+/* @media (min-width: 1024px) {
+    #earningsChart {
+        height: 260px !important;
+    }
+    #usersChart {
+        height: 220px !important;
+    }
+    } */
+/* @media (max-width: 767px) {
+  .panel canvas {
+    height: 190px !important;
+  }
+} */
+
+/* keep RTL input direction unchanged */
+:dir(rtl) .search input {
+  direction: ltr;
+}

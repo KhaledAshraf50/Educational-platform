@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/assets/css/dashboard.css" />
     <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
+    
     @RenderSection("Styles", required: false)
     <link rel="shortcut icon" href="~/assets/imgs/icon.svg" type="image/x-icon" />
 </head>
@@ -19,19 +20,26 @@
         </div>
         <ul>
             <li>
-                <a asp-controller="Student" asp-action="MainPage" ><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
+
+
+
+                <a asp-controller="Student" asp-action="MainPage"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="SubjectsPage" ><i class="fa-solid fa-book mx-2"></i> <span>المواد </span></a>
+                <a asp-controller="Student" asp-action="SubjectsPage"><i class="fa-solid fa-book mx-2"></i> <span>المواد </span></a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="ReportsPage" >
+                <a asp-controller="Student" asp-action="ReportsPage">
+
+
                     <i class="fa-solid fa-chart-line mx-2"></i>
                     <span>التقارير</span>
                 </a>
             </li>
             <li>
-                <a asp-controller="Student" asp-action="invoicesPage" >
+
+                <a asp-controller="Student" asp-action="invoicesPage">
+
                     <i class="fa-regular fa-money-bill-1 mx-2"></i>
                     <span>الفواتير</span>
                 </a>

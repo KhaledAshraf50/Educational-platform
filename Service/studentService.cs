@@ -17,9 +17,9 @@ namespace Luno_platform.Service
         // دالة جلب بيانات الطالب
         public Student GetStudent(int id)
         {
-           
+
             var student = _repository.GetStudent(id);
-        
+
             if (student == null)
                 throw new InvalidOperationException("الطالب غير موجود");
 

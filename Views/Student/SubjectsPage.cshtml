@@ -1,9 +1,12 @@
 ﻿@model List<Courses>
 @{
-    Layout = "_SideBarDashbord"; 
+    Layout = "_SideBarDashbord";
 }
 @section Styles {
-<link rel="stylesheet" href="~/assets/css/Subjects.css">
+
+    <link rel="stylesheet" href="~/assets/css/Subjects.css">
+
+
 }
 <div class="Subjectspage m-3" id="Subjectspage">
     <div class="container text-center mt-3 ">
@@ -39,14 +42,14 @@
             <button class="btn-btn-secondary me-3" onclick="filterCourse('كيمياء')">كيمياء</button> *@
         </div>
         <div class="table-responsive">
-            <table class="table table-hover text-center align-middle table_Edit">
+            <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
                 <thead>
                     <tr>
-                        <th>ترتيب</th>
+                        <th>#</th>
                         <th>كود الكورس</th>
                         <th>المحاضرة</th>
                         <th>تفاصيل الكورس</th>
-                        <th>الانتهاء من الكورس</th>
+
                         <th>عرض</th>
                     </tr>
                 </thead>
@@ -54,7 +57,7 @@
                     @{
                         int i = 1;
                     }
-                    
+
                     @foreach (var course in Model)
                     {
                         <tr data-subject="@course.Subjects.SubjectNameAR">
@@ -62,21 +65,23 @@
                             <td>@course.CourseId</td>
                             <td>@course.CourseName</td>
                             <td> @course.description</td>
-                            <td>
+                            @* <td>
                                 <span class="text-danger fw-bold">20%</span>
                                 <div class="progress">
                                     <div class="progress-bar bg-danger" style="width:20%"></div>
                                 </div>
-                            </td>
+                            </td> *@
                             <td>
-                                
-                                    <a href="/Homepage/show_details_courses/@course.CourseId" class="mt-2"> عرض</a>
+
+
+                                <a href="~/Homepage/show_details_courses/@course.CourseId" class="mt-2 btn showbtn"> عرض</a>
+
                             </td>
                         </tr>
 
                         i++;
                     }
-                
+
             </table>
             @* <div class="btnsNextPre">
                 <button class="Previous">السابق</button>
@@ -88,7 +93,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 @section Script {
     <script src="~/assets/js/Subjects.js"></script>
 }

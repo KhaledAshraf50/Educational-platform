@@ -12,6 +12,11 @@
         void Save();
 
         int? GetStudentIdByUserId(int userId);
+        public int? GetParentIdByUserId(int userId);
+        public int? GetInstructorIdByUserId(int userId);
+        bool HasStudentTakenExam(int studentId, int examId);
+        bool HasStudentTakenTask(int studentId, int examId);
+
 
 
     }

@@ -12,6 +12,7 @@ namespace Luno_platform.Models
         public  DbSet<Tasks> Tasks { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudentStatistics> StudentStatistics { get; set; }
+        public DbSet<studentstaistics_in_task> Studentstaistics_In_Tasks { get; set; }
         public DbSet<StudentAnswer> StudentAnswers { get; set; }
 
         public DbSet<Question> Questions { get; set; }
@@ -279,6 +280,21 @@ namespace Luno_platform.Models
                 .HasOne(ss => ss.Exams)
                 .WithMany(e => e.StudentStatistics)
                 .HasForeignKey(ss => ss.ExamId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            // 26. studentstaistics_in_task -> task (taskId)
+            modelBuilder.Entity<studentstaistics_in_task>()
+                .HasOne(ss => ss.Tasks)
+                .WithMany(e => e.Studentstaistics_In_task)
+                .HasForeignKey(ss => ss.TaskId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // 27. StudentStatistics -> Students (StudentID)
+            modelBuilder.Entity<studentstaistics_in_task>()
+                .HasOne(ss => ss.Student)
+                .WithMany(s => s.Studentstaistics_In_task)
+                .HasForeignKey(ss => ss.StudentID)
                 .OnDelete(DeleteBehavior.NoAction);
 
             // 27. StudentStatistics -> Students (StudentID)

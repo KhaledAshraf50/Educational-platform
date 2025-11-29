@@ -8,5 +8,6 @@
         public string SubjectNameAR { get; set; }
         public string SubjectNameEN { get; set; }
         public string Degree { get; set; }
+        public string Degree_task { get; set; }
     }
 }

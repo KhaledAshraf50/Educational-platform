@@ -15,5 +15,19 @@ namespace Luno_platform.Repository
                  .Where(q => q.ExamId == Examid)
                 .ToList();
         }
+
+
+        public void SaveStudentAnswer(StudentAnswer answer)
+        {
+            _Context.StudentAnswers.Add(answer);
+            _Context.SaveChanges();
+        }
+
+        public void SaveStudentStatistics(StudentStatistics stats)
+        {
+            _Context.StudentStatistics.Add(stats);
+            _Context.SaveChanges();
+        }
+       
     }
 }
