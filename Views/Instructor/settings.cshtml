@@ -1,137 +1,185 @@
-﻿@* @model Luno_platform.Models.InstructorSettingsVM *@
+﻿@model Luno_platform.Viewmodel.InstructorSettingsVM
 
-@* @{ *@
-@*     Layout = "_InstructorDashboard"; *@
+@{
+    Layout = "_InstructorDashboard";
+}
+
+@section stylee {
+    @* <link rel="stylesheet" href="~/assets/css/Setting.css"> *@
+    @* @section stylee { *@
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/dashboard.css" />
+    <link rel="stylesheet" href="~/assets/css/Setting.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
 @* } *@
 
-@* @section stylee { *@
-@*         <link rel="stylesheet" href="~/assets/css/Setting.css"> *@
-@* } *@
+}
 
-@* <div class="content"> *@
-@*     <div class="top-icons"> *@
-@*         <button class="icon-btn" id="notification-btn"> *@
-@*             <i class="fa-solid fa-bell"></i> *@
-@*         </button> *@
+<div class="content">
+    <div class="top-icons">
+        <button class="icon-btn" id="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <button class="icon-btn" aria-label="الملف الشخصي">
+            <i class="fa-solid fa-circle-user"></i>
+        </button>
+    </div>
 
-@*         <button class="icon-btn" aria-label="الملف الشخصي"> *@
-@*             <i class="fa-solid fa-circle-user"></i> *@
-@*         </button> *@
-@*     </div> *@
+    <div class="notification d-none" id="notification">
+        @foreach (var msg in Model.Notifications)
+        {
+            <div class="messages">
+                <p>@msg</p>
+            </div>
+        }
+    </div>
 
-@*     <div class="notification d-none" id="notification"> *@
-@*         @foreach (var msg in Model.Notifications) *@
-@*         { *@
-@*                 <div class="messages"> *@
-@*                     <p>@msg</p> *@
-@*                 </div> *@
-@*         } *@
-@*     </div> *@
+    <div class="Settingspage m-3 " id="Settingspage">
+        <!-- الشمال: بروفايل -->
+        <div class="settings-card left-profile">
+            <div class="avatar">
+                <img src="@Model.Image" alt="avatar" style="width:100px">
+            </div>
+            <h3>@Model.FirstName @Model.LastName</h3>
+            <p>مدرس مادة @Model.SubjectName — ID: @Model.InstructorID</p>
+            <div class="btns">
+                <button type="button" id="edit-btn" class="btn edit">
+                    <i class="fa-solid fa-pen"></i> تعديل الصورة الشخصية
+                </button>
+                <form asp-action="UpdateProfileImage"
+                      asp-controller="Instructor"
+                      method="post"
+                      enctype="multipart/form-data"
+                      style="display:none;"
+                      id="imageForm">
 
-@*     <div class="Settingspage m-3"> *@
-@*         <!-- الشمال: بروفايل --> *@
-@*         <div class="settings-card left-profile"> *@
-@*             <div class="avatar"> *@
-@*                 <img src="@Model.AvatarUrl" alt="avatar" style="width:100"> *@
-@*             </div> *@
-@*             <h3>@Model.FullName</h3> *@
-@*             <p>مدرس مادة @Model.SubjectName — ID: @Model.InstructorID</p> *@
-@*             <div class="btns"> *@
-@*                 <button type="button" id="edit-btn" class="btn edit"> *@
-@*                     <i class="fa-solid fa-pen"></i> تعديل الصورة الشخصية *@
-@*                 </button> *@
-@*                 <input type="file" id="file-input" name="AvatarFile" accept="image/*" style="display:none;"> *@
-@*                 <button class="btn delete">حذف</button> *@
-@*             </div> *@
-@*         </div> *@
+                    <input type="hidden" name="InstructorID" value="@Model.InstructorID" />
+                    <input type="file" name="ImageFile" id="file-input" />
+                </form>
 
-@*         <!-- اليمين: محتوى الإعدادات --> *@
-@*         <section class="settings-card right-content"> *@
-@*             <div class="card-header"> *@
-@*                 <h4>إعدادات الحساب</h4> *@
-@*                 <div class="settings-tabs"> *@
-@*                     <button class="active">البيانات</button> *@
-@*                     <button>كلمة المرور</button> *@
-@*                     <button>الإشعارات</button> *@
-@*                 </div> *@
-@*             </div> *@
+            </div>
+        </div>
 
-@*             <!-- بيانات المستخدم --> *@
-@*             <form asp-action="UpdateSettings" asp-controller="Instructor" method="post" class="settings-form active" enctype="multipart/form-data"> *@
-@*                 <div class="form-row"> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">الاسم</label> *@
-@*                         <input asp-for="FullName" class="form-control" /> *@
-@*                     </div> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">الماده</label> *@
-@*                         <input asp-for="SubjectName" class="form-control" /> *@
-@*                     </div> *@
-@*                 </div> *@
+        <!-- اليمين: محتوى الإعدادات -->
+        <section class="settings-card right-content">
+            <div class="card-header">
+                <h4>إعدادات الحساب</h4>
+                <div class="settings-tabs">
+                    <button class="active">البيانات</button>
+                    <button>كلمة المرور</button>
+                    <button>الإشعارات</button>
+                </div>
+            </div>
 
-@*                 <div class="form-row"> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">البريد الإلكتروني</label> *@
-@*                         <input asp-for="Email" class="form-control" /> *@
-@*                     </div> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">رقم الهاتف</label> *@
-@*                         <input asp-for="PhoneNumber" class="form-control" /> *@
-@*                     </div> *@
-@*                 </div> *@
+            <!-- بيانات المستخدم -->
+            <form asp-action="UpdateSettings" asp-controller="Instructor" method="post" class="settings-form active" enctype="multipart/form-data">
+                <input type="hidden" asp-for="InstructorID" />
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">الاسم</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="الاسم الأول" />
+                        <input asp-for="LastName" class="form-control mt-1" placeholder="الاسم الأخير" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">المادة</label>
+                        <input asp-for="SubjectName" class="form-control" readonly />
+                    </div>
+                </div>
 
-@*                 <button type="submit" class="btn-save">حفظ التغييرات</button> *@
-@*             </form> *@
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">رقم الهاتف</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                    </div>
+                </div>
 
-@*             <!-- تغيير كلمة المرور --> *@
-@*             <form asp-action="ChangePassword" asp-controller="Instructor" method="post" class="settings-form"> *@
-@*                 <div class="form-row"> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">كلمة المرور الحالية</label> *@
-@*                         <input asp-for="CurrentPassword" type="password" class="form-control" /> *@
-@*                     </div> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">تأكيد كلمة المرور الحالية</label> *@
-@*                         <input asp-for="ConfirmCurrentPassword" type="password" class="form-control" /> *@
-@*                     </div> *@
-@*                 </div> *@
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">الشعار</label>
+                        <input asp-for="Motto" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">نبذة</label>
+                        <input asp-for="Bio" class="form-control" />
+                    </div>
+                </div>
 
-@*                 <div class="form-row"> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">كلمة المرور الجديدة</label> *@
-@*                         <input asp-for="NewPassword" type="password" class="form-control" /> *@
-@*                     </div> *@
-@*                     <div class="form-group"> *@
-@*                         <label class="form-label">تأكيد كلمة المرور الجديدة</label> *@
-@*                         <input asp-for="ConfirmNewPassword" type="password" class="form-control" /> *@
-@*                     </div> *@
-@*                 </div> *@
+                <button type="submit" class="btn-save">حفظ التغييرات</button>
+            </form>
 
-@*                 <button type="submit" class="btn btn-primary btn-save">حفظ التغييرات</button> *@
-@*             </form> *@
+            <!-- تغيير كلمة المرور -->
+            <form asp-action="ChangePassword" asp-controller="Instructor" method="post" class="settings-form">
+                <input type="hidden" asp-for="UserId" />
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور الحالية</label>
+                        <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="ادخل كلمة المرور الحالية  />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تأكيد كلمة المرور الحالية</label>
+                        <input asp-for="ConfirmCurrentPassword" type="password" class="form-control" placeholder="تأكيد كلمة المرور الحالية   />
+                    </div>
+                </div>
 
-@*             <!-- إعدادات الإشعارات --> *@
-@*             <div class="settings-form"> *@
-@*                 <div class="card shadow-sm p-3 mb-4 rounded-3"> *@
-@*                     <h5 class="fw-bold mb-3"> *@
-@*                         <img src="/assets/img/Clock-fill (1).svg" alt=""> إعدادات الإشعارات *@
-@*                     </h5> *@
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور الجديدة</label>
+                        <input asp-for="NewPassword" type="password" class="form-control" placeholder="ادخل كلمة المرور الجديدة  />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تأكيد كلمة المرور الجديدة</label>
+                        <input asp-for="ConfirmNewPassword" type="password" class="form-control" placeholder="تأكيد كلمة المرور الجديدة  />
+                    </div>
+                </div>
 
-@*                     @for (int i = 0; i < Model.NotificationSettings.Count; i++) *@
-@*                     { *@
-@*                             <div class="toggle-container"> *@
-@*                                 <input type="checkbox" asp-for="@Model.NotificationSettings[i].IsEnabled" class="toggle-input" id="notify@i" /> *@
-@*                                 <label for="notify@i" class="toggle-label"></label> *@
-@*                                 <span class="toggle-text">@Model.NotificationSettings[i].Label</span> *@
-@*                             </div> *@
-@*                             <hr /> *@
-@*                     } *@
-@*                 </div> *@
-@*             </div> *@
-@*         </section> *@
-@*     </div> *@
-@* </div> *@
+                <button type="submit" class="btn btn-primary btn-save">حفظ التغييرات</button>
+            </form>
 
-@* @section Scripts { *@
-@*         <script src="~/assets/js/Setting.js"></script> *@
-@* } *@
+            <!-- إعدادات الإشعارات -->
+            <div class="settings-form">
+                <div class="card shadow-sm p-3 mb-4 rounded-3">
+                    <h5 class="fw-bold mb-3">
+                        <img src="/assets/img/Clock-fill (1).svg" alt=""> إعدادات الإشعارات
+                    </h5>
+
+                    @for (int i = 0; i < Model.NotificationSettings.Count; i++)
+                    {
+                        <div class="toggle-container">
+                            <input type="checkbox" asp-for="@Model.NotificationSettings[i].IsEnabled" class="toggle-input" id="notify@i" />
+                            <label for="notify@i" class="toggle-label"></label>
+                            <span class="toggle-text">@Model.NotificationSettings[i].Label</span>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // افتح اختيار الصورة لما أدوس على تعديل
+        document.getElementById("edit-btn").addEventListener("click", function () {
+            document.getElementById("file-input").click();
+        });
+
+        // ابعت الفورم تلقائيًا بعد اختيار الصورة
+        document.getElementById("file-input").addEventListener("change", function () {
+            if (this.files.length > 0) {
+                document.getElementById("imageForm").submit();
+            }
+        });
+
+        // إخفاء الإشعارات بعد 4 ثواني
+        setTimeout(() => {
+            document.querySelectorAll(".alert").forEach(a => a.remove());
+        }, 4000);
+    </script>
+    <script src="~/assets/js/Setting.js"></script>
+}
