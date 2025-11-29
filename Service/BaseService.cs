@@ -40,5 +40,17 @@ namespace Luno_platform.Service
         {
             Repo.Update(entity);
         }
+        public int? GetStudentIdByUserId(int userId)
+        {  
+            return Repo.GetStudentIdByUserId(userId);
+        }
+        public int? GetParentIdByUserId(int userId)
+        {
+            return Repo.GetParentIdByUserId(userId);
+        }
+        public int? GetInstructorIdByUserId(int userId)
+        {
+            return Repo.GetInstructorIdByUserId(userId);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace Luno_platform.Repository
         }
         public Parent GetByUserId(int userId)
         {
-            return _Context.Parents.FirstOrDefault(p => p.UserId == userId);
+            return _Context.Parents.Include(u=>u.User).FirstOrDefault(p => p.UserId == userId);
         }
 
         public Student GetStudentDetails(int id)

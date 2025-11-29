@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Repository;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Authorization;
@@ -6,27 +7,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Luno.Controllers
 {
-   
-
     public class StudentController : Controller
     {
-       public IstudentService istudentService;
-        public StudentController(IstudentService studentService)
+        public IstudentService istudentService;
+        public IParentRepo parentRepo;
+        public StudentController(IstudentService studentService, IParentRepo parentRepo)
         {
             istudentService = studentService;
+            this.parentRepo = parentRepo;
         }
         [Authorize(Roles = "student")]
+        public int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+            {
+                return -1; // معناها مفيش يوزر
+            }
+
+            return int.Parse(userIdClaim.Value);
+        }
         [Route("/Student/MainPage")]
         public IActionResult MainPage()
         {
-            // جلب الـ UserId من الـ Claims اللي اتخزنت مع تسجيل الدخول
-            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
-            {
-                return Unauthorized();
-            }
-
-            int userId = int.Parse(userIdClaim.Value); // ده Id اليوزر المتسجل فقط
+            int userId = GetUserId(); // ده Id اليوزر المتسجل فقط
 
             // نجيب بيانات الطالب اللي مربوط باليوزر ده
             var student = istudentService.GetStudent(userId);
@@ -34,13 +39,11 @@ namespace Luno.Controllers
             {
                 return NotFound("الطالب غير موجود");
             }
-
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,
                 Courses = istudentService.GetStudentCourses(userId)
             };
-
             return View(vm);
         }
         [Route("/Student/ReportsPage/{id}")]
@@ -54,7 +57,6 @@ namespace Luno.Controllers
         {
             int pageSize = 10;
             var courses = istudentService.GetStudentCourses(id, page, pageSize);
-
             ViewBag.CurrentPage = page;
             ViewBag.StudentId = id;
             return View(courses);

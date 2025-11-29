@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
-
 function renderSemiProgress(value) {
     const container = document.getElementById("semiContainer");
     container.innerHTML = ""; // Clear old chart

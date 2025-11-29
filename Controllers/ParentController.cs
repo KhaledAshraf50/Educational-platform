@@ -39,7 +39,6 @@ namespace Luno_platform.Controllers
 
             var parentData = _parentService.GetParent(parentId);
             var students = _parentService.GetStds(parentId);
-
             var vm = new MainPageParentVM
             {
                 Student = students,
@@ -49,7 +48,6 @@ namespace Luno_platform.Controllers
                 TaskProgressDict = new Dictionary<int, double>(),
                 OverallProgressDict = new Dictionary<int, double>()
             };
-
             foreach (var std in students)
             {
                 var progress = _parentRepo.GetStudentProgress(std.StudentID);
@@ -57,7 +55,6 @@ namespace Luno_platform.Controllers
                 vm.TaskProgressDict[std.StudentID] = progress.TaskProgress;
                 vm.OverallProgressDict[std.StudentID] = progress.OverallProgress;
             }
-
             return View(vm);
         }
         //------------------------
