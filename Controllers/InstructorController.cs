@@ -1,4 +1,5 @@
-﻿using Luno_platform.Models;
+﻿using System;
+using Luno_platform.Models;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 //using Luno_platform.Viewmodel;
@@ -330,7 +331,9 @@ namespace Luno_platform.Controllers
             var course = _icourses_Service.Infocourse(courseId);
 
             if (course == null)
+            {
                 return NotFound();
+            }
 
             return View("CourseDetails", course);
         }
@@ -553,6 +556,7 @@ namespace Luno_platform.Controllers
                 _context.instructor_classescs.Add(instructorClass);
                 _context.SaveChanges();
             }
+       
 
             // حفظ محتوى الكورس
             var content = new CourseContent
@@ -572,8 +576,38 @@ namespace Luno_platform.Controllers
             return RedirectToAction("Index");
         }
 
+        //public IActionResult CourseDetails(int id)
+        //{
+        //    var course = _context.Courses
+        //        .Include(c => c.Instructor)
+        //        .Include(c => c.Weeks)
+        //            .ThenInclude(w => w.Lessons)
+        //        .FirstOrDefault(c => c.CourseId == id);
 
+        //    if (course == null)
+        //        return NotFound();
 
+        //    var viewModel = new CourseDetailsViewModel
+        //    {
+        //        CourseId = course.CourseId,
+        //        CourseName = course.CourseName,
+        //        Description = course.description,
+        //        Price = course.Price,
+        //        StudentsCount = course.StudentsCount,
+        //        TeacherName = course.Instructor.FullName,
+        //        CourseImage = course.ImageUrl,
+        //        Weeks = course.Weeks.Select(w => new WeekViewModel
+        //        {
+        //            WeekId = w.WeekId,
+        //            WeekName = w.WeekName,
+        //            Lessons = w.Lessons.Select(l => new LessonViewModel
+        //            {
+        //                LessonId = l.LessonId,
+        //                LessonTitle = l.Title,
+        //                LessonDescription = l.Description
+        //            }).ToList()
+        //        }).ToList()
+        //    };
 
         public IActionResult Settings()
         {

@@ -1,4 +1,5 @@
-﻿using Luno_platform.Models;
+﻿
+using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Repository
