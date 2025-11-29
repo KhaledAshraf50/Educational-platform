@@ -25,7 +25,6 @@
         public string AvatarUrl { get; set; }
 
         // إشعارات
-        public List<string> Notifications { get; set; } = new();
 
         public List<NotificationSettingVM> NotificationSettings { get; set; } = new();
         // الحقول الخاصة بتغيير كلمة المرور
@@ -38,12 +37,12 @@
         public List<string> Notifications { get; set; } = new List<string>();
 
         // إعدادات الإشعارات (مثلاً: إشعارات الدفع، التقييمات، إلخ)
-        public List<NotificationSetting> NotificationSettings { get; set; } = new List<NotificationSetting>
+        public List<NotificationSettingVM> NotificationSetting { get; set; } = new List<NotificationSettingVM>
         {
-            new NotificationSetting { Label = "إشعارات الدفعات الجديدة", IsEnabled = true },
-            new NotificationSetting { Label = "إشعارات تقييمات الطلاب", IsEnabled = true },
-            new NotificationSetting { Label = "إشعارات طلبات الانضمام للكورسات", IsEnabled = true },
-            new NotificationSetting { Label = "تذكيرات بالمهام والامتحانات", IsEnabled = false }
+            new NotificationSettingVM { Label = "إشعارات الدفعات الجديدة", IsEnabled = true },
+            new NotificationSettingVM { Label = "إشعارات تقييمات الطلاب", IsEnabled = true },
+            new NotificationSettingVM { Label = "إشعارات طلبات الانضمام للكورسات", IsEnabled = true },
+            new NotificationSettingVM { Label = "تذكيرات بالمهام والامتحانات", IsEnabled = false }
         };
     }
 

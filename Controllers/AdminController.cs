@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers

@@ -8,7 +8,7 @@ namespace Luno_platform.Viewmodel
         public string Description { get; set; }
         public decimal Price { get; set; }
         public IFormFile ImageFile { get; set; }
-
+        public int Grade { get; set; }
         public int SubjectId { get; set; }
         public int ClassID { get; set; }
 

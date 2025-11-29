@@ -333,6 +333,7 @@ namespace Luno_platform.Controllers
             if (course == null)
             {
                 return NotFound();
+            }
 
             return View("CourseDetails", course);
         }
@@ -555,7 +556,7 @@ namespace Luno_platform.Controllers
                 _context.instructor_classescs.Add(instructorClass);
                 _context.SaveChanges();
             }
-            */
+       
 
             // حفظ محتوى الكورس
             var content = new CourseContent
