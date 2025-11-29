@@ -4,7 +4,20 @@
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
+
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
+
+@if (TempData["Error"] != null)
+{
+    // alert-dismissible → تجعل الرسالة قابلة للإغلاق
+    //<button class="btn-close"...> → الزر اللي المستخدم يقدر يدوسه لإخفاء الرسالة
+    //fade show → لإضافة تأثير ظهور وخفاء لطيف
+    //data-bs-dismiss="alert" → يخلي Bootstrap يتعامل مع الزر ويخفي الرسالة تلقائيًا
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
@@ -89,7 +102,7 @@
                                 {
                                     <div class="desc_content">
                                         <p>@Model.CourseContent.Tasks.TaskName</p>
-                                        <a href="/homepage/pageExam/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                        <a href="/homepage/pageTask/@Model.CourseContent.Tasks.TaskID">عرض</a>
                                     </div>
                                 }
                             }
@@ -107,3 +120,11 @@
 
     </div>
 </section>
+
+
+<script>
+          setTimeout(() => {
+        document.querySelectorAll(".alert").forEach(a => a.remove());
+    }, 4000);
+
+</script>

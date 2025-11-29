@@ -2,6 +2,7 @@
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Luno_platform.Controllers
 {
@@ -10,14 +11,14 @@ namespace Luno_platform.Controllers
         public readonly I_homepage_serves _homeservice;
         public readonly I_instructor_services _i_Instructor_Services;
         public readonly Icourses_service _icourses_Service;
-        public readonly  IExam_service _exam_Service;
+        public readonly IExam_service _exam_Service;
         public readonly ITask_service _Task_Service;
 
         public readonly I_BaseService<Users> baseService;
 
 
 
-        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service)
+        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service,ITask_service task_Service )
         {
          
             _homeservice = homeservice;
@@ -25,7 +26,8 @@ namespace Luno_platform.Controllers
             _i_Instructor_Services = i_Instructor_Services;
 
             _icourses_Service = icourses_Service;
-            _exam_Service = exam_Service;
+            _exam_Service = exam_Service;   
+            _Task_Service = task_Service;
 
 
 
@@ -68,11 +70,15 @@ namespace Luno_platform.Controllers
 
         //    ViewBag.image = image;
 
-          
+
 
         //    return View("~/Views/Shared/_navbar.cshtml");
         //}
 
+        public IActionResult ErrorPage()
+        {
+            return View();
+        }
 
 
         public IActionResult login_in()
@@ -119,6 +125,17 @@ namespace Luno_platform.Controllers
         [Route("homepage/pageExam/{Examid}")]
         public IActionResult pageExam(int Examid)
         {
+
+            int studentid = 1;
+
+            if (_exam_Service.HasStudentTakenExam(studentid, Examid))
+            {
+                
+              
+                    ViewBag.ErrorMessage = "لقد قمت بأداء هذا الامتحان من قبل ولا يمكنك الدخول مرة أخرى.";
+                    return View("ErrorPage");
+              
+            }
             var model = new pageExam_viewmodel { 
             
                 questions = _exam_Service.GetExamsbyid(Examid),
@@ -134,6 +151,13 @@ namespace Luno_platform.Controllers
         [Route("homepage/pageTask/{Taskid}")]
         public IActionResult pageTask(int Taskid)
         {
+            int studentid = 1;
+            if (_exam_Service.HasStudentTakenTask(studentid, Taskid))
+            {
+                ViewBag.ErrorMessage = "لقد قمت بأداء هذا لتاسك  من قبل ولا يمكنك الدخول مرة أخرى.";
+                return View("ErrorPage");
+            }
+
             var model = new pageTask_viewmodel
             {
 

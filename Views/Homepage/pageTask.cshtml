@@ -1,6 +1,7 @@
 ﻿@using Luno_platform.Viewmodel
 @model pageTask_viewmodel
 
+
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
@@ -14,10 +15,9 @@
     <!-- Header يحتوي اسم الامتحان والوقت -->
     <div class="exam-header">
         <div>@Model.Taskinfo.TaskName</div>
-        <div class="timer-box" id="timer">00:00</div>
     </div>
 
-    <form method="post" action="/Task/SubmitTask" id="examForm">
+    <form asp-action="SubmitExam" asp-controller="Task" method="post">
         <input type="hidden" name="TaskID" value="@Model.Taskinfo.TaskID" />
 
         @for (int i = 0; i < Model.questions.Count; i++)

@@ -9,23 +9,23 @@
 <link rel="stylesheet" href="~/assets/css/dashboard-report.css" />
 
 
-    <div class="page-title">
-      <h4 class="mb-0">📊 التقارير والإحصائيات</h4>
-    </div>
+<div class="page-title">
+    <h4 class="mb-0">📊 التقارير والإحصائيات</h4>
+</div>
 
-    <!-- Filter -->
-    <div class="filter-container">
-      <label for="timeFilter" class="me-2">اختر الفترة الزمنية:</label>
+<!-- Filter -->
+<div class="filter-container">
+    <label for="timeFilter" class="me-2">اختر الفترة الزمنية:</label>
     <select onchange="window.location='?filter=' + this.value;">
-    <option value="today" selected="@(Model.SelectedFilter == "today")">اليوم</option>
-    <option value="yesterday" selected="@(Model.SelectedFilter == "yesterday")">أمس</option>
-    <option value="last2days" selected="@(Model.SelectedFilter == "last2days")">أول أمس</option>
-    <option value="thisMonth" selected="@(Model.SelectedFilter == "thisMonth")">الشهر الحالي</option>
-</select>
+        <option value="today" selected="@(Model.SelectedFilter == "today")">اليوم</option>
+        <option value="yesterday" selected="@(Model.SelectedFilter == "yesterday")">أمس</option>
+        <option value="last2days" selected="@(Model.SelectedFilter == "last2days")">أول أمس</option>
+        <option value="thisMonth" selected="@(Model.SelectedFilter == "thisMonth")">الشهر الحالي</option>
+    </select>
 
-    </div>
+</div>
 
-    <!-- Stats Cards -->
+<!-- Stats Cards -->
 <div class="row g-3 mb-4">
 
     <div class="col-md-3">
@@ -45,17 +45,17 @@
     <div class="col-md-3">
         <div class="card p-3 text-center">
             <h6>نسبة الربح</h6>
-            <h3 class="text-danger">@Model.ProfitRate %</h3>
+            <h3 class="text-danger">@Model.ProfitRate ج</h3>
         </div>
     </div>
 
 </div>
 
 
-    <!-- Top Teachers Table -->
-    <div class="card p-3 mb-4">
-      <h6>👨‍🏫 المدرسين الأكثر مبيعاً</h6>
-      <div class="table-responsive">
+<!-- Top Teachers Table -->
+<div class="card p-3 mb-4">
+    <h6>👨‍🏫 المدرسين الأكثر مبيعاً</h6>
+    <div class="table-responsive">
         <table class="table table_Edit text-center align-middle">
             <thead>
                 <tr>
@@ -76,13 +76,13 @@
             </tbody>
         </table>
 
-      </div>
     </div>
+</div>
 
-    <!-- Top Courses Table -->
-    <div class="card p-3 mb-4">
-      <h6>📚 الكورسات الأكثر مبيعاً</h6>
-      <div class="table-responsive">
+<!-- Top Courses Table -->
+<div class="card p-3 mb-4">
+    <h6>📚 الكورسات الأكثر مبيعاً</h6>
+    <div class="table-responsive">
         <table class="table table_Edit text-center align-middle">
             <thead>
                 <tr>
@@ -104,12 +104,12 @@
         </table>
 
 
-      </div>
     </div>
+</div>
 
-  </div>
+</div>
 
-    </div>
+</div>
 
 <script src="~/assets/js/dashbordadmin.js"></script>
 <script src="~/assets/js/main.js"></script>

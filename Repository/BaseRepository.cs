@@ -74,5 +74,15 @@ namespace Luno_platform.Repository
         {
             Table.Update(entity);
         }
+        public bool HasStudentTakenExam(int studentId, int examId)
+        {
+            return _Context.StudentStatistics.Any(s => s.StudentID == studentId && s.ExamId == examId);
+        }
+
+
+        public bool HasStudentTakenTask(int studentId, int examId)
+        {
+            return _Context.Studentstaistics_In_Tasks.Any(s => s.StudentID == studentId && s.TaskId == examId);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Luno_platform.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
 {
@@ -55,5 +56,18 @@ namespace Luno_platform.Service
         {
             return Repo.GetInstructorIdByUserId(userId);
         }
+
+        public bool HasStudentTakenExam(int studentId, int examId)
+        {
+            return  Repo.HasStudentTakenExam(studentId,examId);
+        }
+
+
+        public bool HasStudentTakenTask(int studentId, int examId)
+        {
+            return Repo.HasStudentTakenTask(studentId, examId);
+        }
+
     }
+
 }

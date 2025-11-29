@@ -21,7 +21,7 @@ namespace Luno_platform.Controllers
         [HttpPost]
         public IActionResult SubmitExam(SubmitTaskModel model)
         {
-            int studentId = 3; // هتجيبها من السيشن عندك
+            int studentId = 1; // هتجيبها من السيشن عندك
 
             int degree = _TaskService.CorrectTaskAndSave(model.TaskID, studentId, model.Answers);
 

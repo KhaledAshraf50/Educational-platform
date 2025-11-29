@@ -20,11 +20,11 @@ namespace Luno_platform.Repository
 
         public Student GetStudent(int userId)
         {
-            int? studentId = GetStudentIdByUserId(userId);
+            //int? studentId = GetStudentIdByUserId(userId);
             var student = _Context.Students
                 .Include(s => s.User)
                 .Include(s => s.Classes)
-                .Where(s => s.User.Id == studentId)  // البحث حسب User.Id
+                .Where(s => s.User.Id == userId)  // البحث حسب User.Id
                 .Select(s => new Student
                 {
                     StudentID = s.StudentID,
