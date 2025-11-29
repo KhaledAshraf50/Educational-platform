@@ -1,6 +1,22 @@
 ﻿.exam-header {
     display: flex;
+    margin-top:100px;
+    flex-direction: row;
     justify-content: space-between;
+    min-height: 100vh;
+    padding: 1.5rem; /* استخدام rem للتباعد */
+    gap: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* العمود اليمين */
+.right-panel {
+    width: 25%;
+    min-width: 200px;
+    background-color: #092c4c;
+    color: white;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     background: #f5f7fa;
     padding: 15px 25px;
@@ -11,6 +27,13 @@
     font-weight: bold;
     margin-top:100px;
 
+.timer {
+    font-size: 1.8rem; /* حجم خط نسبي */
+    font-weight: 900;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f2994a;
+    border-radius: 0.5rem;
 }
 
 .timer-box {
@@ -38,6 +61,15 @@
     margin-bottom: 10px;
 }
 
+/* العمود اليسار */
+.left-panel {
+    flex-grow: 1;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
+}
+
 .question-text {
     font-size: 18px;
     margin-bottom: 15px;
@@ -55,6 +87,9 @@
     border-radius: 8px;
     border: 1px solid #ccc;
     cursor: pointer;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: 0.2s;
 }
 
     .option-item input {

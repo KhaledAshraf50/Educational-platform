@@ -2,7 +2,7 @@
     ViewData["Title"] = "Invoices";
     Layout = "_ParentDashboard";
 }
-
+@model List<Payments>
 @section Styles {
     <link rel="stylesheet" href="~/assets/css/invoices.css" />
     <link rel="stylesheet" href="~/assets/css/mainpage.css" />
@@ -39,13 +39,13 @@
             <div class="col-md-4">
                 <div class="summary-card">
                     <h6>إجمالي المدفوع</h6>
-                    <h4>133EG</h4>
+                    <h4>@ViewBag.TotalPaid EG</h4>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="summary-card">
                     <h6>إجمالي الغير مدفوع</h6>
-                    <h4>78EG</h4>
+                     <h4>@ViewBag.TotalUnpaid EG</h4>
                 </div>
             </div>
         </div>
@@ -67,43 +67,24 @@
                 <tbody>
 
                     <!-- داتا فيك - الطالب الأول -->
+                    @foreach(var item in Model)
+                    {
                     <tr>
-                        <td>1</td>
-                        <td>محمد خالد</td>
-                        <td>Unit 1 English</td>
-                        <td>2025-09-01</td>
-                        <td><span class="badgepaid">مدفوع</span></td>
-                        <td>45EG</td>
+                        <td>@item.StudentID</td>
+                        <td>@item.Student.User.fname @item.Student.User.lastName</td>
+                        <td>@item.Courses.CourseName</td>
+                        <td>@item.date</td>
+                       <td>
+                            <span class="
+                                @(item.status == "مقبول" ? "status-accepted" :
+                                item.status == "مرفوض" ? "status-rejected" :
+                                "status-pending")">
+                                @item.status
+                            </span>
+                        </td>
+                        <td>@item.amountPayment</td>
                     </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>محمد خالد</td>
-                        <td>Review Unit 1</td>
-                        <td>2025-09-05</td>
-                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                        <td>38EG</td>
-                    </tr>
-
-                    <!-- داتا فيك - الطالبة الثانية -->
-                    <tr>
-                        <td>3</td>
-                        <td>سارة خالد</td>
-                        <td>Unit 2 English</td>
-                        <td>2025-09-03</td>
-                        <td><span class="badgepaid">مدفوع</span></td>
-                        <td>50EG</td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td>سارة خالد</td>
-                        <td>Review Unit 2</td>
-                        <td>2025-09-07</td>
-                        <td><span class="badgeunpaid">غيرمدفوع</span></td>
-                        <td>40EG</td>
-                    </tr>
-
+                    }
                 </tbody>
             </table>
         </div>

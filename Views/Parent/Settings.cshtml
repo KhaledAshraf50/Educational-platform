@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <div asp-for="Email" class="form-row">
+            <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">البريد الإلكتروني</label>
                     <input asp-for="Email" class="form-control" placeholder="khaled@gmail.com">
@@ -104,7 +104,7 @@
             <button class="btn-save">حفظ التغييرات</button>
         </form>
         <!-- change password  -->
-        <form class="settings-form" asp-action="ChangePassword">
+        <form class="settings-form active" asp-action="ChangePassword" method="post">
             <input type="hidden" asp-for="ParentID" />
             <div class=" form-row">
                 <div  class="form-group">
@@ -118,6 +118,7 @@
             </div>
             <button class="btn btn-primary btn-save">حفظ التغييرات</button>
         </form>
+
         <div class="settings-form">
             <div class="card shadow-sm p-3 mb-4 rounded-3">
                 <h5 class="fw-bold mb-3">

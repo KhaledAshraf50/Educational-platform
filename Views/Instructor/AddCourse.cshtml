@@ -37,6 +37,7 @@
                 <select asp-for="ClassID" asp-items="Model.Classes" class="form-control">
                     <option value="">-- اختر الصف --</option>
                 </select>
+                <span asp-validation-for="Grade" class="text-danger"></span>
             </div>
 
             <!-- Subject Dropdown -->
@@ -89,6 +90,7 @@
             <button type="submit" class="btn btn-success mt-3">إضافة الكورس</button>
 
         </form>
+</div>
 
     </div>
 </section>

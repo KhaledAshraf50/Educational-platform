@@ -1,4 +1,5 @@
-﻿@model Parent
+﻿@using Luno_platform.Viewmodel
+@model MainPageParentVM
 @{
     ViewData["Title"] = "MainPage";
     Layout = "_ParentDashboard";
@@ -13,14 +14,14 @@
             <i class="fa-solid fa-id-card"></i>
             <div class="part2-feild">
                 <p>الاسم</p>
-                <h1>@Model.User.fname @Model.User.lastName</h1>
+                <h1>@Model.parent.User.fname @Model.parent.User.lastName</h1>
             </div>
         </div>
         <div class="feild" data-field="email">
             <i class="fa-solid fa-envelope"></i>
             <div class="part2-feild">
                 <p>البريد الإلكتروني</p>
-                <h1>@Model.User.Email</h1>
+                <h1>@Model.parent.User.Email</h1>
             </div>
         </div>
 
@@ -28,14 +29,15 @@
             <i class="fa-solid fa-phone"></i>
             <div class="part2-feild">
                 <p>رقم الهاتف</p>
-                <h1>@Model.User.PhoneNumber</h1>
+
+                <h1>@Model.parent.User.PhoneNumber</h1>
             </div>
         </div>
-        <div class="feild" data-field="password">
+        <div class="feild" data-field="NationalId">
             <i class="fa-solid fa-key"></i>
             <div class="part2-feild">
-                <p>كلمة المرور</p>
-                <h1>@Model.User.PasswordHash</h1>
+                <p>الرقم القومي </p>
+                <h1>@Model.parent.User.nationalID</h1>
             </div>
         </div>
         <!--  سيكشن بيانات الأبناء -->
@@ -45,23 +47,28 @@
             <div class="custom-dropdown">
                 <select id="childrenDropdown">
                     <option value="" selected disabled>اختر الابن</option>
-                    <option value="child1">عبدالناصر - الصف الثاني الثانوي</option>
-                    <option value="child2">خالد اشرف - الصف الثالث الابتدائي</option>
+                    @foreach (var stdName in Model.Student)
+                    {
+                        <option value="@stdName.StudentID">@stdName.User.fname @stdName.User.lastName</option>
+                    }
                 </select>
             </div>
         </div>
         <div class="child-pages mt-4">
             <!-- صفحة عبدالعظيم -->
-            <div id="child1Page" class="child-page" style="display:none;">
+            @foreach (var stdName in Model.Student)
+            {
+                <div id="@stdName.StudentID" class="child-page" style="display:none;">
                 <div class="mainpage m-3" id="mainpage">
                     <div class="container">
                         <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
                             <div class="img">
-                                <img src="/assets/imgs/Avatar 3.svg" alt="student_img" />
+                                    <img src=" @stdName.User.Image" alt="student_img" />
+
                             </div>
                             <div class="text">
-                                <h2> عبد الناصر عبد العظيم</h2>
-                                <p>الصف الثالث الثانوي</p>
+                                    <h2>@stdName.User.fname @stdName.User.lastName</h2>
+                                    <p>@stdName.Classes.ClassName</p>
                             </div>
                         </div>
                         <div class="progres">
@@ -73,7 +80,7 @@
                                         تسليمها حتي اليوم
                                     </p>
                                 </div>
-                                <div id="semiContainer"></div>
+                                    <div id="semiContainer_@stdName.StudentID" class="progress-holder"></div>
                             </div>
                             <div class="deteils-prog d-md-flex justify-content-between">
                                 <div class="exams col-md-5 flex-column flex-md-row">
@@ -83,7 +90,7 @@
                                             نسبه مجموع الدرجات في الامتحانات حتي اليوم
                                         </p>
                                     </div>
-                                    <div id="semiContainerEXAM"></div>
+                                        <div id="semiContainerEXAM_@stdName.StudentID" class="progress-holder"></div>
                                 </div>
                                 <div class="tasks col-md-5 flex-column flex-md-row">
                                     <div class="text">
@@ -92,34 +99,27 @@
                                             نسبه مجموع التاسكات التي تم تسليمها حتي اليوم
                                         </p>
                                     </div>
-                                    <div id="semiContainerTASK"></div>
+                                        <div id="semiContainerTASK_@stdName.StudentID" class="progress-holder"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="courses">
-                            <div class="text">
-                                <p>الكورسات المشترك بها</p>
-                            </div>
+                                <div class="text"><p>الكورسات المشترك بها</p></div>
                             <div class="courses-card d-flex flex-column flex-md-row">
+                                    @foreach (var course in Model.Courses)
+                                    {
                                 <div class="card-courses">
                                     <div class="image-courses">
-                                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
+                                                <img class="" src="@Url.Content(course.Image)" alt="" />
                                     </div>
                                     <div class="body-course">
                                         <div class="bodytop">
                                             <div class="bodyright">
                                                 <div class="brtop">
-                                                    <p>
-                                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                                        عربية - 2 ثانوي )
-                                                    </p>
+                                                            <p>@course.CourseName</p>
                                                 </div>
                                                 <div class="brmid">
-                                                    <p>
-                                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                                        الشاملة
-                                                    </p>
+                                                            <p>@course.description</p>
                                                 </div>
                                                 <!-- <div class="brdowm">
                                                   <p>خلِّ بالك:</p>
@@ -132,20 +132,13 @@
                                                 </div> -->
                                             </div>
                                             <div class="bodyleft">
-                                                <a class=""> الدخول للكوس</a>
-                                                <!-- <a class=""> اشتراك الان!</a> -->
+                                                        <a class="">الدخول للكورس</a>
                                             </div>
                                         </div>
                                         <div class="bodybuttom">
-                                            <div class="price"><span>294.00</span> جنيهًا</div>
+                                                    <div class="price"><span>@course.price</span> جنيهًا</div>
                                             <div class="date">
-                                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                                        <h3>@course.createdAt.ToString("yyyy-MM-dd")</h3>
                                 </div>
                                 <div class="card-courses">
                                     <div class="image-courses">
@@ -167,52 +160,7 @@
                                                         الشاملة
                                                     </p>
                                                 </div>
-                                                <!-- <div class="brdowm">
-                                                  <p>خلِّ بالك:</p>
-                                                  <p>1- لازم تتفرج على فيديو كيفية تسليم الواجب قبل لما تضغط على تسليم الواجب.</p>
-                                                  <p>2- محاولة تسليم الواجب هي مرة واحدة فقط فلازم تسلم الواجب صح علشان تعرف تشوف باقي المحاضرات ،لو
-                                                    الواجب قفل منك لازم تتواصل مع الدعم عشان يزودولك محاولة.</p>
-                                                  <p>3- الامتحان بيفتح مرة واحدة بس فحل كويس قبل ما تدوس إنهاء الامتحان ...</p>
-                                                  <p>بالتوفيق يا بطل.</p>
-                                                  </p>
-                                                </div> -->
-                                            </div>
-                                            <div class="bodyleft">
-                                                <a class=""> الدخول للكوس</a>
-                                                <!-- <a class=""> اشتراك الان!</a> -->
-                                            </div>
-                                        </div>
-                                        <div class="bodybuttom">
-                                            <div class="price"><span>294.00</span> جنيهًا</div>
-                                            <div class="date">
-                                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                                <h3>السبت، ٢٣ أغسطس ٢٠٢٥</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="card-courses">
-                                    <div class="image-courses">
-                                        <img class="" src="/assets/imgs/testImg.jpg" alt="" />
-                                    </div>
-                                    <div class="body-course">
-                                        <div class="bodytop">
-                                            <div class="bodyright">
-                                                <div class="brtop">
-                                                    <p>
-                                                        الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                                        عربية - 2 ثانوي )
-                                                    </p>
-                                                </div>
-                                                <div class="brmid">
-                                                    <p>
-                                                        هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                                        بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                                        الشاملة
-                                                    </p>
-                                                </div>
+                                    }
                                             </div>
                                             <div class="bodyleft">
                                                 <a class=""> الدخول للكوس</a>
@@ -271,9 +219,7 @@
                             </div>
                         </div>
                         <div class="courses">
-                            <div class="text">
-                                <p>الكورسات المقترحه لك</p>
-                            </div>
+                                    <div class="text"><p>الكورسات المقترحه لك</p></div>
                             <div class="courses-card d-flex flex-column flex-md-row">
                                 <div class="card-courses">
                                     <div class="image-courses">
@@ -430,89 +376,7 @@
                 </div>
             </div>
         </div>
-        <div id="child2Page" class="child-page" style="display:none;">
-            <div class="mainpage m-3" id="mainpage">
-                <div class="container">
-                    <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
-                        <div class="img">
-                            <img src="/assets/imgs/Avatar 3.svg" alt="student_img" />
-                        </div>
-                        <div class="text">
-                            <h2> عبد الناصر عبد العظيم</h2>
-                            <p>الصف الثالث الثانوي</p>
-                        </div>
-                    </div>
-                    <div class="progres">
-                        <div class="overall-prog flex-column flex-md-row">
-                            <div class="text">
-                                <p class="main-text">المستوي الكلي</p>
-                                <p class="sec-text">
-                                    نسبه مجموع الدرجات في الامتحانات + مجموع التاسكات التي تم
-                                    تسليمها حتي اليوم
-                                </p>
-                            </div>
-                            <div id="semiContainer2"></div>
-                        </div>
-                        <div class="deteils-prog d-md-flex justify-content-between">
-                            <div class="exams col-md-5 flex-column flex-md-row">
-                                <div class="text">
-                                    <p class="main-text">الامتحان</p>
-                                    <p class="sec-text">
-                                        نسبه مجموع الدرجات في الامتحانات حتي اليوم
-                                    </p>
-                                </div>
-                                <div id="semiContainerEXAM2"></div>
-                            </div>
-                            <div class="tasks col-md-5 flex-column flex-md-row">
-                                <div class="text">
-                                    <p class="main-text">الواجبات</p>
-                                    <p class="sec-text">
-                                        نسبه مجموع التاسكات التي تم تسليمها حتي اليوم
-                                    </p>
-                                </div>
-                                <div id="semiContainerTASK2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses">
-                        <div class="text">
-                            <p>الكورسات المشترك بها</p>
-                        </div>
-                        <div class="courses-card d-flex flex-column flex-md-row">
-                            <div class="card-courses">
-                                <div class="image-courses">
-                                    <img class="" src="/assets/imgs/testImg.jpg" alt="" />
-                                </div>
-                                <div class="body-course">
-                                    <div class="bodytop">
-                                        <div class="bodyright">
-                                            <div class="brtop">
-                                                <p>
-                                                    الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة
-                                                    عربية - 2 ثانوي )
-                                                </p>
-                                            </div>
-                                            <div class="brmid">
-                                                <p>
-                                                    هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور)
-                                                    بسعر مخفض في مادة اللغة العربية بما في ذلك الامتحانات
-                                                    الشاملة
-                                                </p>
-                                            </div>
-                                            <!-- <div class="brdowm">
-                                              <p>خلِّ بالك:</p>
-                                              <p>1- لازم تتفرج على فيديو كيفية تسليم الواجب قبل لما تضغط على تسليم الواجب.</p>
-                                              <p>2- محاولة تسليم الواجب هي مرة واحدة فقط فلازم تسلم الواجب صح علشان تعرف تشوف باقي المحاضرات ،لو
-                                                الواجب قفل منك لازم تتواصل مع الدعم عشان يزودولك محاولة.</p>
-                                              <p>3- الامتحان بيفتح مرة واحدة بس فحل كويس قبل ما تدوس إنهاء الامتحان ...</p>
-                                              <p>بالتوفيق يا بطل.</p>
-                                              </p>
-                                            </div> -->
-                                        </div>
-                                        <div class="bodyleft">
-                                            <a class=""> الدخول للكوس</a>
-                                            <!-- <a class=""> اشتراك الان!</a> -->
-                                        </div>
+            }
                                     </div>
                                     <div class="bodybuttom">
                                         <div class="price"><span>294.00</span> جنيهًا</div>
@@ -805,6 +669,11 @@
     </div>
 </div>
 @section script {
+    <script>
+        var overallDict = @Html.Raw(Json.Serialize(Model.OverallProgressDict));
+        var examDict = @Html.Raw(Json.Serialize(Model.ExamProgressDict));
+        var taskDict = @Html.Raw(Json.Serialize(Model.TaskProgressDict));
+    </script>
     <script src="~/assets/js/progressbar.js"></script>
     <script src="~/assets/js/mainprogres.js"></script>
     <script src="~/assets/js/parentmain.js"></script>
