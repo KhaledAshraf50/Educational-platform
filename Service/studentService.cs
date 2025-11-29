@@ -67,6 +67,8 @@ namespace Luno_platform.Service
         {
             return _repository.GetStudentIdByUserId(userId);
         }
+       
+
     }
 }
 //using Luno_platform.Models;
