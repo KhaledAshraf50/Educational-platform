@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+@model UserSettingsVM
+@{
     Layout = "_SideBarDashbord";
 }
 @section Styles {
@@ -10,8 +12,8 @@
         <div class="avatar">
             <img src="~/assets/imgs/profile-dark.gif" alt="avatar" class="rounded-circle">
         </div>
-        <h3> خالد اشرف</h3>
-        <p>الصف الثالث الثانوي — ID: 12345</p>
+        <h3> @Model.Fname @Model.LastName</h3>
+        <p>@Model.ClassName — </p>
         <div class="btns">
             <button id="edit-btn" class="btn edit">
                 <i class="fa-solid fa-pen"></i> تعديل
@@ -30,62 +32,92 @@
             <h4>إعدادات الحساب</h4>
             <div class="settings-tabs">
                 <button class="active">البيانات</button>
-                <button>كلمة المرور</button>
-                <button>الإشعارات</button>
+                @* <button>كلمة المرور</button> *@
+                @* <button>الإشعارات</button> *@
             </div>
         </div>
 
-        <form class="settings-form active">
+        <form asp-action="Save" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="UserId" />
+
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">الاسم</label>
-                    <input class="form-control " placeholder="أحمد عبد الناصر">
+                    <label>الاسم الأول</label>
+                    <input class="form-control" asp-for="Fname">
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label">الصف</label>
-                    <input class="form-control" placeholder="الثالث الثانوي">
+                    <label>الاسم الأخير</label>
+                    <input class="form-control" asp-for="LastName">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">البريد الإلكتروني</label>
-                    <input class="form-control" placeholder="khaled@gmail.com">
+                    <label>رقم الهاتف</label>
+                    <input class="form-control" asp-for="PhoneNumber">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">رقم الهاتف</label>
-                    <input class="form-control" placeholder="01096541656">
+                    <label>الصف الدراسي</label>
+                    <select class="form-control" asp-for="ClassId">
+                        @if (Model.ClassName != null)
+                        {
+                            <option value="@Model.ClassId">@Model.ClassName</option>
+                        }
+                        else
+                        {
+                            <option value="">اختر الصف</option>
+                        }
+                        <option value="1">الأول</option>
+                        <option value="2">الثاني</option>
+                        <option value="3">الثالث</option>
+                    </select>
                 </div>
+
+                @* <div class="form-group">
+                    <label>الصف الدراسي</label>
+                    <select asp-for="ClassId" class="form-control"
+                            asp-items="@(new SelectList(Model.AllClasses, "ClassId", "ClassName"))">
+                        <option value="">اختر الصف</option>
+                    </select>
+                </div> *@
+
             </div>
-            <button class="btn-save">حفظ التغييرات</button>
+
+            <div class="form-group">
+                <label>الصورة الشخصية</label>
+                <input type="file" asp-for="ImageFile" class="form-control" />
+                <img src="@Model.CurrentImage" width="100" class="mt-2 rounded-circle" />
+            </div>
+
+            <button class="btn-save">حفظ</button>
+
         </form>
+
         <!-- change password  -->
-        <form class="settings-form">
+        @* <form class="settings-form" asp-action="ChangePassword" method="post">
             <div class=" form-row">
                 <div class="form-group">
                     <label class="form-label">كلمه المرور الحاليه </label>
-                    <input type="password" class="form-control" placeholder="current password">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">تاكيد كلمه المرور الحاليه</label>
-                    <input type="password" class="form-control " placeholder="Sure current password">
+                    <input type="password" asp-for="PasswordModel.CurrentPassword" class="form-control" required />
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">كلمه المرور الجديده </label>
-                    <input type="password" class="form-control" placeholder="New password">
+                    <input type="password" asp-for="PasswordModel.NewPassword" class="form-control" required />
                 </div>
                 <div class="form-group">
                     <label class="form-label">تاكيد كلمه المرور الجديده</label>
-                    <input type="password" class="form-control" placeholder="Sure New password">
+                    <input type="password" asp-for="PasswordModel.ConfirmPassword" class="form-control" required />
                 </div>
             </div>
 
             <button class="btn btn-primary btn-save">حفظ التغييرات</button>
-        </form>
-        <div class="settings-form">
+        </form> *@
+        @* <div class="settings-form">
             <div class="card shadow-sm p-3 mb-4 rounded-3">
                 <h5 class="fw-bold mb-3">
 
@@ -131,7 +163,7 @@
                     <span class="toggle-text">استقبال إشعارات داخل الموقع فقط</span>
                 </div>
             </div>
-        </div>
+        </div> *@
     </section>
 </div>
 

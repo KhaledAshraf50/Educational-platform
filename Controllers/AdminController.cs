@@ -1,10 +1,12 @@
-﻿using Luno_platform.Service;
+﻿using Luno_platform.Helpers;
+using Luno_platform.Service;
+using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
@@ -56,7 +58,121 @@ namespace Luno_platform.Controllers
         }
         public IActionResult setting()
         {
-            return View();
+            int userId = 25;
+
+            var vm = _adminService.GetAdminSetting(userId);
+
+            if (vm == null)
+                return NotFound();
+
+            return View(vm);
         }
+        [HttpPost]
+        public IActionResult UploadImage(IFormFile file)
+        {
+            int userId = 25;
+            //var admin = _adminService.GetByUserId(userId);// لحد ما نعمل تسجيل لادمين
+            //if (parent == null) return NotFound();
+
+            //int parentID = parent.ID;
+
+            if (file == null || file.Length == 0)
+            {
+                TempData["ErrorFile"] = "من فضلك اختر صورة صحيحة";
+                return RedirectToAction("Settings");
+            }
+
+            string[] validExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+            string ext = Path.GetExtension(file.FileName).ToLower();
+
+            if (!validExtensions.Contains(ext))
+            {
+                TempData["ErrorFile"] = "الملف غير مسموح. الرجاء رفع صورة فقط (JPG - PNG - GIF - WEBP)";
+                return RedirectToAction("Settings");
+            }
+
+            string imageUrl = FileUploader.UploadImage(file);
+            if (imageUrl == "null")
+            {
+                TempData["ErrorFile"] = "فشل رفع الصوره حاول مره اخري";
+                return RedirectToAction("Settings");
+            }
+
+            _adminService.UpdateImage(userId, imageUrl);
+            TempData["SucessFile"] = "تم تغيير الصوره بنجاح ";
+            return RedirectToAction("Settings");
+        }
+        //public IActionResult DeleteImage()
+        //{
+        //    int userId = 2;
+        //    //int userId = GetUserId();
+        //    //var parent = _parentRepo.GetByUserId(userId);
+        //    //if (parent == null) return NotFound();
+
+        //    //int parentId = parent.ID;
+
+        //    if (!string.IsNullOrEmpty(parent.User.Image))
+        //    {
+        //        string imgPath = Path.Combine(
+        //            Directory.GetCurrentDirectory(),
+        //            "wwwroot",
+        //            parent.User.Image.TrimStart('/')
+        //        );
+
+        //        if (System.IO.File.Exists(imgPath))
+        //            System.IO.File.Delete(imgPath);
+        //    }
+
+        //    parent.User.Image = "~/assets/imgs/user_image.png";
+
+        //    _parentService.Update(parent);
+        //    _parentService.Save();
+
+        //    TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
+
+        //    return RedirectToAction("Settings");
+        //}
+
+        [HttpPost]
+        public IActionResult UpdateAdminSetting(AdminSettingVM AVM)
+        {
+            int userId = 25;
+            //int userId = GetUserId();
+            //var parent = _parentRepo.GetByUserId(userId);
+            //if (parent == null) return NotFound();
+
+            AVM.AdminId = userId;   // إجبارًا نستخدم ParentId الصحيح
+            
+            bool ok = _adminService.UpdateAdminSetting(AVM);
+
+            if (!ok)
+            {
+                TempData["Error"] = "حدث خطأ أثناء تحديث البيانات";
+                return RedirectToAction("Settings");
+            }
+
+            TempData["Sucess"] = "تم تحديث البيانات بنجاح";
+            return RedirectToAction("Settings");
+        }
+
+        //public IActionResult ChangePassword(ParentSettingVM vm)
+        //{
+        //    int userId = GetUserId();
+        //    var parent = _parentRepo.GetByUserId(userId);
+        //    if (parent == null) return NotFound();
+
+        //    int parentId = parent.ID;
+
+        //    bool ok = _parentService.ChangeParentPassword(parentId, vm.Password, vm.ConfirmPassword);
+
+        //    if (!ok)
+        //    {
+        //        TempData["Error"] = "كلمه المرور غير صحيحة!!";
+        //        return RedirectToAction("Settings");
+        //    }
+
+        //    TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
+        //    return RedirectToAction("Settings");
+        //}
     }
 }
