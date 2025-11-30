@@ -26,11 +26,12 @@ namespace Luno_platform.Controllers
 
             return int.Parse(userIdClaim.Value);
         }
+        
         [Route("/Admin/mainpage")]
         public IActionResult mainpage()
         {
             // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId =GetUserId() ;
+            var userId = GetUserId();
             //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
             var model = _adminService.GetDashboardData(userId);
@@ -59,7 +60,7 @@ namespace Luno_platform.Controllers
         }
         public IActionResult setting()
         {
-            int userId = 25;
+            int userId = GetUserId();
 
             var vm = _adminService.GetAdminSetting(userId);
 
@@ -71,7 +72,7 @@ namespace Luno_platform.Controllers
         [HttpPost]
         public IActionResult UploadImage(IFormFile file)
         {
-            int userId = 25;
+            int userId = GetUserId();
             //var admin = _adminService.GetByUserId(userId);// لحد ما نعمل تسجيل لادمين
             //if (parent == null) return NotFound();
 
@@ -137,7 +138,7 @@ namespace Luno_platform.Controllers
         [HttpPost]
         public IActionResult UpdateAdminSetting(AdminSettingVM AVM)
         {
-            int userId = 25;
+            int userId = GetUserId();
             //int userId = GetUserId();
             //var parent = _parentRepo.GetByUserId(userId);
             //if (parent == null) return NotFound();
