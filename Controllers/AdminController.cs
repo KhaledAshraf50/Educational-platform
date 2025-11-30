@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
@@ -15,10 +15,21 @@ namespace Luno_platform.Controllers
         {
             _adminService = adminService;
         }
+        public int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+            {
+                return -1; // معناها مفيش يوزر
+            }
+
+            return int.Parse(userIdClaim.Value);
+        }
         public IActionResult Dashboard()
         {
             // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId = 2;
+            var userId = GetUserId();
             //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
             var model = _adminService.GetDashboardData(userId);
@@ -29,7 +40,7 @@ namespace Luno_platform.Controllers
         public IActionResult mainpage()
         {
             // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId = 2;
+            var userId = GetUserId();
             //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
             var model = _adminService.GetDashboardData(userId);
@@ -58,7 +69,7 @@ namespace Luno_platform.Controllers
         }
         public IActionResult setting()
         {
-            int userId = 25;
+            int userId = GetUserId();
 
             var vm = _adminService.GetAdminSetting(userId);
 
@@ -70,7 +81,7 @@ namespace Luno_platform.Controllers
         [HttpPost]
         public IActionResult UploadImage(IFormFile file)
         {
-            int userId = 25;
+            int userId = GetUserId();
             //var admin = _adminService.GetByUserId(userId);// لحد ما نعمل تسجيل لادمين
             //if (parent == null) return NotFound();
 
