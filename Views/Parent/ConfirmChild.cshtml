@@ -1,0 +1,32 @@
+﻿@using Luno_platform.Viewmodel
+@model ConfirmChildViewModel
+@{
+    ViewData["Title"] = "ConfirmChild";
+    Layout = "_ParentDashboard";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/parentchildren.css" />
+    <link rel="stylesheet" href="~/assets/css/mainpage.css" />
+}
+<div class="m-3 bodycontent children" id="children">
+    <div class="children-header">
+        <h2><i class="fa-solid fa-children me-2"></i> تأكيد إضافة ابن</h2>
+        <p class="">يرجي مراجعة بيانات ابنك قبل التأكيد !!</p>
+    </div>
+    <div class="confirm-child-details mt-4">
+        <div class="child-info">
+            <img src="@Model.ImageUrl" alt="Child Photo" class="child-avatar-large" />
+            <h4>@Model.FullName</h4>
+            <p class="child-grade">الصف: @Model.ClassName</p>
+            <p class="child-national-id">الرقم القومي: @Model.NationalID</p>
+        </div>
+        <div class="confirm-actions mt-4">
+            <form asp-action="ConfirmAddChild" method="post" class="d-inline">
+                <input type="hidden" asp-for="ParentID" name="ParentID" />
+                <input type="hidden" asp-for="StudentID" name="StudentID" />
+                <button type="submit" class="btn btn-success me-2">تأكيد الإضافة</button>
+            </form>
+            <a asp-controller="Parent" asp-action="AddChild" asp-route-parentId="@Model.ParentID" class="btn btn-secondary">إلغاء</a>
+        </div>
+    </div>
+</div>

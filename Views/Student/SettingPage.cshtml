@@ -1,0 +1,172 @@
+﻿@using Luno_platform.Viewmodel
+@model UserSettingsVM
+@{
+    Layout = "_SideBarDashbord";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/Setting.css">
+}
+<div class="Settingspage m-3 " id="Settingspage">
+    <!-- الشمال: بروفايل -->
+    <div class="settings-card left-profile">
+        <div class="avatar">
+            <img src="~/assets/imgs/profile-dark.gif" alt="avatar" class="rounded-circle">
+        </div>
+        <h3> @Model.Fname @Model.LastName</h3>
+        <p>@Model.ClassName — </p>
+        <div class="btns">
+            <button id="edit-btn" class="btn edit">
+                <i class="fa-solid fa-pen"></i> تعديل
+                الصورة
+                الشخصية
+            </button>
+            <!-- input مخفي لاختيار الصورة -->
+            <input type="file" id="file-input" accept="image/*" style="display:none;">
+            <button class="btn delete">حذف</button>
+        </div>
+    </div>
+
+    <!-- اليمين: محتوى الإعدادات -->
+    <section class="settings-card right-content">
+        <div class="card-header">
+            <h4>إعدادات الحساب</h4>
+            <div class="settings-tabs">
+                <button class="active">البيانات</button>
+                @* <button>كلمة المرور</button> *@
+                @* <button>الإشعارات</button> *@
+            </div>
+        </div>
+
+        <form asp-action="Save" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>الاسم الأول</label>
+                    <input class="form-control" asp-for="Fname">
+                </div>
+
+                <div class="form-group">
+                    <label>الاسم الأخير</label>
+                    <input class="form-control" asp-for="LastName">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input class="form-control" asp-for="PhoneNumber">
+                </div>
+                <div class="form-group">
+                    <label>الصف الدراسي</label>
+                    <select class="form-control" asp-for="ClassId">
+                        @if (Model.ClassName != null)
+                        {
+                            <option value="@Model.ClassId">@Model.ClassName</option>
+                        }
+                        else
+                        {
+                            <option value="">اختر الصف</option>
+                        }
+                        <option value="1">الأول</option>
+                        <option value="2">الثاني</option>
+                        <option value="3">الثالث</option>
+                    </select>
+                </div>
+
+                @* <div class="form-group">
+                    <label>الصف الدراسي</label>
+                    <select asp-for="ClassId" class="form-control"
+                            asp-items="@(new SelectList(Model.AllClasses, "ClassId", "ClassName"))">
+                        <option value="">اختر الصف</option>
+                    </select>
+                </div> *@
+
+            </div>
+
+            <div class="form-group">
+                <label>الصورة الشخصية</label>
+                <input type="file" asp-for="ImageFile" class="form-control" />
+                <img src="@Model.CurrentImage" width="100" class="mt-2 rounded-circle" />
+            </div>
+
+            <button class="btn-save">حفظ</button>
+
+        </form>
+
+        <!-- change password  -->
+        @* <form class="settings-form" asp-action="ChangePassword" method="post">
+            <div class=" form-row">
+                <div class="form-group">
+                    <label class="form-label">كلمه المرور الحاليه </label>
+                    <input type="password" asp-for="PasswordModel.CurrentPassword" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">كلمه المرور الجديده </label>
+                    <input type="password" asp-for="PasswordModel.NewPassword" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">تاكيد كلمه المرور الجديده</label>
+                    <input type="password" asp-for="PasswordModel.ConfirmPassword" class="form-control" required />
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-save">حفظ التغييرات</button>
+        </form> *@
+        @* <div class="settings-form">
+            <div class="card shadow-sm p-3 mb-4 rounded-3">
+                <h5 class="fw-bold mb-3">
+
+                    <img src="~/assets/imgs/Clock-fill (1).svg" alt="Notification"> إعدادات الإشعارات
+                </h5>
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll1" class="toggle-input" checked>
+                    <label for="notifyAll1" class="toggle-label"></label>
+                    <span class="toggle-text">تفعيل كل الإشعارات</span>
+                </div>
+
+                <hr>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll2" class="toggle-input" checked>
+                    <label for="notifyAll2" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند إضافة كورسات جديدة</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll3" class="toggle-input" checked>
+                    <label for="notifyAll3" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند إضافة واجبات او امتحانات</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll4" class="toggle-input" checked>
+                    <label for="notifyAll4" class="toggle-label"></label>
+                    <span class="toggle-text">إشعار عند استلام رسالة جديدة</span>
+                </div>
+
+                <hr>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll5" class="toggle-input" checked>
+                    <label for="notifyAll5" class="toggle-label"></label>
+                    <span class="toggle-text">استقبال إشعارات عبر البريد الإلكتروني</span>
+                </div>
+
+                <div class="toggle-container">
+                    <input type="checkbox" id="notifyAll6" class="toggle-input" checked>
+                    <label for="notifyAll6" class="toggle-label"></label>
+                    <span class="toggle-text">استقبال إشعارات داخل الموقع فقط</span>
+                </div>
+            </div>
+        </div> *@
+    </section>
+</div>
+
+@section Script {
+    <script src="~/assets/js/Setting.js"></script>
+}

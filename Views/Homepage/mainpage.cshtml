@@ -1,0 +1,776 @@
+﻿@using Luno_platform.Viewmodel
+
+@model homepage_viewmodel
+
+
+
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/home_page.css" />
+
+<Section class="page_home1_m" >
+    <!-- Start section1 (photo and text) -->
+    <div class="section1  text-center " id="mainsection">
+
+        <!-- النص -->
+        <div class="text">
+            <div class="text2">
+                <h1 class=" display-1">منصة <span class="" style="color:#092C4C; font-weight:600;">Luno</span></h1>
+                <h3>منصة متكاملة بها كل ما يحتاجه الطالب ليتفوق</h3>
+            </div>
+        </div>
+
+        <!-- الصورة -->
+        <div class="img2">
+            <img src="~/assets/imgs/2-4.png" alt="منصة دروسك" class="img-fluid   img2">
+
+        </div>
+
+    </div>
+    <!-- End section1 (photo and text) -->
+    <!-- Strat section2 swaper( the best teacher)  -->
+    <div id="teachersection">
+        <div class="thebest text-center " style="margin: 20px 0 70px; padding:0px 30px;">
+
+            <h1>أفضل المدرسين المتخصصين </h1>
+            <p>
+                المنصة تحتوي على نخبة من أفضل المدرسين المتخصصين في جميع المواد. يمكنك الاشتراك معهم وشراء الكورسات الخاصة
+                بهم.
+            </p>
+        </div>
+
+
+        <div class="  swrapper text-center ">
+
+            <div class="container">
+
+                <!-- Swiper -->
+                <div class="slide-swp mySwiper ">
+                    <!-- <div class="swiper-pagination"></div> -->
+                    <div class="swiper-wrapper ">
+
+                        @foreach(var teac in Model.instructor)
+                        {
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="p-2 imgs">
+                                        <img class=""
+                                             src="@Url.Content(string.IsNullOrEmpty(teac.User.Image) ? "~/assets/imgs/user_image.png" : teac.User.Image)"
+                                             alt="@teac.User.fname" />
+
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="iconcrown d-flex align-items-center ">
+
+                                            <i class="fas fa-crown iconcrown1"></i>
+                                            <h6 class="mx-2">@teac.Subject.SubjectNameAR</h6>
+
+                                        </div>
+                                        <h3 class=" d-flex text-align: right " style="padding-right: 5px;">@teac.User.fname @teac.User.lastName</h3>
+                                        <p class=" d-flex text-align: right " style="padding-right: 5px;">@teac.motto</p>
+                                        <div class=" tages " style="display: flex; gap: 20px;">
+
+                                            @foreach (var classe in teac.instructor_classescs)
+                                            {
+                                                <p class=" tags" style="font-size: 10px ">@classe.classes.ClassName </p>
+
+                                                
+                                            }
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            
+                        }
+
+                     
+
+                        @* <div class="swiper-slide">
+                            <div class="card">
+                                <div class="p-2 imgs">
+                                    <img class=" " src="~/assets/imgs/c78ffbf64a791da67752132a9aaf7c8f127fc4f4.jpeg" alt="">
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="iconcrown d-flex align-items-center ">
+
+                                        <i class="fas fa-crown iconcrown1"></i>
+                                        <h6 class="mx-2">رياضيات</h6>
+
+                                    </div>
+                                    <h3 class=" d-flex text-align: right " style="padding-right: 5px;">محمد عبد الجواد</h3>
+                                    <p class=" d-flex text-align: right " style="padding-right: 5px;">كيمياء - عميد الكيمياء</p>
+                                    <div class=" tages " style="display: flex; gap: 20px;">
+
+
+                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
+                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
+                                        <p class=" tags" style="font-size: 10px ">الصف الاول الثانوي </p>
+
+
+
+                                    </div>
+                                </div> *@
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div class="swiper-button container  ">
+
+            <div class="icon" id="goPrev"> <i class="fa-solid fa-arrow-right"></i></div>
+            <form action="/homepage/show_all_teacher" method="get">
+                <button type="submit" class="btn">
+                    عرض الكل
+                </button>
+            </form>
+
+
+            <div class="icon" id="goNext"> <i class="fa-solid fa-arrow-left "></i></div>
+
+        </div>
+
+    </div>
+    <!-- End section2 swaper  -->
+    <!-- Start achievements -->
+    <section class="achievements">
+        <div class="container text-center">
+            <h2 class="title">إنجازاتنا</h2>
+            <p class="subtitle">نفخر بإنجازاتنا في دعم الطلاب والمعلمين لتحقيق أفضل النتائج.</p>
+
+            <div class="achievements-grid">
+                <!-- المربع الأول -->
+                <div class="achievement-box">
+                    <i class="fas fa-medal icon"></i>
+                    <h3 class="number">119358+</h3>
+                    <p class="desc">طالب متفوق</p>
+                </div>
+
+                <!-- المربع الثاني -->
+                <div class="achievement-box">
+                    <i class="fas fa-graduation-cap icon"></i>
+                    <h3 class="number">83+</h3>
+                    <p class="desc">معلم معتمد</p>
+                </div>
+
+                <!-- المربع الثالث -->
+                <div class="achievement-box">
+                    <i class="fas fa-trophy icon"></i>
+                    <h3 class="number">59+</h3>
+                    <p class="desc">كورس</p>
+                </div>
+
+                <!-- المربع الرابع -->
+                <div class="achievement-box">
+                    <i class="fas fa-chart-line icon"></i>
+                    <h3 class="number">14+</h3>
+                    <p class="desc">كتاب</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End achievements -->
+    <!-- Start subscrip -->
+    <div class="thebest text-center " id="coursessection" style="margin: 20px 0 70px; padding:0px 30px;">
+
+        <h1> <span style="color:  #F2994A;">كورساتنا</span>المٌقترحة</h1>
+        <p>
+            ريحنا دماغك وجمعنا لك كورسات على مزاجك، مختارة بحب وعناية كأننا بنعمل شوبينج لأحسن شوية كورسات تساعدك وتنميك!
+            🌟
+        </p>
+    </div>
+
+    <section class="courses">
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>
+                                الفصل الأول (محمد أيمن | الأحياء | 3 ثانوي)
+                            </p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-courses">
+            <div class="image-courses"> <img class="" src="~/assets/imgs/download.jpeg" alt=""></div>
+            <div class="body-course">
+                <div class="bodytop">
+                    <div class="bodyright">
+                        <div class="brtop">
+                            <p>الترم الأول كاملًا (الباقة المخفضة) - (محمد صلاح - لغة عربية - 2 ثانوي )</p>
+                        </div>
+                        <div class="brmid">
+                            <p>
+                                هذه الباقة عبارة عن اشتراك الترم الأول كاملًا (3 شهور) بسعر مخفض في مادة اللغة العربية بما في ذلك
+                                الامتحانات الشاملة
+                            </p>
+                        </div>
+                        <div class="brdowm">
+
+                        </div>
+
+                    </div>
+                    <div class="bodyleft">
+                        <a class=""> الدخول للكوس</a>
+                        <a class=""> اشتراك الان!</a>
+                    </div>
+
+                </div>
+                <div class="bodybuttom">
+                    <div class="price">
+                        <span>294.00</span> جنيهًا
+                    </div>
+                    <div class="date">
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                        <h3>
+                            السبت، ٢٣ أغسطس ٢٠٢٥
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <!-- زرار عرض المزيد -->
+    <div class="show-more-container">
+        <button class="buttom" id="toggleCards">عرض المزيد</button>
+    </div>
+    <!-- End subscrip -->
+    <!-- ==========  start لماذا منصة دروسك؟ ========== -->
+    <section class="why-eduvalu">
+        <div class="container">
+            <!-- العنوان -->
+            <h2 class="title">لماذا منصة Luno ؟</h2>
+            <p class="subtitle">اكتشف المميزات التي تجعل منصتنا الخيار الأفضل للطلاب والمعلمين.</p>
+
+            <!-- المربعات -->
+            <div class="features-grid">
+                <!-- المربع الأول -->
+                <div class="feature-box">
+                    <div class="icon"><i class="fas fa-laptop"></i></div>
+                    <h3 class="feature-title">أفضل المدرسين</h3>
+                    <p class="feature-desc">نخبة من أفضل المدرسين المتخصصين في جميع المواد الدراسية.</p>
+                </div>
+
+                <!-- المربع الثاني -->
+                <div class="feature-box">
+                    <div class="icon"><i class="fas fa-book-open"></i></div>
+                    <h3 class="feature-title">محتوى تعليمي متكامل</h3>
+                    <p class="feature-desc">كورسات وكتب وامتحانات شاملة تغطي جميع احتياجات الطلاب.</p>
+                </div>
+
+                <!-- المربع الثالث -->
+                <div class="feature-box">
+                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="feature-title">نتائج متميزة</h3>
+                    <p class="feature-desc">مساعدة الطلاب على تحقيق التفوق والنجاح في جميع المواد.</p>
+                </div>
+
+                <!-- المربع الرابع -->
+                <div class="feature-box">
+                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="feature-title">تجربة تعليمية حديثة</h3>
+                    <p class="feature-desc">منصة تفاعلية وسهلة الاستخدام مع أحدث التقنيات التعليمية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== End لماذا منصة دروسك؟ ========== -->
+    <!-- Start swaper subjects -->
+    <section class="subjects">
+
+        <div class="thebest text-center " style="margin: 20px 0 70px; padding:0px 30px;">
+
+            <h1>المواد الدراسية الموجودة</h1>
+            <p>تتيح المنصة جميع المواد الدراسية لطلاب الشعب العلمية والأدبية وطلاب مدارس العربي واللغات </p>
+        </div>
+
+
+        <div class="  swrapper text-center ">
+
+            <div class="container">
+
+                <!-- Swiper -->
+                <div class="slide-swp  swiper-subject ">
+                    <!-- <div class="swiper-pagination"></div> -->
+                    <div class="swiper-wrapper  ">
+
+                        @foreach(var item in Model.subjects)
+                        {
+
+                        <div class="swiper-slide" style="height: auto; ">
+                            <div class="card-subject" style="width: 100%;">
+                                <div class="subject-card">
+                                    <div class="subject-img">
+                                            <img src="@Url.Content(item.Image)" alt="">
+                                    </div>
+                                    <div class="text-subject">
+                                        <h1 class="namesubjectEB">@item.SubjectNameAR</h1>
+                                        <p class="namesubjectEB">@item.SubjectNameEN</p>
+                                        @* <p class="subject-teachers">
+                                            <i class="fas fa-user-graduate"></i>
+                                            (<span>3</span> مدرس) موجود
+                                        </p> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            
+                        }
+
+                    </div>
+
+
+                </div>
+              
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="swiper-button container  ">
+
+            <div class="icon" id="goPrev1"> <i class="fa-solid fa-arrow-right"></i></div>
+
+
+            <div class="icon" id="goNext1"> <i class="fa-solid fa-arrow-left "></i></div>
+
+        </div>
+
+    </section>
+    <!-- End swaper subjects -->
+    <!-- ==========  Start FAQ = Frequently Asked Questions (الأسئلة الشائعة).========== -->
+    <section class="faq-section mt-5" id="FAQ">
+        <div class="container">
+            <h2 class="faq-title">الأسئلة الشائعة</h2>
+            <p class="faq-subtitle">هنا هتلاقي إجابات لأكثر الأسئلة شيوعًا عن منصتنا وخدماتنا</p>
+
+            <div class="faq">
+
+
+
+
+
+                <!-- سؤال 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف أسجل في المنصة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        التسجيل سهل جدًا! اضغط على زر <strong style="color: #0ea5e9;">إنشاء حساب</strong> واتبع الخطوات البسيطة.
+                    </div>
+                </div>
+
+                <!-- سؤال 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل الكورسات مناسبة لكل المراحل الدراسية؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، عندنا كورسات بتغطي جميع المراحل من الابتدائية للثانوية وحتى الجامعة.
+                    </div>
+                </div>
+
+                <!-- سؤال 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>إزاي أقدر أتواصل مع المدرسين؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        تقدر تتواصل مع المدرسين من خلال الرسائل داخل المنصة أو الجلسات المباشرة.
+                    </div>
+                </div>
+
+                <!-- سؤال 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل فيه دعم فني لو واجهت مشكلة؟</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        طبعًا، فريق الدعم متاح 24/7 عشان يساعدك في أي مشكلة تواجهها.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll(".faq-question").forEach((question) => {
+          question.addEventListener("click", () => {
+            const item = question.parentNode;
+            item.classList.toggle("active");
+
+            // غيّر علامة + و -
+            const icon = question.querySelector(".faq-icon");
+            icon.textContent = item.classList.contains("active") ? "-" : "+";
+          });
+        });
+    </script>
+    <!-- ==========  End FAQ = Frequently Asked Questios (الأسئلة الشائعة).========== -->
+    <!-- start footer -->
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-about">
+                <h3>دروسك</h3>
+                <p>
+                    منصتك التعليمية لطلاب ومعلمين الثانوية.
+                    هدفنا نوصل العلم بطريقة سهلة وعصرية.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <ul class="nav-links">
+                    <li><a href="#homePage">الرئيسية</a></li>
+                    <li><a href="#coursesPage">الكورسات</a></li>
+                    <li><a href="#joinTeacherPage">انضم كمدرس</a></li>
+                    <li><a href="#FAQ">تواصل معنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>تابعنا</h4>
+                <div class="icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copy">
+            <p>© 2025 جميع الحقوق محفوظة - دروسك</p>
+        </div>
+    </footer>
+    <!-- End footer -->
+</Section>

@@ -1,0 +1,115 @@
+﻿@using Luno_platform.Viewmodel
+@model AdminReportsViewModel
+@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+<link rel="stylesheet" href="~/assets/css/style.css" />
+<link rel="stylesheet" href="~/assets/css/Report_style.css" />
+<link rel="stylesheet" href="~/assets/css/dashboard-report.css" />
+
+
+    <div class="page-title">
+      <h4 class="mb-0">📊 التقارير والإحصائيات</h4>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-container">
+      <label for="timeFilter" class="me-2">اختر الفترة الزمنية:</label>
+    <select onchange="window.location='?filter=' + this.value;">
+    <option value="today" selected="@(Model.SelectedFilter == "today")">اليوم</option>
+    <option value="yesterday" selected="@(Model.SelectedFilter == "yesterday")">أمس</option>
+    <option value="last2days" selected="@(Model.SelectedFilter == "last2days")">أول أمس</option>
+    <option value="thisMonth" selected="@(Model.SelectedFilter == "thisMonth")">الشهر الحالي</option>
+</select>
+
+    </div>
+
+    <!-- Stats Cards -->
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h6>الكورسات المباعة</h6>
+            <h3 class="text-primary">@Model.TotalCoursesSold</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h6>إجمالي الإيرادات</h6>
+            <h3 class="text-warning">@Model.TotalRevenue ج</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center">
+            <h6>نسبة الربح</h6>
+            <h3 class="text-danger">@Model.ProfitRate %</h3>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- Top Teachers Table -->
+    <div class="card p-3 mb-4">
+      <h6>👨‍🏫 المدرسين الأكثر مبيعاً</h6>
+      <div class="table-responsive">
+        <table class="table table_Edit text-center align-middle">
+            <thead>
+                <tr>
+                    <th>المدرس</th>
+                    <th>عدد الكورسات المباعة</th>
+                    <th>إجمالي الإيرادات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.TopInstructors)
+                {
+                    <tr>
+                        <td>@t.InstructorName</td>
+                        <td>@t.TotalSold</td>
+                        <td>@t.Revenue ج</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- Top Courses Table -->
+    <div class="card p-3 mb-4">
+      <h6>📚 الكورسات الأكثر مبيعاً</h6>
+      <div class="table-responsive">
+        <table class="table table_Edit text-center align-middle">
+            <thead>
+                <tr>
+                    <th>الكورس</th>
+                    <th>عدد الاشتراكات</th>
+                    <th>إجمالي الإيرادات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.TopCourses)
+                {
+                    <tr>
+                        <td>@c.CourseName</td>
+                        <td>@c.TotalSold</td>
+                        <td>@c.Revenue</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+  </div>
+
+    </div>
+
+<script src="~/assets/js/dashbordadmin.js"></script>
+<script src="~/assets/js/main.js"></script>

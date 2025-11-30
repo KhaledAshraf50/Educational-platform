@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+@section Styles {
+        <link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+        <link rel="stylesheet" href="~/assets/css/style.css" />
+        <link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
+}
+
+<div class="col-md-12 content">
+
+    <h2 class="fw-bold mb-4">إدارة الكورسات</h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="courseTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#activeCourses" type="button">
+                📘 الكورسات النشطة
+            </button>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#archivedCourses" type="button">
+                📕 الكورسات المؤرشفة
+            </button>
+        </li>
+    </ul>
+
+    <!-- Content -->
+    <div class="tab-content mt-3">
+
+        <!-- Active Courses -->
+        <div class="tab-pane fade show active" id="activeCourses">
+            <div class="table-container">
+                <h5 class="mb-3">قائمة الكورسات النشطة</h5>
+
+                <table class="table table-hover align-middle text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>اسم الكورس</th>
+                            <th>المدرب</th>
+                            <th>عدد الطلاب</th>
+                            <th>السعر</th>
+                            <th>الحالة</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>كورس البرمجة</td>
+                            <td>منى علي</td>
+                            <td>25</td>
+                            <td>350 جنيه</td>
+                            <td>
+                                <span class="badge bg-success">نشط</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Archived Courses -->
+        <div class="tab-pane fade" id="archivedCourses">
+            <div class="table-container">
+                <h5 class="mb-3">الكورسات المؤرشفة</h5>
+
+                <table class="table table-hover align-middle text-center">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>اسم الكورس</th>
+                            <th>المدرب</th>
+                            <th>عدد الطلاب</th>
+                            <th>السعر</th>
+                            <th>التاريخ</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>أساسيات التصميم</td>
+                            <td>أحمد يوسف</td>
+                            <td>18</td>
+                            <td>250 جنيه</td>
+                            <td>2024-03-15</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-success">
+                                    إعادة التفعيل
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section script {
+        <script src="~/assets/js/dashbordadmin.js"></script>
+        <script src="~/assets/js/main.js"></script>
+}

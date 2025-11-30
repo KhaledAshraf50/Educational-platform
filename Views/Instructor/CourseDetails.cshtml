@@ -1,0 +1,132 @@
+﻿@model Courses
+
+@{
+    Layout = "_InstructorDashboard";
+}
+
+<link rel="stylesheet" href="~/assets/css/details_courses.css" />
+
+<section class="course-details mt-5">
+    <div class="container">
+
+        <!-- Course Header -->
+        <div class="course-header d-flex">
+            <img src="@Url.Content(Model.Image)" alt="Course Image" class="course-image" />
+            <div class="course-info ms-4">
+                <h1 class="course-title">@Model.CourseName</h1>
+
+                <p class="course-teacher">
+                    أنت المدرّس الأساسي للكورس
+                </p>
+
+                <p class="course-price">
+                    <i class="fa-solid fa-tag"></i> سعر الكورس:
+                    <span>@Model.price</span>
+                </p>
+
+                <a href="/Instructor/EditCourse/@Model.CourseId" class="btn btn-primary">
+                    تعديل الكورس
+                </a>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="course-description">
+            <h2>وصف الكورس</h2>
+            <p>@Model.description</p>
+        </div>
+
+        <!-- Content -->
+        <div class="course_content">
+            <h1 class="title mb-4">محتوى الكورس</h1>
+
+            <div class="accordion" id="accordionContent">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseContent"
+                                aria-expanded="false">
+                            محتوى الفيديوهات والملفات
+                        </button>
+                    </h2>
+
+                    <div id="collapseContent" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+
+                            @if (Model.CourseContent != null)
+                            {
+                                <h5>الفيديوهات / الملفات</h5>
+
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url1))
+                                {
+                                    <div class="d-flex justify-content-between border p-2 my-2">
+                                        <span>@Model.CourseContent.nameurl1</span>
+                                        <a href="@Model.CourseContent.Url1" target="_blank">عرض</a>
+                                    </div>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url2))
+                                {
+                                    <div class="d-flex justify-content-between border p-2 my-2">
+                                        <span>@Model.CourseContent.nameurl2</span>
+                                        <a href="@Model.CourseContent.Url2" target="_blank">عرض</a>
+                                    </div>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url3))
+                                {
+                                    <div class="d-flex justify-content-between border p-2 my-2">
+                                        <span>@Model.CourseContent.nameurl3</span>
+                                        <a href="@Model.CourseContent.Url3" target="_blank">عرض</a>
+                                    </div>
+                                }
+
+
+                                <!-- EXAM -->
+                                <hr />
+                                <h5>الامتحان</h5>
+
+                                @if (Model.CourseContent.Exams != null)
+                                {
+                                    <div class="d-flex justify-content-between border p-2 my-2">
+                                        <span>@Model.CourseContent.Exams.ExamName</span>
+                                        <a href="/Instructor/ExamDetails/@Model.CourseContent.Exams.ExamID">عرض</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">لا يوجد امتحان لهذا الكورس</p>
+                                }
+
+                                <!-- TASK -->
+                                <hr />
+                                <h5>الواجب</h5>
+
+                                @if (Model.CourseContent.Tasks != null)
+                                {
+                                    <div class="d-flex justify-content-between border p-2 my-2">
+                                        <span>@Model.CourseContent.Tasks.TaskName</span>
+                                        <a href="/Instructor/TaskDetails/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">لا يوجد واجب لهذا الكورس</p>
+                                }
+                            }
+                            else
+                            {
+                                <p>لا يوجد محتوى بعد لهذا الكورس.</p>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

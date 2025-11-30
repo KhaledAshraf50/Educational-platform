@@ -1,0 +1,181 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+
+    <link rel="stylesheet" href="~/assets/css/dashboard.css" />
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
+
+      <main class="main">
+        <div class="topbar d-flex flex-column flex-md-row">
+          <div class="actions">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <img src="assets/img/Sasuke.svg" style="border-radius: 8px" />
+              <div style="text-align: center; margin-left: 8px">
+                <div style="font-weight: 700">Ahmed M.</div>
+                <div class="small">أدمن</div>
+              </div>
+            </div>
+            <button class="btns">إرسال إشعار</button>
+          </div>
+          <div class="search">
+            <input placeholder="ابحث عن طالب، مدرس، كورس..." />
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="card-row">
+          <div class="card">
+            <div class="title">الطلاب المسجلين</div>
+            <div class="num">2,340</div>
+            <div class="meta">زيادة 5% هذا الأسبوع</div>
+          </div>
+
+          <div class="card">
+            <div class="title">المعلمين النشطين</div>
+            <div class="num">150</div>
+            <div class="meta">أعلى تقييم: أحمد حسن</div>
+          </div>
+
+          <div class="card">
+            <div class="title">عدد الكورسات</div>
+            <div class="num">420</div>
+            <div class="meta">12 قيد المراجعة</div>
+          </div>
+
+          <div class="card">
+            <div class="title">الكورسات في الانتظار</div>
+            <div class="num">12</div>
+            <div class="meta">راجعهم الآن</div>
+          </div>
+
+          <div class="card">
+            <div class="title">إجمالي أرباح المنصة (هذا الشهر)</div>
+            <div class="num">EGP 85,000</div>
+            <div class="meta">نسبة المنصة: 20%</div>
+          </div>
+        </div>
+
+        <!-- Charts and sidebar -->
+        <div class="grid-2">
+          <div class="panel">
+            <h3 style="margin: 0 0 12px 0">الأداء الشهري - الأرباح</h3>
+            <canvas id="earningsChart" height="160"></canvas>
+
+            <div style="display: flex; gap: 12px; margin-top: 18px">
+              <div
+                style="
+                  flex: 1;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <div>
+                  <div class="small">مبيعات هذا الشهر</div>
+                  <div style="font-weight: 700">1,220 مبيعة</div>
+                </div>
+                <div style="text-align: left">
+                  <div class="small">إجمالي الربح</div>
+                  <div style="font-weight: 700">EGP 85,000</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="activities">
+              <h4 style="margin: 14px 0 8px 0">آخر الأحداث</h4>
+              <div class="activity">
+                <div class="act-dot" style="background: var(--success)"></div>
+                <div>
+                  <div class="act-text">
+                    الطالب <strong>محمد علي</strong> اشترك في كورس
+                    <strong>Python Basics</strong>
+                  </div>
+                  <div class="small">قبل 2 ساعة</div>
+                </div>
+              </div>
+
+              <div class="activity">
+                <div class="act-dot" style="background: var(--warning)"></div>
+                <div>
+                  <div class="act-text">
+                    تم رفع كورس جديد من <strong>أحمد حسن</strong>:
+                    <strong>React Basics</strong>
+                  </div>
+                  <div class="small">قبل 5 ساعات</div>
+                </div>
+              </div>
+
+              <div class="activity">
+                <div class="act-dot" style="background: var(--danger)"></div>
+                <div>
+                  <div class="act-text">
+                    وصلت شكوى جديدة من <strong>علي مصطفى</strong> عن كورس
+                    <strong>Java</strong>
+                  </div>
+                  <div class="small">قبل 1 يوم</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h4 style="margin: 0 0 12px 0">نظرة سريعة</h4>
+            <canvas id="usersChart" height="160"></canvas>
+
+            <div style="margin-top: 18px">
+              <h5 style="margin: 0 0 8px 0">الإشعارات</h5>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 8px;
+                  margin-top: 6px;
+                "
+              >
+                <div
+                  style="
+                    padding: 12px;
+                    border-radius: 8px;
+                    background: linear-gradient(
+                      90deg,
+                      rgba(59, 130, 246, 0.08),
+                      rgba(99, 102, 241, 0.04)
+                    );
+                  "
+                >
+                  طالب جديد اشترك في كورس
+                </div>
+                <div
+                  style="
+                    padding: 12px;
+                    border-radius: 8px;
+                    background: #fff;
+                    border: 1px solid #eef2ff;
+                  "
+                >
+                  طلب مراجعة لكورس من مدرس
+                </div>
+                <div
+                  style="
+                    padding: 12px;
+                    border-radius: 8px;
+                    background: #fff;
+                    border: 1px solid #eef2ff;
+                  "
+                >
+                  طلب سحب أرباح من مدرس
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</main>
+
+     <script src="~/assets/js/all.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/dashbord.js"></script>
+    <script src="~/assets/js/adminmainpage.js"></script>

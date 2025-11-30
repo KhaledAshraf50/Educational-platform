@@ -1,0 +1,401 @@
+﻿@model Luno_platform.Viewmodel.Register_User_Viewmode
+
+@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+}
+<section class="registration_page Student_registration_page_m">
+
+    <div class="form-container">
+        <h2><b>طلب انشاء حساب :</b></h2>
+        <p class="subtitle">
+            ادخل بياناتك بشكل صحيح وسيتم التواصل معك خلال ساعات قليلة لتفعيل الحساب!<br>
+            يوجد لديك حساب بالفعل؟ <span>
+
+
+                <a href="" class="subtitle_link_login_as_user">ادخل إلى حسابك الآن!</a>
+            </span>
+
+
+
+        </p>
+        <div class="form-group form-group1" style="margin-bottom: 17px;">
+            <select id="gender" required>
+                <option value="" disabled selected hidden></option>
+                <option value="student">طالب</option>
+                <option value="teacher">مدرس</option>
+                <option value="parent">ولي امر</option>
+            </select>
+            <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
+
+
+
+        </div>
+
+
+        <form class="grid-form Student_registration_page_m" id="registerForm" style="display: none;">
+
+              <input type="hidden" name="Role" class="role-hidden" value="">
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+           
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- هاتف الطالب -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="tel" id="student-phone" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> هاتف الطالب</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- رقم هاتف الأب -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> رقم هاتف الأب</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+           
+
+          
+
+            <!-- المحافظة -->
+            <div class="form-group form-group1">
+                <div style="position: relative;">
+                    <select id="governorate" required>
+                        <option value="" disabled selected hidden></option>
+
+                    </select>
+                    <label><i class="fa-solid fa-map-location-dot"></i> المحافظة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- الإدارة -->
+            <div class="form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="admin" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="قسم 1">قسم 1</option>
+                        <option value="قسم 2">قسم 2</option>
+                    </select>
+                    <label><i class="fa-solid fa-building"></i> الإدارة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" id="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" id="confirm-password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+            <!-- الصف الدراسي -->
+            <div class="alsaf form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="alsaf" required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="1">الصف الاول الثانوي</option>
+                        <option value="2">الصف الثاني الثانوي</option>
+                        <option value="3">الصف الثالث الثانوي</option>
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> الصف الدراسي </label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- الشعبة -->
+            <div class="shueba form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select id="shueba">
+                        <option value="" disabled selected hidden></option>
+                        <option value="science">علمي</option>
+                        <option value="arts">أدبي</option>
+                        <option value="math">رياضة</option>
+                        <option value="science-sc">علمي علوم </option>
+
+                        <option value="science-ma">علمي رياضة</option>
+
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> الشعبة</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- زرار تسجيل -->
+            <button class="submit-student" type="submit"><i class="fa-solid fa-user-plus"></i> إنشاء الحساب</button>
+
+        </form>
+
+
+        <form class="grid-form loginaspartient_page" id="parentRegisterForm" style="display: none;">
+            <input type="hidden" name="Role" class="role-hidden" value="">
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- هاتف ولي الأمر -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> هاتف ولي الأمر</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- زرار تسجيل -->
+            <button class="submit-Parent" type="submit">
+                <i class="fa-solid fa-user-plus"></i> إنشاء الحساب
+            </button>
+        </form>
+
+
+        <form class="grid-form Teacher_registration_page_m" id="teacherRegisterForm" style="display: none;">
+
+            <input type="hidden" name="Role" class="role-hidden" value="">
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+        
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- رقم الهاتف -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+
+
+            <!-- المادة -->
+            <div class="form-group form-group1 full-width">
+                <div style="position: relative;">
+                    <select required>
+                        <option value="" disabled selected hidden></option>
+                        <option value="arabic">اللغة العربية</option>
+                        <option value="english">اللغة الإنجليزية</option>
+                        <option value="math">الرياضيات</option>
+                        <option value="science">العلوم</option>
+                        <option value="physics">الفيزياء</option>
+                        <option value="chemistry">الكيمياء</option>
+                        <option value="biology">الأحياء</option>
+                        <option value="history">التاريخ</option>
+                        <option value="geography">الجغرافيا</option>
+                        <option value="philosophy">الفلسفة والمنطق</option>
+                        <option value="french">اللغة الفرنسية</option>
+                        <option value="german">اللغة الألمانية</option>
+                    </select>
+                    <label><i class="fa-solid fa-book"></i> المادة التخصص</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- الصفوف -->
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input type="email" placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+
+            <!-- المواهل -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type=""  placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> المواهل</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type=""  placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الشعار</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <div class="form-group  full-width">
+                <div style="position: relative;">
+                    <input type="" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> نبذه عنك </label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+
+        
+
+            <!-- زر الانضمام -->
+            <button class="submit_teacher" type="submit">
+                <i class="fa-solid fa-user-plus"></i> انضم الآن
+            </button>
+
+        </form>
+
+
+
+    </div>
+
+</section>
+
+<script>
+    const genderSelect = document.getElementById("gender");
+    const hiddenInputs = document.querySelectorAll(".role-hidden");
+
+    genderSelect.addEventListener("change", function() {
+        const selectedValue = this.value; // القيمة اللي اختارها المستخدم
+        hiddenInputs.forEach(input => input.value = selectedValue);
+    });</script>

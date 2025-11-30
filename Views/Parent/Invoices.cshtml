@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Invoices";
+    Layout = "_ParentDashboard";
+}
+@model List<Payments>
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/invoices.css" />
+    <link rel="stylesheet" href="~/assets/css/mainpage.css" />
+}
+
+<div class="InvoicesPage m-3" id="InvoicesPage">
+    <div class="container mt-3">
+
+        <!-- العنوان -->
+        <div class="d-flex justify-content-between align-items-center mb-3 header">
+            <div class="title">
+                <h3>فواتير أولادك</h3>
+                <p>آخر العمليات الخاصة بأبناء ولي الأمر في المنصة</p>
+            </div>
+
+            <!-- Search Box -->
+            <form class="search-box" role="search">
+                <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+            </form>
+        </div>
+
+        <!-- فلاتر Static -->
+        <div class="d-flex align-items-center mb-3 gap-3">
+
+            <!-- فلتر باسم الطالب -->
+            <select class="form-select w-auto">
+                <option selected>كل الطلاب</option>
+                <option>محمد خالد</option>
+                <option>سارة خالد</option>
+            </select>
+        </div>
+        <!-- كروت الملخص -->
+        <div class="row text-center mb-4">
+            <div class="col-md-4">
+                <div class="summary-card">
+                    <h6>إجمالي المدفوع</h6>
+                    <h4>@ViewBag.TotalPaid EG</h4>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="summary-card">
+                    <h6>إجمالي الغير مدفوع</h6>
+                     <h4>@ViewBag.TotalUnpaid EG</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- جدول الفواتير الأساسي -->
+        <div class="table-responsive">
+            <table class="table table-hover text-center align-middle table_Edit">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الطالب</th>
+                        <th>اسم الكورس</th>
+                        <th>تاريخ الفاتورة</th>
+                        <th>الحالة</th>
+                        <th>المبلغ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- داتا فيك - الطالب الأول -->
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td>@item.StudentID</td>
+                        <td>@item.Student.User.fname @item.Student.User.lastName</td>
+                        <td>@item.Courses.CourseName</td>
+                        <td>@item.date</td>
+                       <td>
+                            <span class="
+                                @(item.status == "مقبول" ? "status-accepted" :
+                                item.status == "مرفوض" ? "status-rejected" :
+                                "status-pending")">
+                                @item.status
+                            </span>
+                        </td>
+                        <td>@item.amountPayment</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <p class="mt-3 text-muted small">
+            في حالة وجود أي مشكلة في الفواتير يرجى التواصل مع الدعم الفني.
+        </p>
+
+    </div>
+</div>
+
+@section Script {
+    <script src="~/assets/js/invoices.js"></script>
+    <script src="~/assets/js/progressbar.js"></script>
+    <script src="~/assets/js/mainprogres.js"></script>
+}

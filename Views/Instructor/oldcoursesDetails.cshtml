@@ -1,0 +1,225 @@
+﻿@using Luno_platform.Viewmodel
+@model CourseDetailsViewModel
+@{
+    Layout = "_InstructorDashboard";
+}
+@section stylee {
+    <link rel="stylesheet" href="~/assets/css/course-details.css">
+}
+<div class="content">
+
+    <div class="top-icons">
+        <button class="icon-btn" id="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+            <i class="fa-solid fa-circle-user"></i>
+        </button>
+    </div>
+    <div class="notification d-none" id="notification">
+        <div class="messages">
+            <p>
+                تم شراء كورس الوحدة الأولى في اللغة العربية مع الأستاذ محمد ناصف
+            </p>
+        </div>
+        <div class="messages">
+            <p>
+                تم شراء كورس الوحدة الأولى في اللغة العربية مع الأستاذ محمد ناصف
+            </p>
+        </div>
+    </div>
+
+    <section class="course-details" style="margin-top:120px;">
+        <div class="container">
+            <div class="course-header">
+                <img src="@Model.CourseImage" alt="صورة الكورس" class="course-image">
+
+                <div class="course-info">
+                    <h1 class="course-title">
+                        @Model.CourseName
+                        <button class="edit-btn" data-bs-toggle="modal" data-bs-target="#editCourseTitleModal">
+                            <i class="fa-solid fa-pen"></i> تعديل
+                        </button>
+                    </h1>
+
+                    <p class="course-teacher">المدرس: <span>@Model.TeacherName</span></p>
+                    <p class="course-price">السعر: <span>@Model.Price جنيه</span></p>
+                    <p><i class="fa-solid fa-users"></i> عدد الطلاب المشتركين: <span>@Model.StudentsCount طالب</span></p>
+                </div>
+            </div>
+
+            <div class="course-description">
+                <h2>عن الكورس</h2>
+                <p>@Model.Description</p>
+                <button class="edit-btn mt-2" data-bs-toggle="modal" data-bs-target="#editCourseDescModal">
+                    <i class="fa-solid fa-pen"></i> تعديل الوصف
+                </button>
+            </div>
+
+            <div class="course_content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="title">تفاصيل الكورس</h1>
+                    <button class="add-lesson-btn" data-bs-toggle="modal" data-bs-target="#addLessonModal">
+                        <i class="fa-solid fa-plus"></i> إضافة درس
+                    </button>
+                </div>
+
+                <div class="accordion" id="accordionLevel1">
+
+                    @* حلقة التكرار على الأسابيع (Weeks) *@
+                    @foreach (var week in Model.Weeks)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseLevel1Week-@week.WeekId">
+                                    @week.WeekName
+                                </button>
+                            </h2>
+                            <div id="collapseLevel1Week-@week.WeekId" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionLevel1">
+                                <div class="accordion-body">
+
+                                    @* حلقة التكرار على الدروس (Lessons) داخل الأسبوع *@
+                                    @foreach (var lesson in week.Lessons)
+                                    {
+                                        <div class="desc_content">
+                                            <p>@lesson.LessonTitle</p>
+                                            <div class="lesson-actions">
+                                                <button title="تعديل"
+                                                        data-id="@lesson.LessonId"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editLessonModal">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </button>
+                                                <button title="حذف" data-id="@lesson.LessonId">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="editCourseTitleModal" tabindex="-1" aria-labelledby="editCourseTitleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color:#092C4C; color:white;">
+                    <h5 class="modal-title" id="editCourseTitleLabel">
+                        <i class="fa-solid fa-pen-to-square me-2"></i>
+                        تعديل اسم الكورس
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="background-color:#f8faff;">
+                    <form id="editCourseTitleForm">
+                        <div class="mb-3">
+                            <label for="courseTitleInput" class="form-label">اسم الكورس</label>
+                            <input type="text" id="courseTitleInput" class="form-control" required value="@Model.CourseName">
+                        </div>
+                        <button type="submit" class="btn w-100" style="background-color:#F2994A; color:white;">
+                            حفظ
+                            التعديلات
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editCourseDescModal" tabindex="-1" aria-labelledby="editCourseDescLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color:#092C4C; color:white;">
+                    <h5 class="modal-title" id="editCourseDescLabel">
+                        <i class="fa-solid fa-pen-to-square me-2"></i>
+                        تعديل وصف الكورس
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="background-color:#f8faff;">
+                    <form id="editCourseDescForm">
+                        <div class="mb-3">
+                            <label for="courseDescInput" class="form-label">الوصف</label>
+                            <textarea id="courseDescInput" class="form-control" rows="3" required>@Model.Description</textarea>
+                        </div>
+                        <button type="submit" class="btn w-100" style="background-color:#F2994A; color:white;">
+                            حفظ
+                            التعديلات
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color:#092C4C; color:white;">
+                    <h5 class="modal-title fw-bold" id="editLessonModalLabel">
+                        <i class="fa-solid fa-pen-to-square me-2"></i> تعديل الدرس
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="background-color:#f8faff; padding:25px;">
+                    <form id="editLessonForm">
+                        <div class="mb-3">
+                            <label for="lessonTitle" class="form-label fw-semibold">عنوان الدرس</label>
+                            <input type="text" class="form-control" id="lessonTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lessonDesc" class="form-label fw-semibold">وصف الدرس</label>
+                            <textarea class="form-control" id="lessonDesc" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn w-100" style="background-color:#F2994A; color:white;">
+                            حفظ
+                            التعديلات
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addLessonModal" tabindex="-1" aria-labelledby="addLessonModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color:#092C4C; color:white;">
+                    <h5 class="modal-title" id="addLessonModalLabel">
+                        <i class="fa-solid fa-plus me-2"></i> إضافة درس
+                        جديد
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="background-color:#f8faff;">
+                    <form id="addLessonForm">
+                        <div class="mb-3">
+                            <label for="newLessonTitle" class="form-label">عنوان الدرس</label>
+                            <input type="text" id="newLessonTitle" class="form-control" required
+                                   placeholder="مثال: شرح درس جديد في التفاضل">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newLessonDesc" class="form-label">وصف الدرس</label>
+                            <textarea id="newLessonDesc" class="form-control" rows="3"
+                                      placeholder="اكتب وصف الدرس هنا"></textarea>
+                        </div>
+                        <button type="submit" class="btn w-100" style="background-color:#F2994A; color:white;">
+                            إضافة
+                            الدرس
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

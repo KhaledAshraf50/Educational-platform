@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_navbar.cshtml";
+
+}
+
+<Section class="Login_page" >
+
+
+    <div class="form-container">
+        <h2><b>تسجيل الدخول</b></h2>
+
+
+        <p class="subtitle">
+
+            ادخل على حسابك بادخال رقم الهاتف و كلمة المرور المسجل بهم من قبل
+
+        </p>
+        <span>لا يوجد لديك حساب؟</span>
+        <a href="/homepage/sign_up" id="link_create_m" >انشئ حسابك الآن!</a>
+
+
+
+        <br>
+
+
+
+        <!-- الحقول -->
+        <form id="form_login_m">
+            <!-- البريد الإلكتروني -->
+            <div class="form-group mt-3">
+                <div style="position: relative;">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group mt-3 mb-3">
+                <div style="position: relative;">
+                    <input type="password" id="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                    <span class="bg-anim"></span>
+                </div>
+                <span class="error-msg"></span>
+            </div>
+
+
+            <div class="links_section_m">
+
+                <span>هل نسيت كلمة السر؟</span>
+                <a href="#" id="link_forgot_m">اضغط هنا</a>
+            </div>
+
+            <button type="submit" class=" buttom">تسجيل الدخول</button>
+        </form>
+
+    </div>
+
+</Section>

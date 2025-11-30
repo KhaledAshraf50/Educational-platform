@@ -1,0 +1,142 @@
+﻿@model Luno_platform.Models.InstructorDashboardViewModel
+@{
+    Layout = "_InstructorDashboard";
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger text-center">
+        @TempData["Error"]
+    </div>
+}
+
+<div class="content">
+    <div class="top-icons">
+        <button class="icon-btn" id="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+            <i class="fa-solid fa-circle-user"></i>
+        </button>
+    </div>
+
+    @* <!-- Notifications --> *@
+    @* <div class="notification @(Model.Notifications.Count == 0 ? "d-none" : "")" id="notification"> *@
+    @*     @foreach(var note in Model.Notifications) *@
+    @*     { *@
+    @*         <div class="messages"> *@
+    @*             <p>@note.Message</p> *@
+    @*         </div> *@
+    @*     } *@
+    @* </div> *@
+
+    <div class="container mt-5">
+        <!-- Stats Section -->
+        <div class="row g-4 text-center">
+            <div class="col-md-3 col-6">
+                <div class="card stat-card p-3">
+                    <div class="stat-icon mb-2"><i class="fa-solid fa-book"></i></div>
+                    <h6>عدد الكورسات</h6>
+                    <h4 class="fw-bold">@Model.Courses.Count</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card p-3">
+                    <div class="stat-icon mb-2"><i class="fa-solid fa-users"></i></div>
+                    <h6>عدد الصفوف</h6>
+                    <h4 class="fw-bold">@Model.Classes.Count</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card p-3">
+                    <div class="stat-icon mb-2"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <h6>مرات بيع الكورسات</h6>
+                    <h4 class="fw-bold">@Model.TotalSales</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card stat-card p-3">
+                    <div class="stat-icon mb-2"><i class="fa-solid fa-check-circle"></i></div>
+                    <h6>الكورسات المتاحة</h6>
+                    <h4 class="fw-bold">@Model.AvailableCourses</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classes Section -->
+        <div class="mt-5">
+            <h5 class="fw-bold mb-4">
+                <i class="fa-solid fa-layer-group text-warning me-2"></i> الصفوف التي أدرّسها
+            </h5>
+            <div class="row g-4">
+                @foreach(var cls in Model.Classes)
+                {
+                    <div class="col-md-4">
+                        <div class="card class-card p-4 text-center shadow-sm border-0" style="background-color:#f8f9fb; border-radius:15px;">
+                            <i class="fa-solid fa-book fa-2x mb-3" style="color:#092C4C;"></i>
+                            <h6 class="fw-bold mb-2" style="color:#092C4C;">@cls.ClassName</h6>
+                            <p class="text-muted">
+                                عدد الكورسات: <span class="course-count fw-semibold text-dark">@cls.Courses.Count</span>
+                            </p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="btn btn-orange btn-sm"
+                                   href="@Url.Action("ShowCoursesTeacher", "Instructor",
+                                    new { structorid = Model.InstructorID, classId = cls.ClassID })">
+                                    تصفح الكورسات
+                                </a>
+
+                                @* <a class="btn btn-orange btn-sm" href="@Url.Action("CoursesByClass", "Instructor", new { classId = cls.ClassID })">تصفح الكورسات</a> *@
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("AddCourse", "Instructor", new { classId = cls.ClassID })">إضافة كورس للصف</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Courses Section -->
+        <div class="mt-5 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-3">كورساتي</h5>
+            <a class="add-course-btn btn btn-success" href="@Url.Action("AddCourse", "Instructor")">
+                <i class="fa-solid fa-plus"></i> إضافة كورس جديد
+            </a>
+        </div>
+
+        <div class="row g-4 mt-1">
+            @if(Model.Courses.Count == 0)
+            {
+                <div class="text-center text-muted py-5" id="noCourses">
+                    <i class="fa-solid fa-box-open fa-2x mb-3"></i>
+                    <p>لا توجد كورسات حالياً، يمكنك إضافة كورس جديد.</p>
+                </div>
+            }
+            else
+            {
+                @foreach(var course in Model.Courses)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card course-card">
+                            <img src="@course.Image" class="card-img-top" alt="@course.CourseName">
+                            <div class="card-body">
+                                <h6 class="fw-bold">@course.CourseName</h6>
+                                <p class="mb-1"><strong>الصف:</strong> @course.classID</p>
+                                <p class="mb-1"><strong>المادة:</strong> @course.Subjects</p>
+                                <p class="mb-1"><strong>السعر:</strong> @course.price جنيه</p>
+                                <p><strong>الوصف:</strong></p>
+                                <p class="course-desc">@course.description</p>
+                                <div class="d-flex justify-content-center mt-3 gap-2">
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("courseDetails", "Instructor", new { id = course.CourseId })">
+                                        <i class="fa-solid fa-eye me-1"></i> عرض التفاصيل
+                                    </a>
+
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("DeleteCourse", "Instructor", new { courseId = course.CourseId })">
+                                        <i class="fa-solid fa-trash me-1"></i> حذف
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

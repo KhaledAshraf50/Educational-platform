@@ -1,0 +1,65 @@
+﻿@{
+    // Layout = null; // لو عايزة صفحة مستقلة بدون Navbar
+    var errorMessage = ViewBag.ErrorMessage ?? "حدث خطأ ما، يرجى المحاولة لاحقًا.";
+} 
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <title>خطأ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            background-color: #fff;
+            padding: 40px 60px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 500px;
+        }
+
+            .error-container h1 {
+                font-size: 72px;
+                color: #f44336;
+                margin-bottom: 20px;
+            }
+
+            .error-container p {
+                font-size: 20px;
+                color: #333;
+                margin-bottom: 30px;
+            }
+
+            .error-container a {
+                text-decoration: none;
+                padding: 12px 25px;
+                background-color: #f44336;
+                color: #fff;
+                border-radius: 8px;
+                font-size: 18px;
+                transition: background-color 0.3s ease;
+            }
+
+                .error-container a:hover {
+                    background-color: #d32f2f;
+                }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>😔 خطأ</h1>
+        <p>@errorMessage</p>
+        <a href="javascript:history.back()">العودة للصفحة السابقة</a>
+    </div>
+</body>
+</html>

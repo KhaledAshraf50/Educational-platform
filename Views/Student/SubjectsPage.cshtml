@@ -1,0 +1,99 @@
+﻿@model List<Courses>
+@{
+    Layout = "_SideBarDashbord";
+}
+@section Styles {
+
+    <link rel="stylesheet" href="~/assets/css/Subjects.css">
+
+
+}
+<div class="Subjectspage m-3" id="Subjectspage">
+    <div class="container text-center mt-3 ">
+        <div class="search ">
+            <input type="search" id="courseSearch" class="form-control me-3" placeholder="اكتب للبحث" />
+            <i class="fa-solid fa-magnifying-glass icon me-3 btn btn-outline-success me-1 icon"></i>
+        </div>
+        <div class="mb-3 p-3 btns">
+            <button class="btn-btn-secondary me-3" onclick="filterCourse('all')">الكل</button>
+            @{
+                var uniqueSubjects = Model
+                .Where(c => c.Subjects != null)
+                .GroupBy(c => c.Subjects.SubjectNameAR)
+                .Select(g => g.First().Subjects.SubjectNameAR)
+                .ToList();
+            }
+
+            @foreach (var subjectName in uniqueSubjects)
+            {
+                <button class="btn-btn-secondary me-3" onclick="filterCourse('@subjectName')">
+                    @subjectName
+                </button>
+            }
+
+            @* @foreach (var sub in Model)
+            {
+                <button class="btn-btn-secondary me-3" onclick="filterCourse('@(sub.Subjects.SubjectNameAR ?? "لا يوجد مادة")')">
+                    @(sub.Subjects?.SubjectNameAR ?? "لا يوجد مادة")
+                </button>
+            } *@
+            @* <button class="btn-btn-secondary me-3" onclick="filterCourse('عربي')">عربي</button>
+            <button class="btn-btn-secondary me-3" onclick="filterCourse('انجليزي')">انجليزي</button>
+            <button class="btn-btn-secondary me-3" onclick="filterCourse('كيمياء')">كيمياء</button> *@
+        </div>
+        <div class="table-responsive">
+            <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>كود الكورس</th>
+                        <th>المحاضرة</th>
+                        <th>تفاصيل الكورس</th>
+
+                        <th>عرض</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    @{
+                        int i = 1;
+                    }
+
+                    @foreach (var course in Model)
+                    {
+                        <tr data-subject="@course.Subjects.SubjectNameAR">
+                            <td>@i</td>
+                            <td>@course.CourseId</td>
+                            <td>@course.CourseName</td>
+                            <td> @course.description</td>
+                            @* <td>
+                                <span class="text-danger fw-bold">20%</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" style="width:20%"></div>
+                                </div>
+                            </td> *@
+                            <td>
+
+
+                                <a href="~/Homepage/show_details_courses/@course.CourseId" class="mt-2 btn showbtn"> عرض</a>
+
+                            </td>
+                        </tr>
+
+                        i++;
+                    }
+
+            </table>
+            @* <div class="btnsNextPre">
+                <button class="Previous">السابق</button>
+                <button class="Next">التالي</button>
+            </div> *@
+            <div class="btnsNextPre">
+                <button class="Previous" href="@Url.Action("SubjectsPage", new { id = ViewBag.StudentId, page = ViewBag.CurrentPage - 1 })">السابق</button>
+                <button class="Next" href="@Url.Action("SubjectsPage", new { id = ViewBag.StudentId, page = ViewBag.CurrentPage + 1 })">التالي</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Script {
+    <script src="~/assets/js/Subjects.js"></script>
+}

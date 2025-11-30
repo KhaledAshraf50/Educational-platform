@@ -1,0 +1,80 @@
+﻿@model EditCourseVM
+@{
+    Layout = "_InstructorDashboard";
+}
+
+<section class="edit-course mt-5">
+    <div class="container">
+        <h2>تعديل الكورس</h2>
+
+        <form asp-action="EditCourse" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="CourseId" />
+
+            <!-- الاسم والوصف والسعر -->
+            <div class="mb-3">
+                <label>اسم الكورس</label>
+                <input type="text" class="form-control" asp-for="CourseName" />
+            </div>
+
+            <div class="mb-3">
+                <label>وصف الكورس</label>
+                <textarea class="form-control" asp-for="Description"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label>سعر الكورس</label>
+                <input type="number" class="form-control" asp-for="Price" min="0" step="0.01" />
+            </div>
+
+            <!-- الصورة -->
+            <div class="mb-3">
+                <label>الصورة الحالية</label><br />
+                <img src="@Model.Image" alt="Course Image" width="200" class="mb-2" />
+            </div>
+
+            <div class="mb-3">
+                <label>رفع صورة جديدة (اختياري)</label>
+                <input type="file" name="CourseImage" class="form-control" />
+            </div>
+
+            <hr />
+            <h4>محتوى الكورس</h4>
+
+            <div class="mb-3">
+                <label>اسم الفيديو/ملف 1</label>
+                <input type="text" class="form-control" asp-for="NameUrl1" />
+                <label>رابط 1</label>
+                <input type="text" class="form-control" asp-for="Url1" />
+            </div>
+
+            <div class="mb-3">
+                <label>اسم الفيديو/ملف 2</label>
+                <input type="text" class="form-control" asp-for="NameUrl2" />
+                <label>رابط 2</label>
+                <input type="text" class="form-control" asp-for="Url2" />
+            </div>
+
+            <div class="mb-3">
+                <label>اسم الفيديو/ملف 3</label>
+                <input type="text" class="form-control" asp-for="NameUrl3" />
+                <label>رابط 3</label>
+                <input type="text" class="form-control" asp-for="Url3" />
+            </div>
+
+            <hr />
+            <h4>الامتحان</h4>
+            <div class="mb-3">
+                <label>اسم الامتحان</label>
+                <input type="text" class="form-control" asp-for="ExamName" />
+            </div>
+
+            <h4>الواجب</h4>
+            <div class="mb-3">
+                <label>اسم الواجب</label>
+                <input type="text" class="form-control" asp-for="TaskName" />
+            </div>
+
+            <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+        </form>
+    </div>
+</section>
