@@ -1,0 +1,16 @@
+﻿using Luno_platform.Models;
+using System.Collections.Generic;
+
+namespace Luno_platform.Repository
+{
+    public interface IAdminRepository:I_BaseRepository<Admin>
+    {
+        Users GetAdminByUserId(int userId);
+        int GetTotalStudents();
+        int GetTotalInstructors();
+        int GetTotalCoursesByStatus(string status);
+        int GetTotalCoursesPending();
+        decimal GetTotalPayments();
+        public Admin GetAdmin(int userId);
+    }
+}

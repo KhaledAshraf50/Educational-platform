@@ -1,0 +1,55 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Luno_platform.Models
+{
+    public class Student
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+        public int StudentID { get; set; }
+
+        [MaxLength(100)]
+        public string? branch { get; set; }
+
+
+        public int? parentnumber { get; set; }
+
+        public string? goverment { get; set; }
+
+        public string? city { get; set; }
+        [Required]
+
+
+        public int UserId { get; set; }
+
+
+        [ForeignKey("UserId")]
+        public virtual Users User { get; set; }
+
+        public virtual ICollection<Student_Courses> Student_Courses { get; set; }
+
+
+     
+        public int classId { get; set; }
+
+        [ForeignKey("classId")]
+        public virtual Classes Classes { get; set; }
+
+        public int? ParentId { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual Parent Parent { get; set; }
+
+        public virtual ICollection<StudentAnswer> StudentAnswers { get; set; }
+        public virtual ICollection<Payments> Payments { get; set; }
+        public virtual ICollection<StudentStatistics> StudentStatistics { get; set; }
+
+        public virtual ICollection<studentstaistics_in_task> Studentstaistics_In_task { get; set; }
+
+
+
+
+    }
+}
