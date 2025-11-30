@@ -27,7 +27,7 @@
                         تسليمها حتي اليوم
                     </p>
                 </div>
-                <div id="semiContainer"></div>
+                <div id="semiContainer_@Model.Student.StudentID"></div>
             </div>
             <div class="deteils-prog d-md-flex justify-content-between">
                 <div class="exams col-md-5 flex-column flex-md-row">
@@ -37,7 +37,7 @@
                             نسبه مجموع الدرجات في الامتحانات حتي اليوم
                         </p>
                     </div>
-                    <div id="semiContainerEXAM"></div>
+                    <div id="semiContainerEXAM_@Model.Student.StudentID"></div>
                 </div>
                 <div class="tasks col-md-5 flex-column flex-md-row">
                     <div class="text">
@@ -46,7 +46,7 @@
                             نسبه مجموع التاسكات التي تم تسليمها حتي اليوم
                         </p>
                     </div>
-                    <div id="semiContainerTASK"></div>
+                    <div id="semiContainerTASK_@Model.Student.StudentID"></div>
                 </div>
             </div>
         </div>
@@ -242,7 +242,12 @@
         </div>
     </div>
 @section script {
-
         <script src="~/assets/js/mainprogres.js"></script>
+        <script>
+            var overallProgress = @Model.OverallProgress;
+            var examProgress = @Model.ExamProgress;
+            var taskProgress = @Model.TaskProgress;
+        </script>
+
 
 }

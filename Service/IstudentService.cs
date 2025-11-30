@@ -11,5 +11,6 @@ namespace Luno_platform.Service
         List<StudentCourseFullDataVM> GetStudentCoursesFullData(int id);
          List<Payments> GetPayments(int studentId);
         int? GetStudentIdByUserId(int userId);
+        int getStudentId(int userid);
+        }
     }
-}

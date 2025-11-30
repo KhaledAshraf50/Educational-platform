@@ -38,12 +38,6 @@ namespace Luno_platform.Controllers
 
 
 
-        [HttpGet]
-        public IActionResult register2()
-        {
-            return View("register2");
-        }
-
 
 
 
@@ -66,7 +60,11 @@ namespace Luno_platform.Controllers
         {
             return View("Login");
         }
-       
+
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -83,12 +81,12 @@ namespace Luno_platform.Controllers
             }
 
             // 2) تسجيل الدخول فعليًا + إنشاء Cookie
-                var result = await _signInManager.PasswordSignInAsync(
-                user.UserName,           // مهم جدًا: هنا اليوزر نيم مش اليوزر نفسه
-                model.Password,
-                model.RememberMe,        // تفعيل Remember Me
-                lockoutOnFailure: false
-            );
+            var result = await _signInManager.PasswordSignInAsync(
+            user.UserName,           // مهم جدًا: هنا اليوزر نيم مش اليوزر نفسه
+            model.Password,
+            model.RememberMe,        // تفعيل Remember Me
+            lockoutOnFailure: false
+        );
 
             if (!result.Succeeded)
             {
@@ -100,191 +98,232 @@ namespace Luno_platform.Controllers
             return RedirectToAction("mainpage", "Homepage");
         }
 
-        // ===========================
-        // عرض صفحة التسجيل
-        // ===========================
-        [HttpGet]
 
-        public IActionResult Register()
+
+
+        [HttpGet] 
+        public IActionResult role()
         {
-            var model = new Register_User_Viewmode(); // نموذج فارغ
-            return View(model);
+            return View(); 
         }
 
-        // ===========================
-        // معالجة التسجيل
-        // ===========================
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(Register_User_Viewmode model)
+
+
+
+
+
+
+
+        private async Task<(bool Success, Users User, IEnumerable<IdentityError> Errors)>
+CreateBaseUser(Register_User_Viewmode model)
         {
-            if (!ModelState.IsValid)
+
+            // التحقق من الرقم القومي موجود قبل
+            if (_context.Users.Any(u => u.nationalID == model.NationalID))
             {
-                return View(model);
+                var error = new IdentityError { Description = "الرقم القومي موجود من قبل" };
+                return (false, null, new List<IdentityError> { error });
             }
-
-
-            // إنشاء اليوزر الأساسي
             var user = new Users
             {
-              
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 fname = model.Fname,
                 lastName = model.LastName,
                 role = model.Role.ToLower(),
                 nationalID = model.NationalID,
-                PasswordHash=model.Password,
-                Image=model.Image ??"~/assets/imgs/user_image.png",
-                UserName=model.Email
-
-
-               
+                PasswordHash = model.Password,
+                Image = model.Image ?? "~/assets/imgs/user_image.png",
+                UserName = model.Email
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
-
-
             if (!result.Succeeded)
+                return (false, user, result.Errors);
+
+            await _userManager.AddToRoleAsync(user, model.Role);
+
+            return (true, user, null);
+        }
+
+
+
+
+
+        [HttpGet]
+        public IActionResult RegisterStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterStudent(Register_User_Viewmode model)
+        {
+            model.Role = "student";
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var (success, user, errors) = await CreateBaseUser(model);
+
+            if (!success)
             {
-                foreach (var error in result.Errors)
-                    ModelState.AddModelError("", error.Description);
+                foreach (var err in errors)
+                    ModelState.AddModelError("", err.Description);
 
                 return View(model);
             }
 
-            // إضافة Role
-            await _userManager.AddToRoleAsync(user, model.Role);
-
-            // حسب الـ Role نضيف البيانات الخاصة
-            switch (model.Role.ToLower())
+            var student = new Student
             {
-                case "student":
-                    var student = new Student
-                    {
-                        
-                        UserId = user.Id,
-                        classId = model.ClassId ?? 1,
-                        branch = model.branch,
-                        parentnumber=model.parentnumber,
-                        goverment=model.goverment,
-                        city=model.city
+                UserId = user.Id,
+                classId = model.ClassId ?? 1,
+                branch = model.branch,
+                parentnumber = model.parentnumber,
+                goverment = model.goverment,
+                city = model.city
+            };
 
-                    };
-                    _context.Students.Add(student);
-                    break;
+            _context.Students.Add(student);
+            await _context.SaveChangesAsync();
 
-                case "instructor":
-                    var instructor = new Instructor
-                    {
-                        UserId = user.Id,
-                        SubjectID = model.SubjectID ?? 0,
-                        motto = model.Motto,
-                        bio = model.Bio,
-                        eligible = model.Eligible
-                    };
-                    _context.Instructors.Add(instructor);
-                    break;
-
-                case "parent":
-                    var parent = new Parent
-                    {
-                        UserId = user.Id
-                    };
-                    _context.Parents.Add(parent);
-                    break;
-            }
-
-            await _context.SaveChangesAsync(); // الحفظ النهائي لكل شيء
             return RedirectToAction("Login", "Account");
         }
 
 
-        // ===========================
-        // إنشاء طالب
-        // ===========================
-        private async Task CreateStudent(int userId, Register_User_Viewmode model)
+
+
+
+        //----------------------------
+        [HttpGet]
+        public IActionResult RegisterInstructor()
         {
-            var student = new Student
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterInstructor(Register_User_Viewmode model)
+        {
+            model.Role = "instructor";
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var (success, user, errors) = await CreateBaseUser(model);
+
+            if (!success)
             {
-                UserId = userId,
-                classId = model.ClassId ?? 1,
-                //ParentId = model.ParentId,
-                //branch = model.Shueba
+                foreach (var err in errors)
+                    ModelState.AddModelError("", err.Description);
+
+                return View(model);
+            }
+
+            var instructor = new Instructor
+            {
+                UserId = user.Id,
+                SubjectID = model.SubjectID ?? 0,
+                motto = model.Motto,
+                bio = model.Bio,
+                eligible = model.Eligible
             };
 
-            _context.Students.Add(student);
+            _context.Instructors.Add(instructor);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Login", "Account");
         }
 
-        // ===========================
-        // إنشاء مدرس
-        // ===========================
-        private async Task CreateTeacher(int userId, Register_User_Viewmode model)
+        //_________________________
+
+        [HttpGet]
+        public IActionResult RegisterParent()
         {
-            //string imagePath = null;
-
-            //if (model.TeacherImage != null)
-            //{
-            //    imagePath = await SaveImage(model.TeacherImage, "teachers");
-            //}
-
-            //var instructor = new Instructor
-            //{
-            //    UserId = userId,
-            //    SubjectID = model.SubjectID ?? 0,
-            //    motto = model.Motto,
-            //    bio = model.Bio,
-            //    eligible = model.Eligible,
-            //    Image = imagePath
-            //};
-
-            //_context.Instructors.Add(instructor);
+            return View();
         }
 
-        // ===========================
-        // إنشاء ولي أمر
-        // ===========================
-        private async Task CreateParent(int userId, Register_User_Viewmode model)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterParent(Register_User_Viewmode model)
         {
-            //string imagePath = null;
+            model.Role = "parent";
 
-            //if (model.ParentImage != null)
-            //{
-            //    imagePath = await SaveImage(model.ParentImage, "parents");
-            //}
+            if (!ModelState.IsValid)
+                return View(model);
 
-            //var parent = new Parent
-            //{
-            //    UserId = userId,
-            //    Image = imagePath
-            //};
+            var (success, user, errors) = await CreateBaseUser(model);
 
-            //_context.Parents.Add(parent);
+            if (!success)
+            {
+                foreach (var err in errors)
+                    ModelState.AddModelError("", err.Description);
+
+                return View(model);
+            }
+
+            var parent = new Parent
+            {
+                UserId = user.Id
+            };
+
+            _context.Parents.Add(parent);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Login", "Account");
         }
 
-        // ===========================
-        // حفظ الصور
-        // ===========================
-        //private async Task<string> SaveImage(IFormFile file, string folder)
-        //{
-        //    if (file == null) return null;
+        //_____________
 
-        //    string uploadsFolder = Path.Combine(_env.WebRootPath, "images", folder);
-        //    Directory.CreateDirectory(uploadsFolder);
+        [HttpGet]
+        public IActionResult RegisterAdmin()
+        {
+            return View();
+        }
 
-        //    string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-        //    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-        //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //    {
-        //        await file.CopyToAsync(fileStream);
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterAdmin(Register_User_Viewmode model)
+        {
+            model.Role = "admin";
 
-        //    return $"/images/{folder}/{uniqueFileName}";
-        //}
+            // تحقق من باسورد الأدمن
+            if (model.Passwordregiester != "2025")
+            {
+                ModelState.AddModelError("Passwordregiester", "كلمة السر الخاصة بالأدمن غير صحيحة");
+                return View(model);
+            }
 
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var (success, user, errors) = await CreateBaseUser(model);
+
+            if (!success)
+            {
+                foreach (var err in errors)
+                    ModelState.AddModelError("", err.Description);
+
+                return View(model);
+            }
+
+            var admin = new Admin
+            {
+                UserId = user.Id
+            };
+
+            _context.Admins.Add(admin);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Login", "Account");
+        }
 
 
     }
 }
+
+        

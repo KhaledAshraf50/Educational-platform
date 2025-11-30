@@ -32,9 +32,12 @@ namespace Luno_platform.Controllers
             var userId = GetUserId();
             //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
-            var model = _adminService.GetDashboardData(userId);
+            if (userIdClaim == null)
+            {
+                return -1; // معناها مفيش يوزر
+            }
 
-            return View(model);
+            return int.Parse(userIdClaim.Value);
         }
         [Route("/Admin/mainpage")]
         public IActionResult mainpage()

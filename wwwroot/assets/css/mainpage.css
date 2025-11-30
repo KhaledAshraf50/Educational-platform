@@ -394,3 +394,23 @@ body {
 .courses .pagenation li {
   color: var(--primary-color);
 }
+
+
+.btn-submit {
+    display: block; /* يخليه block علشان نقدر نعمله center */
+    margin: 20px auto 0 auto; /* margin أعلى وأسفل، ويكون center */
+    padding: 12px 25px; /* padding داخلي للزر */
+    background-color: #38bdf8; /* لون خلفية أزرق فاتح */
+    color: white; /* لون الخط */
+    font-size: 16px; /* حجم الخط */
+    font-weight: bold; /* خط عريض */
+    border: none; /* إزالة الحدود الافتراضية */
+    border-radius: 10px; /* حواف مدورة */
+    cursor: pointer; /* شكل المؤشر عند المرور */
+    transition: all 0.3s ease; /* تأثير انيميشن */
+}
+
+    .btn-submit:hover {
+        background-color: #0ea5e9; /* تغيير اللون عند المرور */
+        transform: scale(1.05); /* تكبير خفيف عند المرور */
+    }

@@ -4,7 +4,6 @@ using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luno_platform.Migrations
 {
     [DbContext(typeof(LunoDBContext))]
-    [Migration("20251126142201_v1")]
-    partial class v1
+    partial class LunoDBContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -707,6 +704,10 @@ namespace Luno_platform.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("nationalID")
+                        .IsUnique()
+                        .HasFilter("[nationalID] IS NOT NULL");
+
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
@@ -723,6 +724,32 @@ namespace Luno_platform.Migrations
                     b.HasIndex("classId");
 
                     b.ToTable("instructor_classescs");
+                });
+
+            modelBuilder.Entity("Luno_platform.Models.studentstaistics_in_task", b =>
+                {
+                    b.Property<int>("StatisticsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatisticsID"));
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("degree")
+                        .HasColumnType("int");
+
+                    b.HasKey("StatisticsID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("Studentstaistics_In_Tasks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1162,6 +1189,24 @@ namespace Luno_platform.Migrations
                     b.Navigation("classes");
                 });
 
+            modelBuilder.Entity("Luno_platform.Models.studentstaistics_in_task", b =>
+                {
+                    b.HasOne("Luno_platform.Models.Student", "Student")
+                        .WithMany("Studentstaistics_In_task")
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Luno_platform.Models.Tasks", "Tasks")
+                        .WithMany("Studentstaistics_In_task")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Luno_platform.Models.ApplicationRole", null)
@@ -1288,6 +1333,8 @@ namespace Luno_platform.Migrations
                     b.Navigation("StudentStatistics");
 
                     b.Navigation("Student_Courses");
+
+                    b.Navigation("Studentstaistics_In_task");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Subject", b =>
@@ -1310,6 +1357,8 @@ namespace Luno_platform.Migrations
                     b.Navigation("StudentAnswers");
 
                     b.Navigation("StudentStatistics");
+
+                    b.Navigation("Studentstaistics_In_task");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Users", b =>

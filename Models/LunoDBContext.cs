@@ -63,7 +63,11 @@ namespace Luno_platform.Models
             modelBuilder.Entity<Users>()
            .HasIndex(u => u.Email)
            .IsUnique();
-         
+
+            modelBuilder.Entity<Users>()
+.HasIndex(u => u.nationalID)
+.IsUnique();
+
 
             // =============================
             // مفاتيح مركّبة

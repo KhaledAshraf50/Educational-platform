@@ -20,16 +20,16 @@ namespace Luno_platform.Viewmodel
         [RegularExpression(@"^01[0-9]{9}$", ErrorMessage = "رقم الهاتف يجب أن يبدأ ب01 ويكون 11 رقم")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "يجب اختيار النوع")]
+        //[Required(ErrorMessage = "يجب اختيار النوع")]
         [RegularExpression("student|instructor|parent", ErrorMessage = "النوع غير صحيح")]
-        public string Role { get; set; }
+        public string? Role { get; set; }
 
         [Required(ErrorMessage = "البريد الإلكتروني مطلوب")]
         [EmailAddress(ErrorMessage = "بريد إلكتروني غير صحيح")]
         [MaxLength(150, ErrorMessage = "البريد الإلكتروني طويل جدًا")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "الرقم القومي مطلوب")]
+        [Required(ErrorMessage = "الرقم القومي موجود من قبل ")]
         [RegularExpression(@"^\d{14}$", ErrorMessage = "الرقم القومي يجب أن يكون 14 رقم")]
         public string NationalID { get; set; }
 
@@ -45,7 +45,8 @@ namespace Luno_platform.Viewmodel
         public string ConfirmPassword { get; set; }
 
         public string? Image { get; set; }
-
+        public string? Passwordregiester { get; set; }
+        
 
         // ===========================
         // بيانات الطالب

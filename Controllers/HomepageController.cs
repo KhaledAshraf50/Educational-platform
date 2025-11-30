@@ -15,10 +15,9 @@ namespace Luno_platform.Controllers
         public readonly ITask_service _Task_Service;
 
         public readonly I_BaseService<Users> baseService;
+        private readonly IstudentService _istudentService;
 
-
-
-        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service,ITask_service task_Service )
+        public HomepageController(I_homepage_serves homeservice , I_instructor_services i_Instructor_Services , Icourses_service icourses_Service, IExam_service exam_Service,ITask_service task_Service , IstudentService istudentService)
         {
          
             _homeservice = homeservice;
@@ -28,6 +27,7 @@ namespace Luno_platform.Controllers
             _icourses_Service = icourses_Service;
             _exam_Service = exam_Service;   
             _Task_Service = task_Service;
+            _istudentService = istudentService;
 
 
 
@@ -126,7 +126,7 @@ namespace Luno_platform.Controllers
         public IActionResult pageExam(int Examid)
         {
 
-            int studentid = 1;
+            int studentid = 5;
 
             if (_exam_Service.HasStudentTakenExam(studentid, Examid))
             {
@@ -151,7 +151,10 @@ namespace Luno_platform.Controllers
         [Route("homepage/pageTask/{Taskid}")]
         public IActionResult pageTask(int Taskid)
         {
-            int studentid = 1;
+            var userid = getuserid();
+
+            var studentid = _istudentService.getStudentId(userid);
+         
             if (_exam_Service.HasStudentTakenTask(studentid, Taskid))
             {
                 ViewBag.ErrorMessage = "لقد قمت بأداء هذا لتاسك  من قبل ولا يمكنك الدخول مرة أخرى.";

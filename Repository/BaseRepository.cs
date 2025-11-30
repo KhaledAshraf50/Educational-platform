@@ -87,5 +87,7 @@ namespace Luno_platform.Repository
         {
             return _Context.Studentstaistics_In_Tasks.Any(s => s.StudentID == studentId && s.TaskId == examId);
         }
+
+
     }
 }
