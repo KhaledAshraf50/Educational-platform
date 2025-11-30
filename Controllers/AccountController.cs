@@ -134,7 +134,7 @@ CreateBaseUser(Register_User_Viewmode model)
                 nationalID = model.NationalID,
                 PasswordHash = model.Password,
                 Image = model.Image ?? "~/assets/imgs/user_image.png",
-                UserName = model.Fname + model.LastName
+                UserName = model.Email
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

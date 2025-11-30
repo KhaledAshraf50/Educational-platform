@@ -12,6 +12,7 @@ namespace Luno_platform.Repository
          List<Payments> GetPayments(int studentId);
         int? GetStudentIdByUserId(int userId);
         public Student GetByUserId(int userId);
+        int getStudentId(int userid);
 
     }
 }

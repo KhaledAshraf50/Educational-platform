@@ -255,6 +255,18 @@ namespace Luno_platform.Repository
             _Context.SaveChanges();
         }
 
+        public int getStudentId(int userid)
+        {
+            var student = _Context.Students
+                .Include(s => s.User)
+                .FirstOrDefault(s => s.User.Id == userid);
 
+            if (student == null)
+            {
+                return -1;
+            }
+
+            return student.StudentID;
+        }
     }
 }

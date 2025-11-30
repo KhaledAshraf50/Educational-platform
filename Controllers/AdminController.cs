@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
@@ -15,21 +15,22 @@ namespace Luno_platform.Controllers
         {
             _adminService = adminService;
         }
-        public IActionResult Dashboard()
+        public int GetUserId()
         {
-            // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId = 2;
-            //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
 
-            var model = _adminService.GetDashboardData(userId);
+            if (userIdClaim == null)
+            {
+                return -1; // معناها مفيش يوزر
+            }
 
-            return View(model);
+            return int.Parse(userIdClaim.Value);
         }
         [Route("/Admin/mainpage")]
         public IActionResult mainpage()
         {
             // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId = 2;
+            var userId =GetUserId() ;
             //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
             var model = _adminService.GetDashboardData(userId);

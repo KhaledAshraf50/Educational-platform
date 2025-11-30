@@ -15,6 +15,7 @@ namespace Luno_platform.Service
             Repo = repository;
         }
 
+
         public void Add(T entity)
         {
             Repo.Add(entity);
