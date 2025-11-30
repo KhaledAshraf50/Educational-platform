@@ -1,0 +1,10 @@
+﻿using Luno_platform.Models;
+
+namespace Luno_platform.Viewmodel
+{
+    public class pageExam_viewmodel
+    {
+        public List<Question> questions { get; set; }
+        public Exams examinfo { get; set; }
+    }
+}
