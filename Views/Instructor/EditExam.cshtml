@@ -1,0 +1,43 @@
+﻿@model Luno_platform.Viewmodel.EditExamVM
+
+<h3>✏ تعديل بيانات الامتحان</h3>
+
+<form method="post">
+    <input type="hidden" asp-for="ExamID" />
+
+    <div class="mb-3">
+        <label>اسم الامتحان</label>
+        <input asp-for="ExamName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>الصف الدراسي</label>
+        <select asp-for="ClassId" class="form-control" asp-items="@(ViewBag.Classes as List<SelectListItem>)">
+            <option value="">اختر الصف</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>المادة</label>
+        <select asp-for="subjectId" class="form-control" asp-items="@(ViewBag.Subjects as List<SelectListItem>)">
+            <option value="">اختر المادة</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>مدة الامتحان (بالدقائق)</label>
+        <input asp-for="Time" type="number" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>عدد الأسئلة</label>
+        <input asp-for="TotalQuestions" type="number" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>درجة الامتحان الكاملة</label>
+        <input asp-for="TotalMarks" type="number" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">💾 حفظ التعديلات</button>
+</form>

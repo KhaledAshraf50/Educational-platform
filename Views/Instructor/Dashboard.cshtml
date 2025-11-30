@@ -1,0 +1,146 @@
+﻿@model Luno_platform.Viewmodel.DashboardVM
+@{
+    Layout = "_InstructorDashboard";
+}
+@section stylee {
+    <link rel="stylesheet" href="~/assets/css/examtasks.css">
+}
+
+<div class="content">
+
+    <h4>📝 إدارة الواجبات والامتحانات</h4>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="card">
+            <h5>@Model.TotalAssignments</h5>
+            <p>عدد الواجبات</p>
+        </div>
+        <div class="card">
+            <h5>@Model.TotalExams</h5>
+            <p>الامتحانات القادمة</p>
+        </div>
+        <div class="card">
+            <h5>@Model.StudentsSubmitted / @Model.StudentsTotalAssignments</h5>
+            <p>طلاب سلموا الواجبات</p>
+        </div>
+        <div class="card">
+            <h5>@Model.StudentsTakenExams / @Model.StudentsTotalExams</h5>
+            <p>طلاب أدوا الامتحانات</p>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#assignments">الواجبات</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#exams">الامتحانات</button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <!-- الواجبات -->
+        <div class="tab-pane fade show active" id="assignments">
+
+            <!-- زر إضافة واجب جديد -->
+            <div class="mb-3 text-end">
+                <button class="add-btn" data-bs-toggle="modal" data-bs-target="#addAssignmentModal">
+                    <i class="fa-solid fa-plus"></i> إضافة واجب جديد
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table_Edit text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>اسم الواجب</th>
+                            <th>الصف الدراسي</th>
+                            <th>عدد الأسئلة</th>
+                            <th>الطلاب سلموا / الكلي</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var a in Model.Assignments)
+                        {
+                            <tr>
+                                <th>@a.Id</th>
+                                <td>@a.Name</td>
+                                <td>@a.Class</td>
+                                <td>@a.TotalQuestions أسئلة</td>
+                                <td>@a.StudentsSubmitted / @a.TotalStudents</td>
+                                <td>
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        <button class="action-btn btn-view me-1 mb-1 mb-sm-0">عرض</button>
+                                        <button class="action-btn btn-edit me-1 mb-1 mb-sm-0">تعديل</button>
+                                        <button class="action-btn btn-questions" onclick="window.location.href='assignment-questions.html?id=@a.Id'">الأسئلة</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- الامتحانات -->
+        <div class="tab-pane fade" id="exams">
+
+            <div class="mb-3 text-end">
+                <a href="/Instructor/CreateExam" class="btn btn-success">
+                    ➕ إضافة امتحان جديد
+                </a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table_Edit text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>اسم الامتحان</th>
+                            <th>الصف الدراسي</th>
+                            <th>عدد الأسئلة</th>
+                            <th>المدة</th>
+                            <th>طلاب أدوا / الكلي</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model.Exams)
+                        {
+                            <tr>
+                                <th>@e.Id</th>
+                                <td>@e.Name</td>
+                                <td>@e.Class</td>
+                                <td>@e.TotalQuestions سؤال</td>
+                                <td>@e.Duration دقيقة</td>
+                                <td>@e.StudentsTaken / @e.TotalStudents</td>
+                                <td>
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        <button class="action-btn btn-view me-1 mb-1 mb-sm-0"
+                                                onclick="window.location.href='@Url.Action("ViewExamQuestions", "Instructor", new { id = e.Id })'">
+                                            عرض
+                                        </button>
+
+                                        <button class="action-btn btn-edit me-1 mb-1 mb-sm-0"
+                                                onclick="window.location.href='@Url.Action("EditExam", "Instructor", new { id = e.Id })'">
+                                            تعديل
+                                        </button>
+
+                                        <button class="action-btn btn-questions" onclick="window.location.href='exam-questions.html?id=@e.Id'">الأسئلة</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
