@@ -21,6 +21,7 @@ namespace Luno_platform.Service
             if (studentId == null)
                 throw new Exception("User is not a student.");
 
+            // تسجيل الدفع
             Payments payment = new Payments
             {
                 StudentID = studentId.Value,
@@ -29,9 +30,17 @@ namespace Luno_platform.Service
                 status = "مقبول",
                 date = DateTime.Now
             };
-
             _paymentRepo.AddPayment(payment);
+
+            // تسجيل الكورس عند الطالب
+            Student_Courses studentCourse = new Student_Courses
+            {
+                StudentId = studentId.Value,
+                CourseId = courseId
+            };
+            _studentRepo.AddStudentCourse(studentCourse);
         }
+
 
         public List<Payments> GetStudentPayments(int userId)
         {

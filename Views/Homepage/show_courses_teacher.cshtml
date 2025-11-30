@@ -4,6 +4,7 @@
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
+<link rel="stylesheet" href="~/assets/css/details_courses.css" />
 <link rel="stylesheet" href="~/assets/css/show_courses.css" />
 <h1 class="teacher-courses-title">كورسات <span>الصف الثاني الثانوي</span></h1>
 <section class="courses" style="margin-top: 0px;">
@@ -29,7 +30,13 @@
                     </div>
                     <div class="bodyleft">
                         <a href="/Homepage/show_details_courses/@course.CourseId" class="mt-2"> الدخول للكوس</a>
-                        <a class="mt-2"> اشتراك الان!</a>
+                        <form asp-controller="Payment" asp-action="Pay" method="post">
+                            <input type="hidden" name="courseId" value="@course.CourseId" />
+                            <input type="hidden" name="amount" value="@course.price" />
+                            <button type="submit" class="enroll-btn btn">
+                                اشترك الآن
+                            </button>
+                        </form>
                     </div>
 
                 </div>
