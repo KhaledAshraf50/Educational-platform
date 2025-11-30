@@ -2,6 +2,8 @@
 using Luno_platform.Models;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
+
+
 //using Luno_platform.Viewmodel;
 using Luno_platform.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -258,49 +260,96 @@ namespace Luno_platform.Controllers
             return View(vm);
         }
 
-        public JsonResult FilterCourses(int? classId, int? subjectId)
+        public IActionResult FilterCourses(int? classId, int? subjectId, string search)
         {
             int instructorId = GetInstructorIdFromUser();
 
-            var courses = _context.Courses
+            var query = _context.Courses
                 .Include(c => c.classes)
                 .Include(c => c.Subjects)
                 .Include(c => c.Student_Courses)
                 .Where(c => c.instructorID == instructorId);
 
+            // فلترة بالصف
             if (classId.HasValue)
-                courses = courses.Where(c => c.classes.ClassID == classId.Value);
+                query = query.Where(c => c.classID == classId);
 
+            // فلترة بالمادة
             if (subjectId.HasValue)
-                courses = courses.Where(c => c.Subjects.SubjectID == subjectId.Value);
+                query = query.Where(c => c.SubjectId == subjectId);
 
-            var result = courses.Select(c => new
+            // فلترة بالسيرش (غير حساسة لحالة الحروف ومسافات)
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                c.CourseName,
-                ClassName = c.classes.ClassName,
-                SubjectName = c.Subjects.SubjectNameAR,
-                StudentsCount = c.Student_Courses.Count,
-                Earnings = c.Student_Courses.Count * c.price
+                search = search.Trim().ToLower();
+                query = query.Where(c =>
+                    c.CourseName.ToLower().Contains(search) ||
+                    c.Subjects.SubjectNameAR.ToLower().Contains(search) ||
+                    c.classes.ClassName.ToLower().Contains(search)
+                );
+            }
+
+            var result = query.Select(c => new
+            {
+                courseName = c.CourseName,
+                subjectName = c.Subjects.SubjectNameAR,
+                className = c.classes.ClassName,
+                studentsCount = c.Student_Courses.Count,
+                earnings = c.Student_Courses.Count * c.price
             }).ToList();
 
             return Json(result);
         }
 
-       
+        //public JsonResult FilterCourses(int? classId, int? subjectId)
+        //{
+        //    int instructorId = GetInstructorIdFromUser();
 
-        public IActionResult Instructorinvoices(int page = 1)
+        //    var courses = _context.Courses
+        //        .Include(c => c.classes)
+        //        .Include(c => c.Subjects)
+        //        .Include(c => c.Student_Courses)
+        //        .Where(c => c.instructorID == instructorId);
+
+        //    if (classId.HasValue)
+        //        courses = courses.Where(c => c.classes.ClassID == classId.Value);
+
+        //    if (subjectId.HasValue)
+        //        courses = courses.Where(c => c.Subjects.SubjectID == subjectId.Value);
+
+        //    var result = courses.Select(c => new
+        //    {
+        //        c.CourseName,
+        //        ClassName = c.classes.ClassName,
+        //        SubjectName = c.Subjects.SubjectNameAR,
+        //        StudentsCount = c.Student_Courses.Count,
+        //        Earnings = c.Student_Courses.Count * c.price
+        //    }).ToList();
+
+        //    return Json(result);
+        //}
+
+
+        public IActionResult Instructorinvoices(string searchTerm = "", int page = 1)
         {
             int pageSize = 10;
             int instructorId = GetInstructorIdFromUser();
 
-            // فلترة فواتير المدرّس فقط
-            var invoices = _context.Payments
+            var invoicesQuery = _context.Payments
                 .Include(p => p.Courses)
-                .Where(p => p.Courses.instructorID == instructorId)
-                .OrderByDescending(p => p.date);
+                .Where(p => p.Courses.instructorID == instructorId);
 
-            // الباجيناشن
-            var paginated = invoices
+            // فلترة حسب السيرش
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                invoicesQuery = invoicesQuery
+                    .Where(p => p.Courses.CourseName.Contains(searchTerm)
+                             || p.ID.ToString().Contains(searchTerm));
+            }
+
+            invoicesQuery = invoicesQuery.OrderByDescending(p => p.date);
+
+            var paginated = invoicesQuery
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(p => new InvoiceVM
@@ -313,15 +362,15 @@ namespace Luno_platform.Controllers
                 })
                 .ToList();
 
-            int totalRecords = invoices.Count();
+            int totalRecords = invoicesQuery.Count();
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            ViewBag.SearchTerm = searchTerm;
 
             return View(paginated);
         }
 
-       
 
 
         [Route("Instructor/CourseDetails/{courseId}")]
@@ -527,6 +576,7 @@ namespace Luno_platform.Controllers
                 SubjectId = model.SubjectId,
                 classID = cls.ClassID,
                 instructorID = instructorId
+                ,status="Archive"
             };
 
             // حفظ الصورة
@@ -573,7 +623,7 @@ namespace Luno_platform.Controllers
             _context.CourseContents.Add(content);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("mycourses");
         }
 
         //public IActionResult CourseDetails(int id)
@@ -756,6 +806,311 @@ namespace Luno_platform.Controllers
 
             return RedirectToAction("Settings");
         }
+        public IActionResult MyCourses()
+        {
+            int instructorId = GetInstructorIdFromUser();
+
+            var courses = _context.Courses
+                .Where(c => c.instructorID == instructorId)
+                .Include(c => c.classes)
+                .Include(c => c.Subjects)
+                .OrderByDescending(c => c.CourseId)   // ✅ عرض الأحدث أولًا
+                .Select(c => new InstructorCoursesVM
+                {
+                    CourseId = c.CourseId,
+                    CourseName = c.CourseName,
+                    Status = c.status,
+                    Price = c.price,
+                    ClassName = c.classes.ClassName,
+                    SubjectName = c.Subjects.SubjectNameEN
+                })
+                .ToList();
+
+            return View(courses);
+        }
+        public IActionResult Dashboard()
+        {
+            int instructorId = GetInstructorIdFromUser();
+
+            // الواجبات
+            var assignments = _context.Tasks
+                .Where(t => t.instructorId == instructorId)
+                .Select(t => new AssignmentVM
+                {
+                    Id = t.TaskID,
+                    Name = t.TaskName,
+                    Class = t.Classes.ClassName,
+                    TotalQuestions = t.NumOfQuestions,
+                    StudentsSubmitted = t.StudentAnswers.Count(),
+                    TotalStudents = _context.Student_Courses
+                                    .Count(sc => sc.CourseId == t.CourseContent.cousrsid)
+                })
+                .ToList();
+
+            // الامتحانات
+            var exams = _context.Exams
+                .Where(e => e.instructorID == instructorId)
+                .Select(e => new ExamVM
+                {
+                    Id = e.ExamID,
+                    Name = e.ExamName,
+                    Class = e.Classess != null ? e.Classess.ClassName : "",
+                    TotalQuestions = e.Questions != null ? e.Questions.Count() : 0,
+                    Duration = e.Time,
+
+                    StudentsTaken = e.StudentAnswers != null ? e.StudentAnswers.Count() : 0,
+
+                    TotalStudents = e.CourseContent != null
+                        ? _context.Student_Courses
+                            .Count(sc => sc.CourseId == e.CourseContent.cousrsid)
+                        : 0
+                })
+                .ToList();
+
+            var vm = new DashboardVM
+            {
+                Assignments = assignments,
+                Exams = exams
+            };
+
+            return View(vm);
+
+        }
+
+        [HttpPost]
+        public IActionResult AddTask(Tasks task)
+        {
+            task.instructorId = GetInstructorIdFromUser();
+            task.createdAT = DateTime.Now;
+
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+
+        [HttpGet]
+        public IActionResult CreateExam()
+        {
+            ViewBag.Classes = _context.Classes
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ClassID.ToString(),
+                    Text = c.ClassName
+                }).ToList();
+
+            ViewBag.Subjects = _context.Subjects
+                .Select(s => new SelectListItem
+                {
+                    Value = s.SubjectID.ToString(),
+                    Text = s.SubjectNameAR
+                }).ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateExam(CreateExamVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // نرجع البيانات للـ View لو فيه خطأ
+                ViewBag.Classes = _context.Classes
+                    .Select(c => new SelectListItem { Text = c.ClassName, Value = c.ClassID.ToString() })
+                    .ToList();
+                ViewBag.Subjects = _context.Subjects
+                    .Select(s => new SelectListItem { Text = s.SubjectNameAR, Value = s.SubjectID.ToString() })
+                    .ToList();
+                return View(model);
+            }
+
+            var exam = new Exams
+            {
+                ExamName = model.ExamName,
+                ClassId = model.ClassId,
+                subjectId = model.subjectId,
+                Time = model.Time,
+                NumOfQuestions = model.TotalQuestions,
+                degreeExam = model.TotalMarks,
+                instructorID = GetInstructorIdFromUser()
+            };
+
+            _context.Exams.Add(exam);
+            _context.SaveChanges();
+
+            // بعد ما نحفظ الامتحان نروح مباشرة لإضافة الأسئلة
+            return RedirectToAction("AddQuestions", new { examId = exam.ExamID });
+        }
+
+    [HttpGet]
+public IActionResult AddQuestions(int examId)
+{
+    var exam = _context.Exams.Find(examId);
+    if (exam == null) return NotFound();
+
+    var vm = new AddQuestionVM
+    {
+        ExamId = examId,
+        Questions = new List<QuestionItem>()
+    };
+
+    // نولّد عدد الأسئلة حسب ما حدد المدرس
+    for (int i = 0; i < exam.NumOfQuestions; i++)
+    {
+        vm.Questions.Add(new QuestionItem());
+    }
+
+    return View(vm);
+}
+
+[HttpPost]
+public IActionResult AddQuestions(AddQuestionVM model)
+{
+    foreach (var q in model.Questions)
+    {
+        var question = new Question
+        {
+            ExamId = model.ExamId,
+            questionText = q.QuestionText,
+            chooseA = q.ChooseA,
+            chooseB = q.ChooseB,
+            chooseC = q.ChooseC,
+            chooseD = q.ChooseD,
+            correctAnswer = q.CorrectAnswer
+        };
+
+        _context.Questions.Add(question);
+    }
+
+    _context.SaveChanges();
+
+    return RedirectToAction("Dashboard", "Instructor");
+}
+
+        // عرض أسئلة الواجب
+public IActionResult ViewAssignmentQuestions(int id)
+{
+    var questions = _context.Questions
+                    .Where(q => q.TaskId == id)
+                    .ToList();
+
+    if (!questions.Any())
+        return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
+
+    return View(questions);
+}
+
+// عرض أسئلة الامتحان
+public IActionResult ViewExamQuestions(int id)
+{
+    var questions = _context.Questions
+                    .Where(q => q.ExamId == id)
+                    .ToList();
+
+    if (!questions.Any())
+        return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
+
+    return View(questions);
+}
+
+        //[HttpGet]
+        //public IActionResult EditExam(int id)
+        //{
+        //    var exam = _context.Exams.Find(id);
+        //    if (exam == null) return NotFound();
+
+        //    var model = new EditExamVM
+        //    {
+        //        ExamID = exam.ExamID,
+        //        ExamName = exam.ExamName,
+        //        Time = exam.Time,
+        //        ClassId = exam.ClassId,
+        //        subjectId = exam.subjectId,
+        //        TotalQuestions = exam.NumOfQuestions,
+        //        TotalMarks = exam.degreeExam
+        //    };
+
+        //    ViewBag.Classes = _context.Classes.ToList();
+        //    ViewBag.Subjects = _context.Subjects.ToList();
+
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public IActionResult EditExam(EditExamVM model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ViewBag.Classes = _context.Classes.ToList();
+        //        ViewBag.Subjects = _context.Subjects.ToList();
+        //        return View(model);
+        //    }
+
+        //    var exam = _context.Exams.Find(model.ExamID);
+        //    if (exam == null) return NotFound();
+
+        //    exam.ExamName = model.ExamName;
+        //    exam.Time = model.Time;
+        //    exam.ClassId = model.ClassId;
+        //    exam.subjectId = model.subjectId;
+        //    exam.NumOfQuestions = model.TotalQuestions;
+        //    exam.degreeExam = model.TotalMarks;
+
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Dashboard");
+        //}
+        //// GET: تعديل أسئلة امتحان
+        //[HttpGet]
+        //public IActionResult EditExamQuestions(int examId)
+        //{
+        //    var exam = _context.Exams
+        //                .Include(e => e.Questions)
+        //                .FirstOrDefault(e => e.ExamID == examId);
+
+        //    if (exam == null) return NotFound();
+
+        //    var vm = new AddQuestionVM
+        //    {
+        //        ExamId = examId,
+        //        Questions = exam.Questions.Select(q => new QuestionItem
+        //        {
+        //            //questionID = q.questionID,
+        //            QuestionText = q.questionText,
+        //            ChooseA = q.chooseA,
+        //            ChooseB = q.chooseB,
+        //            ChooseC = q.chooseC,
+        //            ChooseD = q.chooseD,
+        //            CorrectAnswer = q.correctAnswer
+        //        }).ToList()
+        //    };
+
+        //    return View("AddQuestions", vm); // نستخدم نفس الفيو AddQuestions
+        //}
+
+        //// POST: حفظ تعديل الأسئلة
+        //[HttpPost]
+        //public IActionResult EditExamQuestions(AddQuestionVM model)
+        //{
+        //    foreach (var q in model.Questions)
+        //    {
+        //        var question = _context.Questions.Find(q.QuestionText);
+        //        if (question != null)
+        //        {
+        //            question.questionText = q.QuestionText;
+        //            question.chooseA = q.ChooseA;
+        //            question.chooseB = q.ChooseB;
+        //            question.chooseC = q.ChooseC;
+        //            question.chooseD = q.ChooseD;
+        //            question.correctAnswer = q.CorrectAnswer;
+        //        }
+        //    }
+
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Dashboard", "Instructor");
+        //}
+
 
     }
 

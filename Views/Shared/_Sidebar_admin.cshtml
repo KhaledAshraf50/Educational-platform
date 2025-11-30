@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/assets/css/responsive-fix.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="~/assets/img/icon.svg" type="image/x-icon" />
+    @RenderSection("Styles", false)
 </head>
 <body>
     <!-- Sidebar -->
@@ -87,7 +88,7 @@
     <script src="~/assets/js/adminmainpage.js"></script>
     @RenderSection("script", required: false)
 
-
+    @RenderSection("script", false)
 </body>
 </html>
 
