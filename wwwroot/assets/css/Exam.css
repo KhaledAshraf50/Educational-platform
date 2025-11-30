@@ -1,0 +1,200 @@
+﻿
+:root {
+    --primary-color: #007bff; /* أزرق أساسي */
+    --secondary-color: #f2994a; /* برتقالي للمؤقت */
+    --background-light: #f4f6f8; /* خلفية فاتحة */
+    --card-bg: #ffffff; /* خلفية البطاقة */
+    --border-color: #e0e0e0;
+}
+
+
+
+/* شريط الرأس الثابت (Fixed Header) */
+.exam-fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: var(--card-bg);
+    border-bottom: 2px solid var(--border-color);
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.exam-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.timer-box {
+    background-color: var(--secondary-color);
+    padding: 8px 15px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* الهيكل الرئيسي للصفحة */
+.exam-main-layout {
+    display: flex;
+    padding: 20px 5%;
+    gap: 20px;
+}
+
+/* عمود الأسئلة (اليسار) - Flex-grow */
+.left-panel {
+    flex-grow: 1;
+    /* هذا القسم سيحتوي على الأسئلة */
+}
+
+/* عمود ملخص الأسئلة (اليمين) - Fixed Width */
+.right-panel {
+    width: 300px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.05);
+    align-self: flex-start; /* ليبقى في الأعلى */
+    position: sticky; /* يجعله ثابتاً أثناء التمرير */
+    top: 80px; /* مسافة من الـ fixed header */
+    /* يمكن إضافة ملخص هنا لاحقاً */
+    display: none; /* تم إخفاؤه لتبسيط الشكل في الوقت الحالي */
+}
+
+/* تصميم بطاقة السؤال */
+.question-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.question-number {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* تصميم خيارات الإجابة */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-item {
+    background: #fcfcfc;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+    .option-item:hover {
+        background: #eef3f7;
+        border-color: var(--primary-color);
+    }
+
+    .option-item input[type="radio"] {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary-color);
+    }
+
+        /* تمييز الخيار المُختار */
+        .option-item input[type="radio"]:checked + span {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+/* قسم التسليم */
+.submit-section {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 10px;
+}
+
+.save-btn {
+    background: var(--primary-color);
+    padding: 14px 40px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+    .save-btn:hover {
+        background: #0056b3;
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+    }
+
+/* الاستجابة للأجهزة الصغيرة (Responsive) */
+@@media (max-width: 992px) {
+    .exam-main-layout {
+        flex-direction: column;
+        padding: 20px 5%;
+    }
+
+    .right-panel {
+        display: none; /* إخفاء لوحة الملخص على الجوال */
+    }
+
+    .exam-fixed-header {
+        padding: 10px 20px;
+    }
+
+    .exam-title {
+        font-size: 1.3rem;
+    }
+
+    .timer-box {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+    }
+
+    .question-block {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .question-text {
+        font-size: 1rem;
+    }
+
+    .save-btn {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+    }
+}

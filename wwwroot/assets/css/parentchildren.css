@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    direction: rtl;
+}
+
+:root {
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#children {
+    background-color: var(--content-bg);
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.children-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.children-header h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0;
+}
+
+.btn-add-child {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-child:hover {
+    background-color: var(--primary-color);
+    box-shadow: var(--hover-shadow);
+}
+
+.children-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.child-card {
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.child-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--hover-shadow);
+}
+
+.child-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--card-shadow);
+    border: 4px solid var(--content-bg);
+    margin-bottom: 16px;
+}
+
+.child-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.child-grade {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.child-id {
+    color: var(--Info-color);
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.child-id span {
+    font-weight: 600;
+}
+
+.btn-details {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-details:hover {
+    background-color: var(--secondary-color);
+    box-shadow: var(--hover-shadow);
+}
+/*studentDetails*/
+.child-details {
+    background: var(--white-color);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: 0.3s ease;
+}
+
+    .child-details:hover {
+        box-shadow: var(--hover-shadow);
+    }
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 12px;
+}
+
+    .details-header h2 {
+        font-size: 24px;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+.btn-back {
+    background: var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+    .btn-back:hover {
+        background: var(--primary-color);
+    }
+
+.details-content {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.child-info {
+    text-align: center;
+    background: var(--content-bg);
+    padding: 24px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: var(--card-shadow);
+}
+
+.child-avatar-large {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: var(--card-shadow);
+}
+
+.child-info h3 {
+    margin-top: 16px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.child-info p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+    .child-info p span {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+@media (max-width: 768px) {
+    .child-details {
+        padding: 16px;
+    }
+
+
+    .child-info {
+        padding: 16px;
+    }
+
+
+    .child-avatar-large {
+        width: 110px;
+        height: 110px;
+    }
+
+    .details-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+        .details-header h2 {
+            font-size: 20px;
+        }
+}
+/*AddChild*/
+
+.add-child-form {
+    background: var(--white-color);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: 0.3s ease;
+}
+    .add-child-form:hover {
+        box-shadow: var(--hover-shadow);
+    }
+    .add-child-form h2 {
+        color: var(--primary-color);
+        font-size: 24px;
+        margin-bottom: 16px;
+        text-align: center;
+        }
+.form-group {
+    margin-bottom: 16px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+.btn-submit {
+    background: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    }
+    .btn-submit:hover {
+        background: var(--primary-color);
+        box-shadow: var(--hover-shadow);
+    }
+
+
+    @media (max-width: 768px) {
+        .children-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .children-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .child-card {
+            padding: 20px;
+        }
+
+        .btn-add-child {
+            width: 100%;
+        }
+    }

@@ -1,0 +1,1104 @@
+:root {
+    --primary-color: #092C4C; /* أزرق أساسي */
+    --secondary-color: #F2994A; /* أخضر */
+    --accent-color: #e74c3c; /* أحمر */
+    --background-color: #f4f4f4; /* رمادي فاتح */
+    --text-color: #333333; /* أسود غامق */
+}
+
+body {
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+}
+
+button {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    button:hover {
+        color: white;
+/*        background-color: oklch(28.754% 0.0705 250.255 / 0.801);*/
+        transform: scale(1.03);
+    }
+
+a {
+    text-decoration: none; /* شيل الخط */
+    color: inherit; /* يخلي لون اللينك نفس لون النص العادي */
+}
+
+
+/* أزرار */
+.btn1 {
+    font-size: 14px;
+    width: 241px;
+    height: 48px;
+    background-color: #092C4C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    height: 85px;
+    background-color: white;
+}
+
+/* اللينكات */
+.nav-item-link {
+    text-decoration: none;
+    color: #092C4C;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+    .nav-item-link:hover {
+        color: #ff8c00;
+    }
+
+/* ترتيب اللوجو واللينكات */
+.part1nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-logo {
+    height: 85px;
+    transition: all 0.3s ease;
+}
+
+/* الأزرار */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconmenu {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* القائمة المنسدلة للموبايل */
+.buttomsmallscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(14, 165, 233, 0.95);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: height 0.4s ease;
+    z-index: 9999;
+}
+
+    .buttomsmallscreen a {
+        display: block;
+        margin: 20px 0;
+        width: 80%;
+        font-size: 24px;
+        text-decoration: none;
+        color: #fff;
+        background: #0ea5e9;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+        .buttomsmallscreen a:hover {
+            background: #fff;
+            color: #0ea5e9;
+        }
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttomsmallscreen.active {
+    height: 100%;
+}
+
+/* ______________________________________ */
+/* 🌐 Media Queries */
+
+/* 🖥️ Desktop 1024px */
+@media (max-width: 1024px) {
+    .main-logo {
+        height: 70px;
+    }
+
+    .nav-item-link {
+        font-size: 16px;
+    }
+
+    .btn1 {
+        width: 200px;
+        height: 42px;
+        font-size: 13px;
+    }
+}
+
+/* 📱 Tablet 768px */
+@media (max-width: 844px) {
+
+    .btn1 {
+        display: none; /* اخفاء الزرار */
+    }
+
+    .iconmenu {
+        display: block !important; /* اظهار المنيو */
+    }
+
+    .logo {
+        /* border: 1px solid green !important; */
+        margin-right: -30px;
+    }
+
+    .part1nav {
+        gap: 20px;
+    }
+}
+
+/* 📞 Mobile 320px */
+@media (max-width: 480px) {
+    .nav-links {
+        display: none !important; /* تأكيد إخفاء اللينكات */
+    }
+
+    .main-logo {
+        height: 60px;
+    }
+}
+
+
+/* Start section1 phote and text */
+.section1 {
+    margin-top: 93px;
+    padding: 20px;
+    /* height: calc(100vh - 92px); */
+    text-align: center;
+    /* border: 2px solid red; */
+}
+/* End section1 phote and text */
+
+/* ______________________________________________________________ */
+
+/* Strat section2 swaper */
+:root {
+    --primary-color: #092C4C;
+    --secondary-color: #F2994A;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.mySwiper {
+    overflow: hidden;
+    display: flex;
+}
+
+/* الشريحة */
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #f8faff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(9, 44, 76, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .swiper-slide:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 14px rgba(9, 44, 76, 0.25);
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+/* الكارت */
+.card {
+    width: 100%;
+    height: 520px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(9, 44, 76, 0.1);
+}
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .card .imgs {
+        height: 350px;
+        margin: 10px;
+    }
+
+        .card .imgs img {
+            border-radius: 12px;
+            width: 100%;
+            height: 350px;
+        }
+
+.card-body {
+    padding: 6px;
+    margin: 6px;
+}
+
+    .card-body h3 {
+        margin: 0 0 8px;
+        font-size: 20px;
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+    .card-body p {
+        margin: 0 0 12px;
+        font-size: 14px;
+        color: #555;
+    }
+
+/* الوسوم */
+.tags {
+    padding: 3px 8px;
+    width: fit-content;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #2F80ED; /* لون البوردر */
+    color: #2F80ED; /* لون النص */
+    background-color: rgba(47, 128, 237, 0.1); /* خلفية شفافة بلون أزرق فاتح */
+}
+
+.iconcrown1 {
+    color: var(--secondary-color);
+}
+
+/* الأزرار */
+.swiper-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+    .swiper-button button {
+        padding: 6px 14px;
+        margin: 0px;
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
+        background-color: #fff;
+        color: var(--primary-color);
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+        .swiper-button button:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+
+
+/* الأيقونات */
+.swiper-button .icon {
+    border-radius: 6px;
+    color: #fff;
+    padding: 7px 10px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+    .swiper-button .icon:hover {
+        background-color: var(--secondary-color);
+        color: #fff;
+    }
+
+/* العنوان والوصف */
+.thebest h1 {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.thebest p {
+    color: #555;
+}
+
+
+/* End section2 swaper  */
+
+
+
+/* _______________________________________ */
+/* start achievement */
+
+/* ================== */
+/* الوضع الافتراضي (Light Mode) */
+/* ================== */
+.achievements {
+    color: #1a1a1a;
+    padding: 60px 20px;
+}
+
+    .achievements .container .title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .achievements .container .subtitle {
+        font-size: 16px;
+        opacity: 0.8;
+        margin-bottom: 40px;
+    }
+
+    .achievements .container .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+        .achievements .container .achievements-grid .achievement-box {
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 30px 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+            .achievements .container .achievements-grid .achievement-box:hover {
+                transform: translateY(-8px);
+            }
+
+            .achievements .container .achievements-grid .achievement-box .icon {
+                font-size: 40px;
+                color: var(--secondary-color);
+                margin-bottom: 15px;
+            }
+
+            .achievements .container .achievements-grid .achievement-box .number {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+
+            .achievements .container .achievements-grid .achievement-box .desc {
+                font-size: 16px;
+                opacity: 0.9;
+            }
+
+
+
+/* end achievement */
+
+
+/* _________________________________ */
+/* Why Eduvalu Section */
+.why-eduvalu {
+    padding: 70px 20px;
+    text-align: center;
+    color: #092C4C; /* اللون الأساسي للنص */
+}
+
+    .why-eduvalu .container .title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #092C4C; /* اللون الأساسي */
+    }
+
+    .why-eduvalu .container .subtitle {
+        font-size: 16px;
+        opacity: 0.85;
+        margin-bottom: 50px;
+        color: #092C4C; /* الأساسي */
+    }
+
+    .why-eduvalu .container .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+    }
+
+        .why-eduvalu .container .features-grid .feature-box {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 35px 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e5e5;
+        }
+
+            .why-eduvalu .container .features-grid .feature-box:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .why-eduvalu .container .features-grid .feature-box .icon {
+                font-size: 42px;
+                color: #F2994A; /* اللون الثانوي */
+                margin-bottom: 15px;
+            }
+
+            .why-eduvalu .container .features-grid .feature-box .feature-title {
+                font-size: 20px;
+                font-weight: bold;
+                color: #092C4C; /* اللون الأساسي */
+                margin-bottom: 10px;
+            }
+
+            .why-eduvalu .container .features-grid .feature-box .feature-desc {
+                font-size: 15px;
+                line-height: 1.6;
+                opacity: 0.95;
+                color: #092C4C; /* الأساسي */
+            }
+
+
+/* ______________________________________________ */
+
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.product-card {
+    width: calc(33.33% - 10px);
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: center;
+    display: none; /* نخليها مخفية في الأول */
+}
+
+
+/* ------------------------------------------------ */
+/* Start FAQ = Frequently Asked Questions (الأسئلة الشائعة). */
+/* خلفية القسم */
+/* الوضع العادي (Light) */
+.faq-section {
+    background: #f9f9f9;
+    color: #092C4C; /* اللون الأساسي */
+    padding: 60px 20px;
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+    direction: rtl;
+}
+
+    .faq-section .container .faq-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #092C4C; /* الأساسي */
+        margin-bottom: 10px;
+    }
+
+    .faq-section .container .faq-subtitle {
+        text-align: center;
+        font-size: 16px;
+        color: #092C4C; /* الأساسي */
+        opacity: 0.8;
+        margin-bottom: 40px;
+    }
+
+    .faq-section .container .faq {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+        .faq-section .container .faq .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e5e5;
+        }
+
+            .faq-section .container .faq .faq-item:hover {
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .faq-section .container .faq .faq-item .faq-question {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 20px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+                color: #092C4C; /* الأساسي */
+                transition: color 0.3s;
+            }
+
+                .faq-section .container .faq .faq-item .faq-question:hover {
+                    color: #F2994A; /* الثانوي */
+                }
+
+            .faq-section .container .faq .faq-item .faq-icon {
+                color: #F2994A; /* اللون الثانوي */
+                font-size: 20px;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                transition: all 0.3s;
+                border: 1px solid #F2994A;
+            }
+
+            .faq-section .container .faq .faq-item .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                background: #fafafa;
+                padding: 0 20px;
+                font-size: 15px;
+                line-height: 1.8;
+                color: #092C4C; /* الأساسي */
+                transition: all 0.4s ease;
+            }
+
+            /* لما السؤال يتفتح */
+            .faq-section .container .faq .faq-item.active .faq-answer {
+                max-height: 200px;
+                padding: 15px 20px;
+            }
+
+/* _______________________________________________- */
+.swiper-subject {
+    /* border: 2px solid red; */
+    overflow: hidden;
+    display: flex;
+}
+
+.card-subject {
+    background: #fafafa;
+    /* border: 1px solid #333; */
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+    .card-subject:hover {
+        /* background: #2a2a2a; */
+        transform: translateY(-3px);
+    }
+
+body.dark .card-subject {
+    background: #2a2a2a;
+}
+
+.subject-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.subject-img {
+    width: 100px;
+    flex-shrink: 0;
+}
+
+    .subject-img img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+.text-subject {
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+    /* color: #eee; */
+}
+
+    .text-subject h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+        color: var(--primary-color);
+    }
+
+    .text-subject p {
+        margin: 4px 0;
+        font-size: 15px;
+        /* color:black; */
+    }
+
+.subject-teachers {
+    font-size: 14px;
+    /* color:black; */
+}
+
+    .subject-teachers i {
+        margin-left: 5px;
+    }
+
+/* ______________________________________________- */
+
+/* Start subscrip */
+.courses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 100px 10px 50px 10px;
+}
+
+.card-courses {
+    height: fit-content;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 350px;
+    background: #fff;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+    .card-courses.hidden {
+        display: none;
+    }
+
+.courses .card-courses:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-courses .image-courses {
+    height: 300px;
+    width: 100%;
+}
+
+    .card-courses .image-courses img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.card-courses .body-course {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    position: relative;
+}
+
+/* -------- النصوص -------- */
+.body-course .bodytop {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+    .body-course .bodytop .bodyright .brtop {
+        border-bottom: 2px solid #eee;
+    }
+
+        .body-course .bodytop .bodyright .brtop p {
+            font-weight: bold;
+            color: #092C4C; /* الأساسي */
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+    .body-course .bodytop .bodyright .brmid p {
+        color: #333;
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .body-course .bodytop .bodyright .brdowm p {
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+/* -------- الأزرار -------- */
+.body-course .bodyleft {
+    margin-top: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+    .body-course .bodyleft a {
+        display: inline-block;
+        margin: 4px 8px;
+        padding: 8px 18px;
+        border-radius: 6px;
+        background: #092C4C; /* الأساسي */
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+        .body-course .bodyleft a:hover {
+            background: #F2994A; /* الثانوي */
+            color: #092C4C;
+        }
+
+/* -------- السعر والتاريخ -------- */
+.body-course .bodybuttom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .body-course .bodybuttom .price span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #F2994A; /* الثانوي */
+    }
+
+    .body-course .bodybuttom .date h3 {
+        font-size: 13px;
+        color: #666;
+        font-weight: normal;
+    }
+
+/* -------- زرار عرض المزيد -------- */
+.show-more-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#toggleCards {
+    padding: 10px 20px;
+    background: #092C4C; /* الأساسي */
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #toggleCards:hover {
+        background: #F2994A; /* الثانوي */
+        color: #092C4C;
+    }
+
+
+/* End subscrip */
+
+
+/* Start footer */
+.main-footer {
+    background: #f5f7fa;
+    color: #333;
+    padding: 50px 20px 20px;
+    border-top: 2px solid #e0e0e0;
+    margin-top: 50px;
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+}
+
+    .main-footer .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* العناوين */
+    .main-footer h3,
+    .main-footer h4 {
+        margin-bottom: 15px;
+        color: #092C4C; /* اللون الأساسي */
+        font-weight: bold;
+    }
+
+    .main-footer p {
+        line-height: 1.8;
+        color: #555;
+    }
+
+/* روابط الفوتر */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .footer-links ul li {
+        margin-bottom: 10px;
+    }
+
+        .footer-links ul li a {
+            color: #333;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.3s ease;
+        }
+
+            .footer-links ul li a::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: #F2994A; /* اللون الثانوي */
+                transition: width 0.3s ease;
+            }
+
+            .footer-links ul li a:hover {
+                color: #092C4C; /* الأساسي */
+            }
+
+                .footer-links ul li a:hover::after {
+                    width: 100%;
+                }
+
+/* أيقونات السوشيال ميديا */
+.footer-social .icons a {
+    display: inline-block;
+    margin: 0 8px;
+    font-size: 18px;
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+    .footer-social .icons a:hover {
+        color: #F2994A; /* الثانوي */
+        transform: scale(1.2) rotate(5deg);
+    }
+
+/* النص السفلي */
+.copy {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+.fixed-btn {
+    position: fixed; /* يخليه ثابت فوق كل المحتوى */
+    bottom: 20px; /* أسفل الصفحة */
+    right: 20px; /* أقصى يمين */
+    background-color: #007bff; /* لون أزرق */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000; /* يظهر فوق أي عنصر */
+}
+
+    .fixed-btn:hover {
+        background-color: #0056b3;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 2. Small: 576px - 767px */
+@media (min-width: 576px) {
+}
+
+/* 3. Medium: 768px - 991px (تابلت) */
+@media (min-width: 768px) {
+    .buttomloginhome {
+        display: block;
+    }
+
+    .buttons-container .iconmenu {
+        display: none;
+    }
+}
+
+/* 4. Large: 992px - 1199px (لابتوبات صغيرة/متوسطة) */
+@media (min-width: 992px) {
+    .my-navbar {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .section1 {
+        display: flex;
+    }
+
+        .section1 .text {
+            width: 50%;
+            /* border: 2px solid rebeccapurple;           */
+
+            position: relative;
+        }
+
+            .section1 .text .text2 {
+                /* border: 2px solid rebeccapurple;           */
+                width: 100%;
+                position: absolute;
+                top: 50%; /* نص الطول */
+                left: 50%; /* نص العرض */
+                transform: translate(-50%, -50%);
+            }
+
+        .section1 .img2 {
+            width: 50%;
+        }
+
+            .section1 .img2 img {
+                height: 80vh;
+                width: auto;
+            }
+}
+
+/* 5. Extra Large: 1200px - 1599px (ديسكتوب كبير) */
+@media (min-width: 1200px) {
+}
+
+/* 6. Extra Extra Large: ≥ 1600px (شاشات كبيرة جدًا) */
+@media (min-width: 1600px) {
+}
+
+
+
+
+
+
+
+
+
+/* _____________________password forget__________
+ */
+
+#verifyCodeForm, #resetPasswordForm {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

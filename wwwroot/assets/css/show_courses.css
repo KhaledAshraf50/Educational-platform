@@ -1,0 +1,152 @@
+﻿/* Start subscrip */
+
+.teacher-courses-title {
+    margin-top: 100px;
+    font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #092C4C; /* اللون الأساسي */
+    margin: 100px 0 30px;
+    position: relative;
+}
+
+    .teacher-courses-title span {
+        color: #F2994A; /* اللون الثانوي */
+    }
+
+    .teacher-courses-title::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 4px;
+        background: linear-gradient(90deg, #092C4C, #F2994A);
+        margin: 15px auto 0;
+        border-radius: 3px;
+    }
+/* Start subscrip */
+.courses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 100px 10px 50px 10px;
+}
+
+.card-courses {
+    height: fit-content;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 350px;
+    background: #fff;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+    .card-courses.hidden {
+        display: none;
+    }
+
+.courses .card-courses:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-courses .image-courses {
+    height: 300px;
+    width: 100%;
+}
+
+    .card-courses .image-courses img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.card-courses .body-course {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    position: relative;
+}
+
+/* -------- النصوص -------- */
+.body-course .bodytop {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+    .body-course .bodytop .bodyright .brtop {
+        border-bottom: 2px solid #eee;
+    }
+
+        .body-course .bodytop .bodyright .brtop p {
+            font-weight: bold;
+            color: #092C4C; /* الأساسي */
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+    .body-course .bodytop .bodyright .brmid p {
+        color: #333;
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .body-course .bodytop .bodyright .brdowm p {
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+/* -------- الأزرار -------- */
+.body-course .bodyleft {
+    margin-top: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+    .body-course .bodyleft a {
+        display: inline-block;
+        margin: 0 8px;
+        padding: 8px 18px;
+        border-radius: 6px;
+        background: #092C4C; /* الأساسي */
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+        .body-course .bodyleft a:hover {
+            background: #F2994A; /* الثانوي */
+            color: #092C4C;
+        }
+
+/* -------- السعر والتاريخ -------- */
+.body-course .bodybuttom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .body-course .bodybuttom .price span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #F2994A; /* الثانوي */
+    }
+
+    .body-course .bodybuttom .date h3 {
+        font-size: 13px;
+        color: #666;
+        font-weight: normal;
+    }
+

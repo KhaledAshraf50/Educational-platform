@@ -1,0 +1,128 @@
+/* responsive-fix.css - تحسينات ريسبونسف عامة (ضع هذا بعد ملفات CSS الرئيسية) */
+
+/* اجعل المحتوى قابلاً للتمدد بأمان على الشاشات الصغيرة */
+.content {
+  transition: margin-right 0.25s ease, padding 0.25s ease;
+}
+
+/* overlay يظهر/يخفي بسلاسة */
+.overlay {
+  transition: opacity 0.25s ease, visibility 0.25s;
+}
+
+/* تحسين flexToProg: عرض طبيعي على الكمبيوتر، يتكدس على الموبايل */
+.Reportspage .flexToProg,
+.Subjectspage .flexToProg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* لو الشاشة صغيرة، نخلي العناصر تتكدس وترجع للوسط */
+@media (max-width: 991.98px) {
+  /* .Reportspage .flexToProg,
+  .Subjectspage .flexToProg {
+     flex-direction: column;
+    align-items: center; 
+    gap: 12px;
+  } */
+
+  /* خفف المسافات في العنصر اللي فيه البروجريس */
+  #semiContainer {
+    width: 180px !important;
+    height: 90px !important;
+    margin: 16px auto !important;
+  }
+
+  .Reportspage .sub-choose {
+    /* width: 100%; */
+    display: flex;
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
+    gap: 12px;
+    /* align-items: center; */
+  }
+
+  .Reportspage .input-group input {
+    width: 160px;
+  }
+
+  .Reportspage .dropdown-menu {
+    width: auto;
+    min-width: 180px;
+    max-width: 90vw;
+    left: auto;
+    right: 0;
+  }
+}
+
+/* على الشاشات الصغيرة جدًا (موبايلات ضيقة) */
+@media (max-width: 575.98px) {
+  .Reportspage .sub-choose {
+    /* flex-direction: column;
+    align-items: center; */
+    gap: 8px;
+  }
+  .Reportspage .flexToProg,
+  .Subjectspage .flexToProg {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .Reportspage .dropdown .repbtn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .input-group input {
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .table_Edit thead th,
+  .table_Edit tbody td {
+    white-space: nowrap;
+  }
+
+  /* اجعل الجدول قابل للتمرير أفقياً */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Sidebar behaviour: عندما تكون active على الموبايل، نزُّل المحتوى للخلف ليناسب العرض */
+@media (max-width: 768px) {
+  .sidebar.active ~ .content {
+    margin-right: 0; /* نترك المحتوى نفسه وعليه overlay */
+  }
+}
+
+/* تحسينات للزر اللي يفتح القائمة (icon-btn) ليكون ظاهر على اليمين بالـ RTL */
+.icon-btn.d-lg-none {
+  position: fixed;
+  top: 16px;
+  right: 16px; /* يمين لأن الصفحة RTL */
+  z-index: 1201;
+  background: var(--white-color);
+}
+
+/* تحسين تأثيرات عند فتح القائمة */
+.sidebar.active {
+  right: 0;
+  width: 250px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* زيادة قابلية النقر على عناصر الـ dropdown في الموبايل */
+.Reportspage .dropdown-menu .dropdown-item {
+  padding: 12px 18px;
+  font-size: 16px;
+}

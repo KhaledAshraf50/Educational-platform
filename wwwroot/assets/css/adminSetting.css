@@ -1,0 +1,297 @@
+body {
+    margin: 0;
+    font-family: DIN Next LT Arabic;
+    background: linear-gradient(135deg, #f0f4f8, #ffffff);
+}
+
+:root {
+    --primary-color: #092c4c;
+    --secondary-color: #f2994a;
+    --Info-color: #2f80ed;
+    --Success-color: #27ae60;
+    --Warning-color: #e2b93b;
+    --Error-color: #eb5757;
+    --sidebar-bg: #ffffff;
+    --content-bg: #f8fafc;
+    --white-color: #fff;
+    --hover-color: #e0e0e0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    background: var(--white-color);
+    box-shadow: var(--card-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    direction: rtl;
+}
+
+.navbar span {}
+
+.settings-card {
+    background: var(--white-color);
+    border-radius: 8px;
+    box-shadow: var(--hover-shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: 0.3s;
+}
+
+.settings-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* .tab-btn {
+    border: none;
+    background: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-bottom: 2px solid transparent;
+} */
+.tab-btn {
+    flex: 1;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.tab-btn.active {
+    border-bottom-color: var(--secondary-color);
+    color: var(--primary-color);
+    background-color: rgba(242, 153, 74, 0.05);
+    border-radius: 6px 6px 0 0;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.settings-card .form-control,
+.settings-card .form-select {
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: 1.5px solid #dce3eb;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    color: var(--primary-color);
+}
+
+.settings-card .form-control:focus,
+.settings-card .form-select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 8px rgba(242, 153, 74, 0.4);
+    background-color: #fff;
+}
+
+label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white-color);
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+
+}
+
+.save-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(9, 44, 76, 0.25);
+}
+
+.table_Edit {
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    direction: rtl;
+}
+
+.table_Edit thead th {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.table_Edit tbody tr button {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.table_Edit tbody td button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.form-row .form-group {
+    flex: 1;
+    width: 100%;
+}
+
+.form-control,
+.form-control:focus {
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"]::file-selector-button {
+    background: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: 0.3s;
+    margin-right: -10px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: var(--secondary-color);
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    flex-direction: row-reverse;
+}
+
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background-color: #bdbdbd;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* الدائرة */
+.toggle-label::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* لما يكون مفعل */
+.toggle-input:checked+.toggle-label {
+    background-color: var(--primary-color);
+}
+
+/* حركة الدائرة */
+.toggle-input:checked+.toggle-label::before {
+    transform: translateX(20px);
+}
+
+/* النص */
+.toggle-text {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.form-select {
+    position: relative;
+    padding-right: 16px;
+    padding-left: 45px;
+    /* تبعد النص عن السهم */
+    border-radius: 10px;
+    border: 1.5px solid #dce3eb;
+    font-size: 15px;
+    color: var(--primary-color);
+    background: #fff !important;
+    /* نتأكد إن الخلفية ثابتة */
+    background-image: none !important;
+    /* نشيل سهم البوتستراب */
+    direction: rtl;
+}
+
+.form-select::after {
+    content: "▼";
+    /* شكل السهم */
+    position: absolute;
+    left: 16px;
+    /* مكان السهم */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--primary-color);
+    pointer-events: none;
+    /* عشان السهم ميمنعش الضغط */
+}

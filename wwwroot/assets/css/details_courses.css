@@ -1,0 +1,199 @@
+﻿
+/* ===== Course Details ===== */
+.course-details {
+    padding: 60px 15px;
+}
+
+.course-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.course-image {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(9, 44, 76, 0.15);
+}
+
+.course-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.course-title {
+    color: #092C4C;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.course-teacher span {
+    color: #F2994A;
+    font-weight: 600;
+}
+
+.course-price {
+    font-size: 1.1rem;
+    color: #3a506b;
+}
+
+    .course-price span {
+        color: #F2994A;
+        font-weight: 700;
+    }
+
+.enroll-btn {
+    background-color: #092C4C;
+   color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+    .enroll-btn:hover {
+        background-color: #F2994A;
+        color: #fff;
+        transform: scale(1.05);
+    }
+
+.course-description {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(9, 44, 76, 0.08);
+    margin-bottom: 30px;
+}
+
+    .course-description h2 {
+        color: #092C4C;
+        margin-bottom: 15px;
+        border-right: 5px solid #F2994A;
+        padding-right: 10px;
+    }
+
+/* ===== Accordion ===== */
+/* ===== Accordion ===== */
+.accordion-item {
+    border: none;
+    margin-top: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px 2px rgba(9, 44, 76, 0.1);
+}
+
+.accordion-button {
+    position: relative; /* مهم جدًا للـ ::after */
+    background-color: #f3f4f6 !important;
+    color: #092C4C !important;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 20px 60px 20px 60px;  
+    box-shadow: none !important;
+    transition: 0.3s;
+    border: none !important;
+}
+
+    /* السهم بتاع البوتستراب */
+    .accordion-button::after {
+        content: "";
+        position: absolute;
+        left: 30px; /* كان left في كودك، بس Bootstrap بيخلي السهم في اليمين */
+        width: 1rem;
+        height: 1rem;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23092C4C' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-size: 1rem;
+        filter: invert(15%) sepia(50%) saturate(400%) hue-rotate(10deg);
+        transition: transform 0.3s ease;
+    }
+
+    /* لما الأكوردين يتفتح */
+    .accordion-button:not(.collapsed) {
+        background-color: #092C4C !important;
+        color: #ffffff !important;
+    }
+
+    .accordion-button {
+        margin: 0 !important;
+    }
+
+        .accordion-button:not(.collapsed)::after {
+            transform: rotate(180deg);
+            filter: invert(100%);
+        }
+
+.accordion-body {
+    background-color: #f9fafc;
+    padding: 20px;
+}
+
+/* ===== الدروس داخل الأكوردين ===== */
+.desc_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(9, 44, 76, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .desc_content:hover {
+        background-color: #fff7f0;
+        border-color: #F2994A;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(242, 153, 74, 0.2);
+    }
+
+    .desc_content p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: #092C4C;
+    }
+
+    .desc_content a {
+        background-color: #F2994A;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+        .desc_content a:hover {
+            background-color: #092C4C;
+            color: #fff;
+        }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .course-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .course-title {
+        font-size: 1.5rem;
+    }
+
+    .accordion-button {
+        font-size: 18px;
+    }
+}
