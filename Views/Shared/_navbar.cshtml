@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Security.Claims
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -108,6 +108,9 @@
                     <div class="image_porfoile_simple">
                         <a href="/Account/Profile">
                             <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                            <a href="#" class="logout-link-simple" >
+                                @User.FindFirst(ClaimTypes.Name)?.Value
+                            </a>
                         </a>
                         <a href="/Account/Logout" class="logout-link-simple">خروج</a>
                     </div>
