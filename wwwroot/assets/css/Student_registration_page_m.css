@@ -196,25 +196,24 @@
 }
 
 /* السهم المخصص للأب form-group1 */
-.form-group1 {
-  position: relative;
+..form-group1 {
+    position: relative;
 }
 
-/* السهم */
-    .form-group1::after {
-        content: "\f107"; /* سهم من Font Awesome */
-        font-family: 'DIN Next LT Arabic', 'Cairo', sans-serif;
-        font-weight: 900;
-        position: absolute;
-        left: 12px; /* لو RTL خلي السهم على اليسار */
-        top: 50%;
-        transform: translateY(-50%);
-        color: #38bdf8;
-        pointer-events: none; /* لا يؤثر على الضغط على select */
-        z-index: 3;
-    }
-
-
+/* السهم الجديد */
+.form-group1::after {
+    content: "\f078"; /* fa-angle-down */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #38bdf8;
+    pointer-events: none;
+    z-index: 3;
+    font-size: 16px;
+}
 
 /* اخفاء السهم الافتراضي */
 .form-group1 select {

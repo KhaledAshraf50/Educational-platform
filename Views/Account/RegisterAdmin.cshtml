@@ -4,7 +4,32 @@
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
-<section class="registration_page Student_registration_page_m">
+
+<style>
+    .btn-submit {
+        background-color: #092C4C; /* اللون الأساسي */
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /* تأثير hover */
+        .btn-submit:hover {
+            background-color: #0B315A; /* لون قريب وأغمق شوية */
+            box-shadow: 0 6px 8px rgba(0,0,0,0
+
+</style>
+
+<section class="registration_page ">
 
     <div class="form-container">
         <h2><b>طلب انشاء حساب :</b></h2>
@@ -14,3 +39,97 @@
                 <a href="" class="subtitle_link_login_as_user">ادخل إلى حسابك الآن!</a>
             </span>
         </p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-action="RegisterAdmin" asp-controller="Account" method="post"
+              class="grid-form ">
+
+
+
+            <!-- الاسم الأول -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="Fname" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأول</label>
+                </div>
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+
+            <!-- الاسم الأخير -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="LastName" type="text" required placeholder=" ">
+                    <label><i class="fa-solid fa-user"></i> الاسم الأخير</label>
+                </div>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- هاتف ولي الأمر -->
+            <div class="form-group ">
+                <div style="position: relative;">
+                    <input asp-for="PhoneNumber" type="tel" required placeholder=" ">
+                    <label><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- الرقم القومي -->
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input asp-for="NationalID" type="number" required placeholder=" ">
+                    <label><i class="fa-solid fa-id-card"></i> الرقم القومي</label>
+                </div>
+                <span asp-validation-for="NationalID" class="text-danger"></span>
+            </div>
+
+           
+
+            <!-- البريد الإلكتروني -->
+            <div class="form-group full-width">
+                <div style="position: relative;">
+                    <input asp-for="Email" type="email" required placeholder=" ">
+                    <label><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+           
+
+            <!-- تأكيد كلمة المرور -->
+            <div class="form-group password-group">
+                <div style="position: relative;">
+                    <input asp-for="ConfirmPassword" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> تأكيد كلمة المرور</label>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group password-group full-width ">
+                <div style="position: relative;">
+                    <input asp-for="Passwordregiester" type="password" required placeholder=" ">
+                    <label><i class="fa-solid fa-lock"></i> كلمة المرور تسجيل ك admin </label>
+                </div>
+                <span asp-validation-for="Passwordregiester" class="text-danger"></span>
+            </div>
+
+            <!-- زر التسجيل -->
+            <button class="btn-submit2 full-width" type="submit">
+                إنشاء الحساب
+            </button>
+        </form>
+
+
+
+
+
+    </div>
+</section>

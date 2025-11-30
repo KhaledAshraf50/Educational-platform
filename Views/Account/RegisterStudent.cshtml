@@ -4,6 +4,30 @@
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
+<style>
+    .btn-submit {
+        background-color: #092C4C; /* اللون الأساسي */
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /* تأثير hover */
+        .btn-submit:hover {
+            background-color: #0B315A; /* لون قريب وأغمق شوية */
+            box-shadow: 0 6px 8px rgba(0,0,0,0
+
+</style>
+
 <section class="registration_page1">
 
     <div class="form-container">
@@ -14,6 +38,8 @@
                 <a href="" class="subtitle_link_login_as_user">ادخل إلى حسابك الآن!</a>
             </span>
         </p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
         <form asp-action="RegisterStudent" asp-controller="Account" method="post"
               class="grid-form "  >
 
@@ -69,22 +95,12 @@
                 <span asp-validation-for="NationalID" class="text-danger"></span>
             </div>
 
-            <!-- النوع -->
-            <div class="form-group form-group1" style="margin-bottom: 17px;">
-                <select id="gender" required asp-for="Role">
-                    <option value="" disabled selected hidden></option>
-                    <option value="student">طالب</option>
-                    <option value="instructor">مدرس</option>
-                    <option value="parent">ولي امر</option>
-                </select>
-                <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
+           
 
             <!-- المحافظة -->
-            <div class="form-group form-group1">
+            <div class="form-group form-group1 ">
                 <div style="position: relative;">
-                    <select id="governorate" asp-for="goverment">
+                    <select id="governorate" asp-for="goverment" placeholder=" ">
                         <option value="" disabled selected hidden></option>
                     </select>
                     <label><i class="fa-solid fa-map-location-dot"></i> المحافظة</label>
@@ -94,9 +110,9 @@
             </div>
 
             <!-- الإدارة -->
-            <div class="form-group form-group1 full-width">
+            <div class="form-group form-group1">
                 <div style="position: relative;">
-                    <select id="admin" asp-for="city">
+                    <select id="admin" asp-for="city" placeholder=" ">
                         <option value="" disabled selected hidden></option>
                     </select>
                     <label><i class="fa-solid fa-building"></i> الإدارة</label>
@@ -114,6 +130,8 @@
                 </div>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+          
 
             <!-- كلمة المرور -->
             <div class="form-group password-group">
@@ -138,7 +156,7 @@
             <!-- الصف الدراسي -->
             <div class="alsaf form-group form-group1 full-width">
                 <div style="position: relative;">
-                    <select id="alsaf" required asp-for="ClassId">
+                    <select id="alsaf" required asp-for="ClassId" placeholder=" ">
                         <option value="" disabled selected hidden></option>
                         <option value="1">الصف الاول الثانوي</option>
                         <option value="2">الصف الثاني الثانوي</option>
@@ -153,7 +171,7 @@
             <!-- الشعبة -->
             <div class="shueba form-group form-group1 full-width">
                 <div style="position: relative;">
-                    <select id="shueba" asp-for="branch">
+                    <select id="shueba" asp-for="branch" placeholder=" ">
                         <option value="" disabled selected hidden></option>
                         <option value="science">علمي</option>
                         <option value="arts">أدبي</option>
@@ -167,8 +185,10 @@
                 <span asp-validation-for="branch" class="text-danger"></span>
             </div>
 
+
+
             <!-- زر التسجيل -->
-            <button  type="submit">
+            <button class="btn-submit2 full-width" type="submit">
                 <i class="fa-solid fa-user-plus"></i> إنشاء الحساب
             </button>
 

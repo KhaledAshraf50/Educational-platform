@@ -4,6 +4,29 @@
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
+<style>
+    .btn-submit {
+        background-color: #092C4C; /* اللون الأساسي */
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /* تأثير hover */
+        .btn-submit:hover {
+            background-color: #0B315A; /* لون قريب وأغمق شوية */
+            box-shadow: 0 6px 8px rgba(0,0,0,0
+
+</style>
 <section class="registration_page1 ">
 
     <div class="form-container">
@@ -15,8 +38,10 @@
             </span>
         </p>
 
+        <div asp-validation-summary="All" class="text-danger"></div>
+
         <form asp-action="RegisterParent" asp-controller="Account" method="post"
-              class="grid-form " >
+              class="grid-form " enctype="multipart/form-data">
 
            
 
@@ -39,10 +64,10 @@
             </div>
 
             <!-- هاتف ولي الأمر -->
-            <div class="form-group full-width">
+            <div class="form-group ">
                 <div style="position: relative;">
                     <input asp-for="PhoneNumber" type="tel" required placeholder=" ">
-                    <label><i class="fa-solid fa-phone"></i> هاتف ولي الأمر</label>
+                    <label><i class="fa-solid fa-phone"></i> رقم الهاتف</label>
                 </div>
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
@@ -56,17 +81,7 @@
                 <span asp-validation-for="NationalID" class="text-danger"></span>
             </div>
 
-            <!-- النوع -->
-            @* <div class="form-group form-group1" style="margin-bottom: 17px;">
-                <select required asp-for="Role">
-                    <option value="" disabled selected hidden></option>
-                    <option value="student">طالب</option>
-                    <option value="instructor">مدرس</option>
-                    <option value="parent">ولي امر</option>
-                </select>
-                <label><i class="fa-solid fa-map-location-dot"></i> النوع </label>
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div> *@
+           
 
             <!-- البريد الإلكتروني -->
             <div class="form-group full-width">
@@ -94,9 +109,11 @@
                 </div>
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+           
+
 
             <!-- زر التسجيل -->
-            <button  type="submit">
+            <button class="btn-submit2 full-width" type="submit">
                 إنشاء الحساب
             </button>
         </form>
@@ -106,3 +123,4 @@
 
     </div>
     </section>
+

@@ -104,11 +104,35 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
+
+
                     <!-- لو المستخدم داخل -->
                     <div class="image_porfoile_simple">
-                        <a href="/Account/Profile">
-                            <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
-                        </a>
+                        @if (User.IsInRole("student"))
+                        {
+                            <a href="/Student/MainPage" >
+                                <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                            </a>
+                        }
+                        else if (User.IsInRole("instructor"))
+                        {
+                            <a href="/Instructor/Index">
+                                <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                        </a>                            
+                        }
+                        else if (User.IsInRole("parent"))
+                        {
+                            <a href="/Parent/MainPage">
+                                <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                            </a>
+                        }
+                        else if (User.IsInRole("admin"))
+                        {
+                            <a href="/Admin/mainpage">
+                                <img src="~/assets/imgs/user_image.png" alt="صورة الملف الشخصي" />
+                            </a>
+                        }
+                       
                         <a href="/Account/Logout" class="logout-link-simple">خروج</a>
                     </div>
                 }

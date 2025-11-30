@@ -45,7 +45,8 @@ namespace Luno_platform.Viewmodel
         public string ConfirmPassword { get; set; }
 
         public string? Image { get; set; }
-
+        public string? Passwordregiester { get; set; }
+        
 
         // ===========================
         // بيانات الطالب

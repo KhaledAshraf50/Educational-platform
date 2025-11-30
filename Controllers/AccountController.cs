@@ -134,7 +134,7 @@ CreateBaseUser(Register_User_Viewmode model)
                 nationalID = model.NationalID,
                 PasswordHash = model.Password,
                 Image = model.Image ?? "~/assets/imgs/user_image.png",
-                UserName = model.Email
+                UserName = model.Fname + model.LastName
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -291,6 +291,13 @@ CreateBaseUser(Register_User_Viewmode model)
         {
             model.Role = "admin";
 
+            // تحقق من باسورد الأدمن
+            if (model.Passwordregiester != "2025")
+            {
+                ModelState.AddModelError("Passwordregiester", "كلمة السر الخاصة بالأدمن غير صحيحة");
+                return View(model);
+            }
+
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -304,12 +311,17 @@ CreateBaseUser(Register_User_Viewmode model)
                 return View(model);
             }
 
-            // Admin doesn't need extra table
+            var admin = new Admin
+            {
+                UserId = user.Id
+            };
 
+            _context.Admins.Add(admin);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Login", "Account");
         }
+
 
     }
 }
