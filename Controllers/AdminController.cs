@@ -26,19 +26,7 @@ namespace Luno_platform.Controllers
 
             return int.Parse(userIdClaim.Value);
         }
-        public IActionResult Dashboard()
-        {
-            // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
-            var userId = GetUserId();
-            //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
-
-            if (userIdClaim == null)
-            {
-                return -1; // معناها مفيش يوزر
-            }
-
-            return int.Parse(userIdClaim.Value);
-        }
+        
         [Route("/Admin/mainpage")]
         public IActionResult mainpage()
         {
@@ -150,7 +138,7 @@ namespace Luno_platform.Controllers
         [HttpPost]
         public IActionResult UpdateAdminSetting(AdminSettingVM AVM)
         {
-            int userId = 25;
+            int userId = GetUserId();
             //int userId = GetUserId();
             //var parent = _parentRepo.GetByUserId(userId);
             //if (parent == null) return NotFound();
