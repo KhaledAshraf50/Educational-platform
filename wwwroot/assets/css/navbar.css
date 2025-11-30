@@ -237,3 +237,26 @@ a {
 
 
 
+
+
+
+.btn-submit2 {
+    background-color: #092C4C; /* لون أزرق رئيسي */
+    background-color:; /* لون أزرق رئيسي */
+    color: #fff; /* لون الخط أبيض */
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px; /* زوايا مدورة */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    display: flex; /* تفعيل flex */
+    justify-content: center; /* توسيط النص أفقياً */
+    align-items: center;
+    /* margin:auto;
+       */
+    /* transform: translate(-50%, -50%); */
+}

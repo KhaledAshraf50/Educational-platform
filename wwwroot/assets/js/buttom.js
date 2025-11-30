@@ -2,10 +2,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ==================== عناصر الصفحات ====================
   const homeSection    = document.querySelector(".page_home1_m");
-  const studentSection = document.querySelector(".Student_registration_page_m");
+  //const studentSection = document.querySelector(".Student_registration_page_m");
   const loginSection   = document.querySelector(".Login_page");
   const parentSection  = document.querySelector(".loginaspartient_page");
-  const teacherSection = document.querySelector(".Teacher_registration_page_m");
+  //const teacherSection = document.querySelector(".Teacher_registration_page_m");
   const forgetPasswordPage = document.querySelector(".forget-password-page");
 
   // ==================== أزرار التنقل ====================
@@ -66,53 +66,53 @@ document.addEventListener("DOMContentLoaded", () => {
     showSection(forgetPasswordPage);
   });
 
-  // ==================== نسيت كلمة المرور ====================
-  const forgotPasswordForm = document.getElementById("forgotPasswordForm");
-  const verifyCodeForm     = document.getElementById("verifyCodeForm");
-  const resetPasswordForm  = document.getElementById("resetPasswordForm");
-  let generatedCode = "";
+  //// ==================== نسيت كلمة المرور ====================
+  //const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+  //const verifyCodeForm     = document.getElementById("verifyCodeForm");
+  //const resetPasswordForm  = document.getElementById("resetPasswordForm");
+  //let generatedCode = "";
 
-  if (forgotPasswordForm) {
-    forgotPasswordForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const email = document.getElementById("resetEmail").value.trim();
-      if (!email) return alert("من فضلك أدخل البريد الإلكتروني");
+  //if (forgotPasswordForm) {
+  //  forgotPasswordForm.addEventListener("submit", e => {
+  //    e.preventDefault();
+  //    const email = document.getElementById("resetEmail").value.trim();
+  //    if (!email) return alert("من فضلك أدخل البريد الإلكتروني");
 
-      generatedCode = "123456"; // كود تجريبي
-      alert("تم إرسال الكود إلى بريدك الإلكتروني ✅");
-      forgotPasswordForm.style.display = "none";
-      verifyCodeForm.style.display = "grid";
-    });
-  }
+  //    generatedCode = "123456"; // كود تجريبي
+  //    alert("تم إرسال الكود إلى بريدك الإلكتروني ✅");
+  //    forgotPasswordForm.style.display = "none";
+  //    verifyCodeForm.style.display = "grid";
+  //  });
+  //}
 
-  if (verifyCodeForm) {
-    verifyCodeForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const codeInput = document.getElementById("verificationCode").value.trim();
-      if (codeInput === generatedCode) {
-        alert("✅ تم التحقق من الكود بنجاح");
-        verifyCodeForm.style.display = "none";
-        resetPasswordForm.style.display = "grid";
-      } else {
-        alert("❌ الكود غير صحيح");
-      }
-    });
-  }
+  //if (verifyCodeForm) {
+  //  verifyCodeForm.addEventListener("submit", e => {
+  //    e.preventDefault();
+  //    const codeInput = document.getElementById("verificationCode").value.trim();
+  //    if (codeInput === generatedCode) {
+  //      alert("✅ تم التحقق من الكود بنجاح");
+  //      verifyCodeForm.style.display = "none";
+  //      resetPasswordForm.style.display = "grid";
+  //    } else {
+  //      alert("❌ الكود غير صحيح");
+  //    }
+  //  });
+  //}
 
-  if (resetPasswordForm) {
-    resetPasswordForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const pass = document.getElementById("newPassword").value.trim();
-      const confirmPass = document.getElementById("confirmNewPassword").value.trim();
+  //if (resetPasswordForm) {
+  //  resetPasswordForm.addEventListener("submit", e => {
+  //    e.preventDefault();
+  //    const pass = document.getElementById("newPassword").value.trim();
+  //    const confirmPass = document.getElementById("confirmNewPassword").value.trim();
 
-      if (pass.length < 6) return alert("كلمة المرور يجب أن تكون على الأقل 6 أحرف");
-      if (pass !== confirmPass) return alert("كلمة المرور غير متطابقة");
+  //    if (pass.length < 6) return alert("كلمة المرور يجب أن تكون على الأقل 6 أحرف");
+  //    if (pass !== confirmPass) return alert("كلمة المرور غير متطابقة");
 
-      alert("✅ تم تغيير كلمة المرور بنجاح");
-      resetPasswordForm.reset();
-      showSection(loginSection); // رجوع لصفحة تسجيل الدخول
-    });
-  }
+  //    alert("✅ تم تغيير كلمة المرور بنجاح");
+  //    resetPasswordForm.reset();
+  //    showSection(loginSection); // رجوع لصفحة تسجيل الدخول
+  //  });
+  //}
 
   // ==================== القائمة الجانبية ====================
   const menu      = document.querySelector('.buttomsmallscreen');

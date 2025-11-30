@@ -126,7 +126,7 @@ namespace Luno_platform.Controllers
         public IActionResult pageExam(int Examid)
         {
 
-            int studentid = 1;
+            int studentid = 5;
 
             if (_exam_Service.HasStudentTakenExam(studentid, Examid))
             {
@@ -151,7 +151,7 @@ namespace Luno_platform.Controllers
         [Route("homepage/pageTask/{Taskid}")]
         public IActionResult pageTask(int Taskid)
         {
-            int studentid = 1;
+            int studentid = 5;
             if (_exam_Service.HasStudentTakenTask(studentid, Taskid))
             {
                 ViewBag.ErrorMessage = "لقد قمت بأداء هذا لتاسك  من قبل ولا يمكنك الدخول مرة أخرى.";
