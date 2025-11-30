@@ -56,11 +56,15 @@ namespace Luno.Controllers
             {
                 return NotFound("الطالب غير موجود");
             }
-           
+            var progress = parentRepo.GetStudentProgress(student.StudentID);
+
             var vm = new mainPage_Student_ViewModel
             {
                 Student = student,
-                Courses = istudentService.GetStudentCourses(userId)
+                Courses = istudentService.GetStudentCourses(userId),
+                OverallProgress = progress.OverallProgress,
+                ExamProgress = progress.ExamProgress,
+                TaskProgress = progress.TaskProgress
             };
 
             return View(vm);
