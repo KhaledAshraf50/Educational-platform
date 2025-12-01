@@ -1,0 +1,64 @@
+﻿@model List<Luno_platform.Viewmodel.InstructorCoursesVM>
+
+
+@{
+    Layout = "_InstructorDashboard";
+}
+
+@section stylee {
+    <link rel="stylesheet" href="~/assets/css/mycourses.CSS">
+}
+<div class="content">
+<div class="top-icons">
+    <button class="icon-btn" id="notification-btn">
+        <i class="fa-solid fa-bell"></i>
+    </button>
+
+    <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+        <i class="fa-solid fa-circle-user"></i>
+    </button>
+</div>
+
+
+<h2 class="mb-4">كورساتي</h2>
+
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th>اسم الكورس</th>
+            <th>المادة</th>
+            <th>الصف</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CourseName</td>
+                <td>@c.SubjectName</td>
+                <td>@c.ClassName</td>
+                <td>@c.Price</td>
+
+                <td>
+                        @if (c.Status == "Active" || c.Status == "Approved")
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                        else if (c.Status == "Archive" ||c.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                    else 
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+</div>

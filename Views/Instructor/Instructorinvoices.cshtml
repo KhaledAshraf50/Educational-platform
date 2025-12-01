@@ -27,9 +27,11 @@
                     <p>آخر الفواتير الخاصة بالكورسات</p>
                 </div>
 
-                <form class="search-box" role="search">
-                    <input type="search" placeholder="ابحث عن فاتورة..." />
+                <form class="search-box" role="search" method="get" action="@Url.Action("Instructorinvoices")">
+                    <input type="search" name="searchTerm" placeholder="ابحث عن فاتورة..." value="@ViewBag.SearchTerm" />
+                    <button type="submit" class="btn btn-primary btn-sm">بحث</button>
                 </form>
+
             </div>
 
             <div class="table-responsive">

@@ -1,0 +1,75 @@
+﻿@model Luno_platform.Viewmodel.AddQuestionVM
+
+<h2 class="mb-4 text-center text-primary fw-bold">➕ إضافة أسئلة الامتحان</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="ExamId" />
+
+    <div class="accordion" id="questionsAccordion">
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            var cardColor = i % 2 == 0 ? "bg-light" : "bg-white";
+            <div class="accordion-item shadow-sm mb-3 rounded">
+                <h2 class="accordion-header" id="heading@(i)">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(i)" aria-expanded="false" aria-controls="collapse@(i)">
+                        السؤال @(i + 1)
+                    </button>
+                </h2>
+                <div id="collapse@(i)" class="accordion-collapse collapse" aria-labelledby="heading@(i)" data-bs-parent="#questionsAccordion">
+                    <div class="accordion-body @cardColor rounded p-3" style="transition: transform 0.2s;">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">📝 نص السؤال</label>
+                            <input asp-for="Questions[@i].QuestionText" class="form-control" placeholder="أدخل نص السؤال" required />
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">🅰 الخيار أ</label>
+                                <input asp-for="Questions[@i].ChooseA" class="form-control" placeholder="الخيار أ" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">🅱 الخيار ب</label>
+                                <input asp-for="Questions[@i].ChooseB" class="form-control" placeholder="الخيار ب" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">🅾 الخيار ج</label>
+                                <input asp-for="Questions[@i].ChooseC" class="form-control" placeholder="الخيار ج" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">🆓 الخيار د</label>
+                                <input asp-for="Questions[@i].ChooseD" class="form-control" placeholder="الخيار د" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label fw-bold">✅ الإجابة الصحيحة</label>
+                            <input asp-for="Questions[@i].CorrectAnswer" class="form-control text-center fw-bold" placeholder="أ/ب/ج/د" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm" style="font-size:1.1rem;">
+            💾 حفظ جميع الأسئلة
+        </button>
+    </div>
+</form>
+
+<style>
+    .accordion-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .form-label {
+        color: #333;
+    }
+
+    input.form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+    }
+</style>
