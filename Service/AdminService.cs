@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Luno_platform.Service
 {
-    public class AdminService : IAdminService
+    public class AdminService : BaseService<Admin>,IAdminService
     {
         private readonly IAdminRepository _adminRepo;
 
-        public AdminService(IAdminRepository adminRepo)
+        public AdminService(IAdminRepository adminRepo) : base(adminRepo)
         {
             _adminRepo = adminRepo;
         }
-
+      
         public AdminDashboardViewModel GetDashboardData(int userId)
         {
             var admin = _adminRepo.GetAdminByUserId(userId);
@@ -71,21 +71,37 @@ namespace Luno_platform.Service
             _adminRepo.Save();
         }
 
-        //public bool ChangeParentPassword(int parentId, string oldPassword, string newPassword)
-        //{
-        //    var parent = parentRepo.GetParent(parentId);
-        //    if (parent == null) return false;
-        //    var hasher = new PasswordHasher<Users>();
-        //    var result = hasher.VerifyHashedPassword(parent.User, parent.User.PasswordHash, oldPassword);
-        //    if (result == PasswordVerificationResult.Failed)
-        //    {
-        //        return false;
-        //    }
-        //    parent.User.PasswordHash = newPassword;
-        //    _adminRepo.Update(parent);
-        //    _adminRepo.Save();
-        //    return true;
-        //}
+        public Users GetAdminByUserId(int userId)
+        {
+           return _adminRepo.GetAdminByUserId(userId);
+        }
 
+        public Admin GetAdmin(int userId)
+        {
+            return _adminRepo.GetAdmin(userId);
+        }
+
+        IEnumerable<Admin> I_BaseService<Admin>.GetAll()
+        {
+            return GetAll();
+        }
+
+        public bool ChangeAdminPassword(int adminId, string oldPassword, string newPassword)
+        {
+            var admin = _adminRepo.GetAdmin(adminId);
+            if (admin == null) return false;
+            var hasher = new PasswordHasher<Users>();
+            var result = hasher.VerifyHashedPassword(admin.User, admin.User.PasswordHash, oldPassword);
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return false;
+            }
+            //admin.User.PasswordHash = newPassword; ده بيخزن الباسورد مش متشفر
+            // تشفير الباسورد الجديد
+            admin.User.PasswordHash = hasher.HashPassword(admin.User, newPassword);
+            _adminRepo.Update(admin);
+            _adminRepo.Save();
+            return true;
+        }
     }
 }

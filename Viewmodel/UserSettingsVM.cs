@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Luno_platform.Viewmodel
 {
@@ -19,6 +20,11 @@ namespace Luno_platform.Viewmodel
 
         public List<Classes> AllClasses { get; set; }
         //public ChangePasswordVM PasswordModel { get; set; } = new ChangePasswordVM();
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        public string ConfirmNewPassword { get; set; }
     }
 
 }

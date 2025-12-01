@@ -12,5 +12,6 @@ namespace Luno_platform.Service
          List<Payments> GetPayments(int studentId);
         int? GetStudentIdByUserId(int userId);
         int getStudentId(int userid);
+        public bool ChangeStudentPassword(int studentId, string oldPassword, string newPassword);
         }
     }
