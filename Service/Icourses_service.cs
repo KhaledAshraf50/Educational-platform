@@ -8,6 +8,8 @@ namespace Luno_platform.Service
         List<Courses> showAllcoursebyclassandinstructor(int instructorid, int classid);
         List<Classes> GetAllClasses();
         List<Subject> GetAllSubjects();
+        List<Courses> showallcourses();
+
 
 
 

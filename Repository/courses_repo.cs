@@ -112,6 +112,12 @@ namespace Luno_platform.Repository
 
                 .ToList();
         }
+
+        public List<Courses> ShowAllCourses()
+        {
+            return _Context.Courses.ToList();
+        }
+
     }
 
 

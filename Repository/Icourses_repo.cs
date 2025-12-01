@@ -10,5 +10,7 @@ namespace Luno_platform.Repository
         List<Classes> GetAllClasses();
         List<Subject> GetAllSubjects();
 
+        List<Courses> showallcourses();
+
     }
 }
