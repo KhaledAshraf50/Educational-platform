@@ -73,6 +73,7 @@ namespace Luno_platform.Repository
          price = sc.Course.price,
          Image = sc.Course.Image ?? "default-image.png",
          createdAt = sc.Course.createdAt,
+         status = sc.Course.status,
          instructorID = sc.Course.instructorID,
          SubjectId = sc.Course.SubjectId,
          Subjects = new Subject

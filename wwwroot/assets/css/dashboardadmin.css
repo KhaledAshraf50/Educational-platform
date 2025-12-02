@@ -110,7 +110,7 @@ body {
 }
 
 /* Content */
-.content {
+/*.content {
     margin-right: 70px;
     padding: 20px;
     transition: margin-right 0.3s;
@@ -119,7 +119,7 @@ body {
 .sidebar:hover~.content {
     margin-right: 220px;
 }
-
+*/
 .top-icons {
     display: flex;
     justify-content: flex-end;

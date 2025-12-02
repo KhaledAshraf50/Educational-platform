@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Viewmodel;
 using System.Collections.Generic;
 
 namespace Luno_platform.Repository
@@ -12,5 +13,10 @@ namespace Luno_platform.Repository
         int GetTotalCoursesPending();
         decimal GetTotalPayments();
         public Admin GetAdmin(int userId);
+        public List<Courses> GetallActiveCourses();
+        public List<Courses> GetallpendingCourses();
+        public AdminCourseControlVM GetCourseControl();
+        public void ChangeCourseStatus(int courseId, string newStatus);
+        public void DeleteCourse(int courseId);
     }
 }
