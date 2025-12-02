@@ -131,7 +131,11 @@
                                             تعديل
                                         </button>
 
-                                        <button class="action-btn btn-questions" onclick="window.location.href='exam-questions.html?id=@e.Id'">الأسئلة</button>
+                                        <button class="action-btn btn-danger me-1 mb-1 mb-sm-0"
+                                                onclick="confirmDelete(@e.Id)">
+                                            حذف
+                                        </button>
+
                                     </div>
                                 </td>
                             </tr>
@@ -144,3 +148,12 @@
     </div>
 
 </div>
+<script>
+    function confirmDelete(examId) {
+
+        if (confirm("⚠️ هل أنت متأكد من حذف الامتحان؟ سيتم حذف كل الأسئلة المرتبطة به!")) {
+            window.location.href =
+                '@Url.Action("DeleteExam", "Instructor")' + '?id=' + examId;
+        }
+    }
+</script>

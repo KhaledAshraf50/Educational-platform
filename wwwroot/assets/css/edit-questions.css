@@ -1,0 +1,113 @@
+:root {
+    --primary: #092c4c;
+    --secondary: #F2994A;
+    --light-bg: #f6f8fb;
+    --card-bg: #ffffff;
+    --border-radius: 12px;
+}
+
+body {
+    background-color: var(--light-bg);
+}
+
+/* Container */
+
+.questions-page {
+    max-width: 950px;
+    margin: 35px auto;
+}
+
+/* Title */
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title h3 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* Question Card */
+
+.question-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-right: 6px solid var(--secondary);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+.q-header {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 .15rem rgba(242,153,74,.25);
+}
+
+/* Question Input */
+
+.form-control-lg {
+    background: #fdfefe;
+    font-size: 15px;
+}
+
+/* Answers Grid */
+
+.answers .form-control {
+    text-align: center;
+}
+
+/* Correct Answer */
+.correct-answer {
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 8px;
+}
+
+.correct-answer label {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Save Button */
+
+.save-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, var(--primary), #0f4270);
+    color: #fff;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, var(--secondary), #f1a64c);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    color: white;
+}
