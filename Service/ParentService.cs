@@ -113,7 +113,9 @@ namespace Luno_platform.Service
             {
                 return false;
             }
-            parent.User.PasswordHash = newPassword;
+            //parent.User.PasswordHash = newPassword;
+            // تشفير الباسورد الجديد
+            parent.User.PasswordHash = hasher.HashPassword(parent.User, newPassword);
             parentRepo.Update(parent);
             parentRepo.Save();
             return true;

@@ -2,10 +2,6 @@
     const tabsContainer = document.querySelector(".settings-tabs");
 
     if (!tabsContainer) return;
-
-    if (!tabsContainer) return; 
-
-
     const tabs = Array.from(tabsContainer.querySelectorAll("button"));
     const forms = Array.from(document.querySelectorAll(".settings-form"));
 

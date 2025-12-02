@@ -13,6 +13,7 @@ namespace Luno_platform.Repository
         int? GetStudentIdByUserId(int userId);
         public Student GetByUserId(int userId);
         int getStudentId(int userid);
+        public Student GetStudentt(int userId);
 
     }
 }

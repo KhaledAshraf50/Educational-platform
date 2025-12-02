@@ -106,7 +106,7 @@ namespace Luno_platform.Controllers
             if (file == null || file.Length == 0)
             {
                 TempData["ErrorFile"] = "من فضلك اختر صورة صحيحة";
-                return RedirectToAction("Settings");
+                return RedirectToAction("setting");
             }
 
             string[] validExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
@@ -127,48 +127,43 @@ namespace Luno_platform.Controllers
 
             _adminService.UpdateImage(userId, imageUrl);
             TempData["SucessFile"] = "تم تغيير الصوره بنجاح ";
-            return RedirectToAction("Settings");
+            return RedirectToAction("setting");
         }
-        //public IActionResult DeleteImage()
-        //{
-        //    int userId = 2;
-        //    //int userId = GetUserId();
-        //    //var parent = _parentRepo.GetByUserId(userId);
-        //    //if (parent == null) return NotFound();
+        public IActionResult DeleteImage()
+        {
+            int userId = GetUserId();
+            var admin = _adminService.GetAdmin(userId);
+            if (admin == null) return NotFound();
+            if (!string.IsNullOrEmpty(admin.User.Image))
+            {
+                string imgPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    admin.User.Image.TrimStart('/')
+                );
 
-        //    //int parentId = parent.ID;
+                if (System.IO.File.Exists(imgPath))
+                    System.IO.File.Delete(imgPath);
+            }
 
-        //    if (!string.IsNullOrEmpty(parent.User.Image))
-        //    {
-        //        string imgPath = Path.Combine(
-        //            Directory.GetCurrentDirectory(),
-        //            "wwwroot",
-        //            parent.User.Image.TrimStart('/')
-        //        );
+            admin.User.Image = "~/assets/imgs/user_image.png";
 
-        //        if (System.IO.File.Exists(imgPath))
-        //            System.IO.File.Delete(imgPath);
-        //    }
+            _adminService.Update(admin);
+            _adminService.Save();
 
-        //    parent.User.Image = "~/assets/imgs/user_image.png";
+            TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
 
-        //    _parentService.Update(parent);
-        //    _parentService.Save();
-
-        //    TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
-
-        //    return RedirectToAction("Settings");
-        //}
+            return RedirectToAction("setting");
+        }
 
         [HttpPost]
         public IActionResult UpdateAdminSetting(AdminSettingVM AVM)
         {
             int userId = GetUserId();
-            //int userId = GetUserId();
-            //var parent = _parentRepo.GetByUserId(userId);
-            //if (parent == null) return NotFound();
+            var admin = _adminService.GetAdmin(userId);
+            if (admin == null) return NotFound();
 
-            AVM.AdminId = userId;   // إجبارًا نستخدم ParentId الصحيح
+            //AVM.AdminId = admin.ID;   
             
             bool ok = _adminService.UpdateAdminSetting(AVM);
 
@@ -179,27 +174,25 @@ namespace Luno_platform.Controllers
             }
 
             TempData["Sucess"] = "تم تحديث البيانات بنجاح";
-            return RedirectToAction("Settings");
+            return RedirectToAction("setting");
         }
 
-        //public IActionResult ChangePassword(ParentSettingVM vm)
-        //{
-        //    int userId = GetUserId();
-        //    var parent = _parentRepo.GetByUserId(userId);
-        //    if (parent == null) return NotFound();
+        public IActionResult ChangePassword(AdminSettingVM AVM)
+        {
+            int userId = GetUserId();
+            var admin = _adminService.GetAdmin(userId);
+            if (admin == null) return NotFound();
 
-        //    int parentId = parent.ID;
+            //int adminId = admin.ID;
+            bool ok = _adminService.ChangeAdminPassword(AVM.AdminId, AVM.CurrentPassword, AVM.ConfirmNewPassword);
+            if (!ok)
+            {
+                TempData["Error"] = "كلمه المرور غير صحيحة!!";
+                return RedirectToAction("Settings");
+            }
 
-        //    bool ok = _parentService.ChangeParentPassword(parentId, vm.Password, vm.ConfirmPassword);
-
-        //    if (!ok)
-        //    {
-        //        TempData["Error"] = "كلمه المرور غير صحيحة!!";
-        //        return RedirectToAction("Settings");
-        //    }
-
-        //    TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
-        //    return RedirectToAction("Settings");
-        //}
+            TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
+            return RedirectToAction("setting");
+        }
     }
 }

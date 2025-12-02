@@ -47,6 +47,10 @@ namespace Luno_platform.Repository
 
             return student;
         }
+        public Student GetStudentt(int userId)
+        {
+            return _Context.Students.Include(u => u.User).FirstOrDefault(u => u.UserId == userId);
+        }
         public Student GetByUserId(int userId)
         {
             return _Context.Students

@@ -23,10 +23,6 @@ public class AdminSettingVM
     public string CurrentPassword { get; set; }
 
     [DataType(DataType.Password)]
-    public string NewPassword { get; set; }
-
-    [DataType(DataType.Password)]
-    [Compare("NewPassword", ErrorMessage = "كلمة المرور الجديدة وتأكيدها غير متطابقين")]
     public string ConfirmNewPassword { get; set; }
 
     // مثال على إضافة حالة الحساب أو الأدوار
