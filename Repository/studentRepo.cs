@@ -115,54 +115,7 @@ namespace Luno_platform.Repository
             return coursesQuery.ToList();
         }
 
-        //public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int studentId)
-        //{
-        //    return _Context.Student_Courses
-        //        .Where(sc => sc.StudentId == studentId)
-        //        .Include(sc => sc.Course)
-        //            .ThenInclude(c => c.Subjects)
-        //        .Include(sc => sc.Student)
-        //            .ThenInclude(st => st.StudentStatistics)
-        //        .Select(sc => new StudentCourseFullDataVM
-        //        {
-        //            CourseId = sc.Course.CourseId,
-        //            CourseName = sc.Course.CourseName,
-        //            CourseDescription = sc.Course.description,
-        //            SubjectNameAR = sc.Course.Subjects.SubjectNameAR,
-        //            SubjectNameEN = sc.Course.Subjects.SubjectNameEN,
-        //            Degree = sc.cou.Student..StudentStatistics
 
-        //                        .FirstOrDefault(ss => ss.StudentID == sc.StudentId)
-        //                        .degree
-        //        })
-        //        .ToList();
-        //}
-        //public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int studentId)
-        //{
-        //    return _Context.Student_Courses
-        //        .Where(sc => sc.StudentId == studentId)
-        //        .Include(sc => sc.Course)
-        //            .ThenInclude(c => c.Subjects)
-        //        .Include(sc => sc.Student)
-        //            .ThenInclude(st => st.StudentStatistics)
-        //        .Include(sc => sc.Course)
-        //            .ThenInclude(c => c.CourseContent)
-        //        .Select(sc => new StudentCourseFullDataVM
-        //        {
-        //            CourseId = sc.Course.CourseId,
-        //            CourseName = sc.Course.CourseName,
-        //            CourseDescription = sc.Course.description,
-        //            SubjectNameAR = sc.Course.Subjects.SubjectNameAR,
-        //            SubjectNameEN = sc.Course.Subjects.SubjectNameEN,
-
-        //            // جلب أول درجة مرتبطة بالامتحان الخاص بالكورس
-        //            Degree = sc.Student.StudentStatistics
-        //                        .Where(ss => ss.ExamId == sc.Course.CourseContent.ExamId)
-        //                        .Select(ss => (decimal?)ss.degree)
-        //                        .FirstOrDefault()
-        //        })
-        //        .ToList();
-        //}
         public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int userId)
         {
             int? studentId = GetStudentIdByUserId(userId);
@@ -267,6 +220,18 @@ namespace Luno_platform.Repository
             }
 
             return student.StudentID;
+        }
+
+        public bool isSubdcrip(int studentid, int courseid)
+        {
+            var sub = _Context.Student_Courses.FirstOrDefault(s => s.StudentId == studentid && s.CourseId == courseid);
+
+            if (sub ==null)
+            {
+                return false;
+
+            }
+            return true;
         }
     }
 }

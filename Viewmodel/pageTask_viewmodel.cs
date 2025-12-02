@@ -6,5 +6,6 @@ namespace Luno_platform.Viewmodel
     {
         public List<Question> questions { get; set; }
         public Tasks Taskinfo { get; set; }
+        public int taskid { get; set; }
     }
 }

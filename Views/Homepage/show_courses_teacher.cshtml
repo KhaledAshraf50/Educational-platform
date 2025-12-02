@@ -11,6 +11,7 @@
 
     @foreach(var course in Model)
     {
+
         <div class="card-courses">
             <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
             <div class="body-course">
@@ -29,14 +30,14 @@
 
                     </div>
                     <div class="bodyleft">
-                        <a href="/Homepage/show_details_courses/@course.CourseId" class="mt-2"> الدخول للكوس</a>
-                        <form asp-controller="Payment" asp-action="Pay" method="post">
+                        <a href="/Homepage/show_details_courses/@course.CourseId" class="enroll-btn btn"> الدخول للكوس</a>
+                        @* <form asp-controller="Payment" asp-action="Pay" method="post">
                             <input type="hidden" name="courseId" value="@course.CourseId" />
                             <input type="hidden" name="amount" value="@course.price" />
                             <button type="submit" class="enroll-btn btn">
                                 اشترك الآن
                             </button>
-                        </form>
+                        </form> *@
                     </div>
 
                 </div>

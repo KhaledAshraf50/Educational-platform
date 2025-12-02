@@ -1,18 +1,14 @@
-﻿@model Courses
+﻿@using Luno_platform.Viewmodel
+@model detailscourse_viewmodel
 
 @{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
-
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
 
 @if (TempData["Error"] != null)
 {
-    // alert-dismissible → تجعل الرسالة قابلة للإغلاق
-    //<button class="btn-close"...> → الزر اللي المستخدم يقدر يدوسه لإخفاء الرسالة
-    //fade show → لإضافة تأثير ظهور وخفاء لطيف
-    //data-bs-dismiss="alert" → يخلي Bootstrap يتعامل مع الزر ويخفي الرسالة تلقائيًا
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         @TempData["Error"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -22,33 +18,41 @@
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
 
-        <!-- هيدر الكورس -->
+        <!-- هيدر -->
         <div class="course-header">
-            <img src="@Url.Content(Model.Image)" alt="صورة الكورس" class="course-image" />
+            <img src="@Url.Content(Model.Courses.Image)" alt="صورة الكورس" class="course-image" />
             <div class="course-info">
-                <h1 class="course-title">@Model.CourseName</h1>
+                <h1 class="course-title">@Model.Courses.CourseName</h1>
                 <p class="course-teacher">
                     المدرس:
-                    <span>@Model.Instructor.User.fname @Model.Instructor.User.lastName</span>
+                    <span>@Model.Courses.Instructor.User.fname @Model.Courses.Instructor.User.lastName</span>
                 </p>
-                <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.price</span></p>
-                @* <a class="enroll-btn btn" asp-controller="Payment" asp-action="Pay" asp-route-courseId="@Model.CourseId">اشترك الآن</a> *@
-                <!-- زرار الدفع -->
-                <form asp-controller="Payment" asp-action="Pay" method="post">
-                    <input type="hidden" name="courseId" value="@Model.CourseId" />
-                    <input type="hidden" name="amount" value="@Model.price" />
-                    <button type="submit" class="enroll-btn btn">
-                        اشترك الآن 
+                <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.Courses.price</span></p>
+
+                @if (@Model.issubscrip)
+                {
+                    <button class="enroll-btn btn" disabled>
+                        أنت مشترك بالفعل
                     </button>
-                </form>
+                }
+                else
+                {
+                    <form asp-controller="Payment" asp-action="Pay" method="post">
+                        <input type="hidden" name="courseId" value="@Model.Courses.CourseId" />
+                        <input type="hidden" name="amount" value="@Model.Courses.price" />
+                        <button type="submit" class="enroll-btn btn">
+                            اشترك الآن
+                        </button>
+                    </form>
+                }
 
             </div>
         </div>
 
-        <!-- وصف الكورس -->
+        <!-- الوصف -->
         <div class="course-description">
             <h2>عن الكورس</h2>
-            <p>@Model.description</p>
+            <p>@Model.Courses.description</p>
         </div>
 
         <!-- المحتوى -->
@@ -67,51 +71,58 @@
                         </button>
                     </h2>
 
+                    <!-- محتوى واحد فقط -->
                     <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#accordionLevel1">
                         <div class="accordion-body">
 
-                            <!-- Video URLs -->
-                            @if (Model.CourseContent != null)
+                            @if (Model.Courses.CourseContent != null)
                             {
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url1))
+                                var locked = !Model.issubscrip;
+
+                                <!-- Url1 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url1))
                                 {
-                                    <div class="desc_content">
-                                        <p>@Model.CourseContent.nameurl1</p>
-                                        <a href="@Model.CourseContent.Url1">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.CourseContent.nameurl1</p>
+                                        <a href="@Model.Courses.CourseContent.Url1" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url2))
+                                <!-- Url2 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url2))
                                 {
-                                    <div class="desc_content">
-                                        <p>@Model.CourseContent.nameurl2</p>
-                                        <a href="@Model.CourseContent.Url2">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.CourseContent.nameurl2</p>
+                                        <a href="@Model.Courses.CourseContent.Url2" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url3))
+                                <!-- Url3 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url3))
                                 {
-                                    <div class="desc_content">
-                                        <p>@Model.CourseContent.nameurl3</p>
-                                        <a href="@Model.CourseContent.Url3">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.CourseContent.nameurl3</p>
+                                        <a href="@Model.Courses.CourseContent.Url3" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Exam -->
-                                @if (Model.CourseContent.Exams != null)
+                                @if (Model.Courses.CourseContent.Exams != null)
                                 {
-                                    <div class="desc_content">
-                                        <p>@Model.CourseContent.Exams.ExamName</p>
-                                        <a href="/homepage/pageExam/@Model.CourseContent.Exams.ExamID">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.CourseContent.Exams.ExamName</p>
+                                        <a href="/homepage/pageExam/@Model.Courses.CourseContent.Exams.ExamID"
+                                           class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Task -->
-                                @if (Model.CourseContent.Tasks != null)
+                                @if (Model.Courses.CourseContent.Tasks != null)
                                 {
-                                    <div class="desc_content">
-                                        <p>@Model.CourseContent.Tasks.TaskName</p>
-                                        <a href="/homepage/pageTask/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.CourseContent.Tasks.TaskName</p>
+                                        <a href="/homepage/pageTask/@Model.Courses.CourseContent.Tasks.TaskID"
+                                           class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
                             }
@@ -122,18 +133,26 @@
 
                         </div>
                     </div>
+
                 </div>
 
             </div>
+
         </div>
 
     </div>
 </section>
 
-
 <script>
-          setTimeout(() => {
+    // مسح الرسالة
+    setTimeout(() => {
         document.querySelectorAll(".alert").forEach(a => a.remove());
     }, 4000);
 
+    // منع انتقال اللينكات المقفولة
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("locked-link")) {
+            e.preventDefault();
+        }
+    });
 </script>

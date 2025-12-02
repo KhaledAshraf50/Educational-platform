@@ -208,7 +208,7 @@
 <div class="exam-main-layout">
 
     <div class="left-panel">
-        <form asp-action="SubmitTask" asp-controller="Task" method="post">
+        <form asp-action="SubmitTask" asp-controller="Exam" method="post">
             <input type="hidden" name="TaskID" value="@Model.Taskinfo.TaskID" />
 
             @for (int i = 0; i < Model.questions.Count; i++)

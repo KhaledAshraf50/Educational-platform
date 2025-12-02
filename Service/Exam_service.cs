@@ -15,6 +15,10 @@ namespace Luno_platform.Service
         {
             return _examRepo.GetExamsbyid(Examid);
         }
+        public List<Question> GetTasksbyid(int Examid)
+        {
+            return _examRepo.GetTasksbyid(Examid);
+        }
 
         //public bool HasStudentTakenExam(int studentId, int examId)
         //{
@@ -64,5 +68,47 @@ namespace Luno_platform.Service
         }
 
 
+        public int CorrectTaskAndSave(int TaskId, int studentId, Dictionary<int, string> answers)
+        {
+            int totalDegree = 0;
+
+            var questions = _examRepo.GetTasksbyid(TaskId);
+
+            foreach (var q in questions)
+            {
+                answers.TryGetValue(q.questionID, out string studentAnswer);
+
+                // 1) حفظ الإجابة
+                var ans = new StudentAnswer
+                {
+                    StudentID = studentId,
+                    TaskId = TaskId,
+                    QuestionId = q.questionID,
+                    studentanswer = studentAnswer ?? "No Answer"
+                };
+                _examRepo.SaveStudentAnswer(ans);
+
+                // 2) التصحيح
+                if (!string.IsNullOrEmpty(studentAnswer) &&
+                    studentAnswer.Trim().ToLower() == q.correctAnswer.Trim().ToLower())
+                {
+                    totalDegree += q.degree;
+                }
+            }
+
+            // 3) حفظ النتيجة
+            var stats = new studentstaistics_in_task
+            {
+                StudentID = studentId,
+                TaskId = TaskId,
+                degree = totalDegree
+            };
+
+            _examRepo.SaveStudentStatisticsintask(stats);
+
+            return totalDegree;
+        }
+
+      
     }
 }

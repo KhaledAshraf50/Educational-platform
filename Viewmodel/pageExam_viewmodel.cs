@@ -6,5 +6,7 @@ namespace Luno_platform.Viewmodel
     {
         public List<Question> questions { get; set; }
         public Exams examinfo { get; set; }
+        public  bool issubscrip { get; set; }
+        public int courseID { get; set; }
     }
 }

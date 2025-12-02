@@ -93,6 +93,9 @@ namespace Luno_platform
             builder.Services.AddScoped<IUserRepo, UserRepo>();
             builder.Services.AddScoped<IClassRepo, ClassRepo>();
 
+            builder.Services.AddScoped<Icourses_repo, courses_repo>();
+            builder.Services.AddScoped<Icourses_service, courses_service>();
+
 
             // =============================
             // Build the app

@@ -224,7 +224,7 @@
 <div class="exam-main-layout">
 
     <div class="left-panel">
-        <form method="post" action="/Exam/SubmitExam" id="examForm">
+        <form method="post" action="/Exam/SubmitExam/@Model.issubscrip/@Model.courseID" id="examForm">
             <input type="hidden" name="ExamID" value="@Model.examinfo.ExamID" />
 
             @for (int i = 0; i < Model.questions.Count; i++)

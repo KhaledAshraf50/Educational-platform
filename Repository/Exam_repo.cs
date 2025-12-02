@@ -16,6 +16,12 @@ namespace Luno_platform.Repository
                 .ToList();
         }
 
+        public List<Question> GetTasksbyid(int TaskId)
+        {
+            return _Context.Questions
+                            .Where(q => q.TaskId == TaskId)
+                           .ToList();
+        }
 
         public void SaveStudentAnswer(StudentAnswer answer)
         {
@@ -28,6 +34,11 @@ namespace Luno_platform.Repository
             _Context.StudentStatistics.Add(stats);
             _Context.SaveChanges();
         }
-       
+
+        public void SaveStudentStatisticsintask(studentstaistics_in_task stats)
+        {
+            _Context.Studentstaistics_In_Tasks.Add(stats);
+            _Context.SaveChanges();
+        }
     }
 }

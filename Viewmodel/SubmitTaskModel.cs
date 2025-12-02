@@ -4,5 +4,7 @@
     {
         public Dictionary<int, string> Answers { get; set; }
         public int TaskID { get; set; }
+        public int courseID { get; set; }
+        public bool issubsctip { get; set; }
     }
 }

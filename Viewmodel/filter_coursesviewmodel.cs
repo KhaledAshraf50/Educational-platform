@@ -7,11 +7,12 @@ namespace Luno_platform.Viewmodel
     {
         // فلاتر المستخدم
         public int? subjectid { get; set; }
-        public string Level { get; set; }
+        public int ? Level { get; set; }
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }
 
-        public string instructorname { get; set; }
+
+        public string? coursesname { get; set; }
 
 
         // البيانات اللي هنرجعها للصفحة

@@ -19,105 +19,141 @@
 
     <div class="main-wrapper">
         <!-- Sidebar Filter -->
-        <aside class="filter-sidebar">
-            <div class="filter-header">
-                <h2 class="filter-title">الفلاتر</h2>
-                @* <span class="course-count" id="courseCount">8 كورس</span> *@
-            </div>
-
-            <!-- Search Filter -->
-            <div class="filter-group">
-                <label class="filter-label">البحث عن كورس</label>
-                <div class="search-wrapper">
-                    <input type="text"
-                           id="searchInput"
-                           class="filter-input search-input"
-                           placeholder="ابحث باسم الكورس...">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
+        <form asp-controller="courses" asp-action="filter" method="post"  >
+            <aside class="filter-sidebar">
+                <div class="filter-header">
+                    <h2 class="filter-title">الفلاتر</h2>
+                    
                 </div>
-            </div>
 
-            <!-- Status Filter -->
-            <div class="filter-group">
-                <label class="filter-label">الحالة</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="status-filter" value="نشط" checked>
-                        <span>نشط</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="status-filter" value="قريب">
-                        <span>قريب</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="status-filter" value="مغلق">
-                        <span>مغلق</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Price Range Filter -->
-            <div class="filter-group">
-                <label class="filter-label">نطاق السعر</label>
-                <div class="price-range">
-                    <div class="price-input">
-                        <label class="price-label">الحد الأدنى</label>
-                        <input type="range"
-                               id="minPrice"
-                               class="price-slider"
-                               min="0"
-                               max="1000"
-                               value="0">
-                        <span class="price-value" id="minPriceValue">0</span>
-                    </div>
-                    <div class="price-input">
-                        <label class="price-label">الحد الأقصى</label>
-                        <input type="range"
-                               id="maxPrice"
-                               class="price-slider"
-                               min="0"
-                               max="1000"
-                               value="1000">
-                        <span class="price-value" id="maxPriceValue">1000</span>
+                <!-- Search Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">البحث عن كورس</label>
+                    <div class="search-wrapper">
+                        <input asp-for="coursesname" value="@Model.coursesname" type="text"
+                               id="searchInput"
+                               class="filter-input search-input"
+                               placeholder="ابحث باسم الكورس...">
+                       
                     </div>
                 </div>
-            </div>
 
-            <!-- Subject Filter -->
-            <div class="filter-group">
-                <label class="filter-label">المادة</label>
-                <select id="subjectFilter" class="filter-select">
-                    <option value="">جميع المواد</option>
-                    <option value="لغة عربية">لغة عربية</option>
-                    <option value="رياضيات">رياضيات</option>
-                    <option value="علوم">علوم</option>
-                    <option value="إنجليزي">إنجليزي</option>
-                </select>
-            </div>
+            
+          
 
-            <!-- Level Filter -->
-            <div class="filter-group">
-                <label class="filter-label">المستوى</label>
-                <select id="levelFilter" class="filter-select">
-                    <option value="">جميع المستويات</option>
-                    <option value="ابتدائي">ابتدائي</option>
-                    <option value="إعدادي">إعدادي</option>
-                    <option value="ثانوي">ثانوي</option>
-                </select>
-            </div>
+                <!-- Price Range Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">نطاق السعر</label>
+                    <div class="price-range">
+                        <div class="price-input">
+                            <label class="price-label">الحد الأدنى</label>
+                            <input asp-for="MinPrice" type="range"
+                                   id="minPrice"
+                                   class="price-slider"
+                                   min="0"
+                                   max="1000"
+                                   value="@(Model.MinPrice ?? 0)">
+                            <span class="price-value" id="minPriceValue">@(Model.MinPrice ?? 0)</span>
+                        </div>
+                        <div class="price-input">
+                            <label class="price-label">الحد الأقصى</label>
+                            <input asp-for="MaxPrice" type="range"
+                                   id="maxPrice"
+                                   class="price-slider"
+                                   min="0"
+                                   max="1000"
+                                   value="@(Model.MaxPrice ?? 1000)">
+                            <span class="price-value" id="maxPriceValue">@(Model.MaxPrice ?? 1000)</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Reset Button -->
-            <button class="reset-btn" id="resetBtn">مسح جميع الفلاتر</button>
-        </aside>
+                <!-- Subject Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">المادة</label>
+                    <select asp-for="subjectid" id="subjectFilter" class="filter-select">
+                        <option value="">جميع المواد</option>
+                        <option value="1">لغة عربية</option>
+                        <option value="2">رياضيات</option>
+                        <option value="3">علوم</option>
+                        <option value="4">إنجليزي</option>
+                    </select>
+                </div>
 
+                <div class="filter-group">
+                    <label class="filter-label">المادة</label>
+                    <select asp-for="Level" id="subjectFilter" class="filter-select" >
+                        <option value="">جميع المستويات</option>
+                        <option value="1">الصف الاول الثانوي</option>
+                        <option value="2">الصف الثاني الثانوي</option>
+                        <option value="3">الصف الثالث الثانوي</option>
+                    </select>
+                </div>
+
+               
+
+                <!-- Reset Button -->
+                <button type="submit" class="reset-btn" >بحث</button>
+            </aside>
+
+        </form>
+       
         <!-- Main Content -->
         <main class="main-content">
             <!-- Courses Grid -->
             <div class="courses-grid" id="coursesGrid">
-                <!-- Courses will be inserted here by JavaScript -->
+                @foreach (var course in Model.Courses)
+                {
+
+                    <div class="card-courses">
+                        <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
+                        <div class="body-course">
+                            <div class="bodytop">
+                                <div class="bodyright">
+                                    <div class="brtop">
+                                        <p> @course.CourseName </p>
+                                    </div>
+                                    <div class="brmid">
+                                        <p>
+                                            @course.description
+                                        </p>
+                                    </div>
+                                    <div class="brdowm">
+                                    </div>
+
+                                </div>
+                                <div class="bodyleft">
+                                    <a href="/Homepage/show_details_courses/@course.CourseId" class="enroll-btn btn"> الدخول للكوس</a>
+                                    @* <form asp-controller="Payment" asp-action="Pay" method="post">
+                                        <input type="hidden" name="courseId" value="@course.CourseId" />
+                                        <input type="hidden" name="amount" value="@course.price" />
+                                        <button type="submit" class="enroll-btn btn">
+                                            اشترك الآن
+                                        </button>
+                                    </form> *@
+                                </div>
+
+                            </div>
+                            <div class="bodybuttom">
+                                <div class="price">
+                                    <span>@course.price</span> جنيهًا
+                                </div>
+                                <div class="date">
+                                    <h5>
+                                        @course.createdAt.ToString("dd/MM/yyyy")
+                                    </h5>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                }
+
+
             </div>
 
             <!-- Empty State -->
@@ -134,4 +170,17 @@
     </div>
 </div>
 
-<script src="~/assets/js/script_filter_course.js"></script>
+<script>
+    const minPriceSlider = document.getElementById('minPrice');
+    const maxPriceSlider = document.getElementById('maxPrice');
+    const minPriceValue = document.getElementById('minPriceValue');
+    const maxPriceValue = document.getElementById('maxPriceValue');
+
+    minPriceSlider.addEventListener('input', () => {
+        minPriceValue.textContent = minPriceSlider.value;
+    });
+
+    maxPriceSlider.addEventListener('input', () => {
+        maxPriceValue.textContent = maxPriceSlider.value;
+    });
+</script>

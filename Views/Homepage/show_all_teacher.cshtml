@@ -50,3 +50,23 @@
 
 </section>
 
+<script>
+    const searchInput = document.getElementById('teacherSearchInput');
+    const teacherCards = document.querySelectorAll('.teacher-card');
+
+    searchInput.addEventListener('input', function() {
+        const searchValue = searchInput.value.toLowerCase();
+
+        teacherCards.forEach(card => {
+            const teacherName = card.querySelector('h3').innerText.toLowerCase();
+            const teacherSubject = card.querySelector('p').innerText.toLowerCase();
+
+            // لو الاسم أو المادة فيها النص اللي اتكتب، اظهر الكارد
+            if (teacherName.includes(searchValue) || teacherSubject.includes(searchValue)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+</script>

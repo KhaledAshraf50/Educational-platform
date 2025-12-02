@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Viewmodel;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -113,12 +114,67 @@ namespace Luno_platform.Repository
                 .ToList();
         }
 
-        public List<Courses> ShowAllCourses()
+        //public List<Courses> showallcourses()
+        //{
+        //    return _Context.Courses.ToList();
+        //}
+
+        public List<Courses> showallcourses()
         {
-            return _Context.Courses.ToList();
+            return _Context.Courses.Where(e=> e.status=="Active").ToList();
         }
+
+
+
+
+        //public IEnumerable<CourseViewModel> FilterCourses(filter_coursesviewmodel filter)
+        //{
+        //    var query = _Context.Courses.AsQueryable();
+
+        //    // Join مع Users لجلب اسم المدرس
+        //    var coursesWithInstructor = query
+        //        .Join(_Context.Users,
+        //              c => c.instructorID,
+        //              u => u.Id,
+        //              (c, u) => new CourseViewModel
+        //              {
+        //                  CourseId = c.CourseId,
+        //                  CourseName = c.CourseName,
+        //                  Description = c.description,
+        //                  Price = c.price,
+        //                  SubjectId = c.SubjectId,
+        //                  Level = c.classID,
+        //                  CreatedAt = c.createdAt,
+        //                  InstructorName = u.fname + " " + u.lastName
+        //              });
+
+        //    // تطبيق الفلاتر
+        //    if (!string.IsNullOrEmpty(filter.coursesname))
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.CourseName.Contains(filter.coursesname));
+
+        //    if (!string.IsNullOrEmpty(filter.instructorname))
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.InstructorName.Contains(filter.instructorname));
+
+        //    if (filter.subjectid.HasValue)
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.SubjectId == filter.subjectid.Value);
+
+        //    if (filter.Level.hasva)
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.Level == filter.Level.Value);
+
+        //    if (filter.MinPrice.HasValue)
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.Price >= filter.MinPrice.Value);
+
+        //    if (filter.MaxPrice.HasValue)
+        //        coursesWithInstructor = coursesWithInstructor.Where(c => c.Price <= filter.MaxPrice.Value);
+
+          
+
+        //    return coursesWithInstructor.ToList();
+        //}
 
     }
 
-
 }
+
+
+

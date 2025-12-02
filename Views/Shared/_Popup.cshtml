@@ -1,0 +1,20 @@
+﻿@if (ViewBag.PopupMessage != null)
+{
+    <div id="popup" class="popup-overlay">
+        <div class="popup-box">
+            <p>@ViewBag.PopupMessage</p>
+
+            <button id="closePopup">إغلاق</button>
+        </div>
+    </div>
+}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("closePopup");
+        if (btn) {
+            btn.addEventListener("click", function () {
+                document.getElementById("popup").style.display = "none";
+            });
+        }
+    });
+</script>

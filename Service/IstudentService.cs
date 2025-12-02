@@ -12,5 +12,7 @@ namespace Luno_platform.Service
          List<Payments> GetPayments(int studentId);
         int? GetStudentIdByUserId(int userId);
         int getStudentId(int userid);
+        bool isSubdcrip(int studentid, int courseid);
+
         }
-    }
+}

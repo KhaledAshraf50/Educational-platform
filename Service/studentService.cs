@@ -72,5 +72,11 @@ namespace Luno_platform.Service
         {
             return _repository.getStudentId(userid);
         }
+
+        public bool isSubdcrip(int studentid, int courseid)
+        {
+            return _repository.isSubdcrip(studentid, courseid);
+
+        }
     }
 }

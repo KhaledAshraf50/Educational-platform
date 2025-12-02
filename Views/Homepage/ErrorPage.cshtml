@@ -20,7 +20,7 @@
         }
 
         .error-container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* شفاف جزئياً */
             padding: 40px 60px;
             border-radius: 15px;
             text-align: center;
@@ -59,7 +59,7 @@
     <div class="error-container">
         <h1>😔 خطأ</h1>
         <p>@errorMessage</p>
-        <a href="javascript:history.back()">العودة للصفحة السابقة</a>
+        <a href="javascript:void(0);" onclick="history.go(-2)">العودة للصفحة السابقة2</a>
     </div>
 </body>
 </html>

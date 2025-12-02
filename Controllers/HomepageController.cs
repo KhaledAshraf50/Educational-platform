@@ -114,11 +114,26 @@ namespace Luno_platform.Controllers
         }
 
         [Route("Homepage/show_details_courses/{courseid}")]
-        public IActionResult show_details_courses(int courseid)
+        public IActionResult show_details_courses(int courseid, detailscourse_viewmodel  detailscourse)
         {
+            var userid = getuserid();
+            var studentid = _istudentService.getStudentId(userid);
+
             var course = _icourses_Service.Infocourse(courseid);
             if (course == null) return NotFound();
-            return View(course);
+
+
+            var model = new detailscourse_viewmodel
+            {
+                Courses = course,
+                issubscrip = _istudentService.isSubdcrip(studentid, courseid),
+                CourseID=courseid
+
+
+                
+            };
+
+            return View(model);
         }
 
 
@@ -126,7 +141,9 @@ namespace Luno_platform.Controllers
         public IActionResult pageExam(int Examid)
         {
 
-            int studentid = 5;
+            var userid = getuserid();
+            var studentid = _istudentService.getStudentId(userid);
+
 
             if (_exam_Service.HasStudentTakenExam(studentid, Examid))
             {
@@ -140,6 +157,7 @@ namespace Luno_platform.Controllers
             
                 questions = _exam_Service.GetExamsbyid(Examid),
                 examinfo = _exam_Service.GetById(Examid)
+          
             };
 
             
@@ -152,9 +170,9 @@ namespace Luno_platform.Controllers
         public IActionResult pageTask(int Taskid)
         {
             var userid = getuserid();
-
             var studentid = _istudentService.getStudentId(userid);
-         
+
+
             if (_exam_Service.HasStudentTakenTask(studentid, Taskid))
             {
                 ViewBag.ErrorMessage = "لقد قمت بأداء هذا لتاسك  من قبل ولا يمكنك الدخول مرة أخرى.";
@@ -165,7 +183,10 @@ namespace Luno_platform.Controllers
             {
 
                 questions = _Task_Service.GetTaskbyid(Taskid),
-                Taskinfo= _Task_Service.GetById(Taskid)
+                Taskinfo= _Task_Service.GetById(Taskid),
+                taskid= Taskid
+
+
             };
 
 
