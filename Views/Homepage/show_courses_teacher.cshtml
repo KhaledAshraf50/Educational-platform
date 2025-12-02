@@ -11,7 +11,9 @@
 
     @foreach(var course in Model)
     {
-        <div class="card-courses">
+        @if (course.status?.Trim().ToLower() == "active")
+        {
+            <div class="card-courses">
             <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
             <div class="body-course">
                 <div class="bodytop">
@@ -30,13 +32,13 @@
                     </div>
                     <div class="bodyleft">
                         <a href="/Homepage/show_details_courses/@course.CourseId" class="mt-2"> الدخول للكوس</a>
-                        <form asp-controller="Payment" asp-action="Pay" method="post">
+                        @* <form asp-controller="Payment" asp-action="Pay" method="post">
                             <input type="hidden" name="courseId" value="@course.CourseId" />
                             <input type="hidden" name="amount" value="@course.price" />
                             <button type="submit" class="enroll-btn btn">
                                 اشترك الآن
                             </button>
-                        </form>
+                        </form> *@
                     </div>
 
                 </div>
@@ -54,7 +56,8 @@
 
             </div>
 
-        </div>
+            </div>
+        }
         
 
     }

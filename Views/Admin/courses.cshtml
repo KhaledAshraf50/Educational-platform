@@ -1,12 +1,76 @@
-﻿@{
+﻿@using Luno_platform.Viewmodel
+@model AdminCourseControlVM
+@{
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
 }
 @section Styles {
         <link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
         <link rel="stylesheet" href="~/assets/css/style.css" />
-        <link rel="stylesheet" href="~/assets/css/adminmainpage.css" />
-}
+        <link href="~/assets/css/Reports.css" rel="stylesheet" />
+        @* <link rel="stylesheet" href="~/assets/css/adminmainpage.css" /> *@
 
+}
+<style>
+    body {
+        margin: 0;
+        font-family: DIN Next LT Arabic;
+        
+        box-sizing: border-box;
+    }
+    .action-btn {
+        padding: 8px 18px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        transition: 0.3s ease;
+    }
+
+    /* زر الإيقاف */
+    .pause-btn {
+        background-color:  #f2994a !important;
+        color: #fff !important;
+    }
+
+        .pause-btn:hover {
+            background-color: #e2b12f !important;
+        }
+
+    /* زر الحذف */
+    .delete-btn {
+        background-color: #eb5757 !important;
+        color: #fff !important;
+    }
+
+        .delete-btn:hover {
+            background-color: #c44545 !important;
+        }
+
+    .Active-btn {
+        background-color: #092c4c !important;
+        color: #fff !important;
+    }
+
+        .Active-btn:hover {
+            background-color: #092c4c;
+        }
+        .nav-btn{
+        color: #092c4c;
+        font-size: 16px;
+        font-weight: 700;
+        }
+        .nav-btn:hover{
+            color: #092c4c;
+
+        }
+
+    .badge{
+        font-size: 14px !important;
+        font-weight: 500 !important;
+    }
+</style>
 <div class="col-md-12 content">
 
     <h2 class="fw-bold mb-4">إدارة الكورسات</h2>
@@ -14,14 +78,14 @@
     <!-- Tabs -->
     <ul class="nav nav-tabs" id="courseTabs" role="tablist">
         <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#activeCourses" type="button">
-                📘 الكورسات النشطة
+            <button class="nav-link active nav-btn" data-bs-toggle="tab" data-bs-target="#activeCourses" type="button">
+                 الكورسات النشطة
             </button>
         </li>
 
         <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#archivedCourses" type="button">
-                📕 الكورسات المؤرشفة
+            <button class="nav-link nav-btn" data-bs-toggle="tab" data-bs-target="#archivedCourses" type="button">
+                 الكورسات المؤرشفة
             </button>
         </li>
     </ul>
@@ -32,10 +96,10 @@
         <!-- Active Courses -->
         <div class="tab-pane fade show active" id="activeCourses">
             <div class="table-container">
-                <h5 class="mb-3">قائمة الكورسات النشطة</h5>
+                <h5 class="my-4">قائمة الكورسات النشطة</h5>
 
-                <table class="table table-hover align-middle text-center">
-                    <thead class="table-primary">
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                    <thead >
                         <tr>
                             <th>اسم الكورس</th>
                             <th>المدرب</th>
@@ -46,19 +110,36 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach(var activeCourse in Model.active_course){
                         <tr>
-                            <td>كورس البرمجة</td>
-                            <td>منى علي</td>
-                            <td>25</td>
-                            <td>350 جنيه</td>
+                                <td>@activeCourse.CourseName</td>
+                            <td>@activeCourse.Instructor_fname @activeCourse.Instructor_lname</td>
+                            <td>@activeCourse.student_num</td>
+                            <td>@activeCourse.price جنيه</td>
                             <td>
-                                <span class="badge bg-success">نشط</span>
+                                <span class="badge bg-success p-2">مفعل</span>
                             </td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button>
-                            </td>
-                        </tr>
+                                <td>
+                                    <form asp-controller="Admin" asp-action="DeactivateCourse" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@activeCourse.CourseId" />
+                                        <input type="hidden" name="newStatus" value="Archive" />
+
+                                        <button type="submit" class="action-btn pause-btn">
+                                            إيقاف
+                                        </button>
+                                    </form>
+
+                                    <form asp-controller="Admin" asp-action="DeleteCourse" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@activeCourse.CourseId" />
+
+                                        <button type="submit" class="action-btn delete-btn">
+                                            حذف
+                                        </button>
+                                    </form>
+                                
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -67,32 +148,47 @@
         <!-- Archived Courses -->
         <div class="tab-pane fade" id="archivedCourses">
             <div class="table-container">
-                <h5 class="mb-3">الكورسات المؤرشفة</h5>
+                <h5 class="my-4">الكورسات المؤرشفة</h5>
 
-                <table class="table table-hover align-middle text-center">
-                    <thead class="table-secondary">
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                    <thead >
                         <tr>
                             <th>اسم الكورس</th>
                             <th>المدرب</th>
                             <th>عدد الطلاب</th>
                             <th>السعر</th>
-                            <th>التاريخ</th>
+                            @* <th>التاريخ</th> *@
                             <th>التحكم</th>
                         </tr>
                     </thead>
                     <tbody>
+                            @foreach (var archivedCourse in Model.pending_course) { 
                         <tr>
-                            <td>أساسيات التصميم</td>
-                            <td>أحمد يوسف</td>
-                            <td>18</td>
-                            <td>250 جنيه</td>
-                            <td>2024-03-15</td>
+                            <td>@archivedCourse.CourseName</td>
+                            <td>@archivedCourse.Instructor_lname @archivedCourse.Instructor_fname </td>
+                            <td>@archivedCourse.student_num</td>
+                            <td>@archivedCourse.price جنيه</td>
+                            @* <td>@archivedCourse</td> *@
                             <td>
-                                <button class="btn btn-sm btn-outline-success">
-                                    إعادة التفعيل
-                                </button>
+                                    <form asp-controller="Admin" asp-action="ActivateCourse" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@archivedCourse.CourseId" />
+                                        <input type="hidden" name="newStatus" value="Active" />
+
+                                        <button type="submit" class="action-btn Active-btn">
+                                            تفعيل
+                                        </button>
+                                    </form>
+                                    <form asp-controller="Admin" asp-action="DeleteCourse" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@archivedCourse.CourseId" />
+
+                                        <button type="submit" class="action-btn delete-btn">
+                                            حذف
+                                        </button>
+                                    </form>
+
                             </td>
-                        </tr>
+                            </tr>
+}
                     </tbody>
                 </table>
 
@@ -105,4 +201,17 @@
 @section script {
         <script src="~/assets/js/dashbordadmin.js"></script>
         <script src="~/assets/js/main.js"></script>
+    <script>
+        function toggleStatus(courseId, newStatus) {
+            fetch('/Admin/ChangeCourseStatus?courseId=' + courseId + '&newStatus=' + newStatus, {
+                method: 'POST'
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("تم تغيير حالة الكورس بنجاح");
+                    location.reload(); // تحديث الصفحة
+                }
+            });
+        }
+    </script>
 }

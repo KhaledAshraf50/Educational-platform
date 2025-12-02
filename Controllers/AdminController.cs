@@ -44,8 +44,33 @@ namespace Luno_platform.Controllers
         }
         public IActionResult courses()
         {
-            return View();
+            var vm = _adminService.GetCourseControl();
+
+
+            return View(vm);
         }
+        [HttpPost]
+        public IActionResult ActivateCourse(int courseId)
+        {
+            _adminService.ChangeCourseStatus(courseId, "Active");
+            return RedirectToAction("Courses");
+        }
+
+        [HttpPost]
+        public IActionResult DeactivateCourse(int courseId)
+        {
+            _adminService.ChangeCourseStatus(courseId, "Archive");
+            return RedirectToAction("Courses");
+        }
+        [HttpPost]
+        public IActionResult DeleteCourse(int courseId)
+        {
+            _adminService.DeleteCourse(courseId);
+
+            // بعد الحذف ارجع لصفحة الكورسات
+            return RedirectToAction("courses");
+        }
+
         public IActionResult payments()
         {
             return View();

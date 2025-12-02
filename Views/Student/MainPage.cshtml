@@ -55,8 +55,10 @@
             <div class="courses-card d-flex flex-column flex-md-row">
                 @foreach (var course in Model.Courses)
                 {
-                    <div class="card-courses">
-                        <div class="image-courses">
+                    @if (course.status?.Trim().ToLower() == "active")
+                    {
+                        <div class="card-courses">
+                            <div class="image-courses">
                             <img class="" src="@Url.Content(course.Image)" alt="" />
                         </div>
                         <div class="body-course">
@@ -81,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                 }
             </div>
 

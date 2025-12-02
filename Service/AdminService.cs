@@ -71,6 +71,29 @@ namespace Luno_platform.Service
             _adminRepo.Save();
         }
 
+        public List<Courses> GetallActiveCourses()
+        {
+            return _adminRepo.GetallActiveCourses();
+        }
+
+        public List<Courses> GetallpendingCourses()
+        {
+            return _adminRepo.GetallpendingCourses();
+        }
+
+        public AdminCourseControlVM GetCourseControl()
+        {
+            return _adminRepo.GetCourseControl();
+        }
+        public void ChangeCourseStatus(int courseId, string newStatus)
+        {
+             _adminRepo.ChangeCourseStatus(courseId, newStatus);
+        }
+        public void DeleteCourse(int courseId)
+        {
+            _adminRepo.DeleteCourse(courseId);
+        }
+
         //public bool ChangeParentPassword(int parentId, string oldPassword, string newPassword)
         //{
         //    var parent = parentRepo.GetParent(parentId);

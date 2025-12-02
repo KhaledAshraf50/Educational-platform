@@ -1,16 +1,69 @@
 ﻿@{
     Layout = "~/Views/Shared/_navbar.cshtml";
 }
+
+<style>
+    :root {
+        --primary-color: #092c4c;
+        --secondary-color: #f2994a;
+        --Info-color: #2f80ed;
+        --Success-color: #27ae60;
+        --Warning-color: #e2b93b;
+        --Error-color: #eb5757;
+        --sidebar-bg: #ffffff;
+        --content-bg: #f8fafc;
+        --white-color: #fff;
+        --hover-color: #e0e0e0;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        background-color: var(--content-bg);
+        font-family: "Tajawal", sans-serif;
+    }
+
+    .success-card {
+        max-width: 450px;
+        width: 100%;
+        background: var(--white-color);
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+        transition: 0.2s ease;
+    }
+
+        .success-card:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-3px);
+        }
+
+    .success-title {
+        color: var(--Success-color);
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .success-btn {
+        background-color: var(--primary-color);
+        border: none;
+        transition: 0.3s;
+    }
+
+        .success-btn:hover {
+            background-color: var(--secondary-color);
+        }
+</style>
+
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card text-center shadow p-4" style="max-width: 400px;">
+    <div class="card text-center success-card p-4">
         <div class="card-body">
-            <h2 class="card-title text-success mb-3">
-                تم الدفع بنجاح 🎉
+            <h2 class="success-title mb-3">
+                تم الدفع بنجاح 👍
             </h2>
-            <p class="card-text mb-4">
+            <p class="card-text mb-4" style="color: var(--primary-color); font-size: 1.1rem;">
                 شكرًا لاشتراكك في الكورس.
             </p>
-            <a asp-controller="Student" asp-action="MainPage" class="btn btn-primary btn-lg w-100">
+            <a asp-controller="Student" asp-action="MainPage" class="btn btn-primary btn-lg w-100 success-btn">
                 الذهاب إلى كورساتي
             </a>
         </div>
