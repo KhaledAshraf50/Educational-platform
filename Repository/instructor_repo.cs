@@ -56,6 +56,7 @@ namespace Luno_platform.Repository
                                                          classes = new Classes
                                                          {
                                                              ClassName = ic.classes.ClassName
+
                                                          }
                                                      })
                                                      .ToList()

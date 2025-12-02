@@ -1,21 +1,56 @@
 ﻿@model List<Luno_platform.Models.Question>
 
-<h3 class="mb-4 text-primary">📝 أسئلة الامتحان</h3>
+<link rel="stylesheet" href="~/assets/css/view-questions.css" />
 
-<div class="list-group">
+<div class="container view-questions-page">
+
+    <h2 class="page-title">📝 أسئلة الامتحان</h2>
+
     @for (int i = 0; i < Model.Count; i++)
     {
-        <div class="list-group-item mb-2 shadow-sm rounded">
-            <h5>السؤال @(i + 1): @Model[i].questionText</h5>
-            <ul>
-                <li>أ: @Model[i].chooseA</li>
-                <li>ب: @Model[i].chooseB</li>
-                <li>ج: @Model[i].chooseC</li>
-                <li>د: @Model[i].chooseD</li>
-            </ul>
-            <p><strong>الإجابة الصحيحة: @Model[i].correctAnswer</strong></p>
+        <div class="question-view-card">
+
+            <div class="header">
+                سؤال @(i + 1)
+            </div>
+
+            <div class="question-text">
+                @Model[i].questionText
+            </div>
+
+            <div class="choices">
+
+                <div class="choice">
+                    <span>A</span> @Model[i].chooseA
+                </div>
+
+                <div class="choice">
+                    <span>B</span> @Model[i].chooseB
+                </div>
+
+                <div class="choice">
+                    <span>C</span> @Model[i].chooseC
+                </div>
+
+                <div class="choice">
+                    <span>D</span> @Model[i].chooseD
+                </div>
+
+            </div>
+
+            <div class="correct-answer">
+                ✅ الإجابة الصحيحة:
+                <span>@Model[i].correctAnswer</span>
+            </div>
+
         </div>
     }
-</div>
 
-<a href="@Url.Action("Dashboard", "Instructor")" class="btn btn-secondary mt-3">رجوع</a>
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Dashboard", "Instructor")"
+           class="btn-back">
+            🔙 رجوع إلى لوحة التحكم
+        </a>
+    </div>
+
+</div>

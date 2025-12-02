@@ -1,6 +1,7 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
 using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
@@ -71,6 +72,23 @@ namespace Luno_platform.Service
         public int getStudentId(int userid)
         {
             return _repository.getStudentId(userid);
+        }
+        public bool ChangeStudentPassword(int studentId, string oldPassword, string newPassword)
+        {
+            var student = _repository.GetStudentt(studentId);
+            if (student == null) return false;
+            var hasher = new PasswordHasher<Users>();
+            var result = hasher.VerifyHashedPassword(student.User, student.User.PasswordHash, oldPassword);
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return false;
+            }
+            //admin.User.PasswordHash = newPassword; ده بيخزن الباسورد مش متشفر
+            // تشفير الباسورد الجديد
+            student.User.PasswordHash = hasher.HashPassword(student.User, newPassword);
+            _repository.Update(student);
+            _repository.Save();
+            return true;
         }
 
         public bool isSubdcrip(int studentid, int courseid)

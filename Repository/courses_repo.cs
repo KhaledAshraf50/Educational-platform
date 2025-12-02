@@ -45,6 +45,7 @@ namespace Luno_platform.Repository
                     createdAt = c.createdAt,
                     price = c.price,
                     Image = c.Image,
+                    status = c.status,
                     instructorID = c.instructorID,
 
                     // Instructor Info
@@ -104,8 +105,8 @@ namespace Luno_platform.Repository
                               createdAt = i.createdAt,
                               price = i.price,
 
+                              status = i.status,
 
-                             
 
 
                           })

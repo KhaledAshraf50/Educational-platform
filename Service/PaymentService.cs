@@ -27,7 +27,7 @@ namespace Luno_platform.Service
                 StudentID = studentId.Value,
                 courseId = courseId,
                 amountPayment = amount,
-                status = "مقبول",
+                status = "تحت المراجعة",
                 date = DateTime.Now
             };
             _paymentRepo.AddPayment(payment);

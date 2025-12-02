@@ -47,6 +47,10 @@ namespace Luno_platform.Repository
 
             return student;
         }
+        public Student GetStudentt(int userId)
+        {
+            return _Context.Students.Include(u => u.User).FirstOrDefault(u => u.UserId == userId);
+        }
         public Student GetByUserId(int userId)
         {
             return _Context.Students
@@ -69,6 +73,7 @@ namespace Luno_platform.Repository
          price = sc.Course.price,
          Image = sc.Course.Image ?? "default-image.png",
          createdAt = sc.Course.createdAt,
+         status = sc.Course.status,
          instructorID = sc.Course.instructorID,
          SubjectId = sc.Course.SubjectId,
          Subjects = new Subject

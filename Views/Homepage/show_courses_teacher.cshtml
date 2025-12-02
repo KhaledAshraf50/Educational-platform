@@ -11,8 +11,9 @@
 
     @foreach(var course in Model)
     {
-
-        <div class="card-courses">
+        @if (course.status?.Trim().ToLower() == "active")
+        {
+            <div class="card-courses">
             <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
             <div class="body-course">
                 <div class="bodytop">
@@ -55,7 +56,8 @@
 
             </div>
 
-        </div>
+            </div>
+        }
         
 
     }

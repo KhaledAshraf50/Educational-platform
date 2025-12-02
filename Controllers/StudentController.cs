@@ -140,6 +140,21 @@ namespace Luno.Controllers
         //    return View("SettingPage", settings);
         //    // يرجع لصفحة الإعدادات
         //}
+        public IActionResult ChangePassword(UserSettingsVM SVM)
+        {
+            //int userId = GetUserId();
+            //var student = istudentService.GetStudent(userId);
+            //if (student == null) return NotFound();
+            bool ok = istudentService.ChangeStudentPassword(SVM.UserId, SVM.CurrentPassword, SVM.ConfirmNewPassword);
+            if (!ok)
+            {
+                TempData["Error"] = "كلمه المرور غير صحيحة!!";
+                return RedirectToAction("Settings");
+            }
+
+            TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
+            return RedirectToAction("setting");
+        }
 
     }
 }

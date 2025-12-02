@@ -10,7 +10,7 @@
     <!-- الشمال: بروفايل -->
     <div class="settings-card left-profile">
         <div class="avatar">
-            <img src="~/assets/imgs/profile-dark.gif" alt="avatar" class="rounded-circle">
+            <img src="@Model.CurrentImage" alt="avatar" class="rounded-circle">
         </div>
         <h3> @Model.Fname @Model.LastName</h3>
         <p>@Model.ClassName — </p>
@@ -28,16 +28,31 @@
 
     <!-- اليمين: محتوى الإعدادات -->
     <section class="settings-card right-content">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["Sucess"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Sucess"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
         <div class="card-header">
             <h4>إعدادات الحساب</h4>
             <div class="settings-tabs">
                 <button class="active">البيانات</button>
-                @* <button>كلمة المرور</button> *@
-                @* <button>الإشعارات</button> *@
+                 <button>كلمة المرور</button> 
+                 <button>الإشعارات</button> 
             </div>
         </div>
 
-        <form asp-action="Save" enctype="multipart/form-data">
+        <form asp-action="Save" enctype="multipart/form-data" class="settings-form">
 
             <input type="hidden" asp-for="UserId" />
 
@@ -91,33 +106,32 @@
                 <img src="@Model.CurrentImage" width="100" class="mt-2 rounded-circle" />
             </div>
 
-            <button class="btn-save">حفظ</button>
+            <button class="btn btn-save">حفظ</button>
 
         </form>
 
         <!-- change password  -->
-        @* <form class="settings-form" asp-action="ChangePassword" method="post">
-            <div class=" form-row">
-                <div class="form-group">
-                    <label class="form-label">كلمه المرور الحاليه </label>
-                    <input type="password" asp-for="PasswordModel.CurrentPassword" class="form-control" required />
-                </div>
-            </div>
+        <form class="settings-form" asp-action="ChangePassword" method="post">
+            <input type="hidden" asp-for="UserId" />
 
             <div class="form-row">
+
                 <div class="form-group">
-                    <label class="form-label">كلمه المرور الجديده </label>
-                    <input type="password" asp-for="PasswordModel.NewPassword" class="form-control" required />
+                    <label class="form-label">كلمة المرور الحالية</label>
+                    <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="current password">
                 </div>
+
                 <div class="form-group">
-                    <label class="form-label">تاكيد كلمه المرور الجديده</label>
-                    <input type="password" asp-for="PasswordModel.ConfirmPassword" class="form-control" required />
+                    <label class="form-label"> كلمة المرور الجديده</label>
+                    <input asp-for="ConfirmNewPassword" type="password" class="form-control" placeholder="confirm password">
                 </div>
+
             </div>
 
-            <button class="btn btn-primary btn-save">حفظ التغييرات</button>
-        </form> *@
-        @* <div class="settings-form">
+            <button class="btn btn-save">حفظ التغييرات</button>
+
+        </form>
+          <div class="settings-form">
             <div class="card shadow-sm p-3 mb-4 rounded-3">
                 <h5 class="fw-bold mb-3">
 
@@ -163,10 +177,15 @@
                     <span class="toggle-text">استقبال إشعارات داخل الموقع فقط</span>
                 </div>
             </div>
-        </div> *@
+        </div>  
     </section>
 </div>
 
 @section Script {
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll(".alert").forEach(a => a.remove());
+        }, 4000);
+    </script>
     <script src="~/assets/js/Setting.js"></script>
 }

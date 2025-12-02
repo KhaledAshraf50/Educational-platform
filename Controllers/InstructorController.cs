@@ -1110,6 +1110,80 @@ public IActionResult ViewExamQuestions(int id)
         //    _context.SaveChanges();
         //    return RedirectToAction("Dashboard", "Instructor");
         //}
+        [HttpGet]
+        public IActionResult EditExam(int id)
+        {
+            var exam = _context.Exams
+                .Include(e => e.Questions)
+                .FirstOrDefault(e => e.ExamID == id);
+
+            if (exam == null)
+                return NotFound();
+
+            var vm = new AddQuestionVM
+            {
+                ExamId = id,
+                Questions = exam.Questions.Select(q => new QuestionItem
+                {
+                    QuestionText = q.questionText,
+                    ChooseA = q.chooseA,
+                    ChooseB = q.chooseB,
+                    ChooseC = q.chooseC,
+                    ChooseD = q.chooseD,
+                    CorrectAnswer = q.correctAnswer
+                }).ToList()
+            };
+
+            return View("EditQuestions", vm);
+        }
+
+        [HttpPost]
+        public IActionResult EditExam(AddQuestionVM model)
+        {
+            // نحذف الأسئلة القديمة
+            var oldQuestions = _context.Questions
+                .Where(q => q.ExamId == model.ExamId);
+
+            _context.Questions.RemoveRange(oldQuestions);
+
+            // نضيف الأسئلة بعد التعديل
+            foreach (var q in model.Questions)
+            {
+                _context.Questions.Add(new Question
+                {
+                    ExamId = model.ExamId,
+                    questionText = q.QuestionText,
+                    chooseA = q.ChooseA,
+                    chooseB = q.ChooseB,
+                    chooseC = q.ChooseC,
+                    chooseD = q.ChooseD,
+                    correctAnswer = q.CorrectAnswer
+                });
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+        public IActionResult DeleteExam(int id)
+        {
+            var exam = _context.Exams
+                .Include(e => e.Questions)
+                .FirstOrDefault(e => e.ExamID == id);
+
+            if (exam == null)
+                return NotFound();
+
+            // حذف الأسئلة المرتبطة
+            _context.Questions.RemoveRange(exam.Questions);
+
+            // حذف الامتحان نفسه
+            _context.Exams.Remove(exam);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
 
 
     }
