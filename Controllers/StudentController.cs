@@ -149,11 +149,11 @@ namespace Luno.Controllers
             if (!ok)
             {
                 TempData["Error"] = "كلمه المرور غير صحيحة!!";
-                return RedirectToAction("Settings");
+                return RedirectToAction("SettingPage");
             }
 
             TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";
-            return RedirectToAction("setting");
+            return RedirectToAction("SettingPage");
         }
 
     }
