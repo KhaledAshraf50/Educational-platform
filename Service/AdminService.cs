@@ -24,7 +24,7 @@ namespace Luno_platform.Service
                 AdminImage = admin.Image,
                 TotalStudents = _adminRepo.GetTotalStudents(),
                 TotalInstructors = _adminRepo.GetTotalInstructors(),
-                TotalCoursesAccepted = _adminRepo.GetTotalCoursesByStatus("مقبول"),
+                TotalCoursesAccepted = _adminRepo.GetTotalCoursesByStatus("Active"),
                 TotalCoursesPending = _adminRepo.GetTotalCoursesPending(),
                 TotalPayments = _adminRepo.GetTotalPayments()
             };
