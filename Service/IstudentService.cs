@@ -14,6 +14,9 @@ namespace Luno_platform.Service
         int getStudentId(int userid);
         public bool ChangeStudentPassword(int studentId, string oldPassword, string newPassword);
         bool isSubdcrip(int studentid, int courseid);
+        public List<showallStudent> showStudents();
+        void DeleteStudent(int userid);
+        void SetUserPending(int userid);
 
-        }
+    }
 }

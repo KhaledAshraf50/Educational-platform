@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Viewmodel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Repository
@@ -7,6 +8,16 @@ namespace Luno_platform.Repository
     {
         public instructor_repo(LunoDBContext database) : base(database)
         {
+        }
+
+        public void deleteinstructor(int userid)
+        {
+            var instructor = _Context.Instructors.FirstOrDefault(e => e.UserId == userid);
+            _Context.Instructors.Remove(instructor);
+            var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
+            _Context.Users.Remove(user);
+
+            _Context.SaveChanges();
         }
 
         public IEnumerable<Instructor> GetAll_Instructors_With_User_with_subject()
@@ -106,5 +117,27 @@ namespace Luno_platform.Repository
                .ToList();
         }
 
+        public List<showallStudent> showinstructor()
+        {
+            var students = _Context.Instructors
+                 .Include(s => s.courses)
+                 .Include(s => s.User)
+                 .Where(s => s.User.status == "Active")
+                 .Select(s => new showallStudent
+                 {
+                     userid = s.User.Id,
+                     instructorid = s.instructorID,
+                     FullName = s.User.fname + " " + s.User.lastName,
+                     Email = s.User.Email,
+                     PhoneNumber = s.User.PhoneNumber,
+                     CoursesCount = s.courses.Count(),
+                     createat = s.User.CreatedAt ?? DateOnly.FromDateTime(DateTime.Today)
+                 }
+
+                 )
+                 .ToList();
+
+            return students;
+        }
     }
 }

@@ -10,10 +10,12 @@ namespace Luno_platform.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
+        private readonly IstudentService _istudentService;
 
-        public AdminController(IAdminService adminService)
+        public AdminController(IAdminService adminService , IstudentService istudentService)
         {
             _adminService = adminService;
+            _istudentService = istudentService;
         }
         public int GetUserId()
         {
@@ -38,9 +40,10 @@ namespace Luno_platform.Controllers
 
             return View(model);
         }
-        public IActionResult users()
+        public IActionResult users(showallStudent showallStudent)
         {
-            return View();
+            var vm = _istudentService.showStudents();
+            return View(vm);
         }
         public IActionResult courses()
         {

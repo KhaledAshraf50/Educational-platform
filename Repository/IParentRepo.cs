@@ -21,6 +21,9 @@ namespace Luno_platform.Repository
         public StudentProgressVM GetStudentProgress(int studentId);
         Parent GetByUserId(int userId);
         List<Payments> GetPayments(int studentId);
+        List<showallStudent> showparent();
+
+        void deleteparent(int userid);
 
 
     }

@@ -148,5 +148,15 @@ namespace Luno_platform.Service
         {
             return parentRepo.GetPayments(studentId);
         }
+
+        public List<showallStudent> showparent()
+        {
+            return parentRepo.showparent();
+        }
+
+        public void deleteparent(int userid)
+        {
+            parentRepo.deleteparent(userid);
+        }
     }
 }

@@ -238,5 +238,47 @@ namespace Luno_platform.Repository
             }
             return true;
         }
+
+        public List<showallStudent> showStudents()
+        {
+            var students = _Context.Students
+                .Include(s => s.Student_Courses)
+                .Include(s => s.User)
+                .Where(s=> s.User.status == "Active")
+                .Select(s => new showallStudent { 
+                    userid = s.User.Id,
+                    StudentID = s.StudentID,
+                    FullName = s.User.fname + " " + s.User.lastName,
+                    Email = s.User.Email,
+                    PhoneNumber = s.User.PhoneNumber,
+                    CoursesCount = s.Student_Courses.Count(),
+                    createat = s.User.CreatedAt ?? DateOnly.FromDateTime(DateTime.Today)
+                }
+               
+                )
+                .ToList();
+
+            return students;
+        }
+
+        public void DeleteStudent(int userid)
+        {
+            var student = _Context.Students.FirstOrDefault(e => e.UserId == userid);
+            _Context.Students.Remove(student);
+            var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
+            _Context.Users.Remove(user);
+            _Context.SaveChanges();
+        }
+
+        public void SetUserPending(int userid)
+        {
+            var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
+            if (user != null)
+            {
+                user.status = "Pending";
+                _Context.SaveChanges();
+            }
+
+        }
     }
 }

@@ -29,5 +29,7 @@ namespace Luno_platform.Models
 
         [ForeignKey("courseId")]
         public virtual Courses Courses { get; set; }
-    }
+
+       public ICollection<Teacher_payment> Teacher_Payments { get; set; }
+        }
 }

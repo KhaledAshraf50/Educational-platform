@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Viewmodel;
 
 namespace Luno_platform.Repository
 {
@@ -8,6 +9,9 @@ namespace Luno_platform.Repository
         List<Instructor> infoinstructors();
         List<Instructor> getprotfolioteacher(int id);
 
+        List<showallStudent> showinstructor();
+
+        void deleteinstructor(int userid);
 
 
     }

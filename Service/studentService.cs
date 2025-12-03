@@ -96,5 +96,19 @@ namespace Luno_platform.Service
             return _repository.isSubdcrip(studentid, courseid);
 
         }
+
+        public List<showallStudent> showStudents()
+        {
+            return _repository.showStudents();
+        }
+        public void DeleteStudent(int userid)
+        {
+            _repository.DeleteStudent(userid);
+        }
+        public void SetUserPending(int userid)
+        {
+            _repository.SetUserPending(userid);
+
+        }
     }
 }

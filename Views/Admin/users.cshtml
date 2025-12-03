@@ -1,118 +1,189 @@
 ﻿@{
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
 }
+
+<link rel="stylesheet" href="~/assets/css/usersAdmin.css" />
 <link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
 <link rel="stylesheet" href="~/assets/css/style.css" />
+<link href="~/assets/css/Reports.css" rel="stylesheet" />
+<style>
+    .table-container {
+        background: #fff;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
 
+    .subject-table thead th {
+        background-color: #092c4c !important;
+        color: #fff !important;
+        font-weight: 700;
+        padding: 14px 0;
+    }
 
+    .subject-table tbody tr td {
+        padding: 12px 0;
+        font-weight: 600;
+    }
 
-<div class="container-fluid mt-4">
-    <h2 class="fw-bold mb-4 text-center">إدارة المستخدمين</h2>
+    .table_Edit tbody tr:hover {
+        background-color: #f3f6fa !important;
+    }
+
+    .action-btn {
+        padding: 8px 18px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 700;
+        transition: 0.3s ease;
+        margin: 0 4px;
+    }
+
+    .pause-btn {
+        background-color: #f2994a !important;
+        color: #fff !important;
+    }
+
+        .pause-btn:hover {
+            background-color: #e2b12f !important;
+        }
+
+    .delete-btn {
+        background-color: #eb5757 !important;
+        color: #fff !important;
+    }
+
+        .delete-btn:hover {
+            background-color: #c44545 !important;
+        }
+
+    .Active-btn {
+        background-color: #092c4c !important;
+        color: #fff !important;
+    }
+
+</style>
+<div class="page-container">
+
+    <h2 class="fw-bold mb-4">إدارة المستخدمين</h2>
 
     <!-- Tabs -->
-    <ul class="nav nav-tabs justify-content-center" id="userTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab">👨‍🎓 الطلاب</button>
+    <ul class="nav nav-tabs" id="userTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active nav-btn" data-bs-toggle="tab" data-bs-target="#students">الطلاب</button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab">👨‍🏫 المعلمين</button>
+        <li class="nav-item">
+            <button class="nav-link nav-btn" data-bs-toggle="tab" data-bs-target="#teachers">المعلمين</button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="parents-tab" data-bs-toggle="tab" data-bs-target="#parents" type="button" role="tab">👨‍👩‍👦 أولياء الأمور</button>
+        <li class="nav-item">
+            <button class="nav-link nav-btn" data-bs-toggle="tab" data-bs-target="#parents">أولياء الأمور</button>
         </li>
     </ul>
 
-    <!-- Tabs Content -->
-    <div class="tab-content p-4" id="userTabsContent">
+    <div class="tab-content mt-4">
+
         <!-- Students -->
-        <div class="tab-pane fade show active" id="students" role="tabpanel">
-            <h5 class="mb-3 text-primary">قائمة الطلاب</h5>
-            <table class="table table-hover align-middle text-center shadow-sm">
-                <thead class="table-primary">
-                    <tr>
-                        <th>الاسم</th>
-                        <th>الإيميل</th>
-                        <th>رقم الهاتف</th>
-                        <th>عدد الكورسات</th>
-                        <th>الحالة</th>
-                        <th>التحكم</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>أحمد محمد</td>
-                        <td>ahmed@email.com</td>
-                        <td>01012345678</td>
-                        <td>4</td>
-                        <td><span class="badge bg-success">نشط</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
-                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#studentModal">تفاصيل</button>
-                            <button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="tab-pane fade show active" id="students">
+            <div class="table-container">
+                <h5 class="my-4">قائمة الطلاب</h5>
+
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الإيميل</th>
+                            <th>رقم الهاتف</th>
+                            <th>عدد الكورسات</th>
+                            <th>الحالة</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>أحمد على</td>
+                            <td>ahmed@example.com</td>
+                            <td>01000000000</td>
+                            <td>4</td>
+                            <td><span class="badge bg-success p-2">نشط</span></td>
+                            <td>
+                                <button class="action-btn pause-btn">إيقاف</button>
+                                <button class="action-btn delete-btn">حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
 
         <!-- Teachers -->
-        <div class="tab-pane fade" id="teachers" role="tabpanel">
-            <h5 class="mb-3 text-info">قائمة المعلمين</h5>
-            <table class="table table-hover align-middle text-center shadow-sm">
-                <thead class="table-info">
-                    <tr>
-                        <th>الاسم</th>
-                        <th>التخصص</th>
-                        <th>عدد الكورسات</th>
-                        <th>التقييم</th>
-                        <th>الحالة</th>
-                        <th>التحكم</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>منى علي</td>
-                        <td>رياضيات</td>
-                        <td>5</td>
-                        <td>⭐ 4.8</td>
-                        <td><span class="badge bg-success">نشط</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-danger" onclick="freezeAccount(this)">تجميد</button>
-                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#teacherModal">تفاصيل</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="tab-pane fade" id="teachers">
+            <div class="table-container">
+                <h5 class="my-4">قائمة المعلمين</h5>
+
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>التخصص</th>
+                            <th>عدد الكورسات</th>
+                            <th>التقييم</th>
+                            <th>الحالة</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>منى علي</td>
+                            <td>رياضيات</td>
+                            <td>5</td>
+                            <td>⭐ 4.8</td>
+                            <td><span class="badge bg-success p-2">نشط</span></td>
+                            <td>
+                                <button class="action-btn pause-btn">تجميد</button>
+                                <button class="action-btn delete-btn">حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
+
         <!-- Parents -->
-        <div class="tab-pane fade" id="parents" role="tabpanel">
-            <h5 class="mb-3 text-warning">قائمة أولياء الأمور</h5>
-            <table class="table table-hover align-middle text-center shadow-sm">
-                <thead class="table-warning">
-                    <tr>
-                        <th>الاسم</th>
-                        <th>الإيميل</th>
-                        <th>الطلاب المرتبطين</th>
-                        <th>الحالة</th>
-                        <th>التحكم</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>خالد حسن</td>
-                        <td>khaled@email.com</td>
-                        <td>أحمد، سارة</td>
-                        <td><span class="badge bg-success">نشط</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-warning" onclick="toggleStatus(this)">إيقاف</button>
-                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#parentModal">تنبيه</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="tab-pane fade" id="parents">
+            <div class="table-container">
+                <h5 class="my-4">قائمة أولياء الأمور</h5>
+
+                <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الإيميل</th>
+                            <th>الطلاب المرتبطين</th>
+                            <th>الحالة</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>خالد حسن</td>
+                            <td>khaled@email.com</td>
+                            <td>أحمد، سارة</td>
+                            <td><span class="badge bg-success p-2">نشط</span></td>
+                            <td>
+                                <button class="action-btn pause-btn">إيقاف</button>
+                                <button class="action-btn delete-btn">تنبيه</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
+
 </div>
-<script src="~/assets/js/dashbordadmin.js"></script>
-<script src="~/assets/js/main.js"></script>
+

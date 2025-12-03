@@ -15,6 +15,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="shortcut icon" href="~/assets/img/icon.svg" type="image/x-icon" />
 </head>
+<style>
+    .drop {
+        display: none;
+    }
+
+   
+</style>
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
@@ -28,26 +35,78 @@
                     <i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span>
                 </a>
             </li>
-            <li>
-                <a asp-controller="Admin" asp-action="Users">
+
+            @* <li class="dropdown">
+                <a href="javascript:void(0);" class="btn-link">
                     <i class="fa-solid fa-user mx-2"></i> <span>إدارة المستخدمين</span>
+                    <i class="fa-solid fa-chevron-down mx-1"></i>
+                </a>
+                <ul class="dropdown-content">
+                    <li>
+                        <a asp-controller="Admin" asp-action="Students" class="btn-link">الطالب</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="Teachers" class="btn-link">المدرس</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="Admins" class="btn-link">الإدمن</a>
+                    </li>
+                </ul>
+            </li> *@
+
+            <li class="users">
+                <a >
+                    <i class="fa-solid fa-book mx-2"></i> <span>إدارة المستخدمين</span>
                 </a>
             </li>
+
+            <li class="drop">
+                <a asp-controller="Usermanagement" asp-action="students">
+                    <i class="fa-solid fa-book mx-2"></i> <span>الطلاب</span>
+                </a>
+            </li>
+
+            <li class="drop">
+                <a asp-controller="Usermanagement" asp-action="instructors">
+                    <i class="fa-solid fa-book mx-2"></i> <span>المدرسين </span>
+                </a>
+            </li>
+
+            <li class="drop">
+                <a asp-controller="Usermanagement" asp-action="parents">
+                    <i class="fa-solid fa-book mx-2"></i> <span>اولياء الامور</span>
+                </a>
+            </li>
+
+            <li class="drop">
+                <a asp-controller="Usermanagement" asp-action="pandingusers">
+                    <i class="fa-solid fa-book mx-2"></i> <span>المستخدمين في حاجه الانتظار</span>
+                </a>
+            </li>
+
+           
+
             <li>
                 <a asp-controller="Admin" asp-action="Courses">
                     <i class="fa-solid fa-book mx-2"></i> <span>إدارة الكورسات</span>
                 </a>
             </li>
+
+
             <li>
                 <a asp-controller="AdminReports" asp-action="Report">
                     <i class="fa-solid fa-chart-line mx-2"></i> <span>التقارير</span>
                 </a>
             </li>
+
+
             <li>
                 <a asp-controller="Admin" asp-action="Payments">
                     <i class="fa-solid fa-receipt mx-2"></i> <span>الفواتير</span>
                 </a>
             </li>
+
+
             <li>
                 <a asp-controller="Admin" asp-action="Setting">
                     <i class="fa-solid fa-gear mx-2"></i> <span>الإعدادات</span>
@@ -88,4 +147,27 @@
     @RenderSection("script", required: false)
 </body>
 </html>
+
+  
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const userLi = document.querySelector(".users");
+            const userLink = userLi.querySelector("a");
+            const drops = document.querySelectorAll(".drop");
+
+            let isOpen = false;
+
+            userLi.addEventListener("click", function (e) {
+                e.preventDefault(); // يمنع فتح الصفحة
+                isOpen = !isOpen;
+
+                drops.forEach(d => {
+                    d.style.display = isOpen ? "block" : "none";
+                });
+            });
+
+        });
+</script>
+
 

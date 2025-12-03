@@ -87,6 +87,14 @@ namespace Luno_platform.Models
             //           العلاقات
             // =============================
 
+            // علاقة One-to-Many بين Payments و Teacher_payment
+            modelBuilder.Entity<Teacher_payment>()
+                .HasOne(tp => tp.Payment)
+                .WithMany(tp=> tp.Teacher_Payments) // لو عايز كل Payment يعرف الـ Teacher_payments بتاعته، خليها WithMany(tp => tp.TeacherPayments)
+                .HasForeignKey(tp => tp.PaymentRefId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
 
 
             modelBuilder.Entity<Instructor>()

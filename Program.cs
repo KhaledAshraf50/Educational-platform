@@ -91,6 +91,8 @@ namespace Luno_platform
             builder.Services.AddScoped<IReportsService, ReportsService>();
             builder.Services.AddScoped<SettingsService>();
             builder.Services.AddScoped<IUserRepo, UserRepo>();
+            builder.Services.AddScoped<IUserservecs, Userservecs>();
+
             builder.Services.AddScoped<IClassRepo, ClassRepo>();
 
             builder.Services.AddScoped<Icourses_repo, courses_repo>();

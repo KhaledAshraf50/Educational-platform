@@ -74,6 +74,10 @@ namespace Luno_platform.Controllers
             // 1) نجيب اليوزر
             var user = await _userManager.FindByEmailAsync(model.Email);
 
+            if (user.status == "Pending")
+            {
+                return View("AccountPending");
+            }
             if (user == null)
             {
                 ModelState.AddModelError("", "Email not found");
@@ -134,7 +138,10 @@ CreateBaseUser(Register_User_Viewmode model)
                 nationalID = model.NationalID,
                 PasswordHash = model.Password,
                 Image = model.Image ?? "~/assets/imgs/user_image.png",
-                UserName = model.Email
+                UserName = model.Email,
+                CreatedAt = DateOnly.FromDateTime(DateTime.Today),
+                
+                
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

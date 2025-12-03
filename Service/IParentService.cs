@@ -21,5 +21,10 @@ namespace Luno_platform.Service
         public void UpdateImage(int parentId, string imgUrl);
         List<Payments> GetPayments(int studentId);
 
+        List<showallStudent> showparent();
+
+        void deleteparent(int userid);
+
+
     }
 }

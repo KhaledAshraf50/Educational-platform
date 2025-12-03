@@ -1,11 +1,13 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Viewmodel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Luno_platform.Repository
 {
     public interface IstudentRepo : I_BaseRepository<Student>
     {
         Student GetStudent(int id);
+        List<showallStudent> showStudents();
         List<Courses> GetStudentCourses(int id);
         List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10);
         List<StudentCourseFullDataVM> GetStudentCoursesFullData(int id);
@@ -15,6 +17,9 @@ namespace Luno_platform.Repository
         int getStudentId(int userid);
         public Student GetStudentt(int userId);
         bool isSubdcrip(int studentid, int courseid);
+        void DeleteStudent(int userid);
+        void SetUserPending(int userid);
+
 
     }
 }

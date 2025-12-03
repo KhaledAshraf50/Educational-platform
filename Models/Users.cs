@@ -20,6 +20,8 @@ namespace Luno_platform.Models
 
         public string? Image { get; set; }
 
+        public string? status { get; set; } = "Pending";
+        public DateOnly? CreatedAt { get; set; }
         [Required]
 
         [MaxLength(100)]

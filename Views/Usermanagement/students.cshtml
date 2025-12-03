@@ -1,0 +1,159 @@
+﻿@using Luno_platform.Viewmodel
+
+@model List<showallStudent>
+
+@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+    int i = 1;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/usersAdmin.css" />
+    <link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link href="~/assets/css/Reports.css" rel="stylesheet" />
+}
+
+<style>
+    .table-container {
+        background: #fff;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    .subject-table thead th {
+        background-color: #092c4c !important;
+        color: #fff !important;
+        font-weight: 700;
+        padding: 14px 0;
+    }
+
+    .subject-table tbody tr td {
+        padding: 12px 0;
+        font-weight: 600;
+    }
+
+    .table_Edit tbody tr:hover {
+        background-color: #f3f6fa !important;
+    }
+
+    .action-btn {
+        padding: 8px 18px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 700;
+        transition: 0.3s ease;
+        margin: 0 4px;
+    }
+
+    .pause-btn {
+        background-color: #f2994a !important;
+        color: #fff !important;
+    }
+
+        .pause-btn:hover {
+            background-color: #e2b12f !important;
+        }
+
+    .delete-btn {
+        background-color: #eb5757 !important;
+        color: #fff !important;
+    }
+
+        .delete-btn:hover {
+            background-color: #c44545 !important;
+        }
+
+    .Active-btn {
+        background-color: #092c4c !important;
+        color: #fff !important;
+    }
+</style>
+
+<div class="tab-content mt-4">
+    <div class="tab-pane fade show active" id="students">
+        <div class="table-container">
+            <h5 class="my-4">قائمة الطلاب</h5>
+
+            <table class="table subject-table table-striped table-hover text-center align-middle table_Edit">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>الإيميل</th>
+                        <th>رقم الهاتف</th>
+                        <th>عدد الكورسات</th>
+                        <th>تاريخ التسجيل</th>
+                        <th>التحكم</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var stu in Model)
+                    {
+                       
+                        <tr>
+                            <td>@i</td>
+                            <td>@stu.FullName</td>
+                            <td>@stu.Email</td>
+                            <td>@stu.PhoneNumber</td>
+                            <td>@stu.CoursesCount</td>
+                            <td> @stu.createat</td>
+
+                            <td>
+                                <form asp-controller="UserManagement" asp-action="SetstudentPending" method="post" style="display:inline;">
+                                    <input type="hidden" name="userId" value="@stu.userid" />
+                                    <button type="submit" class="action-btn pause-btn">إيقاف</button>
+                                </form>
+                                <form asp-controller="UserManagement" asp-action="deletestudent" method="post" style="display:inline;">
+                                    <input type="hidden" name="userId" value="@stu.userid"/>
+                                    <button type="submit" class="action-btn delete-btn">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mt-4">
+
+    <!-- زر السابق -->
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a class="btn btn-dark px-4"
+           href="@Url.Action("Students", new { page = ViewBag.CurrentPage - 1 })">
+            السابق
+        </a>
+    }
+    else
+    {
+        <button class="btn btn-secondary px-4" disabled>السابق</button>
+    }
+
+    <!-- رقم الصفحة -->
+    <span class="fw-bold">
+        الصفحة @ViewBag.CurrentPage من @ViewBag.TotalPages
+    </span>
+
+    <!-- زر التالي -->
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a class="btn btn-dark px-4"
+           href="@Url.Action("Students", new { page = ViewBag.CurrentPage + 1 })">
+            التالي
+        </a>
+    }
+    else
+    {
+        <button class="btn btn-secondary px-4" disabled>التالي</button>
+    }
+
+</div>

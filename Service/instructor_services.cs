@@ -1,5 +1,6 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
+using Luno_platform.Viewmodel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
@@ -14,6 +15,12 @@ namespace Luno_platform.Service
             
 
         }
+
+        public void deleteinstructor(int userid)
+        {
+            _instorRepo.deleteinstructor(userid);
+        }
+
         public IEnumerable<Instructor> GetAll_Instructors_With_User_with_subject()
         {
          return _instorRepo.GetAll_Instructors_With_User_with_subject();
@@ -27,6 +34,11 @@ namespace Luno_platform.Service
         public List<Instructor> infoinstructors()
         {
             return _instorRepo.infoinstructors();
+        }
+
+        public List<showallStudent> showinstructor()
+        {
+            return _instorRepo.showinstructor();
         }
     }
 }

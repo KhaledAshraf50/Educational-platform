@@ -159,5 +159,38 @@ namespace Luno_platform.Repository
         {
             return _Context.Students.Where(s=>s.ParentId == parentId).ToList();
         }
+
+        public List<showallStudent> showparent()
+        {
+            var parents = _Context.Parents
+                 .Include(s => s.Students)
+                 .Include(s => s.User)
+                 .Where(s => s.User.status == "Active")
+                 .Select(s => new showallStudent
+                 {
+                     userid = s.User.Id,
+                     parentid = s.ID,
+                     FullName = s.User.fname + " " + s.User.lastName,
+                     Email = s.User.Email,
+                     PhoneNumber = s.User.PhoneNumber,
+                     childernCount = s.Students.Count(),
+                     createat = s.User.CreatedAt ?? DateOnly.FromDateTime(DateTime.Today)
+                 }
+
+                 )
+                 .ToList();
+
+            return parents;
+        }
+
+        public void deleteparent(int userid)
+        {
+            var parent = _Context.Parents.FirstOrDefault(e => e.UserId == userid);
+            _Context.Parents.Remove(parent);
+            var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
+            _Context.Users.Remove(user);
+
+            _Context.SaveChanges();
+        }
     }
 }

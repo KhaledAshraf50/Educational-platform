@@ -9,9 +9,13 @@ namespace Luno_platform.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int paymentID { get; set; }
+        [Required]
+        public int PaymentRefId { get; set; }
 
-       
-        [Required] 
+        [ForeignKey("PaymentRefId")]
+        public virtual Payments Payment { get; set; }
+
+        [Required]
         [MaxLength(50)]
         public string Status { get; set; }
 
@@ -20,7 +24,7 @@ namespace Luno_platform.Models
         public DateTime PaymentDate { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(10, 2)")] 
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal AmountPaid { get; set; }
 
         [Required]
@@ -29,10 +33,12 @@ namespace Luno_platform.Models
         [ForeignKey("instructorID")]
         public virtual Instructor Instructor { get; set; }
 
-         public int AdminID { get; set; }
+        public int AdminID { get; set; }
 
         [ForeignKey("AdminID")]
         public virtual Admin Admin { get; set; }
+
+
 
 
 

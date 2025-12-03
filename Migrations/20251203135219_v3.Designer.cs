@@ -4,6 +4,7 @@ using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luno_platform.Migrations
 {
     [DbContext(typeof(LunoDBContext))]
-    partial class LunoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251203135219_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -596,9 +599,6 @@ namespace Luno_platform.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentRefId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -610,8 +610,6 @@ namespace Luno_platform.Migrations
                     b.HasKey("paymentID");
 
                     b.HasIndex("AdminID");
-
-                    b.HasIndex("PaymentRefId");
 
                     b.HasIndex("instructorID");
 
@@ -697,9 +695,6 @@ namespace Luno_platform.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("status")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1170,12 +1165,6 @@ namespace Luno_platform.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Luno_platform.Models.Payments", "Payment")
-                        .WithMany("Teacher_Payments")
-                        .HasForeignKey("PaymentRefId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Luno_platform.Models.Instructor", "Instructor")
                         .WithMany("Teacher_Payments")
                         .HasForeignKey("instructorID")
@@ -1185,8 +1174,6 @@ namespace Luno_platform.Migrations
                     b.Navigation("Admin");
 
                     b.Navigation("Instructor");
-
-                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.instructor_classescs", b =>
@@ -1336,11 +1323,6 @@ namespace Luno_platform.Migrations
             modelBuilder.Entity("Luno_platform.Models.Parent", b =>
                 {
                     b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("Luno_platform.Models.Payments", b =>
-                {
-                    b.Navigation("Teacher_Payments");
                 });
 
             modelBuilder.Entity("Luno_platform.Models.Question", b =>
