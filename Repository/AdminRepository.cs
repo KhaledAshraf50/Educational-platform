@@ -44,7 +44,7 @@ namespace Luno_platform.Repository
         public List<Courses> GetallpendingCourses()
         {
             return _Context.Courses
-                .Where(c => c.status == "Pending")
+                .Where(c => c.status == "Archive")
                 .ToList();
         }
 
@@ -105,7 +105,7 @@ namespace Luno_platform.Repository
 
         public int GetTotalCoursesPending()
         {
-            return _Context.Courses.Count(c => c.status == "Pending");
+            return _Context.Courses.Count(c => c.status == "Archive");
         }
 
         public decimal GetTotalPayments()
