@@ -74,10 +74,7 @@ namespace Luno_platform.Controllers
             // 1) نجيب اليوزر
             var user = await _userManager.FindByEmailAsync(model.Email);
 
-            if (user.status == "Pending")
-            {
-                return View("AccountPending");
-            }
+
             if (user == null)
             {
                 ModelState.AddModelError("", "Email not found");
@@ -96,6 +93,10 @@ namespace Luno_platform.Controllers
             {
                 ModelState.AddModelError("", "Invalid password");
                 return View(model);
+            }
+            if (user.status == "Pending")
+            {
+                return View("AccountPending");
             }
 
             // 3) نجاح الدخول
