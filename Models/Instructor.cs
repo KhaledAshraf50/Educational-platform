@@ -52,6 +52,8 @@ namespace Luno_platform.Models
         public virtual ICollection<Exams> Exams { get; set; }
         //public virtual ICollection<Tasks> Tasks { get; set; }
         public virtual ICollection<Teacher_payment> Teacher_Payments { get; set; }
+        public virtual ICollection<Teacher_payment2> Teacher_Payments2 { get; set; }
+
         public virtual ICollection<Tasks> Tasks { get; set; }
 
 

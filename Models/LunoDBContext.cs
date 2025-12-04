@@ -27,6 +27,7 @@ namespace Luno_platform.Models
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher_payment> Teacher_Payments { get; set; }
+        public DbSet<Teacher_payment2> Teacher_Payments2 { get; set; }
         public DbSet<instructor_classescs> instructor_classescs { get; set; }
         public DbSet<Subject_Classes> Subject_Classes { get; set; }
         //public DbSet<Exams_contentcs> Exams_Contentcs { get; set; }
@@ -95,6 +96,11 @@ namespace Luno_platform.Models
                 .OnDelete(DeleteBehavior.Cascade);
 
 
+            modelBuilder.Entity<Teacher_payment2>()
+    .HasOne(tp => tp.Payment)
+    .WithMany(tp => tp.Teacher_Payments2) // لو عايز كل Payment يعرف الـ Teacher_payments بتاعته، خليها WithMany(tp => tp.TeacherPayments)
+    .HasForeignKey(tp => tp.PaymentRefId)
+    .OnDelete(DeleteBehavior.Cascade);
 
 
             modelBuilder.Entity<Instructor>()
@@ -181,6 +187,12 @@ namespace Luno_platform.Models
                 .HasForeignKey(tp => tp.instructorID)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            // 10. Teacher_payment -> Instructors (instructorID)
+            modelBuilder.Entity<Teacher_payment2>()
+                .HasOne(tp => tp.Instructor)
+                .WithMany(i => i.Teacher_Payments2)
+                .HasForeignKey(tp => tp.instructorID)
+                .OnDelete(DeleteBehavior.NoAction);
 
             // 11. Students -> Classes (classId)
             modelBuilder.Entity<Student>()

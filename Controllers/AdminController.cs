@@ -23,7 +23,7 @@ namespace Luno_platform.Controllers
 
             if (userIdClaim == null)
             {
-                return -1; // معناها مفيش يوزر
+                return -1; 
             }
 
             return int.Parse(userIdClaim.Value);
@@ -32,9 +32,7 @@ namespace Luno_platform.Controllers
         [Route("/Admin/mainpage")]
         public IActionResult mainpage()
         {
-            // جلب الـ UserId من الـ Claims (أو من الـ session حسب تطبيقك)
             var userId = GetUserId();
-            //var userId = int.Parse(User.Claims.First(c => c.Type == "UserId").Value);
 
             var model = _adminService.GetDashboardData(userId);
 

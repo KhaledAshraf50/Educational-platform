@@ -31,5 +31,7 @@ namespace Luno_platform.Models
         public virtual Courses Courses { get; set; }
 
        public ICollection<Teacher_payment> Teacher_Payments { get; set; }
-        }
+        public ICollection<Teacher_payment2> Teacher_Payments2 { get; set; }
+
+    }
 }
