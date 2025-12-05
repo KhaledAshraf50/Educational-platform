@@ -93,7 +93,9 @@ namespace Luno_platform.Repository
                    User = new Users
                    {
                        fname = i.User.fname,
-                       lastName = i.User.lastName
+                       lastName = i.User.lastName,
+                       Image=i.User.Image
+
                    },
 
                    // المادة

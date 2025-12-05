@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno_platform.Service
 {
@@ -6,5 +7,7 @@ namespace Luno_platform.Service
     {
 
          List<Subject> GetSubjects { get;  }
+    
+       
     }
 }

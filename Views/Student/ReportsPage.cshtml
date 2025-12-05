@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="/assets/css/Reports.css">
     
 }
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-warning" style="padding:12px; font-size:16px;">
+        @TempData["AlertMessage"]
+    </div>
+}
 <div class="Reportspage m-3 bodycontent" id="Reportspage">
     <div class="container text-center mt-3">
         <div class="search">

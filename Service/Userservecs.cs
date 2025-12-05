@@ -19,6 +19,16 @@ namespace Luno_platform.Service
             return _repeRepo.deleteuser(userid);
         }
 
+        public showadetailsusers GetUserDetails(int userId)
+        {
+            return _repeRepo.GetUserDetails(userId);
+        }
+
+        public List<showallStudent> NotActiveusers()
+        {
+            return _repeRepo.NotActiveusers();
+        }
+
         public List<showallStudent> pandingusers()
         {
             return _repeRepo.pandingusers() ;

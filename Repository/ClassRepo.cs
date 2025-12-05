@@ -20,5 +20,7 @@ namespace Luno_platform.Repository
         {
             return _Context.Classes.FirstOrDefault(c => c.ClassID == id);
         }
+
+    
     }
 }

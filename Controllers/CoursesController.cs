@@ -1,4 +1,5 @@
-﻿using Luno_platform.Service;
+﻿using Luno_platform.Models;
+using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace Luno_platform.Controllers
     public class CoursesController : Controller
     {
         public readonly Icourses_service _courses;
+
 
         public CoursesController(Icourses_service courses)
         {
@@ -23,7 +25,9 @@ namespace Luno_platform.Controllers
         {
             var model = new filter_coursesviewmodel
             {
-                Courses = _courses.showallcourses()// جلب كل الكورسات في البداية
+                Courses = _courses.showallcourses(),
+                
+                // جلب كل الكورسات في البداية
             };
 
             return View(model);
@@ -34,7 +38,6 @@ namespace Luno_platform.Controllers
         {
             // جلب كل الكورسات
             var courses = _courses.showallcourses().AsQueryable();
-
             // فلترة باسم الكورس
             if (!string.IsNullOrEmpty(filter.coursesname))
             {

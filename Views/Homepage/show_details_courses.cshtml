@@ -7,17 +7,19 @@
 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
 
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["Error"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
+
+
+
 
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
 
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div class="alert alert-warning" style="padding:12px; font-size:16px;">
+                @TempData["AlertMessage"]
+            </div>
+        }
         <!-- هيدر -->
         <div class="course-header">
             <img src="@Url.Content(Model.Courses.Image)" alt="صورة الكورس" class="course-image" />
@@ -111,7 +113,7 @@
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
                                         <p>@Model.Courses.CourseContent.Exams.ExamName</p>
-                                        <a href="/homepage/pageExam/@Model.Courses.CourseContent.Exams.ExamID"
+                                        <a href="/homepage/pageExam/@Model.Courses.CourseContent.Exams.ExamID/@Model.CourseID" 
                                            class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
@@ -121,7 +123,7 @@
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
                                         <p>@Model.Courses.CourseContent.Tasks.TaskName</p>
-                                        <a href="/homepage/pageTask/@Model.Courses.CourseContent.Tasks.TaskID"
+                                        <a href="/homepage/pageTask/@Model.Courses.CourseContent.Tasks.TaskID/@Model.CourseID"
                                            class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }

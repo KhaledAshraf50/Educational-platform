@@ -95,16 +95,11 @@
             <div class="form-group form-group1">
                 <div style="position: relative;">
                     <select required asp-for="SubjectID">
-                        <option value="" disabled selected hidden></option>
-                        <option value="1">اللغة العربية</option>
-                        <option value="2">اللغة الإنجليزية</option>
-                        <option value="3">الرياضيات</option>
-                        <option value="4">العلوم</option>
-                        <option value="5">الفيزياء</option>
-                        <option value="6">الكيمياء</option>
-                        <option value="7">الأحياء</option>
-                        <option value="8">اللغة الفرنسية</option>
-                        <option value="9">اللغة الألمانية</option>
+                        @foreach (var item in Model.subjects)
+                        {
+                            <option value="@item.SubjectID">@item.SubjectNameAR</option>
+                        }
+                        
                     </select>
                     <label><i class="fa-solid fa-book"></i> المادة التخصص</label>
                 </div>

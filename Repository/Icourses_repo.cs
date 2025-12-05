@@ -12,5 +12,7 @@ namespace Luno_platform.Repository
 
         List<Courses> showallcourses();
 
+        List<Courses> GetTopCoursesThisWeek();
+
     }
 }

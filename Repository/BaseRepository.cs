@@ -89,5 +89,11 @@ namespace Luno_platform.Repository
         }
 
 
+        public List<Subject> subjects()
+        {
+            var subject = _Context.Subjects.ToList();
+            return subject;
+        }
+
     }
 }

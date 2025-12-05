@@ -1,0 +1,183 @@
+﻿@using Luno_platform.Viewmodel
+@model showadetailsusers
+
+@{
+    Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <style>
+        .details-container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+            .details-header img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 20px;
+                border: 2px solid #092c4c;
+            }
+
+            .details-header h2 {
+                margin: 0;
+                color: #092c4c;
+            }
+
+        .details-section {
+            margin-bottom: 20px;
+        }
+
+            .details-section h4 {
+                border-bottom: 2px solid #092c4c;
+                padding-bottom: 5px;
+                color: #092c4c;
+            }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .details-label {
+            font-weight: 700;
+            color: #555;
+        }
+
+        .details-value {
+            color: #333;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #092c4c;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+            .back-btn:hover {
+                background-color: #06406b;
+            }
+    </style>
+}
+
+<div class="details-container">
+
+    <div class="details-header">
+        <img src="@Model.Image" alt="User Image" />
+        <h2>@Model.FullName</h2>
+    </div>
+
+    <!-- البيانات الأساسية -->
+    <div class="details-section">
+        <h4>البيانات الأساسية</h4>
+        <div class="details-row">
+            <span class="details-label">الاسم الكامل:</span>
+            <span class="details-value">@Model.FullName</span>
+        </div>
+        <div class="details-row">
+            <span class="details-label">البريد الإلكتروني:</span>
+            <span class="details-value">@Model.Email</span>
+        </div>
+        <div class="details-row">
+            <span class="details-label">رقم الهاتف:</span>
+            <span class="details-value">@Model.PhoneNumber</span>
+        </div>
+        <div class="details-row">
+            <span class="details-label">الهوية الوطنية:</span>
+            <span class="details-value">@Model.nationalID</span>
+        </div>
+        <div class="details-row">
+            <span class="details-label">الدور:</span>
+            <span class="details-value">@Model.role</span>
+        </div>
+        <div class="details-row">
+            <span class="details-label">تاريخ التسجيل:</span>
+            <span class="details-value">@Model.createat?.ToString("yyyy-MM-dd")</span>
+        </div>
+    </div>
+
+    <!-- بيانات الطالب -->
+    @if (Model.role == "student")
+    {
+        <div class="details-section">
+            <h4>بيانات الطالب</h4>
+            <div class="details-row">
+                <span class="details-label">Branch:</span>
+                <span class="details-value">@Model.branch</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Parent Number:</span>
+                <span class="details-value">@Model.parentnumber</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">City:</span>
+                <span class="details-value">@Model.city</span>
+            </div>
+        </div>
+    }
+
+    <!-- بيانات المعلم -->
+    @if (Model.role == "instructor")
+    {
+        <div class="details-section">
+            <h4>بيانات المعلم</h4>
+            <div class="details-row">
+                <span class="details-label">Motto:</span>
+                <span class="details-value">@Model.motto</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Bio:</span>
+                <span class="details-value">@Model.bio</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Eligible:</span>
+                <span class="details-value">@Model.eligible</span>
+            </div>
+        </div>
+    }
+
+    <!-- بيانات ولي الأمر -->
+    @if (Model.role == "parent")
+    {
+        <div class="details-section">
+            <h4>بيانات ولي الأمر</h4>
+            <div class="details-row">
+                <span class="details-label">عدد الأبناء:</span>
+                <span class="details-value">@Model.ChildrenCount</span>
+            </div>
+        </div>
+    }
+
+    <!-- بيانات الأدمن -->
+    @if (Model.role == "admin")
+    {
+        <div class="details-section">
+            <h4>بيانات الأدمن</h4>
+            <div class="details-row">
+                <span class="details-label">Admin ID:</span>
+                <span class="details-value">@Model.AdminID</span>
+            </div>
+        </div>
+    }
+
+    <a href="javascript:history.back()" class="back-btn">العودة للصفحة السابقة</a>
+
+</div>

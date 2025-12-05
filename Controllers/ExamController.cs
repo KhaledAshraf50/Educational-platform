@@ -50,9 +50,8 @@ namespace Luno_platform.Controllers
 
             int degree = _examService.CorrectExamAndSave(model.ExamID, studentid, model.Answers);
 
-            TempData["Degree"] = degree;
-
-            return RedirectToAction("homepage", "pageExam");
+            TempData["AlertMessage"] = $"تم تصحيح الامتحان! درجتك: {degree}";
+            return RedirectToAction("ReportsPage", "Student");
         }
         
         public IActionResult ExamSubmitted()
@@ -68,10 +67,11 @@ namespace Luno_platform.Controllers
             int degree = _examService.CorrectTaskAndSave(model.TaskID, studentid, model.Answers);
 
             // بدل Redirect لصفحة ExamSubmitted، نروح لصفحة DetailsCourses
-            TempData["Popup"] = $"تم تصحيح الامتحان! درجتك: {degree}";
+            TempData["AlertMessage"] = $"تم تصحيح الواجب! درجتك: {degree}";
 
-            // هنا نفترض أن الـ CourseId موجود عندك في الـ model أو تحضره من الخدمة
-            return RedirectToAction("Details", "Courses");
+            return RedirectToAction("ReportsPage", "Student");
+
+      
         }
 
         [HttpGet]

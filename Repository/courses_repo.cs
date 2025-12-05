@@ -125,8 +125,41 @@ namespace Luno_platform.Repository
             return _Context.Courses.Where(e=> e.status=="Active").ToList();
         }
 
+        public List<Courses> GetTopCoursesThisWeek()
+        {
+            DateTime startOfWeek = DateTime.Now.AddDays(-7);
 
+            // 1) IDs of top courses
+            var topCourseIds = _Context.Payments
+                .Where(p => p.date >= startOfWeek)
+                .GroupBy(p => p.courseId)
+                .Select(g => new
+                {
+                    CourseId = g.Key,
+                    Count = g.Count()
+                })
+                .OrderByDescending(x => x.Count)
+                .Take(9)
+                .Select(x => x.CourseId)
+                .ToList();
 
+            // 2) نجيب بس البيانات اللي انت عايزها
+            var topCourses = _Context.Courses
+                .Where(c => topCourseIds.Contains(c.CourseId))
+                .Select(c => new Courses
+                {
+                    CourseId = c.CourseId,
+                    CourseName = c.CourseName,
+                    description = c.description,
+                    price = c.price,
+                    createdAt = c.createdAt,
+                    Image = c.Image
+                })
+                .ToList();
+
+            return topCourses;
+        
+        }
 
         //public IEnumerable<CourseViewModel> FilterCourses(filter_coursesviewmodel filter)
         //{
@@ -168,7 +201,7 @@ namespace Luno_platform.Repository
         //    if (filter.MaxPrice.HasValue)
         //        coursesWithInstructor = coursesWithInstructor.Where(c => c.Price <= filter.MaxPrice.Value);
 
-          
+
 
         //    return coursesWithInstructor.ToList();
         //}

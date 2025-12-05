@@ -80,89 +80,145 @@
     }
 </style>
 
-<div class="tab-content mt-4">
-    <div class="tab-pane fade show active" id="students">
-        <div class="table-container">
-            <h5 class="my-4">قائمه المستخدمين ال في حاله الانتظار  </h5>
+<div class="page-container">
 
-            <table class="table subject-table table-striped table-hover text-center align-middle table_Edit">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>الاسم</th>
-                        <th>الإيميل</th>
-                        <th>رقم الهاتف</th>
-                        <th>الدور</th>
-                        <th>تاريخ التسجيل</th>
-                        <th>التحكم</th>
-                    </tr>
-                </thead>
+    <h2 class="fw-bold mb-4">إدارة المستخدمين</h2>
 
-                <tbody>
-                    @foreach (var stu in Model)
-                    {
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="userTabs" role="tablist">
 
+        <!-- زر الطلاب -->
+        <li class="nav-item">
+            <form asp-controller="UserManagement" asp-action="pandingusers" method="get">
+                <button type="submit" class="nav-link nav-btn @(ViewContext.RouteData.Values["action"].ToString() == "PendingUsers" ? "active" : "")">
+                    المستخدمون الجدد
+                </button>
+            </form>
+        </li>
+
+        <!-- زر المعلمين -->
+        <li class="nav-item">
+            <form asp-controller="UserManagement" asp-action="NotActiveUsers" method="get">
+                <button type="submit" class="nav-link nav-btn @(ViewContext.RouteData.Values["action"].ToString() == "NotActiveUsers" ? "active" : "")">
+                      المستخدمون الموقوفون
+                </button>
+            </form>
+        </li>
+
+    </ul>
+
+    <div class="tab-content mt-4">
+
+        <div class="tab-pane fade show active" id="students">
+            <div class="table-container">
+                <h5 class="my-4">قائمه المستخدمين ال في حاله الانتظار  </h5>
+
+                <table class="table subject-table table-striped table-hover text-center align-middle table_Edit">
+                    <thead>
                         <tr>
-                            <td>@i</td>
-                            <td>@stu.FullName</td>
-                            <td>@stu.Email</td>
-                            <td>@stu.PhoneNumber</td>
-                            <td>@stu.role</td>
-                            <td> @stu.createat</td>
-
-                            <td>
-                                <form asp-controller="UserManagement" asp-action="SetUsersActive" method="post" style="display:inline;">
-                                    <input type="hidden" name="userId" value="@stu.userid" />
-                                    <button type="submit" class="action-btn pause-btn">تفعيل </button>
-                                </form>
-                                <form asp-controller="UserManagement" asp-action="deletuser" method="post" style="display:inline;">
-                                    <input type="hidden" name="userId" value="@stu.userid" />
-                                    <button type="submit" class="action-btn delete-btn">حذف</button>
-                                </form>
-                                @* <a class="action-btn pause-btn" href="/homepage/show_portfolio_teacher/@stu.instructorid">عرض</a> *@
-
-                            </td>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>الإيميل</th>
+                            <th>رقم الهاتف</th>
+                            <th>الدور</th>
+                            <th>تاريخ التسجيل</th>
+                            <th>التحكم</th>
                         </tr>
-                        i++;
+                    </thead>
+
+                    <tbody>
+                        @foreach (var stu in Model)
+                        {
+
+                            <tr>
+                                <td>@i</td>
+                                <td>@stu.FullName</td>
+                                <td>@stu.Email</td>
+                                <td>@stu.PhoneNumber</td>
+                                <td>@stu.role</td>
+                                <td> @stu.createat</td>
+
+                                <td>
+                                    <form asp-controller="UserManagement" asp-action="SetUsersActive" method="post" style="display:inline;">
+                                        <input type="hidden" name="userId" value="@stu.userid" />
+                                        <button type="submit" class="action-btn pause-btn">تفعيل </button>
+                                    </form>
+                                    <form asp-controller="UserManagement" asp-action="deletuser" method="post" style="display:inline;">
+                                        <input type="hidden" name="userId" value="@stu.userid" />
+                                        <button type="submit" class="action-btn delete-btn">حذف</button>
+                                    </form>
+                                    <form asp-controller="UserManagement" asp-action="UserDetails" method="post" style="display:inline;">
+                                        <input type="hidden" name="userId" value="@stu.userid" />
+                                        <button type="submit" class="action-btn pause-btn">عرض </button>
+                                    </form>
+                                    @* <a class="action-btn pause-btn" href="/homepage/show_portfolio_teacher/@stu.instructorid">عرض</a> *@
+
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+
+                </table>
+                <div class="d-flex justify-content-between align-items-center mt-4">
+
+                    <!-- زر السابق -->
+                    @if (ViewBag.CurrentPage > 1)
+                    {
+                        <a class="btn btn-dark px-4"
+                           href="@Url.Action("pandingusers", new { page = ViewBag.CurrentPage - 1 })">
+                            السابق
+                        </a>
                     }
-                </tbody>
+                    else
+                    {
+                        <button class="btn btn-secondary px-4" disabled>السابق</button>
+                    }
 
-            </table>
+                    <!-- رقم الصفحة -->
+                    <span class="fw-bold">
+                        الصفحة @ViewBag.CurrentPage من @ViewBag.TotalPages
+                    </span>
+
+                    <!-- زر التالي -->
+                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                    {
+                        <a class="btn btn-dark px-4"
+                           href="@Url.Action("pandingusers", new { page = ViewBag.CurrentPage + 1 })">
+                            التالي
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary px-4" disabled>التالي</button>
+                    }
+
+                </div>
+
+            </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+       
+
     </div>
-</div>
-
-<div class="d-flex justify-content-between align-items-center mt-4">
-
-    <!-- زر السابق -->
-    @if (ViewBag.CurrentPage > 1)
-    {
-        <a class="btn btn-dark px-4"
-           href="@Url.Action("Students", new { page = ViewBag.CurrentPage - 1 })">
-            السابق
-        </a>
-    }
-    else
-    {
-        <button class="btn btn-secondary px-4" disabled>السابق</button>
-    }
-
-    <!-- رقم الصفحة -->
-    <span class="fw-bold">
-        الصفحة @ViewBag.CurrentPage من @ViewBag.TotalPages
-    </span>
-
-    <!-- زر التالي -->
-    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-    {
-        <a class="btn btn-dark px-4"
-           href="@Url.Action("Students", new { page = ViewBag.CurrentPage + 1 })">
-            التالي
-        </a>
-    }
-    else
-    {
-        <button class="btn btn-secondary px-4" disabled>التالي</button>
-    }
 
 </div>
+
+
+
+                   

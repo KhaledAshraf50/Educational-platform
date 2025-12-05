@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Luno_platform.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Luno_platform.Viewmodel
@@ -85,5 +86,7 @@ namespace Luno_platform.Viewmodel
         // بيانات ولي الأمر
         // ===========================
         // ممكن تضيف أي حقل مطلوب مع validation هنا
+
+        public List<Subject>? subjects { get; set; }
     }
 }

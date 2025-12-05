@@ -52,9 +52,10 @@ namespace Luno_platform.Controllers
             var model = new homepage_viewmodel
             {
                 subjects = _homeservice.GetSubjects,
-                instructor = _i_Instructor_Services.infoinstructors()
-              
-               
+                instructor = _i_Instructor_Services.infoinstructors(),
+                TopCoursesThisWeek = _icourses_Service.GetTopCoursesThisWeek()
+
+
 
 
             };
@@ -114,7 +115,7 @@ namespace Luno_platform.Controllers
         }
 
         [Route("Homepage/show_details_courses/{courseid}")]
-        public IActionResult show_details_courses(int courseid, detailscourse_viewmodel  detailscourse)
+        public IActionResult show_details_courses(int courseid, bool? fromTask = false)
         {
             var userid = getuserid();
             var studentid = _istudentService.getStudentId(userid);
@@ -122,23 +123,25 @@ namespace Luno_platform.Controllers
             var course = _icourses_Service.Infocourse(courseid);
             if (course == null) return NotFound();
 
-
             var model = new detailscourse_viewmodel
             {
                 Courses = course,
                 issubscrip = _istudentService.isSubdcrip(studentid, courseid),
-                CourseID=courseid
-
-
-                
+                CourseID = courseid
             };
+
+            // عرض الرسالة فقط لو جاي من pageTask
+            if (fromTask == true)
+            {
+                TempData["AlertMessage"] = TempData["AlertMessage"]; // حافظ على الرسالة
+            }
 
             return View(model);
         }
 
 
-        [Route("homepage/pageExam/{Examid}")]
-        public IActionResult pageExam(int Examid)
+        [Route("homepage/pageExam/{Examid}/{coursesid}")]
+        public IActionResult pageExam(int Examid , int coursesid)
         {
 
             var userid = getuserid();
@@ -147,11 +150,10 @@ namespace Luno_platform.Controllers
 
             if (_exam_Service.HasStudentTakenExam(studentid, Examid))
             {
-                
-              
-                    ViewBag.ErrorMessage = "لقد قمت بأداء هذا الامتحان من قبل ولا يمكنك الدخول مرة أخرى.";
-                    return View("ErrorPage");
-              
+
+                TempData["AlertMessage"] = "لقد امتحنت هذا من قبل";
+                return RedirectToAction("show_details_courses", "Homepage", new { courseid = coursesid, fromTask = true });
+
             }
             var model = new pageExam_viewmodel { 
             
@@ -166,8 +168,8 @@ namespace Luno_platform.Controllers
         }
 
 
-        [Route("homepage/pageTask/{Taskid}")]
-        public IActionResult pageTask(int Taskid)
+        [Route("homepage/pageTask/{Taskid}/{coursesid}")]
+        public IActionResult pageTask(int Taskid ,int coursesid)
         {
             var userid = getuserid();
             var studentid = _istudentService.getStudentId(userid);
@@ -175,8 +177,8 @@ namespace Luno_platform.Controllers
 
             if (_exam_Service.HasStudentTakenTask(studentid, Taskid))
             {
-                ViewBag.ErrorMessage = "لقد قمت بأداء هذا لتاسك  من قبل ولا يمكنك الدخول مرة أخرى.";
-                return View("ErrorPage");
+                TempData["AlertMessage"] = "لقد امتحنت هذا من قبل";
+                return RedirectToAction("show_details_courses", "Homepage", new { courseid = coursesid, fromTask = true });
             }
 
             var model = new pageTask_viewmodel

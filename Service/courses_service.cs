@@ -33,5 +33,9 @@ namespace Luno_platform.Service
         {
             return _coursesRepo.showallcourses();
         }
+        public List<Courses> GetTopCoursesThisWeek()
+        {
+            return _coursesRepo.GetTopCoursesThisWeek();
+        }
     }
 }

@@ -68,6 +68,10 @@ namespace Luno_platform.Service
             return Repo.HasStudentTakenTask(studentId, examId);
         }
 
+        public List<Subject> subjects()
+        {
+            return Repo.subjects();
+        }
     }
 
 }

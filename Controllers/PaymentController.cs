@@ -1,4 +1,5 @@
-﻿using Luno_platform.Service;
+﻿using Luno_platform.Models;
+using Luno_platform.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,9 @@ public class PaymentController : Controller
         try
         {
             _paymentService.CreatePayment(userId, courseId, amount);
-            return RedirectToAction("Success"); // صفحة نجاح الدفع
+            TempData["AlertMessage"] = "لقد تم الاشتراك في هذا الكورس";
+
+            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId, fromTask = true });
         }
         catch (Exception ex)
         {
