@@ -1,0 +1,41 @@
+﻿@model List<Luno_platform.Models.Question>
+
+<link rel="stylesheet" href="~/assets/css/view-questions.css" />
+
+<div class="container view-questions-page">
+
+    <h2 class="page-title">📝 أسئلة الواجب</h2>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="question-view-card">
+
+            <div class="header">
+                السؤال @(i + 1)
+            </div>
+
+            <div class="question-text">
+                @Model[i].questionText
+            </div>
+
+            <div class="choices">
+                <div class="choice"><span>A</span> @Model[i].chooseA</div>
+                <div class="choice"><span>B</span> @Model[i].chooseB</div>
+                <div class="choice"><span>C</span> @Model[i].chooseC</div>
+                <div class="choice"><span>D</span> @Model[i].chooseD</div>
+            </div>
+
+            <div class="correct-answer">
+                ✅ الإجابة الصحيحة: <span>@Model[i].correctAnswer</span>
+            </div>
+
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Dashboard", "Instructor")" class="btn-back">
+            🔙 رجوع إلى لوحة التحكم
+        </a>
+    </div>
+
+</div>

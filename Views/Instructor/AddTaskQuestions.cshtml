@@ -1,0 +1,136 @@
+﻿@model Luno_platform.Viewmodel.AddTaskQuestionVM
+
+<div class="container mt-4">
+
+    <h3 style="color:var(--primary)" class="mb-4 text-center">
+        ✍ إضافة أسئلة الواجب
+    </h3>
+
+    <form asp-action="AddTaskQuestions" method="post">
+
+        <input type="hidden" asp-for="TaskId" />
+
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <div class="card mb-4 shadow-sm border-0 p-4 question-card">
+
+                <h5 style="color:var(--secondary); margin-bottom: 1rem;">
+                    السؤال @(i + 1)
+                </h5>
+
+                <input asp-for="Questions[i].QuestionText"
+                       class="form-control mb-3"
+                       placeholder="نص السؤال" />
+
+                <input asp-for="Questions[i].ChooseA"
+                       class="form-control mb-3"
+                       placeholder="الاختيار A" />
+
+                <input asp-for="Questions[i].ChooseB"
+                       class="form-control mb-3"
+                       placeholder="الاختيار B" />
+
+                <input asp-for="Questions[i].ChooseC"
+                       class="form-control mb-3"
+                       placeholder="الاختيار C" />
+
+                <input asp-for="Questions[i].ChooseD"
+                       class="form-control mb-3"
+                       placeholder="الاختيار D" />
+
+                <select asp-for="Questions[i].CorrectAnswer"
+                        class="form-select mt-2">
+                    <option value="A">الإجابة الصحيحة: A</option>
+                    <option value="B">الإجابة الصحيحة: B</option>
+                    <option value="C">الإجابة الصحيحة: C</option>
+                    <option value="D">الإجابة الصحيحة: D</option>
+                </select>
+
+            </div>
+        }
+
+        <button type="submit" class="btn btn-save w-100 mb-5">
+            حفظ أسئلة الواجب
+        </button>
+
+    </form>
+
+</div>
+
+<style>
+    :root {
+        --primary: #092c4c;
+        --secondary: #F2994A;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #1F2937;
+    }
+
+    .question-card {
+        border-radius: 1rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: #fff;
+    }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+    input.form-control,
+    select.form-select {
+        border: 1px solid #D1D5DB;
+        border-radius: 0.5rem;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        width: 100%;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        input.form-control::placeholder {
+            color: #9CA3AF;
+        }
+
+        input.form-control:focus,
+        select.form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 10px rgba(242,153,74,0.2);
+            outline: none;
+        }
+
+        input.form-control:hover,
+        select.form-select:hover {
+            border-color: var(--secondary);
+        }
+
+    .btn-save {
+        background-color: var(--primary);
+        color: #fff;
+        font-weight: 600;
+        padding: 0.9rem;
+        font-size: 1.05rem;
+        border-radius: 0.5rem;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-save:hover {
+            background-color: #074169; /* أغمق شويه عند hover */
+            transform: translateY(-1px);
+        }
+
+    /* media (max-width: 576px) { */
+    /*     input .form-control, select.form-select, .btn-save */
+
+    /* { */
+    /*     width: 100%; */
+    /* } */
+
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

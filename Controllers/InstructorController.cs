@@ -1185,6 +1185,172 @@ public IActionResult ViewExamQuestions(int id)
             return RedirectToAction("Dashboard");
         }
 
+        [HttpGet]
+        public IActionResult CreateTask()
+        {
+            ViewBag.Classes = _context.Classes.Select(c =>
+                new SelectListItem
+                {
+                    Text = c.ClassName,
+                    Value = c.ClassID.ToString()
+                }).ToList();
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateTask(CreateTaskVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var task = new Tasks
+            {
+                TaskName = model.TaskName,
+                ClassId = model.ClassId,
+                NumOfQuestions = model.TotalQuestions,
+                instructorId = GetInstructorIdFromUser(),
+                createdAT = DateTime.Now
+            };
+
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
+
+            return RedirectToAction("AddTaskQuestions", new { taskId = task.TaskID });
+        }
+        [HttpGet]
+        public IActionResult AddTaskQuestions(int taskId)
+        {
+            var task = _context.Tasks.Find(taskId);
+            if (task == null) return NotFound();
+
+            var vm = new AddTaskQuestionVM
+            {
+                TaskId = taskId,
+                Questions = new List<QuestionItem>()
+            };
+
+            for (int i = 0; i < task.NumOfQuestions; i++)
+                vm.Questions.Add(new QuestionItem());
+
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult AddTaskQuestions(AddTaskQuestionVM model)
+        {
+            foreach (var q in model.Questions)
+            {
+                _context.Questions.Add(new Question
+                {
+                    TaskId = model.TaskId,
+                    questionText = q.QuestionText,
+                    chooseA = q.ChooseA,
+                    chooseB = q.ChooseB,
+                    chooseC = q.ChooseC,
+                    chooseD = q.ChooseD,
+                    correctAnswer = q.CorrectAnswer
+                });
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+        public IActionResult ViewTaskQuestions(int id)
+        {
+            var questions = _context.Questions
+                .Where(q => q.TaskId == id)
+                .ToList();
+
+            return View(questions);
+        }
+        public IActionResult EditTask(int id)
+        {
+            var task = _context.Tasks
+                .Include(t => t.Questions)
+                .FirstOrDefault(t => t.TaskID == id);
+
+            if (task == null) return NotFound();
+
+            var vm = new AddTaskQuestionVM
+            {
+                TaskId = id,
+                Questions = task.Questions.Select(q => new QuestionItem
+                {
+                    QuestionText = q.questionText,
+                    ChooseA = q.chooseA,
+                    ChooseB = q.chooseB,
+                    ChooseC = q.chooseC,
+                    ChooseD = q.chooseD,
+                    CorrectAnswer = q.correctAnswer
+                }).ToList()
+            };
+
+            return View("EditTask", vm);
+        }
+        [HttpPost]
+        public IActionResult EditTask(AddTaskQuestionVM model)
+        {
+            var oldQuestions = _context.Questions
+                .Where(q => q.TaskId == model.TaskId);
+
+            _context.Questions.RemoveRange(oldQuestions);
+
+            foreach (var q in model.Questions)
+            {
+                _context.Questions.Add(new Question
+                {
+                    TaskId = model.TaskId,
+                    questionText = q.QuestionText,
+                    chooseA = q.ChooseA,
+                    chooseB = q.ChooseB,
+                    chooseC = q.ChooseC,
+                    chooseD = q.ChooseD,
+                    correctAnswer = q.CorrectAnswer
+                });
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+     
+        public IActionResult DeleteTask(int id)
+        {
+            var task = _context.Tasks
+                .Include(t => t.Questions)
+                .FirstOrDefault(t => t.TaskID == id);
+
+            if (task == null)
+                return NotFound();
+
+            return View(task);
+        }
+
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteTaskConfirmed(int id)
+        {
+            var task = _context.Tasks
+                .Include(t => t.Questions)
+                .FirstOrDefault(t => t.TaskID == id);
+
+            if (task == null)
+                return NotFound();
+
+            // حذف الاسئلة الاول
+            _context.Questions.RemoveRange(task.Questions);
+
+            // حذف التاسك نفسه
+            _context.Tasks.Remove(task);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
 
     }
 
