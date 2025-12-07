@@ -19,6 +19,11 @@ namespace Luno_platform.Repository
         bool isSubdcrip(int studentid, int courseid);
         void DeleteStudent(int userid);
         void SetUserPending(int userid);
+        public void AddStudentCourse(Student_Courses studentCourse);
+        public void RemoveStudentCourse(int StudentID, int courseId);
+
+
+
         void ChargeBalance(int userid, decimal amount);
         public void ChargeBalanceAfterPay(int userid, decimal amount);
 

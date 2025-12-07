@@ -4,6 +4,173 @@
 }
 <link rel="stylesheet" href="~/assets/css/show_courses.css" />
 
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        background-color: var(--light-bg);
+    }
+
+    .teacher-courses-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+        margin: 80px 0 40px;
+        direction: rtl;
+    }
+
+        .teacher-courses-title span {
+            color: var(--secondary-color);
+        }
+
+    .courses {
+        padding: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 25px;
+        direction: rtl;
+    }
+
+    .card-courses {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 1px solid #e0e0e0;
+    }
+
+        .card-courses:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+    .image-courses {
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+    }
+
+        .image-courses img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+    .card-courses:hover .image-courses img {
+        transform: scale(1.05);
+    }
+
+    .body-course {
+        padding: 20px;
+    }
+
+    .bodytop {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        gap: 15px;
+    }
+
+    .bodyright {
+        flex: 1;
+    }
+
+    .brtop p {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 0 10px 0;
+        line-height: 1.4;
+    }
+
+    .brmid p {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+        max-height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .bodyleft {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+        .btn-primary:hover {
+            background-color: #0a3d5c;
+            border-color: #0a3d5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.3);
+        }
+
+    .bodybuttom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .price {
+        color: var(--secondary-color);
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+        .price span {
+            font-size: 22px;
+        }
+
+    .date h3 {
+        color: #999;
+        font-size: 13px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .text-center.py-5 {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 60px 30px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        grid-column: 1 / -1;
+    }
+
+        .text-center.py-5 i {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .text-center.py-5 p {
+            color: #999;
+            font-size: 16px;
+        }
+</style>
+
 <h1 class="teacher-courses-title">كورسات <span>@Model.ClassName</span></h1>
 
 <section class="courses" style="margin-top: 0px;">

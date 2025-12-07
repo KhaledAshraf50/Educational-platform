@@ -11,11 +11,14 @@ namespace Luno_platform.Controllers
     {
         private readonly IAdminService _adminService;
         private readonly IstudentService _istudentService;
+        private readonly IPaymentService _paymentService;
 
-        public AdminController(IAdminService adminService , IstudentService istudentService)
+
+        public AdminController(IAdminService adminService , IstudentService istudentService, IPaymentService paymentService)
         {
             _adminService = adminService;
             _istudentService = istudentService;
+            _paymentService = paymentService;
         }
         public int GetUserId()
         {
@@ -71,11 +74,79 @@ namespace Luno_platform.Controllers
             // بعد الحذف ارجع لصفحة الكورسات
             return RedirectToAction("courses");
         }
+        //  إضافة هذه الأكشن في AdminController الموجود
 
-        public IActionResult payments()
+        [HttpGet]
+        public IActionResult Payments()
         {
-            return View();
+            try
+            {
+                ViewBag.AcceptedPayments = _paymentService.GetPaymentsByStatus("مقبول");
+                ViewBag.CancelledPayments = _paymentService.GetPaymentsByStatus("ملغي");
+
+                // الإحصائيات
+                ViewBag.TotalRevenue = _paymentService.GetTotalRevenue();
+                ViewBag.PlatformProfit = _paymentService.GetPlatformProfit();
+                ViewBag.InstructorsDue = _paymentService.GetTotalInstructorsDue();
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return View();
+            }
         }
+
+        [HttpPost]
+        public IActionResult TransferToInstructor(int paymentId)
+        {
+            try
+            {
+                _paymentService.TransferToInstructor(paymentId);
+                TempData["Success"] = "تم تحويل نسبة المدرس بنجاح";
+                return RedirectToAction("Payments");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Payments");
+            }
+        }
+        [HttpPost]
+        public IActionResult CancelEnrollment(int paymentId)
+        {
+            try
+            {
+                _paymentService.CancelEnrollment(paymentId);
+                TempData["Success"] = "تم إلغاء اشتراك الطالب بنجاح";
+                return RedirectToAction("Payments");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Payments");
+            }
+        }
+        [HttpGet]
+        public JsonResult GetPaymentStats()
+        {
+            try
+            {
+                var stats = new
+                {
+                    accepted = _paymentService.GetPaymentsByStatus("مقبول").Count,
+                    cancelled = _paymentService.GetPaymentsByStatus("ملغي").Count
+                };
+
+                return Json(stats);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
+        }
+
         public IActionResult Report()
         {
             return View();

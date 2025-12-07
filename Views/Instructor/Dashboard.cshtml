@@ -8,17 +8,227 @@
 @if (TempData["Success"] != null)
 {
     <div class="toast-container position-fixed top-0 end-0 p-4">
-
-        <div class="toast show bg-success text-white border-0 rounded-3 shadow">
-
-            <div class="toast-body fs-6 text-center">
-                @TempData["Success"]
+        <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @TempData["Success"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-
         </div>
     </div>
-}
+}   
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --info-color: #3498db;
+        --warning-color: #e2b93b;
+        --danger-color: #e74c3c;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
 
+    .content {
+        padding: 30px;
+        direction: rtl;
+        background-color: var(--light-bg);
+    }
+
+    h4 {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+        .stats .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-right: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+            .stats .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            .stats .card h5 {
+                color: var(--primary-color);
+                font-weight: bold;
+                font-size: 32px;
+                margin: 0 0 10px 0;
+            }
+
+            .stats .card p {
+                color: #666;
+                font-size: 15px;
+                margin: 0;
+            }
+
+    .nav-tabs {
+        border-bottom: 2px solid #e0e0e0;
+        margin-bottom: 25px;
+    }
+
+        .nav-tabs .nav-link {
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+        }
+
+            .nav-tabs .nav-link.active {
+                color: white;
+                background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+                border-radius: 8px 8px 0 0;
+            }
+
+            .nav-tabs .nav-link:hover:not(.active) {
+                color: var(--secondary-color);
+                background-color: rgba(242, 153, 74, 0.1);
+            }
+
+    .add-btn {
+        background-color: var(--success-color);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .add-btn:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+    .btn-success {
+        background-color: var(--success-color);
+        border-color: var(--success-color);
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-success:hover {
+            background-color: #229954;
+            border-color: #229954;
+            transform: translateY(-2px);
+        }
+
+    .table_Edit {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+        .table_Edit thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+            color: white;
+        }
+
+            .table_Edit thead th {
+                border: none;
+                font-weight: 700;
+                padding: 18px 15px;
+                font-size: 15px;
+                text-align: center;
+            }
+
+        .table_Edit tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+            .table_Edit tbody tr:hover {
+                background: rgba(242, 153, 74, 0.05);
+            }
+
+        .table_Edit tbody td, .table_Edit tbody th {
+            padding: 18px 15px;
+            vertical-align: middle;
+            color: #333;
+            font-size: 14px;
+            text-align: center;
+        }
+
+    .action-btn {
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-view {
+        background-color: var(--info-color);
+        color: white;
+    }
+
+        .btn-view:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+    .btn-edit {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+        .btn-edit:hover {
+            background-color: #e08839;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(242, 153, 74, 0.3);
+        }
+
+    .btn-questions {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+        .btn-questions:hover {
+            background-color: #0a3d5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.3);
+        }
+
+    .btn-danger {
+        background-color: var(--danger-color);
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+</style>
 
 <div class="content">
 

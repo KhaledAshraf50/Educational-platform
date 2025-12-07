@@ -6,6 +6,189 @@
 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
 
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        background-color: var(--light-bg);
+    }
+
+    .course-details {
+        padding: 40px 20px;
+        direction: rtl;
+    }
+
+    .course-header {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+    }
+
+    .course-image {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-info {
+        flex: 1;
+    }
+
+    .course-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .course-teacher, .course-price {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+        .course-price span, .course-teacher span {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .course-price i {
+            color: var(--secondary-color);
+        }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-primary:hover {
+            background-color: #0a3d5c;
+            border-color: #0a3d5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.3);
+        }
+
+    .course-description, .course_content {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+    }
+
+        .course-description h2, .course_content h1 {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .course-description p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+    .accordion-item {
+        background: var(--card-bg);
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+
+    .accordion-button {
+        background-color: var(--card-bg);
+        color: var(--primary-color);
+        font-weight: 600;
+        padding: 18px 20px;
+        font-size: 16px;
+    }
+
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(242, 153, 74, 0.1);
+            color: var(--primary-color);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--secondary-color);
+        }
+
+    .accordion-body {
+        padding: 20px;
+    }
+
+        .accordion-body h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+    .d-flex.justify-content-between {
+        background-color: #f8f9fb;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+        .d-flex.justify-content-between:hover {
+            background-color: rgba(242, 153, 74, 0.05);
+            border-color: var(--secondary-color);
+        }
+
+        .d-flex.justify-content-between span {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .d-flex.justify-content-between a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .d-flex.justify-content-between a:hover {
+                color: var(--secondary-color);
+            }
+
+    .text-muted {
+        color: #999 !important;
+        font-style: italic;
+    }
+
+    hr {
+        border-color: #e0e0e0;
+        margin: 20px 0;
+    }
+</style>
+
 <section class="course-details mt-5">
     <div class="container">
 
