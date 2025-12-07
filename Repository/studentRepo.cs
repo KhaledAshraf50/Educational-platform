@@ -212,6 +212,17 @@ namespace Luno_platform.Repository
             _Context.Student_Courses.Add(studentCourse);
             _Context.SaveChanges();
         }
+        public void RemoveStudentCourse(int studentId,int courseId)
+        {
+            var entity = _Context.Student_Courses
+         .FirstOrDefault(sc => sc.StudentId == studentId && sc.CourseId == courseId);
+
+            if (entity != null)
+            {
+                _Context.Student_Courses.Remove(entity);
+                _Context.SaveChanges();
+            }
+        }
 
         public int getStudentId(int userid)
         {
@@ -260,7 +271,6 @@ namespace Luno_platform.Repository
 
             return students;
         }
-
         public void DeleteStudent(int userid)
         {
             var student = _Context.Students.FirstOrDefault(e => e.UserId == userid);

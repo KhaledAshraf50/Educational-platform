@@ -414,7 +414,8 @@ namespace Luno_platform.Controllers
                 ExamName = course.CourseContent?.Exams?.ExamName,
 
                 TaskID = course.CourseContent?.Tasks?.TaskID,
-                TaskName = course.CourseContent?.Tasks?.TaskName
+                TaskName = course.CourseContent?.Tasks?.TaskName,
+
             };
 
             return View(vm);
@@ -1183,6 +1184,26 @@ public IActionResult ViewExamQuestions(int id)
             _context.SaveChanges();
 
             return RedirectToAction("Dashboard");
+        }
+        // ✅ أضف هذا الـ Action في InstructorController
+
+        [HttpGet]
+        [Route("Instructor/Wallet")]
+        public IActionResult Wallet()
+        {
+            int instructorId = GetInstructorIdFromUser();
+
+            if (instructorId == -1)
+                return RedirectToAction("Login", "Account");
+
+            var instructor = _context.Instructors
+                .Include(i => i.Teacher_Payments2)
+                .FirstOrDefault(i => i.instructorID == instructorId);
+
+            if (instructor == null)
+                return NotFound();
+
+            return View(instructor);
         }
 
 

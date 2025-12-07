@@ -30,6 +30,16 @@ namespace Luno_platform.Repository
         {
             return Table.Where(p => p.StudentID == studentId).ToList();
         }
+        public List<Payments> GetPaymentsByStatus(string status)
+        {
+            return _Context.Payments
+                .Where(p => p.status == status)
+                .Include(p => p.Courses)
+                .Include(p => p.Student)
+                    .ThenInclude(s => s.User)
+                .OrderByDescending(p => p.date)
+                .ToList();
+        }
     }
 }
 
