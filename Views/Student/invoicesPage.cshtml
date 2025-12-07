@@ -56,7 +56,7 @@
                         <th>تاريخ الفاتورة</th>
                         <th>الحالة</th>
                         <th>المبلغ</th>
-                        <th>عرض الفاتورة</th>
+                        @* <th>عرض الفاتورة</th> *@
                     </tr>
                 </thead>
                 <tbody>
@@ -80,13 +80,13 @@
                             }
                             else
                             {
-                                <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
+                                <td><span class="badgeUnderReview">قيدالمراجعة</span></td>
                             }
                             }
                         <td>@payment.amountPayment</td>
-                        <td>
+                        @* <td>
                             <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
+                        </td> *@
                         </tr>
                         i++;
                     }
