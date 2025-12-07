@@ -5,6 +5,7 @@ using Luno_platform.Viewmodel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Luno.Controllers
 {
@@ -93,9 +94,33 @@ namespace Luno.Controllers
         public IActionResult invoicesPage()
         {
             int userId = GetUserId();
-            List<Payments> payments = istudentService.GetPayments(userId); // استبدل 1 بالمعرف الصحيح للطالب
+            List<Payments> payments = istudentService.GetPayments(userId);
+            // استبدل 1 بالمعرف الصحيح للطالب
+            
+            var student = istudentService.GetStudent(userId);
+            ViewBag.Balance = student.Balance;
+
             return View(payments);
         }
+        
+        [HttpPost]
+        public IActionResult chargeBalance(decimal amount)
+        {
+            int userId = GetUserId();
+
+
+            istudentService.ChargeBalance(userId, amount);
+
+
+         
+
+
+            TempData["msg"] = "تم شحن الرصيد بنجاح ✔️";
+
+            return RedirectToAction("invoicesPage"); // 🔥 أهم نقطة هنا
+        }
+
+
         public IActionResult SettingPage()
         {
             int userId = GetUserId();

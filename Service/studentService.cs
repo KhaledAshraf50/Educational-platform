@@ -26,6 +26,10 @@ namespace Luno_platform.Service
 
             return student;
         }
+        public void ChargeBalanceAfterPay(int userid, decimal amount)
+        {
+            _repository.ChargeBalanceAfterPay(userid, amount);
+        }
 
         // دالة جلب كل الكورسات الخاصة بالطالب
         public List<Courses> GetStudentCourses(int studentId)
@@ -109,6 +113,10 @@ namespace Luno_platform.Service
         {
             _repository.SetUserPending(userid);
 
+        }
+        public void ChargeBalance(int userid, decimal amount)
+        {
+            _repository.ChargeBalance( userid, amount);
         }
     }
 }

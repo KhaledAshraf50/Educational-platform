@@ -24,6 +24,8 @@ namespace Luno_platform.Repository
 
 
 
+        void ChargeBalance(int userid, decimal amount);
+        public void ChargeBalanceAfterPay(int userid, decimal amount);
 
     }
 }
