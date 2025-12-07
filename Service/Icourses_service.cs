@@ -10,6 +10,7 @@ namespace Luno_platform.Service
         List<Subject> GetAllSubjects();
         List<Courses> showallcourses();
 
+        List<Courses> GetTopCoursesThisWeek();
 
 
 

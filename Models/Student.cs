@@ -13,7 +13,7 @@ namespace Luno_platform.Models
         [MaxLength(100)]
         public string? branch { get; set; }
 
-
+        public Decimal Balance { get; set; } = 0;
         public int? parentnumber { get; set; }
 
         public string? goverment { get; set; }

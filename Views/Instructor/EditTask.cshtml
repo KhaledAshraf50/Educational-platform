@@ -1,0 +1,151 @@
+﻿@model Luno_platform.Viewmodel.AddTaskQuestionVM
+
+<div class="container view-questions-page mt-5">
+
+    <h2 class="page-title">📝 تعديل أسئلة الواجب</h2>
+
+    <form asp-action="EditTask" method="post">
+        <input type="hidden" asp-for="TaskId" />
+
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            <div class="question-view-card">
+
+                <div class="header">
+                    سؤال @(i + 1)
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">نص السؤال</label>
+                    <input asp-for="Questions[@i].QuestionText" class="form-control form-control-lg" />
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">A</label>
+                        <select asp-for="Questions[@i].ChooseA" class="form-select">
+                            <option selected disabled>اختر</option>
+                            <option>@Model.Questions[i].ChooseA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">B</label>
+                        <select asp-for="Questions[@i].ChooseB" class="form-select">
+                            <option selected disabled>اختر</option>
+                            <option>@Model.Questions[i].ChooseB</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">C</label>
+                        <select asp-for="Questions[@i].ChooseC" class="form-select">
+                            <option selected disabled>اختر</option>
+                            <option>@Model.Questions[i].ChooseC</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">D</label>
+                        <select asp-for="Questions[@i].ChooseD" class="form-select">
+                            <option selected disabled>اختر</option>
+                            <option>@Model.Questions[i].ChooseD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">الإجابة الصحيحة</label>
+                    <select asp-for="Questions[@i].CorrectAnswer" class="form-select text-center fw-bold">
+                        <option selected disabled>أ/ب/ج/د</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+
+            </div>
+        }
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn-back w-100">💾 حفظ التعديلات</button>
+        </div>
+    </form>
+
+</div>
+
+<style>
+    :root {
+        --primary: #092c4c;
+        --secondary: #F2994A;
+        --soft-bg: #f6f9fc;
+    }
+
+    body {
+        background: var(--soft-bg);
+    }
+
+    /* Page */
+    .view-questions-page {
+        max-width: 950px;
+        padding: 35px 10px;
+        margin: auto;
+    }
+
+    .page-title {
+        text-align: center;
+        color: var(--primary);
+        font-weight: 800;
+        margin-bottom: 35px;
+        font-size: 2rem;
+    }
+
+    /* Card */
+    .question-view-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-right: 6px solid var(--secondary);
+        box-shadow: 0px 6px 16px rgba(0,0,0,0.06);
+        transition: 0.25s ease;
+    }
+
+        .question-view-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .question-view-card .header {
+            background: linear-gradient(135deg, var(--primary), #104b7e);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            width: fit-content;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+    /* Form Labels */
+    .form-label {
+        font-weight: 600;
+    }
+
+    /* Back / Save Button */
+    .btn-back {
+        background: linear-gradient(135deg, var(--primary), #1268a5);
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 12px 35px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: .25s ease;
+        border: none;
+    }
+
+        .btn-back:hover {
+            background: linear-gradient(135deg, var(--secondary), #ffb356);
+            transform: translateY(-2px);
+            color: white;
+        }
+</style>

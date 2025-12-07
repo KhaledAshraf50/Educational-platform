@@ -1,0 +1,140 @@
+﻿@model Luno_platform.Viewmodel.CreateTaskVM
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="card shadow-sm p-5 rounded-4 border-0">
+
+                <h2 class="mb-5 fw-bold" style="color: #092c4c; text-align: center; font-size: 2rem;">
+                    إنشاء واجب جديد
+                </h2>
+
+                <form asp-action="CreateTask" method="post">
+
+                    <!-- Task Name -->
+                    <div class="mb-5">
+                        <label asp-for="TaskName" class="form-label fw-semibold">اسم الواجب</label>
+                        <input asp-for="TaskName" class="form-control form-control-lg" placeholder="أدخل اسم الواجب" required />
+                        <span asp-validation-for="TaskName" class="text-danger d-block mt-1"></span>
+                    </div>
+
+                    <!-- Class -->
+                    <div class="mb-5">
+                        <label asp-for="ClassId" class="form-label fw-semibold">الصف الدراسي</label>
+                        <select asp-for="ClassId" asp-items="ViewBag.Classes" class="form-select form-select-lg" required>
+                            <option value="">اختر الصف</option>
+                        </select>
+                        <span asp-validation-for="ClassId" class="text-danger d-block mt-1"></span>
+                    </div>
+
+                    <!-- Questions Count -->
+                    <div class="mb-5">
+                        <label asp-for="TotalQuestions" class="form-label fw-semibold">عدد الأسئلة</label>
+                        <input asp-for="TotalQuestions" type="number" min="1" class="form-control form-control-lg" placeholder="أدخل عدد الأسئلة" required />
+                        <span asp-validation-for="TotalQuestions" class="text-danger d-block mt-1"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-secondary btn-lg">
+                            التالي: إضافة الأسئلة
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --primary: #092c4c;
+        --secondary: #f2994a;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #1F2937;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 3rem 2.5rem;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+        font-size: 1.1rem;
+        display: block;
+    }
+
+    input.form-control,
+    select.form-select {
+        border: 1px solid #D1D5DB;
+        border-radius: 0.5rem;
+        padding: 0.8rem 1rem;
+        width: 100%;
+        font-size: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        input.form-control::placeholder {
+            color: #9CA3AF; /* placeholder هادي */
+        }
+
+        input.form-control:focus,
+        select.form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 12px rgba(242,153,74,0.25);
+            outline: none;
+        }
+
+        input.form-control:hover,
+        select.form-select:hover {
+            border-color: var(--secondary);
+        }
+
+    .btn-secondary {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        font-weight: 600;
+        border-radius: 0.5rem;
+        padding: 0.9rem 1rem;
+        font-size: 1.05rem;
+        transition: background 0.3s ease, transform 0.2s ease;
+        background-image: linear-gradient(120deg, #f2994a, #f2a65c);
+    }
+
+        .btn-secondary:hover {
+            background-color: #e08a2c;
+            background-image: none;
+            transform: translateY(-1px);
+        }
+
+    /* media (max-width: 576px) { */
+    /*     input .form-control, select.form-select, .btn-lg */
+
+    /* { */
+    /*     width: 100%; */
+    /* } */
+
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,9 +1,11 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Repository;
 using Luno_platform.Viewmodel;
 using Luno_platform.Viewmodel.Account_viewmode;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@ namespace Luno_platform.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly I_BaseRepository<Subject> _BaseRepository;
         private readonly UserManager<Users> _userManager;
         private readonly SignInManager<Users> _signInManager;
         private readonly LunoDBContext _context;
@@ -20,12 +23,14 @@ namespace Luno_platform.Controllers
             UserManager<Users> userManager,
             SignInManager<Users> signInManager,
             LunoDBContext context,
-            IWebHostEnvironment env)
+            IWebHostEnvironment env,
+            I_BaseRepository<Subject> baseRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _env = env;
+            _BaseRepository = baseRepository;
         }
 
 
@@ -80,6 +85,11 @@ namespace Luno_platform.Controllers
                 ModelState.AddModelError("", "Email not found");
                 return View(model);
             }
+            if (user.status == "Pending")
+            {
+                return View("AccountPending");
+            }
+
 
             // 2) تسجيل الدخول فعليًا + إنشاء Cookie
             var result = await _signInManager.PasswordSignInAsync(
@@ -94,10 +104,7 @@ namespace Luno_platform.Controllers
                 ModelState.AddModelError("", "Invalid password");
                 return View(model);
             }
-            if (user.status == "Pending")
-            {
-                return View("AccountPending");
-            }
+          
 
             // 3) نجاح الدخول
             return RedirectToAction("mainpage", "Homepage");
@@ -208,7 +215,11 @@ CreateBaseUser(Register_User_Viewmode model)
         [HttpGet]
         public IActionResult RegisterInstructor()
         {
-            return View();
+            var model = new Register_User_Viewmode
+            {
+                subjects = _BaseRepository.subjects()
+            };
+            return View(model);
         }
 
         [HttpPost]

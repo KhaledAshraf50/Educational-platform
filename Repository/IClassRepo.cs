@@ -7,5 +7,7 @@ namespace Luno_platform.Repository
     {
         List<Classes> GetAll();
         Classes GetById(int id);
+
+
     }
 }
