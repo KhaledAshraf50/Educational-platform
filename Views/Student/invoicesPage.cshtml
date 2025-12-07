@@ -93,11 +93,42 @@
                    
                 </tbody>
             </table>
-            <div class="btnsNextPre">
-                <button class="Previous">السابق</button>
-                <button class="Next">التالي</button>
-            </div>
+            
         </div>
+       <div class="d-flex justify-content-between align-items-center mt-4">
+
+        <!-- زر السابق -->
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a class="btn btn-dark px-4"
+               href="@Url.Action("invoicesPage", new { page = ViewBag.CurrentPage - 1 })">
+                السابق
+            </a>
+        }
+        else
+        {
+            <button class="btn btn-secondary px-4" disabled>السابق</button>
+        }
+
+        <!-- رقم الصفحة -->
+        <span class="fw-bold">
+            الصفحة @ViewBag.CurrentPage من @ViewBag.TotalPages
+        </span>
+
+        <!-- زر التالي -->
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a class="btn btn-dark px-4"
+               href="@Url.Action("invoicesPage", new { page = ViewBag.CurrentPage + 1 })">
+                التالي
+            </a>
+        }
+        else
+        {
+            <button class="btn btn-secondary px-4" disabled>التالي</button>
+        }
+
+    </div>
     </div>
 </div>
 @section Script {
