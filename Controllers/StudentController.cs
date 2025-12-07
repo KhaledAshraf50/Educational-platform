@@ -13,7 +13,7 @@ namespace Luno.Controllers
     [Authorize(Roles = "student")]
     public class StudentController : Controller
     {
-       public IstudentService istudentService;
+       private IstudentService istudentService;
         private readonly SettingsService _service;
         private readonly UserManager<Users> _userManager;
 
@@ -79,28 +79,54 @@ namespace Luno.Controllers
         }
         [Route("/Student/SubjectsPage")]
         public IActionResult SubjectsPage( int page = 1)
-
         {
+            int pageSize = 7;
+
+            
+
+
+
+
             int userId = GetUserId();
-            int pageSize = 10;
-            var courses = istudentService.GetStudentCourses(userId, page, pageSize);
+            //int pageSize = 10;
+            var courses = istudentService.GetStudentCourses(userId);
+
+
+            var pagedStudents = courses
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            int totalPages = (int)Math.Ceiling(courses.Count / (double)pageSize);
 
             ViewBag.CurrentPage = page;
-            ViewBag.StudentId = userId;
-            return View(courses);
+            ViewBag.TotalPages = totalPages;
+            return View(pagedStudents);
         }
 
         [Route("/Student/invoicesPage")]
-        public IActionResult invoicesPage()
+        public IActionResult invoicesPage(int page = 1)
         {
+            int pageSize = 7;
             int userId = GetUserId();
             List<Payments> payments = istudentService.GetPayments(userId);
             // استبدل 1 بالمعرف الصحيح للطالب
-            
+            //int pageSize = 10;
+
+
+            var pagedStudents = payments
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            int totalPages = (int)Math.Ceiling(payments.Count / (double)pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
             var student = istudentService.GetStudent(userId);
             ViewBag.Balance = student.Balance;
 
-            return View(payments);
+            return View(pagedStudents);
         }
         
         [HttpPost]
