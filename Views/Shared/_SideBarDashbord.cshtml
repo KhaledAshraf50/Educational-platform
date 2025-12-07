@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -11,7 +13,38 @@
     
     @RenderSection("Styles", required: false)
     <link rel="shortcut icon" href="~/assets/imgs/icon.svg" type="image/x-icon" />
+    <style>
+        
+
+        .pay-btn {
+        background: #fff;
+        border: none;
+        border-radius: 4px;
+        width: auto;
+        padding:0 10px;
+        height: 40px;
+        display: flex;
+        align-items: center; 
+        justify-content: space-around;
+        font-size: 24px;
+            color: #092c4c;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        }
+            .pay-btn:hover {
+                /* background: #43a047; */
+                /* transform: scale(1.1); */
+            }
+
+        .counter {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <div class="logo">
@@ -21,7 +54,7 @@
         <ul>
             <li>
 
-
+               
 
                 <a asp-controller="Student" asp-action="MainPage"><i class="fa-solid fa-house mx-2"></i> <span>الرئيسية</span></a>
             </li>
@@ -63,6 +96,14 @@
     <!-- Main Content -->
     <div class="content">
         <div class="top-icons">
+            @* <button class=" pay-btn"
+                    aria-label="الدفعات"
+                    onclick="window.location.href='#'">
+                <span class="counter">EG @Model.Balance</span>
+                @* <i class="fa-solid fa-coins"></i> 
+               
+            </button> *@
+
             <button class="icon-btn" aria-label="الإشعارات">
                 <i class="fa-solid fa-bell"></i>
             </button>
@@ -71,6 +112,7 @@
                     onclick="window.location.href='#'">
                 <i class="fa-solid fa-circle-user"></i>
             </button>
+
         </div>
         <div>
             @RenderBody()

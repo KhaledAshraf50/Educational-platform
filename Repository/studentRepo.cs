@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.EntityFrameworkCore;
 namespace Luno_platform.Repository
@@ -28,6 +29,7 @@ namespace Luno_platform.Repository
                 .Select(s => new Student
                 {
                     StudentID = s.StudentID,
+                    Balance=s.Balance,
 
                     User = new Users
                     {
@@ -205,6 +207,30 @@ namespace Luno_platform.Repository
 
 
 
+
+        }
+        public void ChargeBalance( int userid,decimal amount)
+        {
+
+            int? studentId = GetStudentIdByUserId(userid);
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance += amount;
+                _Context.SaveChanges();
+            }
+
+        }
+        public void ChargeBalanceAfterPay( int userid,decimal amount)
+        {
+
+            int? studentId = GetStudentIdByUserId(userid);
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance -= amount;
+                _Context.SaveChanges();
+            }
 
         }
         public void AddStudentCourse(Student_Courses studentCourse)
