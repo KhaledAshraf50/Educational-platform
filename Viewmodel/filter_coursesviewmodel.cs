@@ -17,6 +17,7 @@ namespace Luno_platform.Viewmodel
 
         // البيانات اللي هنرجعها للصفحة
         public List<Courses> Courses { get; set; }
+        public List<Subject>? subject { get; set; }
 
 
 

@@ -14,7 +14,10 @@ namespace Luno_platform.Repository
 
         void SetUsersActive(int userid);
 
+         List<showallStudent> NotActiveusers();
         public string deleteuser(int userid);
+
+        public showadetailsusers GetUserDetails(int userId);
 
     }
 

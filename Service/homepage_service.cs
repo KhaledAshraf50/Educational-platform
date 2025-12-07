@@ -1,7 +1,8 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Luno_platform.Service
 {
@@ -21,5 +22,7 @@ namespace Luno_platform.Service
                 return _subjectRepo.GetAll().ToList();
             }
         }
+
+     
     }
 }

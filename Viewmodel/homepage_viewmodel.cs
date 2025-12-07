@@ -11,6 +11,7 @@ namespace Luno_platform.Viewmodel
 
         public List<Instructor> instructor { get; set; }
 
+        public List<Courses> TopCoursesThisWeek { get; set; }
         public string image { get; set; }
 
 

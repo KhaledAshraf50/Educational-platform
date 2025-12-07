@@ -1,4 +1,6 @@
-﻿namespace Luno_platform.Service
+﻿using Luno_platform.Models;
+
+namespace Luno_platform.Service
 {
     public interface I_BaseService<T> where T : class
 
@@ -17,7 +19,7 @@
         bool HasStudentTakenExam(int studentId, int examId);
         bool HasStudentTakenTask(int studentId, int examId);
 
-
+        public List<Subject> subjects();
 
     }
 }

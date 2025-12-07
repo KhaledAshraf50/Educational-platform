@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Luno_platform.Models;
+using System.Collections.Generic;
 
 namespace Luno_platform.Repository
 {
@@ -16,6 +17,8 @@ namespace Luno_platform.Repository
         public int? GetInstructorIdByUserId(int userId);
         bool HasStudentTakenExam(int studentId, int examId);
         bool HasStudentTakenTask(int studentId, int examId);
+
+        public List<Subject> subjects();
 
 
     }

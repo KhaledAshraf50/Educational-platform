@@ -285,7 +285,7 @@ namespace Luno_platform.Repository
             var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
             if (user != null)
             {
-                user.status = "Pending";
+                user.status = "NotActive";
                 _Context.SaveChanges();
             }
 

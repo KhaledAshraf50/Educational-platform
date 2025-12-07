@@ -150,29 +150,52 @@ namespace Luno_platform.Controllers
         //______________________________________________________________-
 
 
-        public IActionResult pandingusers(int page =1)
+     public IActionResult pandingusers(int page = 1)
         {
             int pageSize = 7;
 
-            var allusers = _userservecs.pandingusers();
+            // نجيب كل ال Pending
+            var pending = _userservecs.pandingusers();
 
-            var pagedStudents = allusers
+            // Apply Pagination
+            var pagedPending = pending
                                 .Skip((page - 1) * pageSize)
                                 .Take(pageSize)
                                 .ToList();
 
-            int totalPages = (int)Math.Ceiling(allusers.Count / (double)pageSize);
+            // حساب عدد الصفحات
+            int totalPages = (int)Math.Ceiling(pending.Count / (double)pageSize);
 
+            // ارسال بيانات الباجينج للصفحة
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = totalPages;
 
-
-
-
-            return View(pagedStudents);
-
+            return View(pagedPending);
         }
 
+
+        public IActionResult NotActiveUsers(int page = 1)
+        {
+            int pageSize = 7;
+
+            // نجيب كل ال NotActive
+            var notActive = _userservecs.NotActiveusers();
+
+            // Apply Pagination
+            var pagedNotActive = notActive
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            // حساب عدد الصفحات
+            int totalPages = (int)Math.Ceiling(notActive.Count / (double)pageSize);
+
+            // ارسال بيانات الباجينج
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(pagedNotActive);
+        }
 
         //
         public IActionResult SetUsersActive(int userid)
@@ -199,6 +222,28 @@ namespace Luno_platform.Controllers
         {
 
             return View();
+        }
+
+
+        //_______________________________________
+        public IActionResult UserDetails(int userId)
+        {
+            // 1. جلب بيانات المستخدم حسب الـ Id
+            var user = _userservecs.GetUserDetails(userId);
+
+            if (user == null)
+            {
+                TempData["AlertMessage"] = "المستخدم غير موجود.";
+                return RedirectToAction("PendingUsers"); // أو أي صفحة ترجع لها
+            }
+
+            // 2. تحديد نوع المستخدم حسب الدور
+            // نفترض إن role موجود في قاعدة البيانات ويكون "Student", "Teacher", "Parent"
+            string userType = user.role;
+            ViewBag.UserType = userType;
+
+            // 3. إعادة الـ View مع بيانات المستخدم
+            return View(user);
         }
     }
 }
