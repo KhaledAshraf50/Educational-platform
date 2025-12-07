@@ -16,6 +16,7 @@ namespace Luno_platform.Repository
             Save();
         }
 
+
         public IEnumerable<Payments> GetPayments(DateTime start, DateTime end)
         {
             return _Context.Payments

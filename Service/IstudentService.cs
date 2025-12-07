@@ -17,6 +17,8 @@ namespace Luno_platform.Service
         public List<showallStudent> showStudents();
         void DeleteStudent(int userid);
         void SetUserPending(int userid);
+        void ChargeBalance(int userid, decimal amount);
+        void ChargeBalanceAfterPay(int userid, decimal amount);
 
     }
 }
