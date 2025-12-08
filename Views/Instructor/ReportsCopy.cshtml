@@ -8,20 +8,27 @@
 }
 
 <div class="content">
+    <div class="top-icons">
+        <button class="icon-btn" id="notification-btn">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <button class="icon-btn" aria-label="الملف الشخصي" onclick="window.location.href='#'">
+            <i class="fa-solid fa-circle-user"></i>
+        </button>
+    </div>
     <div class="Reportspage m-3 bodycontent">
         <div class="search d-flex mb-3">
             <input type="search" id="Search" class="form-control me-3" placeholder="اكتب للبحث" asp-for="Search">
         </div>
-
         <div class="flexToProg mb-3">
             <div class="sub-choose d-flex">
-                <select asp-for="SelectedSubjectId" id="SelectedSubjectId" class="form-select mx-2">
+                @* <select asp-for="SelectedSubjectId" id="SelectedSubjectId" class="form-select mx-2">
                     <option value="">اختر المادة</option>
                     @foreach (var s in Model.Subjects)
                     {
                         <option value="@s.SubjectID">@s.SubjectNameAR</option>
                     }
-                </select>
+                </select> *@
 
                 <select asp-for="SelectedClassId" id="SelectedClassId" class="form-select mx-2">
                     <option value="">اختر الصف</option>

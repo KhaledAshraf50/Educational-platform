@@ -28,10 +28,14 @@
         <div class="d-flex align-items-center mb-3 gap-3">
 
             <!-- فلتر باسم الطالب -->
-            <select class="form-select w-auto">
-                <option selected>كل الطلاب</option>
-                <option>محمد خالد</option>
-                <option>سارة خالد</option>
+            <select id="studentsDropdown" class="form-select w-auto">
+                <option value="all" selected>كل الطلاب</option>
+                @foreach (var s in Model.DistinctBy(x => x.StudentID))
+                {
+                    <option value="@s.StudentID">
+                        @s.Student.User.fname @s.Student.User.lastName
+                    </option>
+                }
             </select>
         </div>
         <!-- كروت الملخص -->
@@ -45,14 +49,14 @@
             <div class="col-md-4">
                 <div class="summary-card">
                     <h6>إجمالي الغير مدفوع</h6>
-                     <h4>@ViewBag.TotalUnpaid EG</h4>
+                    <h4>@ViewBag.TotalUnpaid EG</h4>
                 </div>
             </div>
         </div>
 
         <!-- جدول الفواتير الأساسي -->
         <div class="table-responsive">
-            <table class="table table-hover text-center align-middle table_Edit">
+            <table id="invoiceTable" class="table table-hover text-center align-middle table_Edit">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -67,24 +71,24 @@
                 <tbody>
 
                     <!-- داتا فيك - الطالب الأول -->
-                    @foreach(var item in Model)
+                    @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@item.StudentID</td>
-                        <td>@item.Student.User.fname @item.Student.User.lastName</td>
-                        <td>@item.Courses.CourseName</td>
-                        <td>@item.date</td>
-                       <td>
-                            <span class="
-                                @(item.status == "مقبول" ? "status-accepted" :
-                                item.status == "مرفوض" ? "status-rejected" :
-                                "status-pending")">
+                        <tr data-student="@item.StudentID">
+                            <td>@item.StudentID</td>
+                            <td>@item.Student.User.fname @item.Student.User.lastName</td>
+                            <td>@item.Courses.CourseName</td>
+                            <td>@item.date</td>
+                            <td>
+                                <span class="
+                                    @(item.status == "مقبول" ? "status-accepted" :
+                                                                      item.status == "مرفوض" ? "status-rejected" :
+                                                                      "status-pending")">
                                 @item.status
                             </span>
                         </td>
                         <td>@item.amountPayment</td>
                     </tr>
-                    }
+                                        }
                 </tbody>
             </table>
         </div>
@@ -100,4 +104,21 @@
     <script src="~/assets/js/invoices.js"></script>
     <script src="~/assets/js/progressbar.js"></script>
     <script src="~/assets/js/mainprogres.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            var dropdown=document.getElementById("studentsDropdown")
+             var rows = document.querySelectorAll("#invoiceTable tbody tr");
+              dropdown.addEventListener("change", function () {
+            var selected = this.value;
+            rows.forEach(row => {
+                var rowStudent = row.getAttribute("data-student");
+                 if (selected === "all" || selected === rowStudent) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+                });
+             });
+         });
+    </script>
 }

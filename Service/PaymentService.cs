@@ -138,7 +138,6 @@ namespace Luno_platform.Service
                     _context.Teacher_Payments.Remove(teacherPayment);
                     _context.SaveChanges();
                 }
-
                 // تحديث PendingBalance للمدرس
                 var instructor = _instructorRepo.GetById(course.instructorID);
                 if (instructor != null)
