@@ -146,56 +146,41 @@
 
         @for (int i = 0; i < Model.Questions.Count; i++)
         {
-            <div class="question-card">
+            <div class="card mb-4 shadow-sm border-0 p-4 question-card">
 
-                <div class="card-header">
-                    سؤال رقم @(i + 1)
-                </div>
+                <h5 style="color:var(--secondary); margin-bottom: 1rem;">
+                    السؤال @(i + 1)
+                </h5>
 
-                <input asp-for="Questions[@i].QuestionText"
-                       class="form-control question-input"
-                       placeholder="أكتب نص السؤال هنا" required />
+                <input asp-for="Questions[i].QuestionText"
+                       class="form-control mb-3"
+                       placeholder="نص السؤال" />
 
-                <div class="row choices">
+                <input asp-for="Questions[i].ChooseA"
+                       id="chooseA-@i"
+                       class="form-control mb-3"
+                       placeholder="الاختيار A" />
 
-                    <div class="col-md-6">
-                        <input asp-for="Questions[@i].ChooseA"
-                               class="form-control"
-                               placeholder="A" required />
-                    </div>
+                <input asp-for="Questions[i].ChooseB"
+                       id="chooseB-@i"
+                       class="form-control mb-3"
+                       placeholder="الاختيار B" />
 
-                    <div class="col-md-6">
-                        <input asp-for="Questions[@i].ChooseB"
-                               class="form-control"
-                               placeholder="B" required />
-                    </div>
+                <input asp-for="Questions[i].ChooseC"
+                       id="chooseC-@i"
+                       class="form-control mb-3"
+                       placeholder="الاختيار C" />
 
-                    <div class="col-md-6">
-                        <input asp-for="Questions[@i].ChooseC"
-                               class="form-control"
-                               placeholder="C" required />
-                    </div>
+                <input asp-for="Questions[i].ChooseD"
+                       id="chooseD-@i"
+                       class="form-control mb-3"
+                       placeholder="الاختيار D" />
 
-                    <div class="col-md-6">
-                        <input asp-for="Questions[@i].ChooseD"
-                               class="form-control"
-                               placeholder="D" required />
-                    </div>
-
-                </div>
-
-                <div class="correct-answer">
-                    <label>✅ اختر الإجابة الصحيحة</label>
-                    <select asp-for="Questions[@i].CorrectAnswer"
-                            class="form-select"
-                            required>
-                        <option value="">-- اختر الإجابة --</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                    </select>
-                </div>
+                <select asp-for="Questions[i].CorrectAnswer"
+                        class="form-select mt-2 correct-answer"
+                        data-index="@i">
+                    <option value="">اختر الإجابة الصحيحة</option>
+                </select>
 
             </div>
         }
@@ -209,3 +194,26 @@
     </form>
 
 </div>
+<script>
+    document.addEventListener("input", function (e) {
+        if (e.target.matches(".form-control")) {
+
+            let index = e.target.id.split("-")[1];
+
+            let a = document.getElementById(`chooseA-${index}`).value;
+            let b = document.getElementById(`chooseB-${index}`).value;
+            let c = document.getElementById(`chooseC-${index}`).value;
+            let d = document.getElementById(`chooseD-${index}`).value;
+
+            let select = document.querySelector(`select[data-index='${index}']`);
+
+            select.innerHTML = `
+                <option value="">اختر الإجابة الصحيحة</option>
+                <option value="${a}">${a}</option>
+                <option value="${b}">${b}</option>
+                <option value="${c}">${c}</option>
+                <option value="${d}">${d}</option>
+            `;
+        }
+    });
+</script>

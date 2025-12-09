@@ -10,6 +10,8 @@ namespace Luno_platform.Viewmodel
         public int ClassId { get; set; }
 
         public int TotalQuestions { get; set; }
+
+
     }
 
 }

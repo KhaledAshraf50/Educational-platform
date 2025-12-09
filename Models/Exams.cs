@@ -56,7 +56,7 @@ namespace Luno_platform.Models
 
 
 
-        public int subjectId { get; set; }
+        public int? subjectId { get; set; }
 
         [ForeignKey("subjectId")]
         public virtual Subject Subject { get; set; }
