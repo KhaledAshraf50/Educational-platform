@@ -1,0 +1,96 @@
+﻿@using Luno_platform.Viewmodel
+@model MainPageParentVM
+
+<div id="student_@Model.SelectedStudent.StudentID" class="child-page">
+    <div class="mainpage m-3">
+        <div class="container">
+            <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
+                <div class="img">
+                    <img src="@Model.SelectedStudent.User.Image" alt="student_img" />
+                </div>
+                <div class="text">
+                    <h2>@Model.SelectedStudent.User.fname @Model.SelectedStudent.User.lastName</h2>
+                    <p>@Model.SelectedStudent.Classes.ClassName</p>
+                </div>
+            </div>
+
+            <div class="progres">
+                <div class="overall-prog flex-column flex-md-row">
+                    <div class="text">
+                        <p class="main-text">المستوي الكلي</p>
+                        <p class="sec-text">
+                            نسبة مجموع الدرجات في الامتحانات + مجموع المهام التي تم تسليمها حتى اليوم
+                        </p>
+                    </div>
+                    <div id="semiContainer_@Model.SelectedStudent.StudentID" class="progress-holder"></div>
+                </div>
+
+                <div class="deteils-prog d-md-flex justify-content-between">
+                    <div class="exams col-md-5 flex-column flex-md-row">
+                        <div class="text">
+                            <p class="main-text">الامتحان</p>
+                            <p class="sec-text">نسبة مجموع الدرجات في الامتحانات حتى اليوم</p>
+                        </div>
+                        <div id="semiContainerEXAM_@Model.SelectedStudent.StudentID" class="progress-holder"></div>
+                    </div>
+
+                    <div class="tasks col-md-5 flex-column flex-md-row">
+                        <div class="text">
+                            <p class="main-text">الواجبات</p>
+                            <p class="sec-text">نسبة مجموع المهام التي تم تسليمها حتى اليوم</p>
+                        </div>
+                        <div id="semiContainerTASK_@Model.SelectedStudent.StudentID" class="progress-holder"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="courses">
+                <div class="text"><p>الكورسات المشترك بها</p></div>
+                <div class="courses-card d-flex flex-column flex-md-row">
+                    @if (Model.Courses != null && Model.Courses.Any())
+                    {
+                        @foreach (var course in Model.Courses)
+                        {
+                            <div class="card-courses">
+                                <div class="image-courses">
+                                    <img src="@Url.Content(course.Image)" alt="@course.CourseName" />
+                                </div>
+                                <div class="body-course">
+                                    <div class="bodytop">
+                                        <div class="bodyright">
+                                            <div class="brtop">
+                                                <p>@course.CourseName</p>
+                                            </div>
+                                            <div class="brmid">
+                                                <p>@course.description</p>
+                                            </div>
+                                        </div>
+                                        <div class="bodyleft">
+                                            <a href="#">الدخول للكورس</a>
+                                        </div>
+                                    </div>
+                                    <div class="bodybuttom">
+                                        <div class="price"><span>@course.price</span> جنيهًا</div>
+                                        <div class="date">
+                                            <h3>@course.createdAt.ToString("yyyy-MM-dd")</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">لا توجد كورسات مسجلة لهذا الطالب</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var overallDict = @Html.Raw(Json.Serialize(Model.OverallProgressDict));
+    var examDict = @Html.Raw(Json.Serialize(Model.ExamProgressDict));
+    var taskDict = @Html.Raw(Json.Serialize(Model.TaskProgressDict));
+</script>
