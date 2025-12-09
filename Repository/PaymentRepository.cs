@@ -16,6 +16,7 @@ namespace Luno_platform.Repository
             Save();
         }
 
+
         public IEnumerable<Payments> GetPayments(DateTime start, DateTime end)
         {
             return _Context.Payments
@@ -29,6 +30,16 @@ namespace Luno_platform.Repository
         public List<Payments> GetStudentPayments(int studentId)
         {
             return Table.Where(p => p.StudentID == studentId).ToList();
+        }
+        public List<Payments> GetPaymentsByStatus(string status)
+        {
+            return _Context.Payments
+                .Where(p => p.status == status)
+                .Include(p => p.Courses)
+                .Include(p => p.Student)
+                    .ThenInclude(s => s.User)
+                .OrderByDescending(p => p.date)
+                .ToList();
         }
     }
 }

@@ -1,117 +1,294 @@
 ﻿@{
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
+    var acceptedPayments = ViewBag.AcceptedPayments as 
+    List<Luno_platform.Models.Payments> ?? new List<Luno_platform.Models.Payments>();
+    var cancelledPayments = ViewBag.CancelledPayments as
+    List<Luno_platform.Models.Payments> ?? new List<Luno_platform.Models.Payments>();
+
+    decimal totalRevenue = ViewBag.TotalRevenue ?? 0;
+    decimal platformProfit = ViewBag.PlatformProfit ?? 0;
+    decimal instructorsDue = ViewBag.InstructorsDue ?? 0;
 }
-<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
-<link rel="stylesheet" href="~/assets/css/style.css" />
 
+<link rel="stylesheet" href="~/assets/css/PaymentAdmin.css" />
 
-<div class="col-md-9 col-lg-10 content">
-        <h2 class="fw-bold mb-4">إدارة المعاملات</h2>
+<style>
+    .revenue-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#done">✅ مكتملة</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#pending">⏳ معلقة</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#failed">❌ فاشلة</button>
-          </li>
-        </ul>
+    .revenue-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-right: 4px solid;
+        position: relative;
+        overflow: hidden;
+    }
 
-        <!-- Tabs Content -->
-        <div class="tab-content">
-          <!-- مكتملة -->
-          <div class="tab-pane fade show active" id="done">
-            <div class="table-container">
-              <h5 class="mb-3">المعاملات المكتملة</h5>
-              <table class="table table-hover align-middle text-center">
-                <thead class="table-success">
-                  <tr>
-                    <th>المستخدم</th>
-                    <th>المبلغ</th>
-                    <th>طريقة الدفع</th>
-                    <th>التاريخ</th>
-                    <th>الحالة</th>
-                    <th>التحكم</th>
-                  </tr>
-                </thead>
-                <tbody id="doneTable">
-                  <tr>
-                    <td>أحمد محمد</td>
-                    <td>350 جنيه</td>
-                    <td>Visa</td>
-                    <td>2024-05-10</td>
-                    <td><span class="badge bg-success">مكتملة</span></td>
-                    <td><button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        .revenue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
 
-          <!-- معلقة -->
-          <div class="tab-pane fade" id="pending">
-            <div class="table-container">
-              <h5 class="mb-3">المعاملات المعلقة</h5>
-              <table class="table table-hover align-middle text-center">
-                <thead class="table-warning">
-                  <tr>
-                    <th>المستخدم</th>
-                    <th>المبلغ</th>
-                    <th>طريقة الدفع</th>
-                    <th>التاريخ</th>
-                    <th>الحالة</th>
-                    <th>التحكم</th>
-                  </tr>
-                </thead>
-                <tbody id="pendingTable">
-                  <tr>
-                    <td>سارة علي</td>
-                    <td>200 جنيه</td>
-                    <td>Vodafone Cash</td>
-                    <td>2024-05-12</td>
-                    <td><span class="badge bg-warning text-dark">معلقة</span></td>
-                    <td><button class="btn btn-sm btn-outline-success" onclick="markAsCompleted(this)">تأكيد</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        .revenue-card.total {
+            border-color: #3498db;
+            color: #3498db;
+        }
 
-          <!-- فاشلة -->
-          <div class="tab-pane fade" id="failed">
-            <div class="table-container">
-              <h5 class="mb-3">المعاملات الفاشلة</h5>
-              <table class="table table-hover align-middle text-center">
-                <thead class="table-danger">
-                  <tr>
-                    <th>المستخدم</th>
-                    <th>المبلغ</th>
-                    <th>طريقة الدفع</th>
-                    <th>التاريخ</th>
-                    <th>السبب</th>
-                    <th>التحكم</th>
-                  </tr>
-                </thead>
-                <tbody id="failedTable">
-                  <tr>
-                    <td>خالد حسن</td>
-                    <td>400 جنيه</td>
-                    <td>MasterCard</td>
-                    <td>2024-04-28</td>
-                    <td>رفض من البنك</td>
-                    <td><button class="btn btn-sm btn-outline-danger" onclick="deleteRow(this)">حذف</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        .revenue-card.platform {
+            border-color: #27ae60;
+            color: #27ae60;
+        }
+
+        .revenue-card.instructors {
+            border-color: #F2994A;
+            color: #F2994A;
+        }
+
+        .revenue-card .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .revenue-card.total .icon-wrapper {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .revenue-card.platform .icon-wrapper {
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+        }
+
+        .revenue-card.instructors .icon-wrapper {
+            background: rgba(242, 153, 74, 0.1);
+            color: #F2994A;
+        }
+
+        .revenue-card h4 {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .revenue-card .amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .revenue-card .percentage {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+</style>
+
+<div class="content">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fa-solid fa-check-circle"></i> @TempData["Success"]
         </div>
-      </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fa-solid fa-exclamation-circle"></i> @TempData["Error"]
+        </div>
+    }
+
+    <!-- Header -->
+    <div class="payments-header">
+        <h2><i class="fa-solid fa-money-bill-wave"></i> إدارة المعاملات المالية</h2>
+        <p>إدارة ومراجعة جميع عمليات الدفع والاشتراكات</p>
     </div>
-  </div>
-<script src="~/assets/js/dashbordadmin.js"></script>
-<script src="~/assets/js/main.js"></script>
+
+    <!-- كاردات الإحصائيات المالية -->
+    <div class="revenue-cards">
+        <div class="revenue-card total">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h4>إجمالي المبيعات</h4>
+            <p class="amount">@totalRevenue.ToString("N0") جنيه</p>
+            <p class="percentage">إجمالي الإيرادات</p>
+        </div>
+
+        <div class="revenue-card platform">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-building"></i>
+            </div>
+            <h4>أرباح المنصة (40%)</h4>
+            <p class="amount">@platformProfit.ToString("N0") جنيه</p>
+            <p class="percentage">صافي ربح المنصة</p>
+        </div>
+
+        <div class="revenue-card instructors">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h4>المستحق للمدرسين (60%)</h4>
+            <p class="amount">@instructorsDue.ToString("N0") جنيه</p>
+            <p class="percentage">إجمالي نسب المدرسين</p>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-cards">
+        <div class="stat-card active">
+            <h3>@acceptedPayments.Count</h3>
+            <p>معاملات مقبولة</p>
+        </div>
+        <div class="stat-card rejected">
+            <h3>@cancelledPayments.Count</h3>
+            <p>معاملات ملغية</p>
+        </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#active">
+                 المبيعات (@acceptedPayments.Count)
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancelled">
+                 ملغية (@cancelledPayments.Count)
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <!-- Active Payments -->
+        <div class="tab-pane fade show active" id="active">
+            <div class="table-container">
+                <h5><i class="fa-solid fa-check-circle"></i> المبيعات المقبولة</h5>
+                @if (acceptedPayments.Any())
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>الطالب</th>
+                                <th>الكورس</th>
+                                <th>المبلغ الكلي</th>
+                                <th>نسبة المدرس (60%)</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>التحكم</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var payment in acceptedPayments)
+                            {
+                                var instructorAmount = payment.amountPayment * 0.60m;
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">@payment.Student.User.fname.Substring(0, 1)</div>
+                                            <div class="user-details">
+                                                <p class="user-name">@payment.Student.User.fname @payment.Student.User.lastName</p>
+                                                <p class="user-id">ID: #@payment.StudentID</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@payment.Courses.CourseName</td>
+                                    <td><span class="amount-display">@payment.amountPayment جنيه</span></td>
+                                    <td><span style="color: #F2994A; font-weight: bold;">@instructorAmount.ToString("N0") جنيه</span></td>
+                                    <td>@payment.date.ToString("yyyy-MM-dd")</td>
+                                    <td><span class="badge bg-success">مقبولة</span></td>
+                                    <td>
+                                        <form asp-controller="Admin" asp-action="TransferToInstructor" method="post" style="display:inline;"
+                                              onsubmit="return confirm('هل تريد تحويل @instructorAmount.ToString("N0") جنيه للمدرس؟')">
+                                            <input type="hidden" name="paymentId" value="@payment.ID" />
+                                            <button type="submit" class="btn-action btn-transfer">
+                                                <i class="fa-solid fa-paper-plane"></i> تحويل للمدرس
+                                            </button>
+                                        </form>
+                                        <form asp-controller="Admin" asp-action="CancelEnrollment" method="post" style="display:inline;"
+                                              onsubmit="return confirm('هل أنت متأكد من إلغاء هذه المعاملة؟')">
+                                            <input type="hidden" name="paymentId" value="@payment.ID" />
+                                            <button type="submit" class="btn-action btn-delete">
+                                                <i class="fa-solid fa-ban"></i> إلغاء
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <i class="fa-solid fa-inbox"></i>
+                        <h4>لا توجد مبيعات</h4>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Cancelled Payments -->
+        <div class="tab-pane fade" id="cancelled">
+            <div class="table-container">
+                <h5><i class="fa-solid fa-times-circle"></i> المعاملات الملغية</h5>
+                @if (cancelledPayments.Any())
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>الطالب</th>
+                                <th>الكورس</th>
+                                <th>المبلغ</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var payment in cancelledPayments)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">@payment.Student.User.fname.Substring(0, 1)</div>
+                                            <div class="user-details">
+                                                <p class="user-name">@payment.Student.User.fname @payment.Student.User.lastName</p>
+                                                <p class="user-id">ID: #@payment.StudentID</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@payment.Courses.CourseName</td>
+                                    <td><span class="amount-display">@payment.amountPayment جنيه</span></td>
+                                    <td>@payment.date.ToString("yyyy-MM-dd")</td>
+                                    <td><span class="badge bg-danger">ملغية</span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <i class="fa-solid fa-inbox"></i>
+                        <h4>لا توجد معاملات ملغية</h4>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

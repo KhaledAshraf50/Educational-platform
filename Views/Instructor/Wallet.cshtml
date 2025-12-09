@@ -1,0 +1,307 @@
+﻿@model Luno_platform.Models.Instructor
+
+@{
+    ViewData["Title"] = "محفظتي";
+    Layout = "_InstructorDashboard";
+}
+
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --warning-color: #e2b93b;
+        --info-color: #3498db;
+        --light-bg: #f8fafc;
+    }
+
+    .wallet-container {
+        padding: 30px;
+        direction: rtl;
+        margin-right: 70px;
+        transition: margin-right 0.3s;
+    }
+
+    .sidebar:hover ~ .wallet-container {
+        margin-right: 220px;
+    }
+    .wallet-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        padding: 40px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(9, 44, 76, 0.15);
+    }
+
+        .wallet-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .wallet-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+    .balance-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .balance-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-right: 4px solid;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .balance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .balance-card.pending {
+            border-color: var(--warning-color);
+        }
+
+        .balance-card.available {
+            border-color: var(--success-color);
+        }
+
+        .balance-card.total {
+            border-color: var(--info-color);
+        }
+
+        .balance-card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .balance-card.pending .icon {
+            background: rgba(242, 153, 74, 0.1);
+            color: var(--warning-color);
+        }
+
+        .balance-card.available .icon {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+        }
+
+        .balance-card.total .icon {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--info-color);
+        }
+
+        .balance-card h3 {
+            font-size: 16px;
+            color: #666;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .balance-card .amount {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .balance-card .note {
+            font-size: 13px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+    .transactions-section {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+        .transactions-section h2 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+    .table {
+        margin: 0;
+    }
+
+        .table thead {
+            background: var(--light-bg);
+        }
+
+            .table thead th {
+                border: none;
+                color: var(--primary-color);
+                font-weight: 700;
+                padding: 15px;
+                font-size: 14px;
+            }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+            .table tbody tr:hover {
+                background: #f8faff;
+            }
+
+        .table tbody td {
+            padding: 18px 15px;
+            vertical-align: middle;
+            color: #333;
+            font-size: 14px;
+        }
+
+    .badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+        .badge.pending {
+            background-color: rgba(242, 153, 74, 0.2);
+            color: var(--warning-color);
+        }
+
+        .badge.transferred {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: var(--success-color);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+    }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h4 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+    @@media (max-width: 768px) {
+        .balance-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .wallet-header h1 {
+            font-size: 24px;
+        }
+    }
+</style>
+<div class="wallet-container">
+    <!-- Header -->
+    <div class="wallet-header">
+        <h1><i class="fa-solid fa-wallet"></i> محفظتي</h1>
+        <p>إدارة أرباحك ومستحقاتك المالية</p>
+    </div>
+
+    <!-- Balance Cards -->
+    <div class="balance-cards">
+        <div class="balance-card pending">
+            <div class="icon">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            @if (Model.PendingBalance < 0)
+            {
+                Model.PendingBalance = 0;
+            }
+            <h3>رصيد معلق</h3>
+            <p class="amount">@Model.PendingBalance.ToString("N0") جنيه</p>
+            <p class="note">في انتظار التحويل من الإدارة</p>
+        </div>
+
+        <div class="balance-card available">
+            <div class="icon">
+                <i class="fa-solid fa-check-circle"></i>
+            </div>
+            <h3>رصيد متاح</h3>
+            <p class="amount">@Model.AvailableBalance.ToString("N0") جنيه</p>
+            <p class="note">جاهز للسحب</p>
+        </div>
+
+        <div class="balance-card total">
+            <div class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>إجمالي الأرباح</h3>
+            <p class="amount">@Model.TotalEarnings.ToString("N0") جنيه</p>
+            <p class="note">إجمالي ما حصلت عليه</p>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="transactions-section">
+        <h2><i class="fa-solid fa-list"></i> سجل التحويلات</h2>
+
+        @if (Model.Teacher_Payments2 != null && Model.Teacher_Payments2.Any())
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>رقم العملية</th>
+                        <th>المبلغ</th>
+                        <th>التاريخ</th>
+                        <th>الحالة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var payment in Model.Teacher_Payments2.OrderByDescending(p => p.PaymentDate))
+                    {
+                        <tr>
+                            <td>#@payment.paymentID</td>
+                            <td><strong>@payment.AmountPaid.ToString("N0") جنيه</strong></td>
+                            <td>@payment.PaymentDate.ToString("yyyy-MM-dd")</td>
+                            <td>
+                                @if (payment.Status == "تحت التحويل")
+                                {
+                                    <span class="badge pending"> تحت التحويل</span>
+                                }
+                                else if (payment.Status == "محول")
+                                {
+                                    <span class="badge transferred"> محول</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fa-solid fa-inbox"></i>
+                <h4>لا توجد تحويلات بعد</h4>
+                <p>سيظهر هنا سجل التحويلات المالية</p>
+            </div>
+        }
+    </div>
+</div>

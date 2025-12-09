@@ -1,6 +1,158 @@
 ﻿@model List<Luno_platform.Models.Question>
+@{
+    Layout = "_InstructorDashboard";
+}
 
 <link rel="stylesheet" href="~/assets/css/view-questions.css" />
+
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        background-color: var(--light-bg);
+    }
+
+    .view-questions-page {
+        padding: 40px 20px;
+        direction: rtl;
+    }
+
+    .page-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .question-view-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-right: 4px solid var(--secondary-color);
+        transition: all 0.3s ease;
+    }
+
+        .question-view-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+    .header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .question-text {
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        padding: 15px;
+        background-color: #f8faff;
+        border-radius: 8px;
+    }
+
+    .choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .choice {
+        background-color: #f8f9fb;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+        .choice:hover {
+            border-color: var(--secondary-color);
+            background-color: rgba(242, 153, 74, 0.05);
+        }
+
+        .choice span {
+            background-color: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+    .correct-answer {
+        background-color: rgba(39, 174, 96, 0.1);
+        border: 2px solid var(--success-color);
+        border-radius: 8px;
+        padding: 15px 20px;
+        color: var(--success-color);
+        font-weight: bold;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .correct-answer span {
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 15px;
+        }
+
+    .btn-back {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-back:hover {
+            background-color: #0a3d5c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.3);
+        }
+
+    @@media (max-width: 768px) {
+        .choices
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    }
+</style>
 
 <div class="container view-questions-page">
 

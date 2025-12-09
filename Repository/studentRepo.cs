@@ -1,4 +1,5 @@
 ﻿using Luno_platform.Models;
+using Luno_platform.Service;
 using Luno_platform.Viewmodel;
 using Microsoft.EntityFrameworkCore;
 namespace Luno_platform.Repository
@@ -28,6 +29,7 @@ namespace Luno_platform.Repository
                 .Select(s => new Student
                 {
                     StudentID = s.StudentID,
+                    Balance=s.Balance,
 
                     User = new Users
                     {
@@ -88,37 +90,35 @@ namespace Luno_platform.Repository
 
             return courses;
         }
-        public List<Courses> GetStudentCourses(int userId, int page = 1, int pageSize = 10)
-        {
-            int? studentId = GetStudentIdByUserId(userId);
-            var coursesQuery = _Context.Student_Courses
-                .Where(sc => sc.StudentId == studentId)
-                .Include(sc => sc.Course)            // Include قبل الـ Select
-                    .ThenInclude(c => c.Subjects)
-                .OrderBy(sc => sc.Course.CourseId)  // ترتيب ثابت
+        //public List<Courses> GetStudentCourses(int userId)
+        //{
+        //    int? studentId = GetStudentIdByUserId(userId);
+        //    var coursesQuery = _Context.Student_Courses
+        //        .Where(sc => sc.StudentId == studentId)
+        //        .Include(sc => sc.Course)            // Include قبل الـ Select
+        //            .ThenInclude(c => c.Subjects)
+        //        .OrderBy(sc => sc.Course.CourseId)  // ترتيب ثابت
 
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(sc => new Courses
-                {
-                    CourseId = sc.Course.CourseId,
-                    CourseName = sc.Course.CourseName ?? "بدون اسم",
-                    description = sc.Course.description ?? "لا يوجد وصف",
-                    price = sc.Course.price,
-                    Image = sc.Course.Image ?? "default-image.png",
-                    createdAt = sc.Course.createdAt,
-                    instructorID = sc.Course.instructorID,
-                    SubjectId = sc.Course.SubjectId,
-                    Subjects = sc.Course.Subjects != null ? new Subject
-                    {
-                        SubjectID = sc.Course.Subjects.SubjectID,
-                        SubjectNameAR = sc.Course.Subjects.SubjectNameAR ?? "لا يوجد مادة",
-                        SubjectNameEN = sc.Course.Subjects.SubjectNameEN ?? "Subject name not available"
-                    } : null
-                });
+        //        .Select(sc => new Courses
+        //        {
+        //            CourseId = sc.Course.CourseId,
+        //            CourseName = sc.Course.CourseName ?? "بدون اسم",
+        //            description = sc.Course.description ?? "لا يوجد وصف",
+        //            price = sc.Course.price,
+        //            Image = sc.Course.Image ?? "default-image.png",
+        //            createdAt = sc.Course.createdAt,
+        //            instructorID = sc.Course.instructorID,
+        //            SubjectId = sc.Course.SubjectId,
+        //            Subjects = sc.Course.Subjects != null ? new Subject
+        //            {
+        //                SubjectID = sc.Course.Subjects.SubjectID,
+        //                SubjectNameAR = sc.Course.Subjects.SubjectNameAR ?? "لا يوجد مادة",
+        //                SubjectNameEN = sc.Course.Subjects.SubjectNameEN ?? "Subject name not available"
+        //            } : null
+        //        });
 
-            return coursesQuery.ToList();
-        }
+        //    return coursesQuery.ToList();
+        //}
 
 
         public List<StudentCourseFullDataVM> GetStudentCoursesFullData(int userId)
@@ -207,10 +207,45 @@ namespace Luno_platform.Repository
 
 
         }
+        public void ChargeBalance( int userid,decimal amount)
+        {
+
+            int? studentId = GetStudentIdByUserId(userid);
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance += amount;
+                _Context.SaveChanges();
+            }
+
+        }
+        public void ChargeBalanceAfterPay( int userid,decimal amount)
+        {
+
+            int? studentId = GetStudentIdByUserId(userid);
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance -= amount;
+                _Context.SaveChanges();
+            }
+
+        }
         public void AddStudentCourse(Student_Courses studentCourse)
         {
             _Context.Student_Courses.Add(studentCourse);
             _Context.SaveChanges();
+        }
+        public void RemoveStudentCourse(int studentId,int courseId)
+        {
+            var entity = _Context.Student_Courses
+         .FirstOrDefault(sc => sc.StudentId == studentId && sc.CourseId == courseId);
+
+            if (entity != null)
+            {
+                _Context.Student_Courses.Remove(entity);
+                _Context.SaveChanges();
+            }
         }
 
         public int getStudentId(int userid)
@@ -260,7 +295,6 @@ namespace Luno_platform.Repository
 
             return students;
         }
-
         public void DeleteStudent(int userid)
         {
             var student = _Context.Students.FirstOrDefault(e => e.UserId == userid);

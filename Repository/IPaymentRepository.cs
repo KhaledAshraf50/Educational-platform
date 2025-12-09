@@ -9,5 +9,8 @@ namespace Luno_platform.Repository
         List<Payments> GetStudentPayments(int studentId);
         IEnumerable<Payments> GetPayments(DateTime start, DateTime end);
 
+        List<Payments> GetPaymentsByStatus(string status);
+
+
     }
 }
