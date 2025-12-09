@@ -211,7 +211,6 @@ a {
     --primary-color: #092C4C;
     --secondary-color: #F2994A;
 }
-
 .swiper {
     width: 100%;
     height: 100%;
@@ -244,14 +243,14 @@ a {
     .swiper-slide img {
         display: block;
         width: 100%;
-/*        height: 100%;*/
+        height: 100%;
         object-fit: cover;
     }
 
 /* الكارت */
 .card {
-    width: auto;
-    height: 520px;
+    width: 100%;
+    height: 520px;z
     background: #ffffff;
     border-radius: 16px;
     overflow: hidden;
@@ -271,7 +270,8 @@ a {
         .card .imgs img {
             border-radius: 12px;
             width: 100%;
-/*            height:100%;*/
+            height: 350px;
+
         }
 
 .card-body {
