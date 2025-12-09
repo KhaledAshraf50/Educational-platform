@@ -57,6 +57,14 @@ namespace Luno_platform.Repository
                            .Include(s => s.Classes) // ⬅️ مهم
                            .FirstOrDefault(s => s.UserId == userId);
         }
+        public int GetUserId(int studentId)
+        {
+            return _Context.Users
+                             .Where(s => s.student.StudentID == studentId)
+                             .Select(s => s.Id)
+                             .FirstOrDefault();
+                                        
+        }
 
         public List<Courses> GetStudentCourses(int userId)
         {
@@ -289,6 +297,12 @@ namespace Luno_platform.Repository
                 _Context.SaveChanges();
             }
 
+        }
+
+        public Student GetStudentByStudentID(int studentId)
+        {
+            return _Context.Students
+                           .FirstOrDefault(s => s.StudentID == studentId);
         }
     }
 }

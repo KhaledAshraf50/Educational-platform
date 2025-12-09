@@ -22,6 +22,8 @@ namespace Luno_platform.Repository
         public void AddStudentCourse(Student_Courses studentCourse);
         public void RemoveStudentCourse(int StudentID, int courseId);
 
+        public int GetUserId(int studentId);
+        public Student GetStudentByStudentID(int studentId);
 
 
 

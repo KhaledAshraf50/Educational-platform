@@ -5,6 +5,7 @@ namespace Luno_platform.Viewmodel
     public class MainPageParentVM
     {
         public List<Student>? Student { get; set; }
+        public Student SelectedStudent { get; set; }
         public Parent parent { get; set; }
         public List<Courses>? Courses { get; set; }
         public Dictionary<int, double> ExamProgressDict { get; set; }
