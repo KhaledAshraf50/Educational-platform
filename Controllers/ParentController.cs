@@ -14,11 +14,13 @@ namespace Luno_platform.Controllers
     {
         IParentService _parentService;
         IParentRepo _parentRepo;
+        IstudentRepo _stdRepo;
 
-        public ParentController(IParentService parentService, IParentRepo parentRepo)
+        public ParentController(IParentService parentService, IParentRepo parentRepo, IstudentRepo stdRepo)
         {
             _parentService = parentService;
             _parentRepo = parentRepo;
+            _stdRepo = stdRepo;
         }
         public int GetUserId()
         {
@@ -30,6 +32,7 @@ namespace Luno_platform.Controllers
             }
             return int.Parse(userIdClaim.Value);
         }
+        [HttpGet]
         public IActionResult MainPage()
         {
             int userId = GetUserId();
@@ -37,14 +40,28 @@ namespace Luno_platform.Controllers
             if (parent == null) return NotFound();
 
             int parentId = parent.ID;
-
             var parentData = _parentService.GetParent(parentId);
             var students = _parentService.GetStds(parentId);
             var vm = new MainPageParentVM
             {
                 Student = students,
                 parent = parentData,
-                Courses = _parentService.GetStudentCourses(parentId),
+            };
+            return View(vm);
+        }
+        [HttpGet]
+        public IActionResult MainPageCourses(int studentId)
+        {
+            int userId = GetUserId();
+            var parent = _parentRepo.GetByUserId(userId);
+            if (parent == null) return NotFound();
+            int userid = _stdRepo.GetUserId(studentId);
+            int parentId = parent.ID;
+            var students = _parentService.GetStds(parentId);
+            var vm = new MainPageParentVM
+            {
+                SelectedStudent = _stdRepo.GetStudentByStudentID(studentId),
+                Courses = _parentService.GetStudentCourses(userid),
                 ExamProgressDict = new Dictionary<int, double>(),
                 TaskProgressDict = new Dictionary<int, double>(),
                 OverallProgressDict = new Dictionary<int, double>()
@@ -55,8 +72,8 @@ namespace Luno_platform.Controllers
                 vm.ExamProgressDict[std.StudentID] = progress.ExamProgress;
                 vm.TaskProgressDict[std.StudentID] = progress.TaskProgress;
                 vm.OverallProgressDict[std.StudentID] = progress.OverallProgress;
-        }
-            return View(vm);
+            }
+            return PartialView("_StudentCoursesPartial", vm);
         }
         //------------------------
         public IActionResult Childerns()

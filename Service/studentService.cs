@@ -26,6 +26,10 @@ namespace Luno_platform.Service
 
             return student;
         }
+        public void ChargeBalanceAfterPay(int userid, decimal amount)
+        {
+            _repository.ChargeBalanceAfterPay(userid, amount);
+        }
 
         // دالة جلب كل الكورسات الخاصة بالطالب
         public List<Courses> GetStudentCourses(int studentId)
@@ -45,20 +49,20 @@ namespace Luno_platform.Service
             return _repository.GetStudentCoursesFullData(studentId);
         }
 
-        // دالة جلب الكورسات مع Pagination
-        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
-        {
-            if (studentId <= 0)
-                throw new ArgumentException("رقم الطالب غير صحيح", nameof(studentId));
+        //// دالة جلب الكورسات مع Pagination
+        //public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        //{
+        //    if (studentId <= 0)
+        //        throw new ArgumentException("رقم الطالب غير صحيح", nameof(studentId));
 
-            if (page <= 0)
-                page = 1; // إعادة للصفحة الأولى إذا الرقم غير صحيح
+        //    if (page <= 0)
+        //        page = 1; // إعادة للصفحة الأولى إذا الرقم غير صحيح
 
-            if (pageSize <= 0)
-                pageSize = 10; // قيمة افتراضية إذا الرقم غير صحيح
+        //    if (pageSize <= 0)
+        //        pageSize = 10; // قيمة افتراضية إذا الرقم غير صحيح
 
-            return _repository.GetStudentCourses(studentId, page, pageSize);
-        }
+        //    return _repository.GetStudentCourses(studentId, page, pageSize);
+        //}
 
         public List<Payments> GetPayments(int studentId)
         {
@@ -109,6 +113,10 @@ namespace Luno_platform.Service
         {
             _repository.SetUserPending(userid);
 
+        }
+        public void ChargeBalance(int userid, decimal amount)
+        {
+            _repository.ChargeBalance( userid, amount);
         }
     }
 }

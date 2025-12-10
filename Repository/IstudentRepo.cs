@@ -9,7 +9,7 @@ namespace Luno_platform.Repository
         Student GetStudent(int id);
         List<showallStudent> showStudents();
         List<Courses> GetStudentCourses(int id);
-        List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10);
+        //List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10);
         List<StudentCourseFullDataVM> GetStudentCoursesFullData(int id);
          List<Payments> GetPayments(int studentId);
         int? GetStudentIdByUserId(int userId);
@@ -19,7 +19,15 @@ namespace Luno_platform.Repository
         bool isSubdcrip(int studentid, int courseid);
         void DeleteStudent(int userid);
         void SetUserPending(int userid);
+        public void AddStudentCourse(Student_Courses studentCourse);
+        public void RemoveStudentCourse(int StudentID, int courseId);
 
+        public int GetUserId(int studentId);
+        public Student GetStudentByStudentID(int studentId);
+
+
+        void ChargeBalance(int userid, decimal amount);
+        public void ChargeBalanceAfterPay(int userid, decimal amount);
 
     }
 }

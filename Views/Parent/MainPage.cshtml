@@ -4,7 +4,6 @@
     ViewData["Title"] = "MainPage";
     Layout = "_ParentDashboard";
 }
-
 @section Styles {
     <link rel="stylesheet" href="/assets/css/parentmain.css" />
     <link rel="stylesheet" href="/assets/css/mainpage.css" />
@@ -41,12 +40,10 @@
                 <h1>@Model.parent.User.nationalID</h1>
             </div>
         </div>
-
-        <!-- سيكشن بيانات الأبناء -->
         <div class="child-selector mt-4">
             <h2><i class="fa-solid fa-children me-2"></i> الأبناء المرتبطين بالحساب</h2>
             <div class="custom-dropdown">
-                <select id="childrenDropdown">
+                <select id="childrenDropdown" name="studentId">
                     <option value="" selected disabled>اختر الابن</option>
                     @foreach (var stdName in Model.Student)
                     {
@@ -54,105 +51,87 @@
                     }
                 </select>
             </div>
+            <!-- هنا هيتعرض الـPartialView -->
+            <div id="coursesContainer" class="mt-5"></div>
         </div>
-
-        <div class="child-pages mt-4">
-            <!-- لكل ابن صفحة -->
-            @foreach (var stdName in Model.Student)
-            {
-                <div id="@stdName.StudentID" class="child-page" style="display:none;">
-                    <div class="mainpage m-3" id="mainpage">
-                        <div class="container">
-                            <div class="HeadOfBody d-sm-flex flex-column flex-sm-row text-center text-sm-end gap-3">
-                                <div class="img">
-                                    <img src="@stdName.User.Image" alt="student_img" />
-                                </div>
-                                <div class="text">
-                                    <h2>@stdName.User.fname @stdName.User.lastName</h2>
-                                    <p>@stdName.Classes.ClassName</p>
-                                </div>
-                            </div>
-
-                            <div class="progres">
-                                <div class="overall-prog flex-column flex-md-row">
-                                    <div class="text">
-                                        <p class="main-text">المستوي الكلي</p>
-                                        <p class="sec-text">
-                                            نسبة مجموع الدرجات في الامتحانات + مجموع المهام التي تم تسليمها حتى اليوم
-                                        </p>
-                                    </div>
-                                    <div id="semiContainer_@stdName.StudentID" class="progress-holder"></div>
-                                </div>
-
-                                <div class="deteils-prog d-md-flex justify-content-between">
-                                    <div class="exams col-md-5 flex-column flex-md-row">
-                                        <div class="text">
-                                            <p class="main-text">الامتحان</p>
-                                            <p class="sec-text">نسبة مجموع الدرجات في الامتحانات حتى اليوم</p>
-                                        </div>
-                                        <div id="semiContainerEXAM_@stdName.StudentID" class="progress-holder"></div>
-                                    </div>
-
-                                    <div class="tasks col-md-5 flex-column flex-md-row">
-                                        <div class="text">
-                                            <p class="main-text">الواجبات</p>
-                                            <p class="sec-text">نسبة مجموع المهام التي تم تسليمها حتى اليوم</p>
-                                        </div>
-                                        <div id="semiContainerTASK_@stdName.StudentID" class="progress-holder"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="courses">
-                                <div class="text"><p>الكورسات المشترك بها</p></div>
-                                <div class="courses-card d-flex flex-column flex-md-row">
-                                    @foreach (var course in Model.Courses)
-                                    {
-                                        <div class="card-courses">
-                                            <div class="image-courses">
-                                                <img src="@Url.Content(course.Image)" alt="@course.CourseName" />
-                                            </div>
-                                            <div class="body-course">
-                                                <div class="bodytop">
-                                                    <div class="bodyright">
-                                                        <div class="brtop">
-                                                            <p>@course.CourseName</p>
-                                                        </div>
-                                                        <div class="brmid">
-                                                            <p>@course.description</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bodyleft">
-                                                        <a href="#">الدخول للكورس</a>
-                                                    </div>
-                                                </div>
-                                                <div class="bodybuttom">
-                                                    <div class="price"><span>@course.price</span> جنيهًا</div>
-                                                    <div class="date">
-                                                        <h3>@course.createdAt.ToString("yyyy-MM-dd")</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-
-                        </div> <!-- container -->
-                    </div> <!-- mainpage -->
-                </div> <!-- child-page -->
-            }
-        </div> <!-- child-pages -->
-    </div> <!-- detiels -->
-</div> <!-- main -->
+    </div>
+</div>
 
 @section script {
-    <script>
-        var overallDict = @Html.Raw(Json.Serialize(Model.OverallProgressDict));
-        var examDict = @Html.Raw(Json.Serialize(Model.ExamProgressDict));
-        var taskDict = @Html.Raw(Json.Serialize(Model.TaskProgressDict));
-    </script>
     <script src="~/assets/js/progressbar.js"></script>
-    <script src="~/assets/js/mainprogres.js"></script>
     <script src="~/assets/js/parentmain.js"></script>
+
+    <script>
+        // دالة لرسم الـ progress bars
+        function initProgressBars(overallDict, examDict, taskDict) {
+            const progressBars = {};
+
+            function initProgress(containerId, percentage) {
+                const el = document.getElementById(containerId);
+                if (!el || isNaN(percentage)) return;
+
+                if (progressBars[containerId]) {
+                    progressBars[containerId].destroy();
+                }
+
+                progressBars[containerId] = new ProgressBar.SemiCircle(el, {
+                    strokeWidth: 10,
+                    trailColor: "#eee",
+                    trailWidth: 10,
+                    easing: "easeInOut",
+                    duration: 1400,
+                    text: { value: "", alignToBottom: false },
+                    step: function (state, bar) {
+                        const value = Math.round(bar.value() * 100);
+                        bar.path.setAttribute("stroke", value < 50 ? "#eb5757" : value < 75 ? "#E2B93B" : "#27AE60");
+                        bar.setText(value + "%");
+                    }
+                });
+
+                progressBars[containerId].text.style.fontFamily = "DIN Next LT Arabic";
+                progressBars[containerId].animate(percentage);
+            }
+
+            // رسم الـ progress bars لكل طالب
+            for (let studentId in overallDict) {
+                initProgress(`semiContainer_${studentId}`, overallDict[studentId] / 100);
+                initProgress(`semiContainerEXAM_${studentId}`, examDict[studentId] / 100);
+                initProgress(`semiContainerTASK_${studentId}`, taskDict[studentId] / 100);
+            }
+        }
+
+        document.getElementById("childrenDropdown").addEventListener("change", function () {
+            let studentId = this.value;
+
+            // إظهار loading indicator
+            document.getElementById("coursesContainer").innerHTML = '<div class="text-center p-4"><i class="fa fa-spinner fa-spin fa-3x"></i><p class="mt-2">جاري التحميل...</p></div>';
+
+            fetch(`/Parent/MainPageCourses?studentId=${studentId}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById("coursesContainer").innerHTML = html;
+
+                    // استخراج الـ dictionaries من الـ HTML المُرجع
+                    const scriptMatch = html.match(/var overallDict = ({.*?});[\s\S]*?var examDict = ({.*?});[\s\S]*?var taskDict = ({.*?});/);
+
+                    if (scriptMatch) {
+                        const overallDict = JSON.parse(scriptMatch[1]);
+                        const examDict = JSON.parse(scriptMatch[2]);
+                        const taskDict = JSON.parse(scriptMatch[3]);
+
+                        // انتظر شوية علشان الـ DOM يتحدث
+                        setTimeout(() => {
+                            initProgressBars(overallDict, examDict, taskDict);
+                        }, 10);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById("coursesContainer").innerHTML = '<div class="alert alert-danger">حدث خطأ أثناء تحميل البيانات</div>';
+                });
+        });
+    </script>
 }

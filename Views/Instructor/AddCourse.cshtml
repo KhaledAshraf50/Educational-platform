@@ -5,91 +5,190 @@
 }
 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
+
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
+
+    .content {
+        padding: 30px;
+        direction: rtl;
+        background-color: var(--light-bg);
+    }
+
+    .course-details {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 32px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    h3 {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 24px;
+        margin: 30px 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+
+    .form-label {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 15px;
+        display: block;
+    }
+
+    .form-control, .form-select {
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 15px;
+        width: 100%;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(242, 153, 74, 0.25);
+        }
+
+    .mb-3 {
+        margin-bottom: 20px;
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .btn-success {
+        background-color: var(--success-color);
+        border-color: var(--success-color);
+        color: white;
+        font-weight: 600;
+        padding: 14px 40px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background-color: #229954;
+            border-color: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+    .text-danger {
+        color: #e74c3c;
+        font-size: 13px;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
+
 <div class="content">
-<section class="course-details mt-5">
-    <div class="container">
+    <section class="course-details mt-5">
+        <div class="container">
 
-        <h1 class="mb-4">إضافة كورس جديد</h1>
+            <h1 class="mb-4">إضافة كورس جديد</h1>
 
-        <form asp-action="AddCourse" method="post" enctype="multipart/form-data">
+            <form asp-action="AddCourse" method="post" enctype="multipart/form-data">
 
-            <!-- Course Name -->
-            <div class="mb-3">
-                <label class="form-label">اسم الكورس</label>
-                <input asp-for="CourseName" class="form-control" />
-            </div>
+                <!-- Course Name -->
+                <div class="mb-3">
+                    <label class="form-label">اسم الكورس</label>
+                    <input asp-for="CourseName" class="form-control" />
+                </div>
 
-            <!-- Price -->
-            <div class="mb-3">
-                <label class="form-label">سعر الكورس</label>
-                <input asp-for="Price" class="form-control" />
-            </div>
+                <!-- Price -->
+                <div class="mb-3">
+                    <label class="form-label">سعر الكورس</label>
+                    <input asp-for="Price" class="form-control" />
+                </div>
 
-            <!-- Description -->
-            <div class="mb-3">
-                <label class="form-label">وصف الكورس</label>
-                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-            </div>
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">وصف الكورس</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
 
-            <!-- Class Dropdown -->
-            <div class="mb-3">
-                <label class="form-label">الصف</label>
-                <select asp-for="ClassID" asp-items="Model.Classes" class="form-control">
-                    <option value="">-- اختر الصف --</option>
-                </select>
-                <span asp-validation-for="Grade" class="text-danger"></span>
-            </div>
+                <!-- Class Dropdown -->
+                <div class="mb-3">
+                    <label class="form-label">الصف</label>
+                    <select asp-for="ClassID" asp-items="Model.Classes" class="form-control">
+                        <option value="">-- اختر الصف --</option>
+                    </select>
+                    <span asp-validation-for="Grade" class="text-danger"></span>
+                </div>
 
-            <!-- Subject Dropdown -->
-            <div class="mb-3">
-                <label class="form-label">المادة</label>
-                <select asp-for="SubjectId" asp-items="Model.Subjects" class="form-control">
-                    <option value="">-- اختر المادة --</option>
-                </select>
-            </div>
+                <!-- Subject Dropdown -->
+                <div class="mb-3">
+                    <label class="form-label">المادة</label>
+                    <select asp-for="SubjectId" asp-items="Model.Subjects" class="form-control">
+                        <option value="">-- اختر المادة --</option>
+                    </select>
+                </div>
 
-            <!-- Course Image -->
-            <div class="mb-3">
-                <label class="form-label">صورة الكورس</label>
-                <input asp-for="ImageFile" type="file" class="form-control" />
-            </div>
+                <!-- Course Image -->
+                <div class="mb-3">
+                    <label class="form-label">صورة الكورس</label>
+                    <input asp-for="ImageFile" type="file" class="form-control" />
+                </div>
 
-            <!-- Course Content -->
-            <h3 class="mt-4">محتوى الكورس</h3>
+                <!-- Course Content -->
+                <h3 class="mt-4">محتوى الكورس</h3>
 
-            <div class="mb-3">
-                <label class="form-label">اسم الفيديو/الملف 1</label>
-                <input asp-for="NameUrl1" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">اسم الفيديو/الملف 1</label>
+                    <input asp-for="NameUrl1" class="form-control" />
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">رابط الفيديو/الملف 1</label>
-                <input asp-for="Url1" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">رابط الفيديو/الملف 1</label>
+                    <input asp-for="Url1" class="form-control" />
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">اسم الفيديو/الملف 2</label>
-                <input asp-for="NameUrl2" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">اسم الفيديو/الملف 2</label>
+                    <input asp-for="NameUrl2" class="form-control" />
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">رابط الفيديو/الملف 2</label>
-                <input asp-for="Url2" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">رابط الفيديو/الملف 2</label>
+                    <input asp-for="Url2" class="form-control" />
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">اسم الفيديو/الملف 3</label>
-                <input asp-for="NameUrl3" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">اسم الفيديو/الملف 3</label>
+                    <input asp-for="NameUrl3" class="form-control" />
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">رابط الفيديو/الملف 3</label>
-                <input asp-for="Url3" class="form-control" />
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">رابط الفيديو/الملف 3</label>
+                    <input asp-for="Url3" class="form-control" />
+                </div>
 
-            <button type="submit" class="btn btn-success mt-3">إضافة الكورس</button>
+                <button type="submit" class="btn btn-success mt-3">إضافة الكورس</button>
 
-        </form>
-</div>
-</section>
+            </form>
+        </div>
+    </section>
 </div>
