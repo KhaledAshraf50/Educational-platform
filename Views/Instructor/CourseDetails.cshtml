@@ -92,9 +92,10 @@
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
                                         <span>@Model.CourseContent.Exams.ExamName</span>
-                                        <a href="/Instructor/ExamDetails/@Model.CourseContent.Exams.ExamID">عرض</a>
+                                        <a href="/Instructor/ViewExamQuestions/@Model.CourseContent.Exams.ExamID">عرض</a>
                                     </div>
                                 }
+
                                 else
                                 {
                                     <p class="text-muted">لا يوجد امتحان لهذا الكورس</p>
@@ -108,7 +109,7 @@
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
                                         <span>@Model.CourseContent.Tasks.TaskName</span>
-                                        <a href="/Instructor/TaskDetails/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                        <a href="/Instructor/ViewTaskQuestions/@Model.CourseContent.Tasks.TaskID">عرض</a>
                                     </div>
                                 }
                                 else

@@ -13,28 +13,40 @@
     <div class="card shadow-sm p-4">
         <h5 class="card-title mb-3">معلومات الامتحان</h5>
         <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-bold">اختر الكورس</label>
+
+                <select asp-for="CourseId"
+                        asp-items="ViewBag.Courses"
+                        class="form-select"
+                        required>
+                    <option value="">-- اختر الكورس --</option>
+                </select>
+
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">اسم الامتحان</label>
                 <input asp-for="ExamName" class="form-control" required />
             </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">الصف الدراسي</label>
-                    <select asp-for="ClassId" class="form-control"
-                            asp-items="@(ViewBag.Classes as List<SelectListItem>)" required>
-                        <option value="">اختر الصف</option>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">المادة</label>
-                    <select asp-for="subjectId" class="form-control"
-                            asp-items="@(ViewBag.Subjects as List<SelectListItem>)" required>
-                        <option value="">اختر المادة</option>
-                    </select>
-                </div>
-            </div>
+            @* <div class="row"> *@
+            @*     <div class="col-md-6 mb-3"> *@
+            @*         <label class="form-label">الصف الدراسي</label> *@
+            @*         <select asp-for="ClassId" class="form-control" *@
+            @*                 asp-items="@(ViewBag.Classes as List<SelectListItem>)" required> *@
+            @*             <option value="">اختر الصف</option> *@
+            @*         </select> *@
+            @*     </div> *@
+            @*     <div class="col-md-6 mb-3"> *@
+            @*         <label class="form-label">المادة</label> *@
+            @*         <select asp-for="subjectId" class="form-control" *@
+            @*                 asp-items="@(ViewBag.Subjects as List<SelectListItem>)" required> *@
+            @*             <option value="">اختر المادة</option> *@
+            @*         </select> *@
+            @*     </div> *@
+            @* </div> *@
 
             <div class="row">
                 <div class="col-md-4 mb-3">

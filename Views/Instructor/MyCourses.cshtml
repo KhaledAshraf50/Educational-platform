@@ -30,6 +30,8 @@
             <th>الصف</th>
             <th>السعر</th>
             <th>الحالة</th>
+                <th>الإدارة</th>
+
         </tr>
     </thead>
     <tbody>
@@ -55,6 +57,15 @@
                         <span class="badge bg-danger">Rejected</span>
                     }
                 </td>
+                    <td>
+                        <a asp-action="ManageCourse"
+                           asp-controller="Instructor"
+                           asp-route-id="@c.CourseId"
+                           class="btn btn-sm btn-primary">
+                            إدارة
+                        </a>
+                    </td>
+
 
             </tr>
         }
