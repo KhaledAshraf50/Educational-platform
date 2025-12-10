@@ -1,4 +1,7 @@
-﻿namespace Luno_platform.Viewmodel
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace Luno_platform.Viewmodel
 {
     public class CreateExamVM
     {
@@ -11,6 +14,11 @@
         {
             get; set;
         }
+        [Required]
+        public int CourseId { get; set; }
+
+        // ✅ Dropdown List
+        public List<SelectListItem> Courses { get; set; }
     }
 
 }
