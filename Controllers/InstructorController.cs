@@ -518,39 +518,34 @@ namespace Luno_platform.Controllers
 
             var vm = new AddCourseVM
             {
-                Subjects = _context.Subjects.Select(s => new SelectListItem
-                {
-                    Value = s.SubjectID.ToString(),
-                    Text = s.SubjectNameEN
-                }).ToList(),
+                Subjects = _context.Subjects
+                            .ToList(),
 
-                Classes = _context.Classes.Select(c => new SelectListItem
-                {
-                    Value = c.ClassID.ToString(),
-                    Text = c.ClassName
-                }).ToList(),
-
-                // جلب الامتحانات الخاصة بالمدرس فقط
-                Exams = _context.Exams
-                                .Where(e => e.instructorID == instructorId)
-                                .Select(e => new SelectListItem
-                                {
-                                    Value = e.ExamID.ToString(),
-                                    Text = e.ExamName
-                                }).ToList(),
-
-                // جلب المهام الخاصة بالمدرس فقط
+                Classes = _context.Classes
+                           
+                         .ToList(),
                 Tasks = _context.Tasks
-                                .Where(t => t.instructorId == instructorId)
-                                .Select(t => new SelectListItem
-                                {
-                                    Value = t.TaskID.ToString(),
-                                    Text = t.TaskName
-                                }).ToList()
+                            .Where(t => t.instructorId == instructorId && t.status == false)
+                            .Select(t => new TaskVM
+                            {
+                                TaskID = t.TaskID,
+                                TaskName = t.TaskName
+                            }).ToList(),
+
+                Exams = _context.Exams
+                            .Where(t => t.instructorID == instructorId && t.status == false)
+                            .Select(t => new ExamVM2
+                            {
+                               ExamID = t.ExamID,
+                                ExamName = t.ExamName
+                            }).ToList()
+
+
             };
 
             return View(vm);
         }
+
 
         [HttpPost]
         [Route("Instructor/AddCourse")]

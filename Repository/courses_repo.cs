@@ -32,7 +32,7 @@ namespace Luno_platform.Repository
         }
         public Courses Infocourse(int courseId)
         {
-            return _Context.Courses
+          var courses= _Context.Courses
                 .Include(c => c.Instructor).ThenInclude(i => i.User)
                 .Include(c => c.CourseContent).ThenInclude(cc => cc.Exams)
                 .Include(c => c.CourseContent).ThenInclude(cc => cc.Tasks)
@@ -88,6 +88,8 @@ namespace Luno_platform.Repository
                     }
                 })
                 .FirstOrDefault();
+
+            return courses;
         }
 
         public List<Courses> showAllcoursebyclassandinstructor(int instructorid, int classid)

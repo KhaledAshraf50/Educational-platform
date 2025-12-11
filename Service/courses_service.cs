@@ -26,7 +26,9 @@ namespace Luno_platform.Service
         }
         public List<Subject> GetAllSubjects()
         {
+
             return _coursesRepo.GetAllSubjects();
+
         }
 
         public List<Courses> showallcourses()
