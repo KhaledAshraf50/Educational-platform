@@ -98,7 +98,9 @@ namespace Luno_platform
             builder.Services.AddScoped<Icourses_repo, courses_repo>();
             builder.Services.AddScoped<Icourses_service, courses_service>();
             builder.Services.AddScoped<ITeacherPaymentRepo, TeacherPaymentRepo>();
+            builder.Services.AddScoped<PaymobService>();
 
+            builder.Services.AddHttpClient<PaymobService>();
 
 
             // =============================

@@ -1,0 +1,150 @@
+﻿@{
+    ViewData["Title"] = "تم الدفع بنجاح";
+    Layout = "_navbar";
+
+}
+
+<style>
+    .success-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .success-card {
+        background: white;
+        padding: 60px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 500px;
+        animation: slideUp 0.5s ease;
+    }
+
+    @@keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .success-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    .success-icon i {
+        font-size: 50px;
+        color: white;
+    }
+
+    .success-title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #092C4C;
+        margin-bottom: 15px;
+    }
+
+    .success-message {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .course-name {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: #092C4C;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+    .btn-secondary {
+        background: white;
+        border: 2px solid #667eea;
+        color: #667eea;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+</style>
+
+<div class="success-container">
+    <div class="success-card">
+        <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h1 class="success-title">تم الدفع بنجاح! </h1>
+        <p class="success-message">
+            شكراً لك! تم تسجيلك في الكورس بنجاح
+        </p>
+
+        @if (!string.IsNullOrEmpty(ViewBag.CourseName))
+        {
+            <div class="course-name">
+                <i class="fa-solid fa-book"></i>
+                @ViewBag.CourseName
+            </div>
+        }
+
+        <div>
+            <a asp-controller="Homepage" asp-action="show_details_courses" asp-route-courseid="@ViewBag.CourseId" class="btn btn-primary">
+                <i class="fa-solid fa-play"></i> ابدأ التعلم الآن
+            </a>
+            <a asp-controller="Student" asp-action="SubjectsPage" class="btn btn-secondary">
+                <i class="fa-solid fa-th"></i> كورساتي
+            </a>
+        </div>
+    </div>
+</div>

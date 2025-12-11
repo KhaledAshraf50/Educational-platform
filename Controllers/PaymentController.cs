@@ -2,17 +2,29 @@
 using Luno_platform.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 public class PaymentController : Controller
 {
     private readonly IPaymentService _paymentService;
     private IstudentService istudentService;
     private Icourses_service icourses_Service;
-    public PaymentController(IstudentService studentService,IPaymentService paymentService, Icourses_service icourses_Service)
+    private readonly PaymobService _paymobService;
+    private readonly IConfiguration _configuration;
+
+    public PaymentController(
+        IstudentService studentService
+        ,IPaymentService paymentService
+        , Icourses_service icourses_Service,
+          PaymobService paymobService,
+          IConfiguration configuration)
     {
         _paymentService = paymentService;
         istudentService = studentService;
         this.icourses_Service = icourses_Service;
+        _paymobService = paymobService;
+        _configuration = configuration;
     }
     [Authorize]
     [HttpPost]
@@ -43,9 +55,241 @@ public class PaymentController : Controller
             return BadRequest(ex.Message);
         }
     }
+    [Authorize]
+    [HttpGet]
+    public IActionResult SelectPaymentMethod(int courseId)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+        var course = icourses_Service.Infocourse(courseId);
+        if (course == null)
+            return NotFound();
 
+        ViewBag.CourseId = courseId;
+        ViewBag.CourseName = course.CourseName;
+        ViewBag.Amount = course.price;
+        ViewBag.StudentBalance = student.Balance;
+        return View();
+    }
+    // ✅ الدفع من الرصيد (كما هو)
+    [Authorize]
+    [HttpPost]
+    public IActionResult PayFromBalance(int courseId, decimal amount)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+
+        try
+        {
+            if (student.Balance >= amount)
+            {
+                istudentService.ChargeBalanceAfterPay(userId, amount);
+                _paymentService.CreatePayment(userId, courseId, amount);
+                TempData["AlertMessage"] = "تم الاشتراك في الكورس بنجاح!";
+            }
+            else
+            {
+                TempData["AlertMessage"] = "الرصيد غير كافي. الرجاء الشحن أو اختر طريقة دفع أخرى.";
+            }
+
+            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId });
+        }
+        catch (Exception ex)
+        {
+            TempData["AlertMessage"] = $"حدث خطأ: {ex.Message}";
+            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId });
+        }
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> PayByCard(int courseId, decimal amount)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+
+        try
+        {
+            string orderId = $"ORDER_{userId}_{courseId}_{DateTime.Now.Ticks}";
+
+            string paymentUrl = await _paymobService.CreateCardPaymentLinkAsync(
+                amount,
+                orderId,
+                student.User.fname ?? "Student",
+                student.User.lastName ?? "User",
+                student.User.Email ?? "student@example.com",
+                student.User.PhoneNumber ?? "01000000000"
+            );
+
+            // حفظ معلومات الدفع مؤقتاً
+            TempData["PendingPayment"] = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                OrderId = orderId,
+                CourseId = courseId,
+                UserId = userId,
+                Amount = amount
+            });
+
+            return Redirect(paymentUrl);
+        }
+        catch (Exception ex)
+        {
+            TempData["AlertMessage"] = $" حدث خطأ في الدفع: {ex.Message}";
+            return RedirectToAction("SelectPaymentMethod", new { courseId });
+        }
+    }
+
+    [Authorize]
+    [HttpPost]
+    public IActionResult PayByWallet(int courseId, decimal amount)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+        var course = icourses_Service.Infocourse(courseId);
+
+        ViewBag.CourseId = courseId;
+        ViewBag.CourseName = course.CourseName;
+        ViewBag.Amount = amount;
+        ViewBag.StudentName = student.User.fname + " " + student.User.lastName;
+        ViewBag.StudentPhone = student.User.PhoneNumber ?? "01000000000";
+
+        return View("SelectWalletType");
+    }
+    [Authorize]
+    [HttpPost]
+    public IActionResult ConfirmWalletPayment(int courseId, decimal amount, string walletType)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+        var course = icourses_Service.Infocourse(courseId);
+
+        ViewBag.CourseId = courseId;
+        ViewBag.CourseName = course.CourseName;
+        ViewBag.Amount = amount;
+        ViewBag.WalletType = walletType;
+        ViewBag.StudentName = student.User.fname + " " + student.User.lastName;
+        ViewBag.StudentPhone = student.User.PhoneNumber ?? "01000000000";
+        ViewBag.StudentEmail = student.User.Email ?? "";
+
+        return View("ConfirmWalletPayment");
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> ProcessWalletPayment(int courseId, decimal amount, string walletType)
+    {
+        int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+        var student = istudentService.GetStudent(userId);
+
+        try
+        {
+            string orderId = $"ORDER_{userId}_{courseId}_{DateTime.Now.Ticks}";
+
+            string paymentUrl = await _paymobService.CreateWalletPaymentLinkAsync(
+                amount,
+                orderId,
+                student.User.fname ?? "Student",
+                student.User.lastName ?? "User",
+                student.User.Email ?? "student@example.com",
+                student.User.PhoneNumber ?? "01000000000"
+            );
+
+            TempData["PendingPayment"] = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                OrderId = orderId,
+                CourseId = courseId,
+                UserId = userId,
+                Amount = amount,
+                WalletType = walletType
+            });
+
+            return Redirect(paymentUrl);
+        }
+        catch (Exception ex)
+        {
+            TempData["AlertMessage"] = $" حدث خطأ: {ex.Message}";
+            return RedirectToAction("SelectPaymentMethod", new { courseId });
+        }
+    }
+    [HttpGet]
+    [AllowAnonymous]
+    public IActionResult PaymentCallback()
+    {
+        try
+        {
+            // استقبال البيانات من Paymob
+            var success = Request.Query["success"].ToString();
+            var orderId = Request.Query["order"].ToString();
+            var amountCents = Request.Query["amount_cents"].ToString();
+            var hmac = Request.Query["hmac"].ToString();
+
+            // التحقق من HMAC (أمان)
+            if (!VerifyHmac(hmac, orderId, success, amountCents))
+            {
+                TempData["AlertMessage"] = " فشل التحقق من صحة الدفع";
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (success == "true")
+            {
+                // استخراج البيانات من OrderId
+                var parts = orderId.Split('_');
+                if (parts.Length < 3)
+                {
+                    TempData["AlertMessage"] = "❌ خطأ في معرف الطلب";
+                    return RedirectToAction("Index", "Home");
+                }
+
+                int userId = int.Parse(parts[1]);
+                int courseId = int.Parse(parts[2]);
+                var course = icourses_Service.Infocourse(courseId);
+
+                // ✅ تسجيل الدفع فوراً (مفيش موافقة من الأدمن)
+                _paymentService.CreatePayment(userId, courseId, course.price);
+
+                TempData["AlertMessage"] = "✅ تم الدفع بنجاح! تم تسجيلك في الكورس";
+                return RedirectToAction("PaymentSuccess", new { courseId });
+            }
+            else
+            {
+                TempData["AlertMessage"] = "❌ فشلت عملية الدفع";
+                var pendingJson = TempData["PendingPayment"]?.ToString();
+                if (!string.IsNullOrEmpty(pendingJson))
+                {
+                    var pending = System.Text.Json.JsonSerializer.Deserialize<dynamic>(pendingJson);
+                    return RedirectToAction("SelectPaymentMethod", new { courseId = pending.CourseId });
+                }
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        catch (Exception ex)
+        {
+            TempData["AlertMessage"] = $"❌ حدث خطأ: {ex.Message}";
+            return RedirectToAction("Index", "Home");
+        }
+    }
     public IActionResult Success()
     {
         return View();
+    }
+    [Authorize]
+    public IActionResult PaymentSuccess(int courseId)
+    {
+        var course = icourses_Service.Infocourse(courseId);
+        ViewBag.CourseName = course?.CourseName;
+        return View();
+    }
+
+    private bool VerifyHmac(string receivedHmac, string orderId, string success, string amountCents)
+    {
+        var hmacSecret = _configuration["Paymob:HmacSecret"];
+        if (string.IsNullOrEmpty(hmacSecret))
+            return true; // في حالة عدم تفعيل HMAC
+
+        var data = $"{orderId}{success}{amountCents}";
+        using (var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(hmacSecret)))
+        {
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(data));
+            var calculatedHmac = BitConverter.ToString(hash).Replace("-", "").ToLower();
+            return calculatedHmac == receivedHmac.ToLower();
+        }
     }
 }

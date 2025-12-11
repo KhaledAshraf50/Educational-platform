@@ -1,0 +1,416 @@
+﻿@{
+    ViewData["Title"] = "تأكيد الدفع بالمحفظة";
+    Layout = "_navbar";
+    var courseId = ViewBag.CourseId;
+    var courseName = ViewBag.CourseName;
+    var amount = ViewBag.Amount;
+    var walletType = ViewBag.WalletType;
+    var studentPhone = ViewBag.StudentPhone;
+    var studentName = ViewBag.StudentName;
+
+    var walletNames = new Dictionary<string, string>
+    {
+        { "vodafone", "Vodafone Cash" },
+        { "etisalat", "Etisalat Cash" },
+        { "orange", "Orange Cash" },
+        { "we", "WE Pay" }
+    };
+    var walletColors = new Dictionary<string, string>
+    {
+        { "vodafone", "#E60000" },
+        { "etisalat", "#00B140" },
+        { "orange", "#FF6600" },
+        { "we", "#5F259F" }
+    };
+}
+
+<style>
+    .confirm-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        direction: rtl;
+    }
+
+    .header-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 40px;
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+        .header-card h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header-card .course-name {
+            font-size: 20px;
+            opacity: 0.9;
+            margin: 10px 0;
+        }
+
+        .header-card .amount-display {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+    .wallet-info-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+    }
+
+    .wallet-logo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .wallet-name-display {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #092C4C;
+    }
+
+    .info-section {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+    .info-label {
+        font-size: 16px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .info-label i {
+            font-size: 20px;
+            color: #667eea;
+        }
+
+    .info-value {
+        font-size: 18px;
+        font-weight: bold;
+        color: #092C4C;
+    }
+
+    .phone-input-section {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+        .phone-input-section h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #092C4C;
+        }
+
+    .phone-input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .phone-input {
+        width: 100%;
+        padding: 18px 50px 18px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 20px;
+        text-align: center;
+        direction: ltr;
+        transition: all 0.3s ease;
+    }
+
+        .phone-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+    .phone-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        color: #667eea;
+    }
+
+    .steps-card {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+        .steps-card h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+    .step-item {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .step-number {
+        width: 45px;
+        height: 45px;
+        background: white;
+        color: #f5576c;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .step-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .btn-confirm {
+        flex: 1;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .btn-confirm:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+    .btn-back {
+        flex: 0.4;
+        padding: 20px;
+        background: white;
+        color: #667eea;
+        border: 2px solid #667eea;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background: #667eea;
+            color: white;
+        }
+
+    .security-badge {
+        text-align: center;
+        margin-top: 30px;
+        color: #666;
+        font-size: 14px;
+    }
+
+        .security-badge i {
+            color: #27ae60;
+            font-size: 20px;
+            margin-left: 8px;
+        }
+</style>
+
+<div class="confirm-container">
+    <!-- Header -->
+    <div class="header-card">
+        <h1><i class="fa-solid fa-mobile-screen-button"></i> تأكيد الدفع</h1>
+        <p class="course-name">@courseName</p>
+        <p class="amount-display">@amount جنيه</p>
+    </div>
+
+    <!-- معلومات المحفظة -->
+    <div class="wallet-info-card">
+        <div class="wallet-logo" style="background: @walletColors[walletType];">
+            <i class="fa-solid fa-wallet"></i>
+        </div>
+        <h2 class="wallet-name-display">@walletNames[walletType]</h2>
+
+        <div class="info-section">
+            <div class="info-row">
+                <span class="info-label">
+                    <i class="fa-solid fa-user"></i>
+                    الاسم
+                </span>
+                <span class="info-value">@studentName</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">
+                    <i class="fa-solid fa-book"></i>
+                    الكورس
+                </span>
+                <span class="info-value">@courseName</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    المبلغ
+                </span>
+                <span class="info-value">@amount جنيه</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- إدخال رقم الهاتف -->
+    <div class="phone-input-section">
+        <h3><i class="fa-solid fa-phone"></i> تأكيد رقم الموبايل</h3>
+        <form method="post" asp-controller="Payment" asp-action="ProcessWalletPayment" id="paymentForm">
+            <input type="hidden" name="courseId" value="@courseId" />
+            <input type="hidden" name="amount" value="@amount" />
+            <input type="hidden" name="walletType" value="@walletType" />
+
+            <div class="phone-input-wrapper">
+                <input type="tel"
+                       name="phoneNumber"
+                       class="phone-input"
+                       value="@studentPhone"
+                       placeholder="01XXXXXXXXX"
+                       pattern="01[0-9]{9}"
+                       maxlength="11"
+                       required />
+                <i class="fa-solid fa-phone phone-icon"></i>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 14px;">
+                تأكد من أن رقم الموبايل صحيح وعليه رصيد كافٍ
+            </p>
+        </form>
+    </div>
+
+    <!-- خطوات الدفع -->
+    <div class="steps-card">
+        <h3><i class="fa-solid fa-list-check"></i> خطوات إتمام الدفع</h3>
+
+        <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-text">اضغط على "تأكيد الدفع" بالأسفل</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-text">سيتم توجيهك لصفحة الدفع الآمنة من @walletNames[walletType]</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-text">ستصلك رسالة على هاتفك @studentPhone للموافقة على الدفع</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-text">أدخل كود التأكيد (PIN) الخاص بمحفظتك</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">5</div>
+            <div class="step-text">سيتم تفعيل الكورس فوراً بعد نجاح الدفع ✅</div>
+        </div>
+    </div>
+
+    <!-- أزرار التحكم -->
+    <div class="action-buttons">
+        <a asp-controller="Payment"
+           asp-action="SelectPaymentMethod"
+           asp-route-courseId="@courseId"
+           asp-route-amount="@amount"
+           class="btn-back">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button type="submit" form="paymentForm" class="btn-confirm">
+            <i class="fa-solid fa-check-circle"></i>
+            تأكيد الدفع والمتابعة
+        </button>
+    </div>
+
+    <!-- شارة الأمان -->
+    <div class="security-badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        جميع المعاملات محمية ومشفرة بأعلى معايير الأمان
+    </div>
+</div>
+
+<script>
+    // تنسيق رقم الموبايل تلقائياً
+    document.querySelector('.phone-input').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        e.target.value = value;
+    });
+
+    // تأكيد قبل الإرسال
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        const phone = document.querySelector('.phone-input').value;
+        if (phone.length !== 11 || !phone.startsWith('01')) {
+            e.preventDefault();
+            alert('⚠️ رقم الموبايل غير صحيح! يجب أن يبدأ بـ 01 ويتكون من 11 رقم');
+            return false;
+        }
+
+        if (!confirm('هل أنت متأكد من رقم الموبايل: ' + phone + '؟')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
