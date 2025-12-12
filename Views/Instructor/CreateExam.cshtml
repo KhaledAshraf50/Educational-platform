@@ -34,22 +34,16 @@
                 <input asp-for="ExamName" class="form-control" required />
             </div>
 
-            @* <div class="row"> *@
-            @*     <div class="col-md-6 mb-3"> *@
-            @*         <label class="form-label">الصف الدراسي</label> *@
-            @*         <select asp-for="ClassId" class="form-control" *@
-            @*                 asp-items="@(ViewBag.Classes as List<SelectListItem>)" required> *@
-            @*             <option value="">اختر الصف</option> *@
-            @*         </select> *@
-            @*     </div> *@
-            @*     <div class="col-md-6 mb-3"> *@
-            @*         <label class="form-label">المادة</label> *@
-            @*         <select asp-for="subjectId" class="form-control" *@
-            @*                 asp-items="@(ViewBag.Subjects as List<SelectListItem>)" required> *@
-            @*             <option value="">اختر المادة</option> *@
-            @*         </select> *@
-            @*     </div> *@
-            @* </div> *@
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">الصف الدراسي</label>
+                    <select asp-for="ClassId" class="form-control"
+                            asp-items="@(ViewBag.Classes as List<SelectListItem>)" required>
+                        <option value="">اختر الصف</option>
+                    </select>
+                </div>
+
+            </div>
 
             <div class="row">
                 <div class="col-md-4 mb-3">

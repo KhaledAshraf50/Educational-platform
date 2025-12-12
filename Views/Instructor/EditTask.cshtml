@@ -53,14 +53,23 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label fw-bold">الإجابة الصحيحة</label>
-                    <select asp-for="Questions[@i].CorrectAnswer" class="form-select text-center fw-bold">
-                        <option selected disabled>أ/ب/ج/د</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
+                <div class="correct-answer">
+                    <label>✅ الإجابة الصحيحة</label>
+
+                    <select asp-for="Questions[i].CorrectAnswer" class="form-select">
+                        <option value="">اختر الإجابة</option>
+                        <option value="@Model.Questions[i].ChooseA" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseA)">
+                            @Model.Questions[i].ChooseA
+                        </option>
+                        <option value="@Model.Questions[i].ChooseB" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseB)">
+                            @Model.Questions[i].ChooseB
+                        </option>
+                        <option value="@Model.Questions[i].ChooseC" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseC)">
+                            @Model.Questions[i].ChooseC
+                        </option>
+                        <option value="@Model.Questions[i].ChooseD" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseD)">
+                            @Model.Questions[i].ChooseD
+                        </option>
                     </select>
                 </div>
 

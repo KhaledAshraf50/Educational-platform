@@ -382,7 +382,7 @@
                                 <p><strong>الوصف:</strong></p>
                                 <p class="course-desc">@course.description</p>
                                 <div class="d-flex justify-content-center mt-3 gap-2">
-                                    <a class="btn btn-sm btn-primary" href="@Url.Action("courseDetails", "Instructor", new { id = course.CourseId })">
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("show_details_courses", "homepage", new { id = course.CourseId })">
                                         <i class="fa-solid fa-eye me-1"></i> عرض التفاصيل
                                     </a>
 

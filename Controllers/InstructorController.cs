@@ -515,23 +515,38 @@ namespace Luno_platform.Controllers
         [Route("Instructor/AddCourse")]
         public IActionResult AddCourse()
         {
+            int instructorId = GetInstructorIdFromUser();
+
             var vm = new AddCourseVM
             {
-                Subjects = _context.Subjects.Select(s => new SelectListItem
-                {
-                    Value = s.SubjectID.ToString(),
-                    Text = s.SubjectNameEN
-                }).ToList(),
+                Subjects = _context.Subjects
+                            .ToList(),
 
-                Classes = _context.Classes.Select(c => new SelectListItem
-                {
-                    Value = c.ClassID.ToString(),
-                    Text = c.ClassName
-                }).ToList()
+                Classes = _context.Classes
+                           
+                         .ToList(),
+                Tasks = _context.Tasks
+                            .Where(t => t.instructorId == instructorId && t.status == false)
+                            .Select(t => new TaskVM
+                            {
+                                TaskID = t.TaskID,
+                                TaskName = t.TaskName
+                            }).ToList(),
+
+                Exams = _context.Exams
+                            .Where(t => t.instructorID == instructorId && t.status == false)
+                            .Select(t => new ExamVM2
+                            {
+                               ExamID = t.ExamID,
+                                ExamName = t.ExamName
+                            }).ToList()
+
+
             };
 
             return View(vm);
         }
+
 
         [HttpPost]
         [Route("Instructor/AddCourse")]
@@ -539,46 +554,30 @@ namespace Luno_platform.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Subjects = _context.Subjects.Select(s => new SelectListItem
-                {
-                    Value = s.SubjectID.ToString(),
-                    Text = s.SubjectNameEN
-                }).ToList();
-
-                model.Classes = _context.Classes.Select(c => new SelectListItem
-                {
-                    Value = c.ClassID.ToString(),
-                    Text = c.ClassName
-                }).ToList();
-
-                return View(model);
+                return RedirectToAction("AddCourse");
             }
 
             int instructorId = GetInstructorIdFromUser();
 
-            // جلب الصف من الداتابيز
             var cls = _context.Classes.FirstOrDefault(c => c.ClassID == model.ClassID);
             if (cls == null)
-            {
-                TempData["Error"] = "الصف غير موجود. الرجاء اختيار صف صالح.";
                 return RedirectToAction("AddCourse");
-            }
 
-            // توليد CourseId
-            int lastId = _context.Courses.Max(c => (int?)c.CourseId) ?? 0;
-            int nextId = lastId + 1;
+            // توليد CourseId يدويًا
+            int lastCourseId = _context.Courses.Max(c => (int?)c.CourseId) ?? 0;
+            int nextCourseId = lastCourseId + 1;
 
-            // إنشاء الكورس
             var course = new Courses
             {
-                CourseId = nextId,
+                CourseId = nextCourseId, // نكتب المعرف هنا
                 CourseName = model.CourseName,
                 description = model.Description,
                 price = model.Price,
                 SubjectId = model.SubjectId,
                 classID = cls.ClassID,
-                instructorID = instructorId
-                ,status="Archive"
+                instructorID = instructorId,
+                status = "Archive",
+                createdAt = DateTime.Now
             };
 
             // حفظ الصورة
@@ -594,23 +593,7 @@ namespace Luno_platform.Controllers
             _context.Courses.Add(course);
             _context.SaveChanges();
 
-            // إنشاء العلاقة بين المدرس والصف لو مش موجودة
-            bool relationExists = _context.instructor_classescs
-                .Any(ic => ic.instructorId == instructorId && ic.classId == cls.ClassID);
-
-            if (!relationExists)
-            {
-                var instructorClass = new instructor_classescs
-                {
-                    instructorId = instructorId,
-                    classId = cls.ClassID
-                };
-                _context.instructor_classescs.Add(instructorClass);
-                _context.SaveChanges();
-            }
-       
-
-            // حفظ محتوى الكورس
+            // إنشاء CourseContent وربطه بالكورس
             var content = new CourseContent
             {
                 cousrsid = course.CourseId,
@@ -619,14 +602,17 @@ namespace Luno_platform.Controllers
                 nameurl2 = model.NameUrl2,
                 Url2 = model.Url2,
                 nameurl3 = model.NameUrl3,
-                Url3 = model.Url3
+                Url3 = model.Url3,
+                ExamId = model.SelectedExamId,   // مرتبط بالامتحان
+                taskId = model.SelectedTaskId    // مرتبط بالمهمة
             };
 
             _context.CourseContents.Add(content);
             _context.SaveChanges();
 
-            return RedirectToAction("mycourses");
+            return RedirectToAction("MyCourses");
         }
+
 
         //public IActionResult CourseDetails(int id)
         //{
@@ -892,30 +878,25 @@ namespace Luno_platform.Controllers
         }
 
 
+
+
         [HttpGet]
         public IActionResult CreateExam()
         {
-            ViewBag.Classes = _context.Classes
-                .Select(c => new SelectListItem
+            int instructorId = GetInstructorIdFromUser();
+            ViewBag.Classes = _context.instructor_classescs
+                .Where(ic => ic.instructorId == instructorId)
+                .Include(ic => ic.Instructor)
+                .Include(ic => ic.classes)  // ← هنا الـ Include المهم
+                .Select(ic => new SelectListItem
                 {
-                    Value = c.ClassID.ToString(),
-                    Text = c.ClassName
-                }).ToList();
+                    Text = ic.classes.ClassName,     // ← جاي من جدول Class
+                    Value = ic.classes.ClassID.ToString()
 
-            ViewBag.Subjects = _context.Subjects
-                .Select(s => new SelectListItem
-                {
-                    Value = s.SubjectID.ToString(),
-                    Text = s.SubjectNameAR
-                }).ToList();
-            ViewBag.Courses = _context.Courses
-        .Where(c => c.instructorID ==GetInstructorIdFromUser())
-        .Select(c => new SelectListItem
-        {
-            Value = c.CourseId.ToString(),
-            Text = c.CourseName
-        })
-        .ToList();
+                })
+                .ToList();
+
+
 
             return View();
         }
@@ -925,6 +906,7 @@ namespace Luno_platform.Controllers
         {
             if (!ModelState.IsValid)
             {
+   
                 // نرجع الدروب داون بتاعة الكورسات بس
                 ViewBag.Courses = _context.Courses
                     .Select(c => new SelectListItem
@@ -950,6 +932,7 @@ namespace Luno_platform.Controllers
             var exam = new Exams
             {
                 ExamName = model.ExamName,
+                ClassId = model.ClassId,
                 ClassId = course.classID,
                 subjectId = course.SubjectId,
 
@@ -1250,12 +1233,26 @@ public IActionResult ViewExamQuestions(int id)
             return View(instructor);
         }
 
+
+
+
         [HttpGet]
         public IActionResult CreateTask()
+
         {
-            ViewBag.Classes = _context.Classes.Select(c =>
-                new SelectListItem
+            
+            int instructorId = GetInstructorIdFromUser();
+            ViewBag.Classes = _context.instructor_classescs
+                .Where(ic => ic.instructorId == instructorId)
+                .Include(ic=> ic.Instructor)
+                .Include(ic => ic.classes)  // ← هنا الـ Include المهم
+                .Select(ic => new SelectListItem
                 {
+                    Text = ic.classes.ClassName,     // ← جاي من جدول Class
+                    Value = ic.classes.ClassID.ToString()
+
+                })
+                .ToList();
                     Text = c.ClassName,
                     Value = c.ClassID.ToString()
                 }).ToList();
@@ -1428,7 +1425,6 @@ public IActionResult ViewExamQuestions(int id)
             return View(task);
         }
 
-       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteTaskConfirmed(int id)
