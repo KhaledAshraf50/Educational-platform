@@ -136,7 +136,7 @@
                     <select asp-for="ClassID" asp-items="Model.Classes" class="form-control">
                         <option value="">-- اختر الصف --</option>
                     </select>
-                    <span asp-validation-for="Grade" class="text-danger"></span>
+                    <span asp-validation-for="ClassID" class="text-danger"></span>
                 </div>
 
                 <!-- Subject Dropdown -->
@@ -183,8 +183,22 @@
 
                 <div class="mb-3">
                     <label class="form-label">رابط الفيديو/الملف 3</label>
-                    <input asp-for="Url3" class="form-control" />
+                    <input asp-for="Url3" class="form-control" />ئئئئئئ
                 </div>
+
+                @* <div class="mb-3">
+                    <label class="form-label">اختر امتحان مرتبط بالكورس (اختياري)</label>
+                    <select asp-for="SelectedExamId" asp-items="Model.Exams" class="form-select">
+                        <option value="">-- لا يوجد امتحان --</option>
+                    </select>
+                </div> *@
+
+              @*   <div class="mb-3">
+                    <label class="form-label">اختر مهمة مرتبطة بالكورس (اختياري)</label>
+                    <select asp-for="SelectedTaskId" asp-items="Model.Tasks" class="form-select">
+                        <option value="">-- لا يوجد مهمة --</option>
+                    </select>
+                </div> *@
 
                 <button type="submit" class="btn btn-success mt-3">إضافة الكورس</button>
 
