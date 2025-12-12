@@ -39,13 +39,16 @@
                 }
                 else
                 {
-                    <form asp-controller="Payment" asp-action="Pay" method="post">
+                    @* <form asp-controller="Payment" asp-action="Pay" method="post">
                         <input type="hidden" name="courseId" value="@Model.Courses.CourseId" />
                         <input type="hidden" name="amount" value="@Model.Courses.price" />
                         <button type="submit" class="enroll-btn btn">
                             اشترك الآن
                         </button>
-                    </form>
+                    </form> *@
+                    <a asp-controller="Payment" asp-action="SelectPaymentMethod" asp-route-courseId="@Model.CourseID" class="btn btn-primary">
+                        اشترك الآن
+                    </a>
                 }
 
             </div>

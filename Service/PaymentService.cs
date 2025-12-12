@@ -130,12 +130,12 @@ namespace Luno_platform.Service
             {
                 decimal instructorAmount = payment.amountPayment * 0.60m;
 
-                var teacherPayment = _context.Teacher_Payments
+                var teacherPayment = _context.Teacher_Payments2
                     .FirstOrDefault(tp => tp.PaymentRefId == payment.ID && tp.Status == "تحت التحويل");
 
                 if (teacherPayment != null)
                 {
-                    _context.Teacher_Payments.Remove(teacherPayment);
+                    _context.Teacher_Payments2.Remove(teacherPayment);
                     _context.SaveChanges();
                 }
                 // تحديث PendingBalance للمدرس
@@ -148,73 +148,7 @@ namespace Luno_platform.Service
                 }
             }
         }
-        //public void AcceptPayment(int paymentId)
-        //{
-        //    var payment = _paymentRepo.GetById(paymentId);
-
-        //    if (payment == null)
-        //        throw new Exception("Payment not found.");
-
-        //    if (payment.status != "تحت المراجعة")
-        //        throw new Exception("يمكن قبول المعاملات المعلقة فقط");
-
-        //    // ✅ 1. تحديث حالة الدفع
-        //    payment.status = "مقبول";
-        //    _paymentRepo.Update(payment);
-        //    _paymentRepo.Save();
-
-        //    // ✅ 2. تسجيل الكورس عند الطالب
-        //    Student_Courses studentCourse = new Student_Courses
-        //    {
-        //        StudentId = payment.StudentID,
-        //        CourseId = payment.courseId
-        //    };
-        //    _studentRepo.AddStudentCourse(studentCourse);
-
-        //    // ✅ 3. حساب نسبة المدرس (60%)
-        //    decimal instructorAmount = payment.amountPayment * 0.60m;
-
-        //    // ✅ 4. الحصول على معرف المدرس من الكورس
-        //    var course = _context.Courses.Find(payment.courseId);
-        //    if (course == null)
-        //        throw new Exception("Course not found.");
-
-        //    // ✅ 5. تسجيل في جدول Teacher_payment
-        //    var teacherPayment2 = new Teacher_payment2
-        //    {
-        //        instructorID = course.instructorID,
-        //        AmountPaid = instructorAmount,
-        //        Status = "مستحق", // Pending
-        //        PaymentDate = DateTime.Now
-        //    };
-        //    _teacherPaymentRepo.Add(teacherPayment2);
-        //    _teacherPaymentRepo.Save();
-
-        //    // ✅ 6. تحديث PendingBalance للمدرس
-        //    var instructor = _instructorRepo.GetById(course.instructorID);
-        //    if (instructor != null)
-        //    {
-        //        instructor.PendingBalance += instructorAmount;
-        //        instructor.TotalEarnings += instructorAmount;
-        //        _instructorRepo.Update(instructor);
-        //        _instructorRepo.Save();
-        //    }
-        //}
-
-        //public void RejectPayment(int paymentId, string reason = null)
-        //{
-        //    var payment = _paymentRepo.GetById(paymentId);
-
-        //    if (payment == null)
-        //        throw new Exception("Payment not found.");
-
-        //    if (payment.status != "تحت المراجعة")
-        //        throw new Exception("يمكن رفض المعاملات المعلقة فقط");
-
-        //    payment.status = "مرفوض";
-        //    _paymentRepo.Update(payment);
-        //    _paymentRepo.Save();
-        //}
+       
         public List<Payments> GetPaymentsByStatus(string status)
         {
             return _paymentRepo.GetPaymentsByStatus(status);

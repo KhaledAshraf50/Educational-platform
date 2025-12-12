@@ -1,0 +1,354 @@
+﻿@{
+    ViewData["Title"] = "اختر المحفظة الإلكترونية";
+    Layout = "_navbar";
+    var courseId = ViewBag.CourseId;
+    var courseName = ViewBag.CourseName;
+    var amount = ViewBag.Amount;
+    var studentPhone = ViewBag.StudentPhone;
+}
+
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --vodafone-red: #E60000;
+        --etisalat-green: #00B140;
+        --orange-color: #FF6600;
+        --we-purple: #5F259F;
+    }
+
+    .wallet-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        direction: rtl;
+    }
+
+    .header-section {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        padding: 40px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+        .header-section h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .header-section .course-info {
+            font-size: 20px;
+            opacity: 0.9;
+            margin: 10px 0;
+        }
+
+        .header-section .amount {
+            font-size: 48px;
+            font-weight: bold;
+            color: #F2994A;
+            margin: 20px 0;
+        }
+
+    .wallet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .wallet-card {
+        background: white;
+        border: 3px solid #e0e0e0;
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .wallet-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+
+        .wallet-card:hover::before {
+            transform: scale(1);
+        }
+
+        .wallet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .wallet-card.vodafone {
+            border-color: var(--vodafone-red);
+        }
+
+            .wallet-card.vodafone:hover {
+                border-color: var(--vodafone-red);
+                box-shadow: 0 20px 40px rgba(230, 0, 0, 0.3);
+            }
+
+        .wallet-card.etisalat {
+            border-color: var(--etisalat-green);
+        }
+
+            .wallet-card.etisalat:hover {
+                border-color: var(--etisalat-green);
+                box-shadow: 0 20px 40px rgba(0, 177, 64, 0.3);
+            }
+
+        .wallet-card.orange {
+            border-color: var(--orange-color);
+        }
+
+            .wallet-card.orange:hover {
+                border-color: var(--orange-color);
+                box-shadow: 0 20px 40px rgba(255, 102, 0, 0.3);
+            }
+
+        .wallet-card.we {
+            border-color: var(--we-purple);
+        }
+
+            .wallet-card.we:hover {
+                border-color: var(--we-purple);
+                box-shadow: 0 20px 40px rgba(95, 37, 159, 0.3);
+            }
+
+    .wallet-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 45px;
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+    }
+
+    .wallet-card.vodafone .wallet-icon {
+        background: linear-gradient(135deg, var(--vodafone-red), #ff4444);
+        color: white;
+    }
+
+    .wallet-card.etisalat .wallet-icon {
+        background: linear-gradient(135deg, var(--etisalat-green), #00e657);
+        color: white;
+    }
+
+    .wallet-card.orange .wallet-icon {
+        background: linear-gradient(135deg, var(--orange-color), #ff9944);
+        color: white;
+    }
+
+    .wallet-card.we .wallet-icon {
+        background: linear-gradient(135deg, var(--we-purple), #8b3fc9);
+        color: white;
+    }
+
+    .wallet-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+        position: relative;
+        z-index: 1;
+    }
+
+    .wallet-desc {
+        font-size: 15px;
+        color: #666;
+        position: relative;
+        z-index: 1;
+    }
+
+    .phone-info {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .phone-info i {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .phone-info p {
+            font-size: 18px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .phone-info .phone-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            direction: ltr;
+        }
+
+    .back-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background: white;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .back-button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .instructions {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        margin-top: 40px;
+    }
+
+        .instructions h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .instructions ol {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+    @@media (max-width: 768px) {
+        .wallet-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="wallet-container">
+    <!-- Header -->
+    <div class="header-section">
+        <h1><i class="fa-solid fa-mobile-screen-button"></i> اختر المحفظة الإلكترونية</h1>
+        <p class="course-info">@courseName</p>
+        <p class="amount">@amount جنيه</p>
+    </div>
+
+    <!-- رقم الهاتف -->
+    <div class="phone-info">
+        <i class="fa-solid fa-phone"></i>
+        <p>سيتم إرسال طلب الدفع إلى:</p>
+        <p class="phone-number">@studentPhone</p>
+    </div>
+
+    <!-- شبكة المحافظ -->
+    <div class="wallet-grid">
+        <!-- Vodafone Cash -->
+        <form method="post" asp-controller="Payment" asp-action="ConfirmWalletPayment">
+            <input type="hidden" name="courseId" value="@courseId" />
+            <input type="hidden" name="amount" value="@amount" />
+            <input type="hidden" name="walletType" value="vodafone" />
+
+            <div class="wallet-card vodafone" onclick="this.closest('form').submit()">
+                <div class="wallet-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="wallet-name">Vodafone Cash</h3>
+                <p class="wallet-desc">ادفع عبر فودافون كاش</p>
+            </div>
+        </form>
+
+        <!-- Etisalat Cash -->
+        <form method="post" asp-controller="Payment" asp-action="ConfirmWalletPayment">
+            <input type="hidden" name="courseId" value="@courseId" />
+            <input type="hidden" name="amount" value="@amount" />
+            <input type="hidden" name="walletType" value="etisalat" />
+
+            <div class="wallet-card etisalat" onclick="this.closest('form').submit()">
+                <div class="wallet-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="wallet-name">Etisalat Cash</h3>
+                <p class="wallet-desc">ادفع عبر اتصالات كاش</p>
+            </div>
+        </form>
+
+        <!-- Orange Cash -->
+        <form method="post" asp-controller="Payment" asp-action="ConfirmWalletPayment">
+            <input type="hidden" name="courseId" value="@courseId" />
+            <input type="hidden" name="amount" value="@amount" />
+            <input type="hidden" name="walletType" value="orange" />
+
+            <div class="wallet-card orange" onclick="this.closest('form').submit()">
+                <div class="wallet-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="wallet-name">Orange Cash</h3>
+                <p class="wallet-desc">ادفع عبر اورنچ كاش</p>
+            </div>
+        </form>
+
+        <!-- WE Pay -->
+        <form method="post" asp-controller="Payment" asp-action="ConfirmWalletPayment">
+            <input type="hidden" name="courseId" value="@courseId" />
+            <input type="hidden" name="amount" value="@amount" />
+            <input type="hidden" name="walletType" value="we" />
+
+            <div class="wallet-card we" onclick="this.closest('form').submit()">
+                <div class="wallet-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="wallet-name">WE Pay</h3>
+                <p class="wallet-desc">ادفع عبر WE Pay</p>
+            </div>
+        </form>
+    </div>
+
+    <!-- التعليمات -->
+    <div class="instructions">
+        <h3><i class="fa-solid fa-info-circle"></i> كيفية الدفع:</h3>
+        <ol>
+            <li>اختر المحفظة الإلكترونية الخاصة بك</li>
+            <li>سيتم توجيهك لصفحة الدفع الآمنة</li>
+            <li>ستصلك رسالة على هاتفك للموافقة على الدفع</li>
+            <li>أدخل كود التأكيد (PIN) الخاص بك</li>
+            <li>سيتم تفعيل الكورس فوراً بعد الدفع</li>
+        </ol>
+    </div>
+
+    <!-- زر الرجوع -->
+    <div style="text-align: center; margin-top: 30px;">
+        <a asp-controller="Payment" asp-action="SelectPaymentMethod" asp-route-courseId="@courseId" class="back-button">
+            <i class="fa-solid fa-arrow-right"></i> الرجوع لطرق الدفع
+        </a>
+    </div>
+</div>

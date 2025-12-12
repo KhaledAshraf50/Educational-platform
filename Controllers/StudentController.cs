@@ -82,11 +82,6 @@ namespace Luno.Controllers
         {
             int pageSize = 7;
 
-            
-
-
-
-
             int userId = GetUserId();
             //int pageSize = 10;
             var courses = istudentService.GetStudentCourses(userId);
@@ -109,6 +104,7 @@ namespace Luno.Controllers
         {
             int pageSize = 7;
             int userId = GetUserId();
+            //int std_Id = istudentService.GetStudentIdByUserId(userId).Value;
             List<Payments> payments = istudentService.GetPayments(userId);
             // استبدل 1 بالمعرف الصحيح للطالب
             //int pageSize = 10;
@@ -133,14 +129,7 @@ namespace Luno.Controllers
         public IActionResult chargeBalance(decimal amount)
         {
             int userId = GetUserId();
-
-
             istudentService.ChargeBalance(userId, amount);
-
-
-         
-
-
             TempData["msg"] = "تم شحن الرصيد بنجاح ✔️";
 
             return RedirectToAction("invoicesPage"); // 🔥 أهم نقطة هنا
@@ -192,7 +181,7 @@ namespace Luno.Controllers
         //    // يرجع لصفحة الإعدادات
         //}
         public IActionResult ChangePassword(UserSettingsVM SVM)
-        {
+        {   
             //int userId = GetUserId();
             //var student = istudentService.GetStudent(userId);
             //if (student == null) return NotFound();
