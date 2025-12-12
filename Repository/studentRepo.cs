@@ -303,7 +303,7 @@ namespace Luno_platform.Repository
         public void ChargeBalance(int userid, decimal amount)
         {
 
-            int? studentId = GetStudent(userid).StudentID;
+            int? studentId = GetStudentIdByUserId(userid);
             var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
             if (student != null)
             {
