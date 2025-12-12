@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "تأكيد الدفع بالمحفظة";
-    Layout = "_navbar";
     var courseId = ViewBag.CourseId;
     var courseName = ViewBag.CourseName;
     var amount = ViewBag.Amount;
@@ -272,9 +271,80 @@
             font-size: 20px;
             margin-left: 8px;
         }
+
+    /* Loading Overlay */
+    .loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+    .loading-content {
+        text-align: center;
+        color: white;
+    }
+
+    .spinner {
+        width: 80px;
+        height: 80px;
+        border: 8px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 30px;
+    }
+
+    @@keyframes spin {
+        to
+
+    {
+        transform: rotate(360deg);
+    }
+
+    }
+
+    .loading-text {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .loading-subtext {
+        font-size: 16px;
+        opacity: 0.8;
+    }
 </style>
 
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+        <div class="spinner"></div>
+        <div class="loading-text">جاري التحويل لصفحة الدفع...</div>
+        <div class="loading-subtext">الرجاء الانتظار</div>
+    </div>
+</div>
+
 <div class="confirm-container">
+    <!-- عرض رسائل الخطأ -->
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; color: #856404;">
+            <i class="fa-solid fa-exclamation-triangle" style="font-size: 24px; margin-left: 10px;"></i>
+            <strong>@TempData["AlertMessage"]</strong>
+        </div>
+    }
+
     <!-- Header -->
     <div class="header-card">
         <h1><i class="fa-solid fa-mobile-screen-button"></i> تأكيد الدفع</h1>
@@ -365,14 +435,14 @@
 
         <div class="step-item">
             <div class="step-number">5</div>
-            <div class="step-text">سيتم تفعيل الكورس فوراً بعد نجاح الدفع ✅</div>
+            <div class="step-text">سيتم تفعيل الكورس فوراً بعد نجاح الدفع </div>
         </div>
     </div>
 
     <!-- أزرار التحكم -->
     <div class="action-buttons">
         <a asp-controller="Payment"
-           asp-action="SelectPaymentMethod"
+           asp-action="SelectWalletType"
            asp-route-courseId="@courseId"
            asp-route-amount="@amount"
            class="btn-back">
@@ -402,15 +472,24 @@
     // تأكيد قبل الإرسال
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
         const phone = document.querySelector('.phone-input').value;
+
+        // التحقق من صحة الرقم
         if (phone.length !== 11 || !phone.startsWith('01')) {
             e.preventDefault();
-            alert('⚠️ رقم الموبايل غير صحيح! يجب أن يبدأ بـ 01 ويتكون من 11 رقم');
+            alert(' رقم الموبايل غير صحيح! يجب أن يبدأ بـ 01 ويتكون من 11 رقم');
             return false;
         }
 
-        if (!confirm('هل أنت متأكد من رقم الموبايل: ' + phone + '؟')) {
+        // تأكيد الرقم
+        if (!confirm('هل أنت متأكد من رقم الموبايل: ' + phone + '؟\n\nسيتم إرسال طلب الدفع لهذا الرقم.')) {
             e.preventDefault();
             return false;
         }
+
+        // إظهار شاشة التحميل
+        document.getElementById('loadingOverlay').classList.add('active');
+
+        // السماح بإرسال النموذج
+        return true;
     });
 </script>

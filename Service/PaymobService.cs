@@ -25,45 +25,81 @@ namespace Luno_platform.Service
         // 1️⃣ الحصول على Token
         public async Task<string> GetAuthTokenAsync()
         {
-            var request = new { api_key = _apiKey };
+            try
+            {
+                var request = new { api_key = _apiKey };
 
-            var response = await _httpClient.PostAsync(
-                "https://accept.paymob.com/api/auth/tokens",
-                new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json")
-            );
+                var response = await _httpClient.PostAsync(
+                    "https://accept.paymob.com/api/auth/tokens",
+                    new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json")
+                );
 
-            if (!response.IsSuccessStatusCode)
-                throw new Exception("فشل الحصول على Token من Paymob");
+                var content = await response.Content.ReadAsStringAsync();
 
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<JsonElement>(content);
-            return result.GetProperty("token").GetString();
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"فشل الحصول على Token من Paymob: {content}");
+                }
+
+                var result = JsonSerializer.Deserialize<JsonElement>(content);
+
+                if (!result.TryGetProperty("token", out var tokenProperty))
+                {
+                    throw new Exception("Paymob API لم يعيد Token صحيح");
+                }
+
+                return tokenProperty.GetString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"خطأ في الاتصال بـ Paymob: {ex.Message}");
+            }
         }
 
         // 2️⃣ إنشاء Order
         private async Task<int> CreateOrderAsync(string token, decimal amount, string orderId)
         {
-            var request = new
+            try
             {
-                auth_token = token,
-                delivery_needed = "false",
-                amount_cents = (int)(amount * 100),
-                currency = "EGP",
-                merchant_order_id = orderId,
-                //items = new[] { }
-            };
+                var request = new
+                {
+                    auth_token = token,
+                    delivery_needed = "false",
+                    amount_cents = (int)(amount * 100),
+                    currency = "EGP",
+                    merchant_order_id = orderId,
+                    items = new[]
+                    {
+                        new
+                        {
+                            name = "item",
+                            amount_cents = (int)(amount * 100),
+                            description = "Payment",
+                            quantity = 1
+                        }
+                    }
 
-            var response = await _httpClient.PostAsync(
-                "https://accept.paymob.com/api/ecommerce/orders",
-                new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json")
-            );
+                };
 
-            if (!response.IsSuccessStatusCode)
-                throw new Exception("فشل إنشاء Order في Paymob");
+                var response = await _httpClient.PostAsync(
+                    "https://accept.paymob.com/api/ecommerce/orders",
+                    new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json")
+                );
 
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<JsonElement>(content);
-            return result.GetProperty("id").GetInt32();
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"فشل إنشاء Order في Paymob: {content}");
+                }
+
+                var result = JsonSerializer.Deserialize<JsonElement>(content);
+                return result.GetProperty("id").GetInt32();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"خطأ في إنشاء الطلب: {ex.Message}");
+            }
         }
 
         // 3️⃣ الحصول على Payment Key

@@ -14,11 +14,11 @@ public class PaymentController : Controller
     private readonly IConfiguration _configuration;
 
     public PaymentController(
-        IstudentService studentService
-        ,IPaymentService paymentService
-        , Icourses_service icourses_Service,
-          PaymobService paymobService,
-          IConfiguration configuration)
+        IstudentService studentService,
+        IPaymentService paymentService,
+        Icourses_service icourses_Service,
+        PaymobService paymobService,
+        IConfiguration configuration)
     {
         _paymentService = paymentService;
         istudentService = studentService;
@@ -35,9 +35,9 @@ public class PaymentController : Controller
         var course = icourses_Service.Infocourse(courseId);
         try
         {
-            if (student.Balance>= amount)
+            if (student.Balance >= amount)
             {
-                
+
                 istudentService.ChargeBalanceAfterPay(userId, amount);
                 _paymentService.CreatePayment(userId, courseId, amount);
                 TempData["AlertMessage"] = "لقد تم الاشتراك في هذا الكورس";
@@ -47,7 +47,7 @@ public class PaymentController : Controller
                 TempData["AlertMessage"] = "الرصيد غير كافي من فضلك قم بشحن رصيدك اولا";
                 //return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId, fromTask = true });
             }
-         
+
             return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId, fromTask = true });
         }
         catch (Exception ex)
@@ -55,13 +55,14 @@ public class PaymentController : Controller
             return BadRequest(ex.Message);
         }
     }
-    [Authorize]
+    [Authorize(Roles ="student")]
     [HttpGet]
     public IActionResult SelectPaymentMethod(int courseId)
     {
         int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
         var student = istudentService.GetStudent(userId);
         var course = icourses_Service.Infocourse(courseId);
+
         if (course == null)
             return NotFound();
 
@@ -69,9 +70,11 @@ public class PaymentController : Controller
         ViewBag.CourseName = course.CourseName;
         ViewBag.Amount = course.price;
         ViewBag.StudentBalance = student.Balance;
+
         return View();
     }
-    // ✅ الدفع من الرصيد (كما هو)
+
+    // ✅ 1. الدفع من الرصيد
     [Authorize]
     [HttpPost]
     public IActionResult PayFromBalance(int courseId, decimal amount)
@@ -85,21 +88,23 @@ public class PaymentController : Controller
             {
                 istudentService.ChargeBalanceAfterPay(userId, amount);
                 _paymentService.CreatePayment(userId, courseId, amount);
-                TempData["AlertMessage"] = "تم الاشتراك في الكورس بنجاح!";
+                TempData["AlertMessage"] = "✅ تم الاشتراك في الكورس بنجاح من رصيدك!";
             }
             else
             {
-                TempData["AlertMessage"] = "الرصيد غير كافي. الرجاء الشحن أو اختر طريقة دفع أخرى.";
+                TempData["AlertMessage"] = "❌ الرصيد غير كافي. اختر طريقة دفع أخرى.";
             }
 
-            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId });
+            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId, fromTask = true });
         }
         catch (Exception ex)
         {
-            TempData["AlertMessage"] = $"حدث خطأ: {ex.Message}";
-            return RedirectToAction("show_details_courses", "Homepage", new { courseid = courseId });
+            TempData["AlertMessage"] = $"❌ حدث خطأ: {ex.Message}";
+            return RedirectToAction("SelectPaymentMethod", new { courseId });
         }
     }
+
+    // ✅ 2. الدفع بالبطاقة (Paymob)
     [Authorize]
     [HttpPost]
     public async Task<IActionResult> PayByCard(int courseId, decimal amount)
@@ -138,6 +143,7 @@ public class PaymentController : Controller
         }
     }
 
+    // ✅ 3. الدفع بالمحفظة - اختيار نوع المحفظة
     [Authorize]
     [HttpPost]
     public IActionResult PayByWallet(int courseId, decimal amount)
@@ -154,6 +160,8 @@ public class PaymentController : Controller
 
         return View("SelectWalletType");
     }
+
+    // ✅ 3.1 تأكيد بيانات المحفظة
     [Authorize]
     [HttpPost]
     public IActionResult ConfirmWalletPayment(int courseId, decimal amount, string walletType)
@@ -172,43 +180,70 @@ public class PaymentController : Controller
 
         return View("ConfirmWalletPayment");
     }
+
+    // ✅ 3.2 تنفيذ الدفع بالمحفظة
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> ProcessWalletPayment(int courseId, decimal amount, string walletType)
+    public async Task<IActionResult> ProcessWalletPayment(
+        int courseId,
+        decimal amount,
+        string walletType,
+        string phoneNumber)
     {
         int userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
         var student = istudentService.GetStudent(userId);
 
         try
         {
+            // التحقق من رقم الموبايل
+            if (string.IsNullOrEmpty(phoneNumber) || phoneNumber.Length != 11 || !phoneNumber.StartsWith("01"))
+            {
+                TempData["AlertMessage"] = " رقم الموبايل غير صحيح. يجب أن يبدأ بـ 01 ويتكون من 11 رقم";
+                return RedirectToAction("ConfirmWalletPayment", new { courseId, amount, walletType });
+            }
+
             string orderId = $"ORDER_{userId}_{courseId}_{DateTime.Now.Ticks}";
 
+            // محاولة إنشاء رابط الدفع
             string paymentUrl = await _paymobService.CreateWalletPaymentLinkAsync(
                 amount,
                 orderId,
                 student.User.fname ?? "Student",
                 student.User.lastName ?? "User",
                 student.User.Email ?? "student@example.com",
-                student.User.PhoneNumber ?? "01000000000"
+                phoneNumber
             );
 
+            // التحقق من أن الرابط صحيح
+            if (string.IsNullOrEmpty(paymentUrl))
+            {
+                throw new Exception("فشل في إنشاء رابط الدفع من Paymob");
+            }
+
+            // حفظ معلومات الدفع المعلق
             TempData["PendingPayment"] = System.Text.Json.JsonSerializer.Serialize(new
             {
                 OrderId = orderId,
                 CourseId = courseId,
                 UserId = userId,
                 Amount = amount,
-                WalletType = walletType
+                WalletType = walletType,
+                PhoneNumber = phoneNumber
             });
 
+            // التوجيه لصفحة Paymob
             return Redirect(paymentUrl);
         }
         catch (Exception ex)
         {
+            // عرض رسالة الخطأ بالتفصيل
             TempData["AlertMessage"] = $" حدث خطأ: {ex.Message}";
-            return RedirectToAction("SelectPaymentMethod", new { courseId });
+
+            // الرجوع لصفحة التأكيد
+            return RedirectToAction("ConfirmWalletPayment", new { courseId, amount, walletType });
         }
     }
+
     [HttpGet]
     [AllowAnonymous]
     public IActionResult PaymentCallback()
@@ -224,7 +259,7 @@ public class PaymentController : Controller
             // التحقق من HMAC (أمان)
             if (!VerifyHmac(hmac, orderId, success, amountCents))
             {
-                TempData["AlertMessage"] = " فشل التحقق من صحة الدفع";
+                TempData["AlertMessage"] = "❌ فشل التحقق من صحة الدفع";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -266,18 +301,15 @@ public class PaymentController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
-    public IActionResult Success()
-    {
-        return View();
-    }
+
+    // ✅ 5. صفحة نجاح الدفع
     [Authorize]
-    public IActionResult PaymentSuccess(int courseId)
+    public IActionResult PaymentSuccess()
     {
-        var course = icourses_Service.Infocourse(courseId);
-        ViewBag.CourseName = course?.CourseName;
         return View();
     }
 
+    // ✅ 6. التحقق من HMAC (للأمان)
     private bool VerifyHmac(string receivedHmac, string orderId, string success, string amountCents)
     {
         var hmacSecret = _configuration["Paymob:HmacSecret"];
