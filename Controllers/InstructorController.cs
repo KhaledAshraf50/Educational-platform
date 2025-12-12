@@ -387,6 +387,7 @@ namespace Luno_platform.Controllers
             return View("CourseDetails", course);
         }
 
+
         [Route("Instructor/EditCourse/{courseId}")]
         public IActionResult EditCourse(int courseId)
         {
@@ -907,6 +908,14 @@ namespace Luno_platform.Controllers
                     Value = s.SubjectID.ToString(),
                     Text = s.SubjectNameAR
                 }).ToList();
+            ViewBag.Courses = _context.Courses
+        .Where(c => c.instructorID ==GetInstructorIdFromUser())
+        .Select(c => new SelectListItem
+        {
+            Value = c.CourseId.ToString(),
+            Text = c.CourseName
+        })
+        .ToList();
 
             return View();
         }
@@ -916,21 +925,34 @@ namespace Luno_platform.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // نرجع البيانات للـ View لو فيه خطأ
-                ViewBag.Classes = _context.Classes
-                    .Select(c => new SelectListItem { Text = c.ClassName, Value = c.ClassID.ToString() })
-                    .ToList();
-                ViewBag.Subjects = _context.Subjects
-                    .Select(s => new SelectListItem { Text = s.SubjectNameAR, Value = s.SubjectID.ToString() })
-                    .ToList();
+                // نرجع الدروب داون بتاعة الكورسات بس
+                ViewBag.Courses = _context.Courses
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.CourseName,
+                        Value = c.CourseId.ToString()
+                    }).ToList();
+
                 return View(model);
             }
 
+            // نجيب بيانات الكورس المختار
+            var course = _context.Courses
+                .FirstOrDefault(c => c.CourseId == model.CourseId);
+
+            if (course == null)
+            {
+                ModelState.AddModelError("", "الكورس غير موجود");
+                return View(model);
+            }
+
+            // إنشاء الامتحان باستخدام بيانات الكورس
             var exam = new Exams
             {
                 ExamName = model.ExamName,
-                ClassId = model.ClassId,
-                subjectId = model.subjectId,
+                ClassId = course.classID,
+                subjectId = course.SubjectId,
+
                 Time = model.Time,
                 NumOfQuestions = model.TotalQuestions,
                 degreeExam = model.TotalMarks,
@@ -940,11 +962,33 @@ namespace Luno_platform.Controllers
             _context.Exams.Add(exam);
             _context.SaveChanges();
 
-            // بعد ما نحفظ الامتحان نروح مباشرة لإضافة الأسئلة
+            // ربط الامتحان بمحتوى الكورس
+            var content = _context.CourseContents
+                .FirstOrDefault(c => c.cousrsid == model.CourseId);
+
+            if (content == null)
+            {
+                content = new CourseContent
+                {
+                    cousrsid = model.CourseId,
+                    ExamId = exam.ExamID
+                };
+
+                _context.CourseContents.Add(content);
+            }
+            else
+            {
+                content.ExamId = exam.ExamID;
+            }
+
+            _context.SaveChanges();
+
+            // بعدها نروح لإضافة الأسئلة
             return RedirectToAction("AddQuestions", new { examId = exam.ExamID });
         }
 
-    [HttpGet]
+
+        [HttpGet]
 public IActionResult AddQuestions(int examId)
 {
     var exam = _context.Exams.Find(examId);
@@ -1215,6 +1259,21 @@ public IActionResult ViewExamQuestions(int id)
                     Text = c.ClassName,
                     Value = c.ClassID.ToString()
                 }).ToList();
+            ViewBag.Subjects = _context.Subjects
+               .Select(s => new SelectListItem
+               {
+                   Value = s.SubjectID.ToString(),
+                   Text = s.SubjectNameAR
+               }).ToList();
+            ViewBag.Courses = _context.Courses
+        .Where(c => c.instructorID == GetInstructorIdFromUser())
+        .Select(c => new SelectListItem
+        {
+            Value = c.CourseId.ToString(),
+            Text = c.CourseName
+        })
+        .ToList();
+
 
             return View();
         }
@@ -1223,13 +1282,32 @@ public IActionResult ViewExamQuestions(int id)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Courses = _context.Courses
+                    .Where(c => c.instructorID == GetInstructorIdFromUser())
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.CourseName,
+                        Value = c.CourseId.ToString()
+                    }).ToList();
+
                 return View(model);
             }
 
+            // نجيب الكورس المختار
+            var course = _context.Courses
+                .FirstOrDefault(c => c.CourseId == model.CourseId);
+
+            if (course == null)
+            {
+                ModelState.AddModelError("", "الكورس غير موجود");
+                return View(model);
+            }
+
+            // ✅ ناخد ClassId من الكورس نفسه
             var task = new Tasks
             {
                 TaskName = model.TaskName,
-                ClassId = model.ClassId,
+                ClassId = course.classID,   // ✅ الصح
                 NumOfQuestions = model.TotalQuestions,
                 instructorId = GetInstructorIdFromUser(),
                 createdAT = DateTime.Now
@@ -1240,6 +1318,7 @@ public IActionResult ViewExamQuestions(int id)
 
             return RedirectToAction("AddTaskQuestions", new { taskId = task.TaskID });
         }
+
         [HttpGet]
         public IActionResult AddTaskQuestions(int taskId)
         {
@@ -1372,6 +1451,19 @@ public IActionResult ViewExamQuestions(int id)
             return RedirectToAction("Dashboard");
         }
 
+        public IActionResult ManageCourse(int id)
+        {
+            var course = _context.Courses
+                .Include(c => c.CourseContent)
+                .ThenInclude(cc => cc.Exams)
+                .Include(c => c.CourseContent)
+                .ThenInclude(cc => cc.Tasks)
+                .FirstOrDefault(c => c.CourseId == id);
+
+            if (course == null) return NotFound();
+
+            return View(course); // View name: ManageCourse.cshtml
+        }
 
     }
 

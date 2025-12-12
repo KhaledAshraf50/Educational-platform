@@ -1,0 +1,306 @@
+﻿@{
+    ViewData["Title"] = "اختر طريقة الدفع";
+    Layout = "_navbar";
+    var courseId = ViewBag.CourseId;
+    var courseName = ViewBag.CourseName;
+    var amount = ViewBag.Amount;
+    var studentBalance = ViewBag.StudentBalance ?? 0;
+}
+
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+    }
+
+    .payment-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        direction: rtl;
+    }
+
+    .course-info {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        padding: 40px;
+        border-radius: 16px;
+        margin-bottom: 30px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .course-info::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+        }
+
+    @@keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .course-info h2 {
+        margin: 0 0 15px 0;
+        font-size: 32px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .course-info .amount {
+        font-size: 48px;
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin: 20px 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .balance-info {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .payment-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+
+    .payment-method {
+        background: white;
+        border: 3px solid #e0e0e0;
+        border-radius: 16px;
+        padding: 35px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .payment-method::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(242, 153, 74, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(242, 153, 74, 0.2);
+        }
+
+            .payment-method:hover::before {
+                opacity: 1;
+            }
+
+        .payment-method.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .payment-method .icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-method.balance .icon {
+            color: var(--success-color);
+        }
+
+        .payment-method.card .icon {
+            color: #3498db;
+        }
+
+        .payment-method.wallet .icon {
+            color: var(--secondary-color);
+        }
+
+        .payment-method h3 {
+            font-size: 22px;
+            margin: 15px 0;
+            color: var(--primary-color);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .payment-method p {
+            font-size: 15px;
+            color: #666;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+    .insufficient-badge {
+        background: #e74c3c;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    .features {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 40px;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+
+        .features div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .features i {
+            color: var(--success-color);
+            font-size: 20px;
+        }
+
+    @@media (max-width: 768px) {
+        .payment-methods {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="payment-container">
+    <!-- معلومات الكورس -->
+    <div class="course-info">
+        <h2><i class="fa-solid fa-graduation-cap"></i> @courseName</h2>
+        <p class="amount">@amount جنيه</p>
+        <p style="font-size: 18px; opacity: 0.9;">اختر طريقة الدفع المناسبة لك</p>
+
+        <div class="balance-info">
+            <i class="fa-solid fa-wallet"></i>
+            رصيدك الحالي: <strong>@studentBalance.ToString("N0") جنيه</strong>
+        </div>
+    </div>
+
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-warning text-center">
+            @TempData["AlertMessage"]
+        </div>
+    }
+
+    <!-- طرق الدفع -->
+    <div class="payment-methods">
+        <!-- 1. الدفع من الرصيد -->
+        <div class="payment-method balance @(studentBalance < amount ? "disabled" : "")"
+             onclick="@(studentBalance >= amount ? "document.getElementById('balanceForm').submit()" : "")">
+            <div class="icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <h3>الدفع من الرصيد</h3>
+            <p>استخدم رصيدك الحالي للدفع</p>
+            @if (studentBalance < amount)
+            {
+                <span class="insufficient-badge">الرصيد غير كافٍ</span>
+            }
+        </div>
+
+        <!-- 2. بطاقة ائتمان -->
+        <div class="payment-method card" onclick="document.getElementById('cardForm').submit()">
+            <div class="icon">
+                <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <h3>بطاقة ائتمان</h3>
+            <p>Visa / Mastercard / Meeza</p>
+        </div>
+
+        <!-- 3. محفظة إلكترونية -->
+        <div class="payment-method wallet" onclick="document.getElementById('walletForm').submit()">
+            <div class="icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3>محفظة إلكترونية</h3>
+            <p>Vodafone Cash / Etisalat Cash</p>
+        </div>
+    </div>
+
+    <!-- المزايا -->
+    <div class="features">
+        <div>
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>دفع آمن 100%</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-clock"></i>
+            <span>تفعيل فوري</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-headset"></i>
+            <span>دعم فني 24/7</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-lock"></i>
+            <span>معاملات مشفرة</span>
+        </div>
+    </div>
+</div>
+
+<!-- Forms مخفية -->
+<form id="balanceForm" asp-controller="Payment" asp-action="PayFromBalance" method="post" style="display: none;">
+    <input type="hidden" name="courseId" value="@courseId" />
+    <input type="hidden" name="amount" value="@amount" />
+</form>
+
+<form id="cardForm" asp-controller="Payment" asp-action="PayByCard" method="post" style="display: none;">
+    <input type="hidden" name="courseId" value="@courseId" />
+    <input type="hidden" name="amount" value="@amount" />
+</form>
+
+<form id="walletForm" asp-controller="Payment" asp-action="PayByWallet" method="post" style="display: none;">
+    <input type="hidden" name="courseId" value="@courseId" />
+    <input type="hidden" name="amount" value="@amount" />
+</form>
+
+<script>
+    // تأكيد قبل الدفع من الرصيد
+    function confirmBalancePayment() {
+        if (@studentBalance >= @amount) {
+            if (confirm('هل تريد الدفع من رصيدك (@amount جنيه)؟')) {
+                document.getElementById('balanceForm').submit();
+            }
+        }
+    }
+</script>

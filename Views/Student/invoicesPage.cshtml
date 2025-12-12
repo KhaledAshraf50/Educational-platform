@@ -1,12 +1,41 @@
 ﻿@model List<Payments>
 @{
     Layout = "_SideBarDashbord";
-}
+}   
 @section Styles {
     <link rel="stylesheet" href="~/assets/css/invoices.css">
 }
 <div class="InvoicesPage m-3" id="InvoicesPage">
     <div class="container text-center mt-3 ">
+        <div class="d-flex justify-content-between align-items-center mb-3" style="gap: 15px;">
+            <!-- زر الرصيد -->
+            <button class="pay-btn d-flex align-items-center justify-content-center"
+                    style="
+            min-width: 150px;
+            height: 50px;
+            font-size: 18px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        "
+                    onmouseover="this.style.backgroundColor='var(--secondary-color)'; this.style.boxShadow='var(--hover-shadow)';"
+                    onmouseout="this.style.backgroundColor='var(--primary-color)'; this.style.boxShadow='var(--card-shadow)';">
+                <span class="counter">EG @ViewBag.Balance</span>
+                <i class="fa-solid fa-coins ms-2"></i>
+            </button>
+
+
+
+            <!-- نموذج شحن الرصيد -->
+            <form method="post" asp-controller="Student" asp-action="ChargeBalance" class="d-flex align-items-center" style="gap: 10px;">
+                <input type="number" name="amount" class="form-control" placeholder="ادخل مبلغ الشحن" required style="width: 150px; height: 45px; text-align: center;" />
+                <button type="submit" class="btn btn-success" style="height: 45px;">شحن الرصيد</button>
+            </form>
+        </div>
+
         <div class="header d-flex justify-content-between align-items-center mb-3">
             <div class="title">
                 <h3>الفواتير</h3>
@@ -27,7 +56,7 @@
                         <th>تاريخ الفاتورة</th>
                         <th>الحالة</th>
                         <th>المبلغ</th>
-                        <th>عرض الفاتورة</th>
+                        @* <th>عرض الفاتورة</th> *@
                     </tr>
                 </thead>
                 <tbody>
@@ -51,24 +80,55 @@
                             }
                             else
                             {
-                                <td><span class="badgeUnderReview">قيدالمراجعه</span></td>
+                                <td><span class="badgeUnderReview">قيدالمراجعة</span></td>
                             }
                             }
                         <td>@payment.amountPayment</td>
-                        <td>
+                        @* <td>
                             <button class="btn btn-sm btn-info">عرض</button>
-                        </td>
+                        </td> *@
                         </tr>
                         i++;
                     }
                    
                 </tbody>
             </table>
-            <div class="btnsNextPre">
-                <button class="Previous">السابق</button>
-                <button class="Next">التالي</button>
-            </div>
+            
         </div>
+       <div class="d-flex justify-content-between align-items-center mt-4">
+
+        <!-- زر السابق -->
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a class="btn btn-dark px-4"
+               href="@Url.Action("invoicesPage", new { page = ViewBag.CurrentPage - 1 })">
+                السابق
+            </a>
+        }
+        else
+        {
+            <button class="btn btn-secondary px-4" disabled>السابق</button>
+        }
+
+        <!-- رقم الصفحة -->
+        <span class="fw-bold">
+            الصفحة @ViewBag.CurrentPage من @ViewBag.TotalPages
+        </span>
+
+        <!-- زر التالي -->
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a class="btn btn-dark px-4"
+               href="@Url.Action("invoicesPage", new { page = ViewBag.CurrentPage + 1 })">
+                التالي
+            </a>
+        }
+        else
+        {
+            <button class="btn btn-secondary px-4" disabled>التالي</button>
+        }
+
+    </div>
     </div>
 </div>
 @section Script {

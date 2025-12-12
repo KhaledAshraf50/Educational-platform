@@ -126,10 +126,10 @@ namespace Luno_platform.Service
             return studentRepo.GetStudentCourses(id);
         }
 
-        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
-        {
-            return studentRepo.GetStudentCourses(studentId, page, pageSize);
-        }
+        //public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        //{
+        //    return studentRepo.GetStudentCourses(studentId, page, pageSize);
+        //}
 
   
         public void UpdateImage(int parentId, string imgUrl)
@@ -157,6 +157,11 @@ namespace Luno_platform.Service
         public void deleteparent(int userid)
         {
             parentRepo.deleteparent(userid);
+        }
+
+        public List<Courses> GetStudentCourses(int studentId, int page = 1, int pageSize = 10)
+        {
+            throw new NotImplementedException();
         }
     }
 }

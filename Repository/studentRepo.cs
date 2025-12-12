@@ -92,8 +92,6 @@ namespace Luno_platform.Repository
          }
      })
      .ToList();
-
-
             return courses;
         }
         public List<Courses> GetStudentCourses(int userId, int page = 1, int pageSize = 10)
@@ -287,7 +285,6 @@ namespace Luno_platform.Repository
             _Context.Users.Remove(user);
             _Context.SaveChanges();
         }
-
         public void SetUserPending(int userid)
         {
             var user = _Context.Users.FirstOrDefault(e => e.Id == userid);
@@ -296,13 +293,36 @@ namespace Luno_platform.Repository
                 user.status = "NotActive";
                 _Context.SaveChanges();
             }
-
         }
-
         public Student GetStudentByStudentID(int studentId)
         {
             return _Context.Students
                            .FirstOrDefault(s => s.StudentID == studentId);
+        }
+
+        public void ChargeBalance(int userid, decimal amount)
+        {
+
+            int? studentId = GetStudent(userid).StudentID;
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance += amount;
+                _Context.SaveChanges();
+            }
+
+        }
+        public void ChargeBalanceAfterPay(int userid, decimal amount)
+        {
+
+            int? studentId = GetStudentIdByUserId(userid);
+            var student = _Context.Students.FirstOrDefault(s => s.StudentID == studentId);
+            if (student != null)
+            {
+                student.Balance -= amount;
+                _Context.SaveChanges();
+            }
+
         }
     }
 }
