@@ -1,0 +1,102 @@
+﻿@model Luno_platform.Models.Courses
+@{
+    Layout = "_InstructorDashboard";
+}
+
+<link rel="stylesheet" href="~/assets/css/examtasks.css" />
+
+<div class="content container mt-4">
+
+    <h2 class="mb-4" style="color:var(--primary)">
+        إدارة محتوى الكورس - @Model.CourseName
+    </h2>
+
+    <div class="row g-4">
+
+        <!-- Exams -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 h-100">
+                <h5 class="fw-bold mb-3">الامتحانات</h5>
+
+                @if (Model.CourseContent?.ExamId != null && Model.CourseContent.ExamId != 0)
+                {
+                    <p class="text-success">يوجد امتحان مرتبط بالكورس</p>
+
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-secondary"
+                           asp-action="ViewExamQuestions"
+                           asp-controller="Instructor"
+                           asp-route-id="@Model.CourseContent.ExamId">
+                            عرض الأسئلة
+                        </a>
+
+                        <a class="btn btn-warning"
+                           asp-action="EditExam"
+                           asp-controller="Instructor"
+                           asp-route-id="@Model.CourseContent.ExamId">
+                            تعديل
+                        </a>
+
+                        <form asp-action="DeleteExam" asp-controller="Instructor" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.CourseContent.ExamId" />
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-primary w-100"
+                       asp-action="CreateExam"
+                       asp-controller="Instructor"
+                       asp-route-courseId="@Model.CourseId">
+                        إضافة امتحان
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- Tasks -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 h-100">
+                <h5 class="fw-bold mb-3">الواجبات</h5>
+
+                @if (Model.CourseContent?.taskId != null && Model.CourseContent.taskId != 0)
+                {
+                    <p class="text-success">يوجد واجب مرتبط بالكورس</p>
+
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-secondary"
+                           asp-action="ViewTaskQuestions"
+                           asp-controller="Instructor"
+                           asp-route-id="@Model.CourseContent.taskId">
+                            عرض الأسئلة
+                        </a>
+
+                        <a class="btn btn-warning"
+                           asp-action="EditTask"
+                           asp-controller="Instructor"
+                           asp-route-id="@Model.CourseContent.taskId">
+                            تعديل
+                        </a>
+
+                        <form asp-action="DeleteTaskConfirmed" asp-controller="Instructor" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.CourseContent.taskId" />
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-primary w-100"
+                       asp-action="CreateTask"
+                       asp-controller="Instructor"
+                       asp-route-courseId="@Model.CourseId">
+                        إضافة واجب
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>

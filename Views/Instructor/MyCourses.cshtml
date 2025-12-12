@@ -32,6 +32,54 @@
         margin-bottom: 25px;
     }
 
+<<<<<<< HEAD
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th>اسم الكورس</th>
+            <th>المادة</th>
+            <th>الصف</th>
+            <th>السعر</th>
+            <th>الحالة</th>
+                <th>الإدارة</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CourseName</td>
+                <td>@c.SubjectName</td>
+                <td>@c.ClassName</td>
+                <td>@c.Price</td>
+
+                <td>
+                        @if (c.Status == "Active" || c.Status == "Approved")
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                        else if (c.Status == "Archive" ||c.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    }
+                    else 
+                    {
+                        <span class="badge bg-danger">Rejected</span>
+                    }
+                </td>
+                    <td>
+                        <a asp-action="ManageCourse"
+                           asp-controller="Instructor"
+                           asp-route-id="@c.CourseId"
+                           class="btn btn-sm btn-primary">
+                            إدارة
+                        </a>
+                    </td>
+
+
+            </tr>
+=======
     .icon-btn {
         width: 50px;
         height: 50px;
@@ -50,6 +98,7 @@
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+>>>>>>> 62e9f14cd8c6d0b460748f5b64838ff0ddd4b84e
         }
 
     h2 {
