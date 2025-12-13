@@ -20,7 +20,7 @@
 
             <!-- Search Box -->
             <form class="search-box" role="search">
-                <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+                <input type="search" id="invoiceSearch" placeholder="ابحث عن فاتورة..." aria-label="Search" />
             </form>
         </div>
 
@@ -121,4 +121,34 @@
              });
          });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var searchInput = document.getElementById("invoiceSearch");
+            var dropdown = document.getElementById("studentsDropdown");
+            var rows = document.querySelectorAll("#invoiceTable tbody tr");
+
+            function filterTable() {
+                var searchValue = searchInput.value.toLowerCase();
+                var selectedStudent = dropdown.value;
+
+                rows.forEach(row => {
+                    var rowText = row.innerText.toLowerCase();
+                    var rowStudent = row.getAttribute("data-student");
+
+                    var matchesSearch = rowText.includes(searchValue);
+                    var matchesStudent = (selectedStudent === "all" || selectedStudent === rowStudent);
+
+                    if (matchesSearch && matchesStudent) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            }
+            searchInput.addEventListener("keyup", filterTable);
+            dropdown.addEventListener("change", filterTable);
+        });
+    </script>
+
 }

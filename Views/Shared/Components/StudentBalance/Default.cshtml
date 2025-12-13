@@ -1,0 +1,22 @@
+﻿@model decimal
+<button class="pay-btn d-flex align-items-center justify-content-center mx-4"
+        style="
+            gap: 5px;
+            min-width: 100px;
+            height: 35px;
+            padding: 0 12px;
+            font-size: 16px;
+            font-weight: 600;
+            background:  var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            /* box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); */
+            transition: all 0.3s ease;
+            cursor: pointer;
+        "
+        @* onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(102, 126, 234, 0.5)';"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)';"> *@
+    @* <i class="fas fa-coins" style="font-size: 10px;"></i> *@
+    <span class="counter">@Model EG</span>
+</button>

@@ -80,11 +80,19 @@ namespace Luno_platform.Repository
             // جيب الامتحانات اللي الطالب دخلها
             var examIds = studentExamStats.Select(s => s.ExamId.Value).Distinct().ToList();
 
+            if(examIds==null || examIds.Count==0)
+            {
+                return new StudentProgressVM
+                {
+                    ExamProgress = 0,
+                    TaskProgress = 0,
+                    OverallProgress = 0
+                };
+            }
             // هات الامتحانات الأصلية علشان نعرف total degree
             var exams = _Context.Exams
                                 .Where(e => examIds.Contains(e.ExamID))
                                 .ToList();
-
             // مجموع درجات الامتحانات
             double totalExamDegrees = exams.Sum(e => e.degreeExam);
 
@@ -154,7 +162,6 @@ namespace Luno_platform.Repository
          .ToList();
             return payments;
         }
-
         public List<Student> GetStudentBelongToParent(int parentId)
         {
             return _Context.Students.Where(s=>s.ParentId == parentId).ToList();

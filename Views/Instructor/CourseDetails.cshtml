@@ -211,9 +211,11 @@
                     <span>@Model.price</span>
                 </p>
 
-                <a href="/Instructor/EditCourse/@Model.CourseId" class="btn btn-primary">
-                    تعديل الكورس
-                </a>
+                <form method="post" asp-action="EditCourse" asp-controller="Instructor" style="display:inline;">
+                    <input type="hidden" name="courseId" value="@Model.CourseId" />
+                    <button type="submit" class="btn btn-warning">تعديل</button>
+                </form>
+
             </div>
         </div>
 

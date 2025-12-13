@@ -58,7 +58,6 @@ namespace Luno_platform.Controllers
         }
 
         public IActionResult Index()
-
         {
             int insrtuctorID = GetInstructorIdFromUser();
 
@@ -373,8 +372,8 @@ namespace Luno_platform.Controllers
 
 
 
-        [Route("Instructor/CourseDetails/{courseId}")]
-
+        //[Route("Instructor/CourseDetails/")]
+        
         public IActionResult CourseDetails(int courseId)
         {
             var course = _icourses_Service.Infocourse(courseId);
@@ -387,7 +386,9 @@ namespace Luno_platform.Controllers
             return View("CourseDetails", course);
         }
 
-        [Route("Instructor/EditCourse/{courseId}")]
+
+        //[Route("Instructor/EditCourse/{courseId}")]
+        [HttpPost]
         public IActionResult EditCourse(int courseId)
         {
             var course = _icourses_Service.Infocourse(courseId);
@@ -480,7 +481,7 @@ namespace Luno_platform.Controllers
             return RedirectToAction("CourseDetails", new { courseId = model.CourseId });
         }
 
-        [Route("instructor/ShowCoursesTeacher/{structorid}/{classId}")]
+        //[Route("instructor/ShowCoursesTeacher/{structorid}/{classId}")]
         public IActionResult ShowCoursesTeacher(int structorid, int classId)
         {
             // جلب اسم الصف
