@@ -28,6 +28,7 @@ namespace Luno_platform.Repository
                 .Select(s => new Student
                 {
                     StudentID = s.StudentID,
+                    Balance=s.Balance,
 
                     User = new Users
                     {
