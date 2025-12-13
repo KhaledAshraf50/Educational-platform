@@ -40,18 +40,9 @@ namespace Luno.Controllers
         [Route("/Student/MainPage")]
         public IActionResult MainPage()
         {
-            // جلب الـ UserId من الـ Claims اللي اتخزنت مع تسجيل الدخول
-            //var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            //if (userIdClaim == null)
-            //{
-            //    return Unauthorized();
-            //}
-
-            //int userId = int.Parse(userIdClaim.Value); // ده Id اليوزر المتسجل فقط
-            int userId = GetUserId()
-            ; // ده Id اليوزر المتسجل فقط
-
-            // نجيب بيانات الطالب اللي مربوط باليوزر ده
+            
+            int userId = GetUserId();
+            
             var student = istudentService.GetStudent(userId);
             if (student == null)
             {
@@ -83,7 +74,7 @@ namespace Luno.Controllers
             int pageSize = 7;
 
             int userId = GetUserId();
-            //int pageSize = 10;
+           
             var courses = istudentService.GetStudentCourses(userId);
 
 
@@ -104,10 +95,8 @@ namespace Luno.Controllers
         {
             int pageSize = 7;
             int userId = GetUserId();
-            //int std_Id = istudentService.GetStudentIdByUserId(userId).Value;
             List<Payments> payments = istudentService.GetPayments(userId);
-            // استبدل 1 بالمعرف الصحيح للطالب
-            //int pageSize = 10;
+           
 
 
             var pagedStudents = payments
@@ -124,15 +113,22 @@ namespace Luno.Controllers
 
             return View(pagedStudents);
         }
-        
+
         [HttpPost]
         public IActionResult chargeBalance(decimal amount)
         {
             int userId = GetUserId();
+
+
             istudentService.ChargeBalance(userId, amount);
+
+
+
+
+
             TempData["msg"] = "تم شحن الرصيد بنجاح ✔️";
 
-            return RedirectToAction("invoicesPage"); // 🔥 أهم نقطة هنا
+            return RedirectToAction("invoicesPage"); 
         }
 
 
@@ -148,43 +144,10 @@ namespace Luno.Controllers
             _service.UpdateSettings(model);
             return RedirectToAction("SettingPage");
         }
-        //[HttpPost]
-        //public async Task<IActionResult> ChangePassword(ChangePasswordVM model)
-        //{
-        //    if (model.NewPassword != model.ConfirmPassword)
-        //    {
-        //        ModelState.AddModelError("", "كلمة السر الجديدة غير متطابقة");
-        //        return View(model);
-        //    }
-
-        //    var userId = GetUserId();
-        //    var user = await _userManager.FindByIdAsync(userId.ToString());
-
-        //    var result = await _userManager.ChangePasswordAsync(
-        //        user,
-        //        model.CurrentPassword,
-        //        model.NewPassword
-        //    );
-
-        //    if (!result.Succeeded)
-        //    {
-        //        foreach (var error in result.Errors)
-        //            ModelState.AddModelError("", error.Description);
-
-        //        return View(model);
-        //    }
-
-        //    ModelState.AddModelError("", "كلمة السر الجديدة غير متطابقة");
-        //    var settings = _service.GetSettings(userId);
-        //    settings.PasswordModel = model;
-        //    return View("SettingPage", settings);
-        //    // يرجع لصفحة الإعدادات
-        //}
+       
         public IActionResult ChangePassword(UserSettingsVM SVM)
         {   
-            //int userId = GetUserId();
-            //var student = istudentService.GetStudent(userId);
-            //if (student == null) return NotFound();
+            
             bool ok = istudentService.ChangeStudentPassword(SVM.UserId, SVM.CurrentPassword, SVM.ConfirmNewPassword);
             if (!ok)
             {
