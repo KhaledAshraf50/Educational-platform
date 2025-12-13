@@ -126,8 +126,17 @@ namespace Luno_platform.Repository
                     _Context.Student_Courses.RemoveRange(course.Student_Courses);
                 }
 
-                _Context.Courses.Remove(course);
-                _Context.SaveChanges();
+                try
+                {
+                    _Context.Courses.Remove(course);
+                    _Context.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    var msg = ex.InnerException?.Message;
+                        throw new Exception(msg);
+                }
+
             }
         }
 

@@ -75,7 +75,7 @@ namespace Luno_platform.Controllers
             .Where(c => c.instructorID == insrtuctorID) // هنا بنفلتر الكورسات الخاصة بالمدرس
             .ToList() ?? new List<Courses>();
 
-
+            var classes = _context.Classes.ToList();
 
             var totalClasses = instructor.instructor_classescs.Count;
             var totalSales = courses.Sum(c => c.Student_Courses?.Count ?? 0);
@@ -88,7 +88,7 @@ namespace Luno_platform.Controllers
             {
                 Instructor = instructor ?? new Instructor(),
                 Courses = courses ?? new List<Courses>(),
-                //Classes = instructor.instructor_classescs?.Select(ic => ic.classes).ToList() ?? new List<Classes>(),
+                AllClasses = _context.Classes.ToList(),
                 Classes = instructor.instructor_classescs?
                  .Where(ic => ic.classes != null)
                   .Select(ic => new Classes
@@ -111,6 +111,26 @@ namespace Luno_platform.Controllers
 
         //private readonly Icourses_service _courseService;
 
+        [HttpPost]
+        public IActionResult AddClassToInstructor(InstructorDashboardViewModel model)
+        {
+            bool exists = _context.instructor_classescs
+                .Any(ic => ic.instructorId == model.InstructorID
+                        && ic.classId == model.SelectedClassID);
+
+            if (!exists)
+            {
+                _context.instructor_classescs.Add(new instructor_classescs
+                {
+                    instructorId = model.InstructorID,
+                    classId = model.SelectedClassID
+                });
+
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public IActionResult oldAddCourse()
