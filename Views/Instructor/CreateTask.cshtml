@@ -1,4 +1,5 @@
 ﻿@model Luno_platform.Viewmodel.CreateTaskVM
+
 @{
     Layout = "_InstructorDashboard";
 }
@@ -13,18 +14,6 @@
                 </h2>
 
                 <form asp-action="CreateTask" method="post">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">اختر الكورس</label>
-
-                        <select asp-for="CourseId"
-                                asp-items="ViewBag.Courses"
-                                class="form-select"
-                                required>
-                            <option value="">-- اختر الكورس --</option>
-                        </select>
-
-                        <span asp-validation-for="CourseId" class="text-danger"></span>
-                    </div>
 
                     <!-- Task Name -->
                     <div class="mb-5">
@@ -34,13 +23,13 @@
                     </div>
 
                     <!-- Class -->
-                    @* <div class="mb-5"> *@
-                    @*     <label asp-for="ClassId" class="form-label fw-semibold">الصف الدراسي</label> *@
-                    @*     <select asp-for="ClassId" asp-items="ViewBag.Classes" class="form-select form-select-lg" required> *@
-                    @*         <option value="">اختر الصف</option> *@
-                    @*     </select> *@
-                    @*     <span asp-validation-for="ClassId" class="text-danger d-block mt-1"></span> *@
-                    @* </div> *@
+                    <div class="mb-5">
+                        <label asp-for="ClassId" class="form-label fw-semibold">الصف الدراسي</label>
+                        <select asp-for="ClassId" asp-items="ViewBag.Classes" class="form-select form-select-lg" required>
+                            <option value="">اختر الصف</option>
+                        </select>
+                        <span asp-validation-for="ClassId" class="text-danger d-block mt-1"></span>
+                    </div>
 
                     <!-- Questions Count -->
                     <div class="mb-5">

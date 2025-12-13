@@ -1,5 +1,6 @@
 ﻿using Luno_platform.Models;
 using Luno_platform.Repository;
+using Luno_platform.Viewmodel;
 
 namespace Luno_platform.Service
 {
@@ -11,7 +12,7 @@ namespace Luno_platform.Service
         {
             _coursesRepo = coursesRepo;
         }
-        public Courses Infocourse(int courseid)
+        public CourseFullInfoVM Infocourse(int courseid)
         {
             return _coursesRepo.Infocourse(courseid);
         }

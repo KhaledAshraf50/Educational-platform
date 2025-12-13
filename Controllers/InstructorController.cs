@@ -61,7 +61,7 @@ namespace Luno_platform.Controllers
 
         {
             int insrtuctorID = GetInstructorIdFromUser();
-           
+
             var instructor = _context.Instructors
              .Include(i => i.instructor_classescs)
              .ThenInclude(ic => ic.classes)
@@ -93,13 +93,13 @@ namespace Luno_platform.Controllers
                 Classes = instructor.instructor_classescs?
                  .Where(ic => ic.classes != null)
                   .Select(ic => new Classes
-                 {
-                 ClassID = ic.classes.ClassID,
-                 ClassName = ic.classes.ClassName,
-                 Courses = ic.classes.Courses
+                  {
+                      ClassID = ic.classes.ClassID,
+                      ClassName = ic.classes.ClassName,
+                      Courses = ic.classes.Courses
                    .Where(c => c.instructorID == insrtuctorID)
                    .ToList()
-                }).ToList() ?? new List<Classes>(),
+                  }).ToList() ?? new List<Classes>(),
 
                 TotalClasses = instructor.instructor_classescs?.Count ?? 0,
                 TotalSales = totalSales,
@@ -374,7 +374,7 @@ namespace Luno_platform.Controllers
 
 
         [Route("Instructor/CourseDetails/{courseId}")]
-        
+
         public IActionResult CourseDetails(int courseId)
         {
             var course = _icourses_Service.Infocourse(courseId);
@@ -387,7 +387,6 @@ namespace Luno_platform.Controllers
             return View("CourseDetails", course);
         }
 
-
         [Route("Instructor/EditCourse/{courseId}")]
         public IActionResult EditCourse(int courseId)
         {
@@ -398,24 +397,24 @@ namespace Luno_platform.Controllers
 
             var vm = new EditCourseVM
             {
-                CourseId = course.CourseId,
-                CourseName = course.CourseName,
-                Description = course.description,
-                Price = course.price,
-                Image = course.Image,
+                CourseId = course.Course.CourseId,
+                CourseName = course.Course.CourseName,
+                Description = course.Course.description,
+                Price = course.Course.price,
+                Image = course.Course.Image,
 
-                NameUrl1 = course.CourseContent?.nameurl1,
-                Url1 = course.CourseContent?.Url1,
-                NameUrl2 = course.CourseContent?.nameurl2,
-                Url2 = course.CourseContent?.Url2,
-                NameUrl3 = course.CourseContent?.nameurl3,
-                Url3 = course.CourseContent?.Url3,
+                NameUrl1 = course.Content?.nameurl1,
+                Url1 = course.Content?.Url1,
+                NameUrl2 = course.Content?.nameurl2,
+                Url2 = course.Content?.Url2,
+                NameUrl3 = course.Content?.nameurl3,
+                Url3 = course.Content?.Url3,
 
-                ExamID = course.CourseContent?.Exams?.ExamID,
-                ExamName = course.CourseContent?.Exams?.ExamName,
+                ExamID = course.Content?.Exams?.ExamID,
+                ExamName = course.Content?.Exams?.ExamName,
 
-                TaskID = course.CourseContent?.Tasks?.TaskID,
-                TaskName = course.CourseContent?.Tasks?.TaskName,
+                TaskID = course.Content?.Tasks?.TaskID,
+                TaskName = course.Content?.Tasks?.TaskName,
 
             };
 
@@ -504,7 +503,7 @@ namespace Luno_platform.Controllers
         }
         private void PopulateDropdowns()
         {
-            var subjects= _context.Subjects.ToList() ?? new List<Subject>();
+            var subjects = _context.Subjects.ToList() ?? new List<Subject>();
             var classes = _context.Classes.ToList() ?? new List<Classes>();
 
             ViewBag.Subjects = new SelectList(subjects, "SubjectID", "SubjectName");
@@ -516,32 +515,39 @@ namespace Luno_platform.Controllers
         public IActionResult AddCourse()
         {
             int instructorId = GetInstructorIdFromUser();
+            ViewBag.subjectid = 4;
 
             var vm = new AddCourseVM
             {
-                Subjects = _context.Subjects
-                            .ToList(),
+                Classes = _context.instructor_classescs
+                    .Where(ic => ic.instructorId == instructorId)
+                    .Include(ic => ic.classes)
+                    .Select(ic => new SelectListItem
+                    {
+                        Text = ic.classes.ClassName,
+                        Value = ic.classes.ClassID.ToString()
+                    })
+                    .ToList(),
 
-                Classes = _context.Classes
-                           
-                         .ToList(),
-                Tasks = _context.Tasks
-                            .Where(t => t.instructorId == instructorId && t.status == false)
-                            .Select(t => new TaskVM
-                            {
-                                TaskID = t.TaskID,
-                                TaskName = t.TaskName
-                            }).ToList(),
+
 
                 Exams = _context.Exams
-                            .Where(t => t.instructorID == instructorId && t.status == false)
-                            .Select(t => new ExamVM2
-                            {
-                               ExamID = t.ExamID,
-                                ExamName = t.ExamName
-                            }).ToList()
+                    .Where(e => e.instructorID == instructorId && e.status == false)
+                    .Select(e => new SelectListItem
+                    {
+                        Text = e.ExamName,
+                        Value = e.ExamID.ToString()
+                    })
+                    .ToList(),
 
-
+                Tasks = _context.Tasks
+                    .Where(t => t.instructorId == instructorId && t.status == false)
+                    .Select(t => new SelectListItem
+                    {
+                        Text = t.TaskName,
+                        Value = t.TaskID.ToString()
+                    })
+                    .ToList()
             };
 
             return View(vm);
@@ -549,7 +555,7 @@ namespace Luno_platform.Controllers
 
 
         [HttpPost]
-        [Route("Instructor/AddCourse")]
+        //[Route("Instructor/AddCourse")]
         public IActionResult AddCourse(AddCourseVM model)
         {
             if (!ModelState.IsValid)
@@ -559,28 +565,22 @@ namespace Luno_platform.Controllers
 
             int instructorId = GetInstructorIdFromUser();
 
-            var cls = _context.Classes.FirstOrDefault(c => c.ClassID == model.ClassID);
-            if (cls == null)
-                return RedirectToAction("AddCourse");
-
-            // توليد CourseId يدويًا
             int lastCourseId = _context.Courses.Max(c => (int?)c.CourseId) ?? 0;
             int nextCourseId = lastCourseId + 1;
 
             var course = new Courses
             {
-                CourseId = nextCourseId, // نكتب المعرف هنا
+                CourseId = nextCourseId,
                 CourseName = model.CourseName,
                 description = model.Description,
                 price = model.Price,
                 SubjectId = model.SubjectId,
-                classID = cls.ClassID,
+                classID = model.ClassID,
                 instructorID = instructorId,
                 status = "Archive",
                 createdAt = DateTime.Now
             };
 
-            // حفظ الصورة
             if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
                 var fileName = Guid.NewGuid() + Path.GetExtension(model.ImageFile.FileName);
@@ -593,25 +593,47 @@ namespace Luno_platform.Controllers
             _context.Courses.Add(course);
             _context.SaveChanges();
 
-            // إنشاء CourseContent وربطه بالكورس
             var content = new CourseContent
             {
-                cousrsid = course.CourseId,
+                cousrsid = nextCourseId,
                 nameurl1 = model.NameUrl1,
                 Url1 = model.Url1,
                 nameurl2 = model.NameUrl2,
                 Url2 = model.Url2,
                 nameurl3 = model.NameUrl3,
                 Url3 = model.Url3,
-                ExamId = model.SelectedExamId,   // مرتبط بالامتحان
-                taskId = model.SelectedTaskId    // مرتبط بالمهمة
+                ExamId = model.SelectedExamId,
+                taskId = model.SelectedTaskId
             };
 
             _context.CourseContents.Add(content);
             _context.SaveChanges();
 
+            // تحديث حالة الامتحان
+            if (model.SelectedExamId != null)
+            {
+                var exam = _context.Exams.FirstOrDefault(e => e.ExamID == model.SelectedExamId);
+                if (exam != null)
+                {
+                    exam.status = true;
+                    _context.SaveChanges();
+                }
+            }
+
+            // تحديث حالة المهمة
+            if (model.SelectedTaskId != null)
+            {
+                var task = _context.Tasks.FirstOrDefault(t => t.TaskID == model.SelectedTaskId);
+                if (task != null)
+                {
+                    task.status = true;
+                    _context.SaveChanges();
+                }
+            }
+
             return RedirectToAction("MyCourses");
         }
+
 
 
         //public IActionResult CourseDetails(int id)
@@ -906,36 +928,14 @@ namespace Luno_platform.Controllers
         {
             if (!ModelState.IsValid)
             {
-   
-                // نرجع الدروب داون بتاعة الكورسات بس
-                ViewBag.Courses = _context.Courses
-                    .Select(c => new SelectListItem
-                    {
-                        Text = c.CourseName,
-                        Value = c.CourseId.ToString()
-                    }).ToList();
 
                 return View(model);
             }
 
-            // نجيب بيانات الكورس المختار
-            var course = _context.Courses
-                .FirstOrDefault(c => c.CourseId == model.CourseId);
-
-            if (course == null)
-            {
-                ModelState.AddModelError("", "الكورس غير موجود");
-                return View(model);
-            }
-
-            // إنشاء الامتحان باستخدام بيانات الكورس
             var exam = new Exams
             {
                 ExamName = model.ExamName,
                 ClassId = model.ClassId,
-                ClassId = course.classID,
-                subjectId = course.SubjectId,
-
                 Time = model.Time,
                 NumOfQuestions = model.TotalQuestions,
                 degreeExam = model.TotalMarks,
@@ -945,102 +945,80 @@ namespace Luno_platform.Controllers
             _context.Exams.Add(exam);
             _context.SaveChanges();
 
-            // ربط الامتحان بمحتوى الكورس
-            var content = _context.CourseContents
-                .FirstOrDefault(c => c.cousrsid == model.CourseId);
+            // بعد ما نحفظ الامتحان نروح مباشرة لإضافة الأسئلة
+            return RedirectToAction("AddQuestions", new { examId = exam.ExamID });
+        }
 
-            if (content == null)
+        [HttpGet]
+        public IActionResult AddQuestions(int examId)
+        {
+            var exam = _context.Exams.Find(examId);
+            if (exam == null) return NotFound();
+
+            var vm = new AddQuestionVM
             {
-                content = new CourseContent
+                ExamId = examId,
+                Questions = new List<QuestionItem>()
+            };
+
+            // نولّد عدد الأسئلة حسب ما حدد المدرس
+            for (int i = 0; i < exam.NumOfQuestions; i++)
+            {
+                vm.Questions.Add(new QuestionItem());
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult AddQuestions(AddQuestionVM model)
+        {
+            foreach (var q in model.Questions)
+            {
+                var question = new Question
                 {
-                    cousrsid = model.CourseId,
-                    ExamId = exam.ExamID
+                    ExamId = model.ExamId,
+                    questionText = q.QuestionText,
+                    chooseA = q.ChooseA,
+                    chooseB = q.ChooseB,
+                    chooseC = q.ChooseC,
+                    chooseD = q.ChooseD,
+                    correctAnswer = q.CorrectAnswer
                 };
 
-                _context.CourseContents.Add(content);
-            }
-            else
-            {
-                content.ExamId = exam.ExamID;
+                _context.Questions.Add(question);
             }
 
             _context.SaveChanges();
 
-            // بعدها نروح لإضافة الأسئلة
-            return RedirectToAction("AddQuestions", new { examId = exam.ExamID });
+            return RedirectToAction("Dashboard", "Instructor");
         }
 
-
-        [HttpGet]
-public IActionResult AddQuestions(int examId)
-{
-    var exam = _context.Exams.Find(examId);
-    if (exam == null) return NotFound();
-
-    var vm = new AddQuestionVM
-    {
-        ExamId = examId,
-        Questions = new List<QuestionItem>()
-    };
-
-    // نولّد عدد الأسئلة حسب ما حدد المدرس
-    for (int i = 0; i < exam.NumOfQuestions; i++)
-    {
-        vm.Questions.Add(new QuestionItem());
-    }
-
-    return View(vm);
-}
-
-[HttpPost]
-public IActionResult AddQuestions(AddQuestionVM model)
-{
-    foreach (var q in model.Questions)
-    {
-        var question = new Question
-        {
-            ExamId = model.ExamId,
-            questionText = q.QuestionText,
-            chooseA = q.ChooseA,
-            chooseB = q.ChooseB,
-            chooseC = q.ChooseC,
-            chooseD = q.ChooseD,
-            correctAnswer = q.CorrectAnswer
-        };
-
-        _context.Questions.Add(question);
-    }
-
-    _context.SaveChanges();
-
-    return RedirectToAction("Dashboard", "Instructor");
-}
-
         // عرض أسئلة الواجب
-public IActionResult ViewAssignmentQuestions(int id)
-{
-    var questions = _context.Questions
-                    .Where(q => q.TaskId == id)
-                    .ToList();
+        public IActionResult ViewAssignmentQuestions(int id)
+        {
+            var questions = _context.Questions
+                            .Where(q => q.TaskId == id)
+                            .ToList();
 
-    if (!questions.Any())
-        return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
+            if (!questions.Any())
+                return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
 
-    return View(questions);
-}
+            return View(questions);
+        }
 
-// عرض أسئلة الامتحان
-public IActionResult ViewExamQuestions(int id)
-{
-    var questions = _context.Questions
-                    .Where(q => q.ExamId == id)
-                    .ToList();
+        // عرض أسئلة الامتحان
+        public IActionResult ViewExamQuestions(int id)
+        {
+            var questions = _context.Questions
+                            .Where(q => q.ExamId == id)
+                            .ToList();
 
-    if (!questions.Any())
-        return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
+            if (!questions.Any())
+                return View("NoQuestions"); // صفحة تظهر لو مفيش أسئلة
 
-    return View(questions);
-}
+            return View(questions);
+        }
 
         //[HttpGet]
         //public IActionResult EditExam(int id)
@@ -1240,11 +1218,11 @@ public IActionResult ViewExamQuestions(int id)
         public IActionResult CreateTask()
 
         {
-            
+
             int instructorId = GetInstructorIdFromUser();
             ViewBag.Classes = _context.instructor_classescs
                 .Where(ic => ic.instructorId == instructorId)
-                .Include(ic=> ic.Instructor)
+                .Include(ic => ic.Instructor)
                 .Include(ic => ic.classes)  // ← هنا الـ Include المهم
                 .Select(ic => new SelectListItem
                 {
@@ -1253,24 +1231,6 @@ public IActionResult ViewExamQuestions(int id)
 
                 })
                 .ToList();
-                    Text = c.ClassName,
-                    Value = c.ClassID.ToString()
-                }).ToList();
-            ViewBag.Subjects = _context.Subjects
-               .Select(s => new SelectListItem
-               {
-                   Value = s.SubjectID.ToString(),
-                   Text = s.SubjectNameAR
-               }).ToList();
-            ViewBag.Courses = _context.Courses
-        .Where(c => c.instructorID == GetInstructorIdFromUser())
-        .Select(c => new SelectListItem
-        {
-            Value = c.CourseId.ToString(),
-            Text = c.CourseName
-        })
-        .ToList();
-
 
             return View();
         }
@@ -1279,32 +1239,13 @@ public IActionResult ViewExamQuestions(int id)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Courses = _context.Courses
-                    .Where(c => c.instructorID == GetInstructorIdFromUser())
-                    .Select(c => new SelectListItem
-                    {
-                        Text = c.CourseName,
-                        Value = c.CourseId.ToString()
-                    }).ToList();
-
                 return View(model);
             }
 
-            // نجيب الكورس المختار
-            var course = _context.Courses
-                .FirstOrDefault(c => c.CourseId == model.CourseId);
-
-            if (course == null)
-            {
-                ModelState.AddModelError("", "الكورس غير موجود");
-                return View(model);
-            }
-
-            // ✅ ناخد ClassId من الكورس نفسه
             var task = new Tasks
             {
                 TaskName = model.TaskName,
-                ClassId = course.classID,   // ✅ الصح
+                ClassId = model.ClassId,
                 NumOfQuestions = model.TotalQuestions,
                 instructorId = GetInstructorIdFromUser(),
                 createdAT = DateTime.Now
@@ -1315,7 +1256,6 @@ public IActionResult ViewExamQuestions(int id)
 
             return RedirectToAction("AddTaskQuestions", new { taskId = task.TaskID });
         }
-
         [HttpGet]
         public IActionResult AddTaskQuestions(int taskId)
         {
@@ -1412,7 +1352,7 @@ public IActionResult ViewExamQuestions(int id)
 
             return RedirectToAction("Dashboard");
         }
-     
+
         public IActionResult DeleteTask(int id)
         {
             var task = _context.Tasks
@@ -1447,27 +1387,7 @@ public IActionResult ViewExamQuestions(int id)
             return RedirectToAction("Dashboard");
         }
 
-        public IActionResult ManageCourse(int id)
-        {
-            var course = _context.Courses
-                .Include(c => c.CourseContent)
-                .ThenInclude(cc => cc.Exams)
-                .Include(c => c.CourseContent)
-                .ThenInclude(cc => cc.Tasks)
-                .FirstOrDefault(c => c.CourseId == id);
-
-            if (course == null) return NotFound();
-
-            return View(course); // View name: ManageCourse.cshtml
-        }
 
     }
 
 }
-
-
-
-
-
-
-

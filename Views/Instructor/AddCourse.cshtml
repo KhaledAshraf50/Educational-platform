@@ -1,4 +1,4 @@
-﻿@model Luno_platform.Viewmodel.AddCourseVM
+﻿@model AddCourseVM
 
 @{
     Layout = "_InstructorDashboard";
@@ -117,7 +117,7 @@
                     <label class="form-label">اسم الكورس</label>
                     <input asp-for="CourseName" class="form-control" />
                 </div>
-
+                <input type="hidden" asp-for="SubjectId" value="@ViewBag.subjectid" />
                 <!-- Price -->
                 <div class="mb-3">
                     <label class="form-label">سعر الكورس</label>
@@ -139,13 +139,7 @@
                     <span asp-validation-for="ClassID" class="text-danger"></span>
                 </div>
 
-                <!-- Subject Dropdown -->
-                <div class="mb-3">
-                    <label class="form-label">المادة</label>
-                    <select asp-for="SubjectId" asp-items="Model.Subjects" class="form-control">
-                        <option value="">-- اختر المادة --</option>
-                    </select>
-                </div>
+                in
 
                 <!-- Course Image -->
                 <div class="mb-3">

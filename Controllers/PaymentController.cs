@@ -67,8 +67,8 @@ public class PaymentController : Controller
             return NotFound();
 
         ViewBag.CourseId = courseId;
-        ViewBag.CourseName = course.CourseName;
-        ViewBag.Amount = course.price;
+        ViewBag.CourseName = course.Course.CourseName;
+        ViewBag.Amount = course.Course.price;
         ViewBag.StudentBalance = student.Balance;
 
         return View();
@@ -153,7 +153,7 @@ public class PaymentController : Controller
         var course = icourses_Service.Infocourse(courseId);
 
         ViewBag.CourseId = courseId;
-        ViewBag.CourseName = course.CourseName;
+        ViewBag.CourseName = course.Course.CourseName;
         ViewBag.Amount = amount;
         ViewBag.StudentName = student.User.fname + " " + student.User.lastName;
         ViewBag.StudentPhone = student.User.PhoneNumber ?? "01000000000";
@@ -171,7 +171,7 @@ public class PaymentController : Controller
         var course = icourses_Service.Infocourse(courseId);
 
         ViewBag.CourseId = courseId;
-        ViewBag.CourseName = course.CourseName;
+        ViewBag.CourseName = course.Course.CourseName;
         ViewBag.Amount = amount;
         ViewBag.WalletType = walletType;
         ViewBag.StudentName = student.User.fname + " " + student.User.lastName;
@@ -278,7 +278,7 @@ public class PaymentController : Controller
                 var course = icourses_Service.Infocourse(courseId);
 
                 // ✅ تسجيل الدفع فوراً (مفيش موافقة من الأدمن)
-                _paymentService.CreatePayment(userId, courseId, course.price);
+                _paymentService.CreatePayment(userId, courseId, course.Course.price);
 
                 TempData["AlertMessage"] = "✅ تم الدفع بنجاح! تم تسجيلك في الكورس";
                 return RedirectToAction("PaymentSuccess", new { courseId });

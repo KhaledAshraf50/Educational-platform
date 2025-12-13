@@ -30,67 +30,39 @@ namespace Luno_platform.Repository
            
             return _Context.Classes.ToList();
         }
-        public Courses Infocourse(int courseId)
+        public CourseFullInfoVM Infocourse(int courseId)
         {
-          var courses= _Context.Courses
-                .Include(c => c.Instructor).ThenInclude(i => i.User)
-                .Include(c => c.CourseContent).ThenInclude(cc => cc.Exams)
-                .Include(c => c.CourseContent).ThenInclude(cc => cc.Tasks)
-                .Where(c => c.CourseId == courseId)
-                .Select(c => new Courses
-                {
-                    CourseId = c.CourseId,
-                    CourseName = c.CourseName,
-                    description = c.description,
-                    createdAt = c.createdAt,
-                    price = c.price,
-                    Image = c.Image,
-                    status = c.status,
-                    instructorID = c.instructorID,
+            var course = GetCourse(courseId);
+            var content = GetCourseContent(courseId);
 
-                    // Instructor Info
-                    Instructor = new Instructor
-                    {
-                        instructorID = c.Instructor.instructorID,
-                        User = new Users
-                        {
-                            fname = c.Instructor.User.fname,
-                            lastName = c.Instructor.User.lastName
-                        }
-                    },
+            var vm = new CourseFullInfoVM
+            {
+                Course = course,
+                Content = content
+            };
 
-                    // Course Content
-                    CourseContent = c.CourseContent == null ? null : new CourseContent
-                    {
-                        Id = c.CourseContent.Id,
-                        nameurl1=c.CourseContent.nameurl1,
-                        nameurl2 = c.CourseContent.nameurl2,
+            return vm;
 
-                        nameurl3 = c.CourseContent.nameurl3,
-
-                        Url1 = c.CourseContent.Url1,
-                        Url2 = c.CourseContent.Url2,
-                        Url3 = c.CourseContent.Url3,
-
-                        // Exam
-                        Exams = c.CourseContent.Exams == null ? null : new Exams
-                        {
-                            ExamID = c.CourseContent.Exams.ExamID,
-                            ExamName = c.CourseContent.Exams.ExamName
-                        },
-
-                        // Task
-                        Tasks = c.CourseContent.Tasks == null ? null : new Tasks
-                        {
-                            TaskID = c.CourseContent.Tasks.TaskID,
-                            TaskName = c.CourseContent.Tasks.TaskName
-                        }
-                    }
-                })
-                .FirstOrDefault();
-
-            return courses;
+         
         }
+        public Courses GetCourse(int courseId)
+        {
+            return _Context.Courses
+                .Include(c => c.Instructor).ThenInclude(i => i.User)
+                .Where(c => c.CourseId == courseId)
+                .FirstOrDefault();
+        }
+
+        public CourseContent GetCourseContent(int courseId)
+        {
+            return _Context.CourseContents
+                .Include(e=> e.Exams)
+                .Include(e => e.Tasks)
+
+                .Where(cc => cc.cousrsid == courseId)
+                .FirstOrDefault();
+        }
+
 
         public List<Courses> showAllcoursebyclassandinstructor(int instructorid, int classid)
         {
