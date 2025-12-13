@@ -4,11 +4,7 @@
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
 }
 @section Styles {
-        <link rel="stylesheet" href="~/assets/css/dashboardadmin.css" /> 
-         <link rel="stylesheet" href="~/assets/css/style.css" /> 
         <link href="~/assets/css/Reports.css" rel="stylesheet" /> 
-        @* <link rel="stylesheet" href="~/assets/css/adminmainpage.css" /> *@
-
 }
 <style>
     body {
@@ -71,10 +67,9 @@
         font-weight: 500 !important;
     }
 </style>
-<div class="col-md-12 content">
+<div class="col-md-11 content">
 
     <h2 class="fw-bold mb-4">إدارة الكورسات</h2>
-
     <!-- Tabs -->
     <ul class="nav nav-tabs" id="courseTabs" role="tablist">
         <li class="nav-item">
@@ -97,7 +92,7 @@
         <div class="tab-pane fade show active" id="activeCourses">
             <div class="table-container">
                 <h5 class="my-4">قائمة الكورسات النشطة</h5>
-
+                <div class="table-responsive">
                 <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
                     <thead >
                         <tr>
@@ -107,6 +102,8 @@
                             <th>السعر</th>
                             <th>الحالة</th>
                             <th>التحكم</th>
+                            <th>عرض التفاصيل</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -138,10 +135,19 @@
                                     </form>
                                 
                                 </td>
+                                <td>
+                                    <form asp-action="show_details_courses" asp-controller="Homepage" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@activeCourse.CourseId" />
+                                        <button type="submit" class="btn btn-sm btn-secondary">
+                                            عرض
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         }
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
 
@@ -149,7 +155,7 @@
         <div class="tab-pane fade" id="archivedCourses">
             <div class="table-container">
                 <h5 class="my-4">الكورسات المؤرشفة</h5>
-
+                <div class="table-responsive">
                 <table class="table subject-table table-striped table table-hover text-center align-middle table_Edit">
                     <thead >
                         <tr>
@@ -159,6 +165,7 @@
                             <th>السعر</th>
                             @* <th>التاريخ</th> *@
                             <th>التحكم</th>
+                            <th>عرض التفاصيل</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -187,11 +194,19 @@
                                     </form> 
 
                             </td>
+                            <td>
+                                    <form asp-action="show_details_courses" asp-controller="Homepage" method="post" style="display:inline;">
+                                        <input type="hidden" name="courseId" value="@archivedCourse.CourseId" />
+                                        <button type="submit" class="btn btn-sm btn-secondary">
+                                            عرض
+                                        </button>
+                                    </form>
+                            </td>
                             </tr>
 }
                     </tbody>
                 </table>
-
+                  </div>
             </div>
         </div>
 

@@ -65,14 +65,13 @@ namespace Luno_platform.Controllers
                 ExamProgressDict = new Dictionary<int, double>(),
                 TaskProgressDict = new Dictionary<int, double>(),
                 OverallProgressDict = new Dictionary<int, double>()
-            };
-            foreach (var std in students)
-            {
-                var progress = _parentRepo.GetStudentProgress(std.StudentID);
-                vm.ExamProgressDict[std.StudentID] = progress.ExamProgress;
-                vm.TaskProgressDict[std.StudentID] = progress.TaskProgress;
-                vm.OverallProgressDict[std.StudentID] = progress.OverallProgress;
-            }
+            }; 
+            
+                var progress = _parentRepo.GetStudentProgress(vm.SelectedStudent.StudentID);
+                vm.ExamProgressDict[vm.SelectedStudent.StudentID] = progress.ExamProgress;
+                vm.TaskProgressDict[vm.SelectedStudent.StudentID] = progress.TaskProgress;
+                vm.OverallProgressDict[vm.SelectedStudent.StudentID] = progress.OverallProgress;
+            
             return PartialView("_StudentCoursesPartial", vm);
         }
         //------------------------

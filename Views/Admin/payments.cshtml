@@ -96,6 +96,31 @@
             color: #999;
             margin-top: 5px;
         }
+
+    .search-box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+        .search-box input {
+            width: 350px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            font-size: 15px;
+            transition: 0.3s;
+            background: #fff url('/assets/icons/search.svg') no-repeat 10px center;
+            padding-left: 45px;
+        }
+
+            .search-box input:focus {
+                border-color: #F2994A;
+                box-shadow: 0 0 10px rgba(52, 152, 219, 0.15);
+                outline: none;
+            }
+
 </style>
 
 <div class="content">
@@ -161,6 +186,9 @@
     </div>
 
     <!-- Tabs Navigation -->
+    <form class="search-box" role="search">
+        <input type="search" placeholder="ابحث عن فاتورة..." aria-label="Search" />
+    </form>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#active">
@@ -292,3 +320,25 @@
         </div>
     </div>
 </div>
+<script>
+    const searchInput = document.querySelector('.search-box input');
+
+    searchInput.addEventListener('keyup', function () {
+        let value = this.value.toLowerCase().trim();
+
+        // فلترة جدول المبيعات
+        filterTable('#active table tbody tr', value);
+
+        // فلترة جدول الملغية
+        filterTable('#cancelled table tbody tr', value);
+    });
+
+    function filterTable(selector, value) {
+        const rows = document.querySelectorAll(selector);
+
+        rows.forEach(row => {
+            let text = row.innerText.toLowerCase();
+            row.style.display = text.includes(value) ? "" : "none";
+        });
+    }
+</script>

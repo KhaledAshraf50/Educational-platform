@@ -170,11 +170,7 @@ namespace Luno_platform.Controllers
         public IActionResult UploadImage(IFormFile file)
         {
             int userId = GetUserId();
-            //var admin = _adminService.GetByUserId(userId);// لحد ما نعمل تسجيل لادمين
-            //if (parent == null) return NotFound();
-
-            //int parentID = parent.ID;
-
+            var admin = _adminService.GetAdminByUserId(userId);// لحد ما نعمل تسجيل لادمين
             if (file == null || file.Length == 0)
             {
                 TempData["ErrorFile"] = "من فضلك اختر صورة صحيحة";
@@ -187,46 +183,46 @@ namespace Luno_platform.Controllers
             if (!validExtensions.Contains(ext))
             {
                 TempData["ErrorFile"] = "الملف غير مسموح. الرجاء رفع صورة فقط (JPG - PNG - GIF - WEBP)";
-                return RedirectToAction("Settings");
+                return RedirectToAction("setting");
             }
 
             string imageUrl = FileUploader.UploadImage(file);
             if (imageUrl == "null")
             {
                 TempData["ErrorFile"] = "فشل رفع الصوره حاول مره اخري";
-                return RedirectToAction("Settings");
+                return RedirectToAction("setting");
             }
 
             _adminService.UpdateImage(userId, imageUrl);
             TempData["SucessFile"] = "تم تغيير الصوره بنجاح ";
             return RedirectToAction("setting");
         }
-        public IActionResult DeleteImage()
-        {
-            int userId = GetUserId();
-            var admin = _adminService.GetAdmin(userId);
-            if (admin == null) return NotFound();
-            if (!string.IsNullOrEmpty(admin.User.Image))
-            {
-                string imgPath = Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    "wwwroot",
-                    admin.User.Image.TrimStart('/')
-                );
+        //public IActionResult DeleteImage()
+        //{
+        //    int userId = GetUserId();
+        //    var admin = _adminService.GetAdmin(userId);
+        //    if (admin == null) return NotFound();
+        //    if (!string.IsNullOrEmpty(admin.User.Image))
+        //    {
+        //        string imgPath = Path.Combine(
+        //            Directory.GetCurrentDirectory(),
+        //            "wwwroot",
+        //            admin.User.Image.TrimStart('/')
+        //        );
 
-                if (System.IO.File.Exists(imgPath))
-                    System.IO.File.Delete(imgPath);
-            }
+        //        if (System.IO.File.Exists(imgPath))
+        //            System.IO.File.Delete(imgPath);
+        //    }
 
-            admin.User.Image = "~/assets/imgs/user_image.png";
+        //    admin.User.Image = "~/assets/imgs/user_image.png";
 
-            _adminService.Update(admin);
-            _adminService.Save();
+        //    _adminService.Update(admin);
+        //    _adminService.Save();
 
-            TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
+        //    TempData["SucessFile"] = "تم حذف الصوره بنجاح ";
 
-            return RedirectToAction("setting");
-        }
+        //    return RedirectToAction("setting");
+        //}
 
         [HttpPost]
         public IActionResult UpdateAdminSetting(AdminSettingVM AVM)
@@ -242,7 +238,7 @@ namespace Luno_platform.Controllers
             if (!ok)
             {
                 TempData["Error"] = "حدث خطأ أثناء تحديث البيانات";
-                return RedirectToAction("Settings");
+                return RedirectToAction("setting");
             }
 
             TempData["Sucess"] = "تم تحديث البيانات بنجاح";
@@ -260,7 +256,7 @@ namespace Luno_platform.Controllers
             if (!ok)
             {
                 TempData["Error"] = "كلمه المرور غير صحيحة!!";
-                return RedirectToAction("Settings");
+                return RedirectToAction("setting");
             }
 
             TempData["Sucess"] = "تم تغيير كلمه المرور بنجاح";

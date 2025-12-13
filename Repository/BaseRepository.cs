@@ -56,7 +56,7 @@ namespace Luno_platform.Repository
             {
                 Table.Remove(en);
             }
-        }
+        }   
         //public IEnumerable<T> GetAll()
         //{
         //    throw new NotImplementedException();

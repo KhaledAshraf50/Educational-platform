@@ -74,8 +74,13 @@
                             <td>
 
 
-                                <a href="~/Homepage/show_details_courses/@course.CourseId" class="mt-2 btn showbtn"> عرض</a>
-
+                                @* <a href="~/Homepage/show_details_courses/@course.CourseId" class="mt-2 btn showbtn"> عرض</a> *@
+                                <form asp-action="show_details_courses" asp-controller="Homepage" method="post" style="display:inline;">
+                                    <input type="hidden" name="courseId" value="@course.CourseId" />
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                         عرض 
+                                    </button>
+                                </form>
                             </td>
                         </tr>
 

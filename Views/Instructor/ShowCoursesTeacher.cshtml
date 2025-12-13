@@ -201,9 +201,13 @@
                             </div>
                         </div>
                         <div class="bodyleft">
-                            <a href="@Url.Action("CourseDetails", "Instructor", new { courseId = course.CourseId })" class="mt-2 btn btn-primary btn-sm">
+                            @* <a href="@Url.Action("CourseDetails", "Instructor", new { courseId = course.CourseId })" class="mt-2 btn btn-primary btn-sm">
                                 عرض التفاصيل
-                            </a>
+                            </a> *@
+                            <form method="post" asp-action="CourseDetails" asp-controller="Instructor" style="display:inline;">
+                                <input type="hidden" name="courseId" value="@course.CourseId" />
+                                <button type="submit" class="btn btn-secondary"> عرض التفاصيل</button>
+                            </form>
                         </div>
                     </div>
                     <div class="bodybuttom">
