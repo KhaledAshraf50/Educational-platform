@@ -3,113 +3,417 @@
 @{
     Layout = "~/Views/Shared/_Sidebar_admin.cshtml";
 }
-<link rel="stylesheet" href="~/assets/css/dashboardadmin.css" />
-<link rel="stylesheet" href="~/assets/css/style.css" />
-<link rel="stylesheet" href="~/assets/css/Report_style.css" />
-<link rel="stylesheet" href="~/assets/css/dashboard-report.css" />
 
+<style>
+    :root {
+        --primary-color: #092C4C;
+        --secondary-color: #F2994A;
+        --success-color: #27ae60;
+        --info-color: #3498db;
+        --light-bg: #f8fafc;
+        --card-bg: #ffffff;
+    }
 
-<div class="page-title">
-    <h4 class="mb-0">📊 التقارير والإحصائيات</h4>
-</div>
+    .reports-page {
+        padding: 30px;
+        background-color: var(--light-bg);
+        direction: rtl;
+    }
 
-<!-- Filter -->
-<div class="filter-container">
-    <label for="timeFilter" class="me-2">اختر الفترة الزمنية:</label>
-    <select onchange="window.location='?filter=' + this.value;">
-        <option value="today" selected="@(Model.SelectedFilter == "today")">اليوم</option>
-        <option value="yesterday" selected="@(Model.SelectedFilter == "yesterday")">أمس</option>
-        <option value="last2days" selected="@(Model.SelectedFilter == "last2days")">أول أمس</option>
-        <option value="thisMonth" selected="@(Model.SelectedFilter == "thisMonth")">الشهر الحالي</option>
-    </select>
+    .page-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        padding: 35px 40px;
+        border-radius: 12px;
+        margin-bottom: 35px;
+        box-shadow: 0 4px 15px rgba(9, 44, 76, 0.15);
+    }
 
-</div>
+        .page-header h2 {
+            color: white;
+            font-weight: bold;
+            font-size: 32px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-<!-- Stats Cards -->
-<div class="row g-3 mb-4">
+            .page-header h2 i {
+                font-size: 36px;
+            }
 
-    <div class="col-md-3">
-        <div class="card p-3 text-center">
-            <h6>الكورسات المباعة</h6>
-            <h3 class="text-primary">@Model.TotalCoursesSold</h3>
+    /* Filter Section */
+    .filter-section {
+        background: var(--card-bg);
+        padding: 25px 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+        .filter-section h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+    .filter-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        padding: 12px 28px;
+        border: 2px solid var(--primary-color);
+        background: white;
+        color: var(--primary-color);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+    /* Stats Cards */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 35px;
+    }
+
+    .stat-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-right: 4px solid;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-card.courses {
+            border-color: var(--info-color);
+        }
+
+        .stat-card.revenue {
+            border-color: var(--success-color);
+        }
+
+        .stat-card.profit {
+            border-color: var(--secondary-color);
+        }
+
+    .stat-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin-bottom: 18px;
+    }
+
+    .stat-card.courses .stat-icon {
+        background: rgba(52, 152, 219, 0.15);
+        color: var(--info-color);
+    }
+
+    .stat-card.revenue .stat-icon {
+        background: rgba(39, 174, 96, 0.15);
+        color: var(--success-color);
+    }
+
+    .stat-card.profit .stat-icon {
+        background: rgba(242, 153, 74, 0.15);
+        color: var(--secondary-color);
+    }
+
+    .stat-label {
+        color: #666;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .stat-value {
+        color: var(--primary-color);
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Tables Section */
+    .tables-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 30px;
+    }
+
+    .table-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+        .table-card h5 {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+            .table-card h5 i {
+                color: var(--secondary-color);
+                font-size: 24px;
+            }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .custom-table thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
+        }
+
+            .custom-table thead th {
+                color: white;
+                font-weight: 700;
+                padding: 18px 15px;
+                text-align: center;
+                font-size: 15px;
+                border: none;
+            }
+
+        .custom-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+            .custom-table tbody tr:hover {
+                background-color: rgba(242, 153, 74, 0.05);
+            }
+
+        .custom-table tbody td {
+            padding: 18px 15px;
+            text-align: center;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .custom-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: #999;
+    }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .tables-section
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+
+    .page-header h2 {
+        font-size: 24px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    }
+</style>
+
+<div class="reports-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2><i class="fa-solid fa-chart-line"></i> التقارير والإحصائيات</h2>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <h5>اختر الفترة الزمنية:</h5>
+        <div class="filter-buttons">
+            <button class="filter-btn active">اليوم</button>
+            <button class="filter-btn">أمس</button>
+            <button class="filter-btn">أول أمس</button>
+            <button class="filter-btn">الشهر الحالي</button>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card p-3 text-center">
-            <h6>إجمالي الإيرادات</h6>
-            <h3 class="text-warning">@Model.TotalRevenue ج</h3>
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <!-- Courses Sold -->
+        <div class="stat-card courses">
+            <div class="stat-icon">
+                <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="stat-label">الكورسات المباعة</div>
+            <p class="stat-value">@Model.TotalCoursesSold</p>
+        </div>
+
+        <!-- Total Revenue -->
+        <div class="stat-card revenue">
+            <div class="stat-icon">
+                <i class="fa-solid fa-sack-dollar"></i>
+            </div>
+            <div class="stat-label">إجمالي الإيرادات</div>
+            <p class="stat-value">@Model.TotalRevenue <span style="font-size: 20px;">ج</span></p>
+        </div>
+
+        <!-- Profit Rate -->
+        <div class="stat-card profit">
+            <div class="stat-icon">
+                <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <div class="stat-label">نسبة الربح</div>
+            <p class="stat-value">@Model.ProfitRate <span style="font-size: 20px;">ج</span></p>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card p-3 text-center">
-            <h6>نسبة الربح</h6>
-            <h3 class="text-danger">@Model.ProfitRate ج</h3>
+    <!-- Tables Section -->
+    <div class="tables-section">
+        <!-- Top Instructors -->
+        <div class="table-card">
+            <h5><i class="fa-solid fa-chalkboard-user"></i> المدرسين الأكثر مبيعاً</h5>
+
+            @if (Model.TopInstructors != null && Model.TopInstructors.Any())
+            {
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>المدرس</th>
+                            <th>عدد الكورسات المباعة</th>
+                            <th>إجمالي الإيرادات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var t in Model.TopInstructors)
+                        {
+                            <tr>
+                                <td>@t.InstructorName</td>
+                                <td>@t.TotalSold</td>
+                                <td>@t.Revenue ج</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <i class="fa-solid fa-inbox"></i>
+                    <p>لا توجد بيانات حالياً</p>
+                </div>
+            }
+        </div>
+
+        <!-- Top Courses -->
+        <div class="table-card">
+            <h5><i class="fa-solid fa-graduation-cap"></i> الكورسات الأكثر مبيعاً</h5>
+
+            @if (Model.TopCourses != null && Model.TopCourses.Any())
+            {
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>الكورس</th>
+                            <th>عدد الاشتراكات</th>
+                            <th>إجمالي الإيرادات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.TopCourses)
+                        {
+                            <tr>
+                                <td>@c.CourseName</td>
+                                <td>@c.TotalSold</td>
+                                <td>@c.Revenue</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <i class="fa-solid fa-inbox"></i>
+                    <p>لا توجد بيانات حالياً</p>
+                </div>
+            }
         </div>
     </div>
-
 </div>
 
-
-<!-- Top Teachers Table -->
-<div class="card p-3 mb-4">
-    <h6>👨‍🏫 المدرسين الأكثر مبيعاً</h6>
-    <div class="table-responsive">
-        <table class="table table_Edit text-center align-middle">
-            <thead>
-                <tr>
-                    <th>المدرس</th>
-                    <th>عدد الكورسات المباعة</th>
-                    <th>إجمالي الإيرادات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var t in Model.TopInstructors)
-                {
-                    <tr>
-                        <td>@t.InstructorName</td>
-                        <td>@t.TotalSold</td>
-                        <td>@t.Revenue ج</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-    </div>
-</div>
-
-<!-- Top Courses Table -->
-<div class="card p-3 mb-4">
-    <h6>📚 الكورسات الأكثر مبيعاً</h6>
-    <div class="table-responsive">
-        <table class="table table_Edit text-center align-middle">
-            <thead>
-                <tr>
-                    <th>الكورس</th>
-                    <th>عدد الاشتراكات</th>
-                    <th>إجمالي الإيرادات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var c in Model.TopCourses)
-                {
-                    <tr>
-                        <td>@c.CourseName</td>
-                        <td>@c.TotalSold</td>
-                        <td>@c.Revenue</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-
-    </div>
-</div>
-
-</div>
-
-</div>
-
-<script src="~/assets/js/dashbordadmin.js"></script>
-<script src="~/assets/js/main.js"></script>
+@section script {
+    <script>
+        // Filter buttons functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+}
