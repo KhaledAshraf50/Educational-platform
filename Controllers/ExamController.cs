@@ -57,6 +57,7 @@ namespace Luno_platform.Controllers
         public IActionResult ExamSubmitted()
         {
             return View();
+
         }
         [HttpPost]
         public IActionResult SubmitTask(SubmitTaskModel model)

@@ -10,7 +10,7 @@ namespace Luno_platform.Models
 
         public int questionID { get; set; }
         [Required]
-        public int degree { get; set; }
+        public int degree { get; set; } = 1;
 
         [Required]
         public string questionText { get; set; }

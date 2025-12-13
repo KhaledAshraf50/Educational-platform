@@ -14,6 +14,7 @@ namespace Luno_platform.Models
         public string ExamName { get; set; }
 
         public DateTime createdAT { get; set; }
+        public bool status { get; set; } = false;
 
         public int degreeExam { get; set; }
 
@@ -56,7 +57,7 @@ namespace Luno_platform.Models
 
 
 
-        public int subjectId { get; set; }
+        public int? subjectId { get; set; }
 
         [ForeignKey("subjectId")]
         public virtual Subject Subject { get; set; }
