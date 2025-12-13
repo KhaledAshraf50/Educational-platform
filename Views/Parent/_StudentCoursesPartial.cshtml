@@ -66,7 +66,10 @@
                                             </div>
                                         </div>
                                         <div class="bodyleft">
-                                            <a href="#">الدخول للكورس</a>
+                                            <form method="post" asp-action="show_details_courses" asp-controller="Homepage" style="display:inline;">
+                                                <input type="hidden" name="courseId" value="@course.CourseId" />
+                                                <button type="submit" class="btn btn-secondary"> الدخول للكوس</button>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="bodybuttom">

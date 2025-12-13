@@ -83,7 +83,7 @@
             <div class="form-row">
                 <div asp-for="Name" class="form-group">
                     <label class="form-label">الاسم</label>
-                    <input asp-for="Name" class="form-control " placeholder="أحمد عبد الناصر">
+                    <input asp-for="Name" class="form-control" placeholder="أحمد عبد الناصر">
                 </div>
                 <div asp-for="NationalId" class="form-group">
                     <label class="form-label">الرقم القومي</label>
@@ -104,7 +104,7 @@
             <button class="btn-save">حفظ التغييرات</button>
         </form>
         <!-- change password  -->
-        <form class="settings-form active" asp-action="ChangePassword" method="post">
+         <form class="settings-form" asp-action="ChangePassword" method="post">
             <input type="hidden" asp-for="ParentID" />
             <div class=" form-row">
                 <div  class="form-group">
@@ -117,8 +117,7 @@
                 </div>
             </div>
             <button class="btn btn-primary btn-save">حفظ التغييرات</button>
-        </form>
-
+        </form> 
         <div class="settings-form">
             <div class="card shadow-sm p-3 mb-4 rounded-3">
                 <h5 class="fw-bold mb-3">
@@ -189,5 +188,4 @@
             });
     </script>
         <script src="~/assets/js/Setting.js"></script>
-    
 }

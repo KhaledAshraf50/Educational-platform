@@ -118,8 +118,9 @@
     <div class="container">
         <h2>تعديل الكورس</h2>
 
-        <form asp-action="EditCourse" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="CourseId" />
+        <form asp-action="CourseDetails" method="post" enctype="multipart/form-data">
+            @* <inpt type="hidden" asp-for="courseId" /> *@
+            <input type="hidden" name="courseId" value="@Model.CourseId" />
 
             <!-- الاسم والوصف والسعر -->
             <div class="mb-3">

@@ -59,7 +59,6 @@ namespace Luno_platform.Controllers
 
 
             };
-
             return View(model);
         }
 
@@ -114,7 +113,7 @@ namespace Luno_platform.Controllers
             return View(courses);
         }
 
-        [Route("Homepage/show_details_courses/{courseid}")]
+        //[Route("Homepage/show_details_courses/{courseid}")]
         public IActionResult show_details_courses(int courseid, bool? fromTask = false)
         {
             var userid = getuserid();
