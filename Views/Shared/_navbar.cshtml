@@ -201,7 +201,8 @@
                     <div class="image_porfoile_simple">
                         @if (User.IsInRole("student"))
                         {
-                           
+                            @await Component.InvokeAsync("StudentBalance")
+
                             <div class="profile-dropdown">
                                 <img src="~/assets/imgs/user_image.png" class="profile-img" />
 
@@ -213,7 +214,6 @@
                                     <a href="/Account/Logout" class="logout-link"><i class="bi bi-box-arrow-right"></i> تسجيل الخروج</a>
                                 </div>
                             </div>
-                            @await Component.InvokeAsync("StudentBalance")
 
 
 
