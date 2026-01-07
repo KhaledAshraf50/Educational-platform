@@ -4,6 +4,7 @@ using Luno_platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Luno_platform.Migrations
 {
     [DbContext(typeof(LunoDBContext))]
-    partial class LunoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251209065635_v13")]
+    partial class v13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,9 +221,6 @@ namespace Luno_platform.Migrations
 
                     b.Property<int>("instructorID")
                         .HasColumnType("int");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
 
                     b.Property<int?>("subjectId")
                         .HasColumnType("int");
@@ -575,9 +575,6 @@ namespace Luno_platform.Migrations
 
                     b.Property<int>("instructorId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
 
                     b.HasKey("TaskID");
 

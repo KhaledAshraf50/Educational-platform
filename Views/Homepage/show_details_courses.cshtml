@@ -22,14 +22,14 @@
         }
         <!-- هيدر -->
         <div class="course-header">
-            <img src="@Url.Content(Model.Courses.Image)" alt="صورة الكورس" class="course-image" />
+            <img src="@Url.Content(Model.Courses.Course.Image)" alt="صورة الكورس" class="course-image" />
             <div class="course-info">
-                <h1 class="course-title">@Model.Courses.CourseName</h1>
+                <h1 class="course-title">@Model.Courses.Course.CourseName</h1>
                 <p class="course-teacher">
                     المدرس:
-                    <span>@Model.Courses.Instructor.User.fname @Model.Courses.Instructor.User.lastName</span>
+                    <span>@Model.Courses.Course.Instructor.User.fname @Model.Courses.Course.Instructor.User.lastName</span>
                 </p>
-                <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.Courses.price</span></p>
+                <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.Courses.Course.price</span></p>
 
                 @if (@Model.issubscrip)
                 {
@@ -61,7 +61,7 @@
         <!-- الوصف -->
         <div class="course-description">
             <h2>عن الكورس</h2>
-            <p>@Model.Courses.description</p>
+            <p>@Model.Courses.Course.description</p>
         </div>
 
         <!-- المحتوى -->
@@ -84,53 +84,53 @@
                     <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#accordionLevel1">
                         <div class="accordion-body">
 
-                            @if (Model.Courses.CourseContent != null)
+                            @if (Model.Courses.Content != null)
                             {
                                 var locked = !Model.issubscrip;
 
                                 <!-- Url1 -->
-                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url1))
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url1))
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
-                                        <p>@Model.Courses.CourseContent.nameurl1</p>
-                                        <a href="@Model.Courses.CourseContent.Url1" class="@(locked ? "locked-link" : "")">عرض</a>
+                                        <p>@Model.Courses.Content.nameurl1</p>
+                                        <a href="@Model.Courses.Content.Url1" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Url2 -->
-                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url2))
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url2))
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
-                                        <p>@Model.Courses.CourseContent.nameurl2</p>
-                                        <a href="@Model.Courses.CourseContent.Url2" class="@(locked ? "locked-link" : "")">عرض</a>
+                                        <p>@Model.Courses.Content.nameurl2</p>
+                                        <a href="@Model.Courses.Content.Url2" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Url3 -->
-                                @if (!string.IsNullOrEmpty(Model.Courses.CourseContent.Url3))
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url3))
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
-                                        <p>@Model.Courses.CourseContent.nameurl3</p>
-                                        <a href="@Model.Courses.CourseContent.Url3" class="@(locked ? "locked-link" : "")">عرض</a>
+                                        <p>@Model.Courses.Content.nameurl3</p>
+                                        <a href="@Model.Courses.Content.Url3" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Exam -->
-                                @if (Model.Courses.CourseContent.Exams != null)
+                                @if (Model.Courses.Content.Exams != null)
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
-                                        <p>@Model.Courses.CourseContent.Exams.ExamName</p>
-                                        <a href="/homepage/pageExam/@Model.Courses.CourseContent.Exams.ExamID/@Model.CourseID" 
+                                        <p>@Model.Courses.Content.Exams.ExamName</p>
+                                        <a href="/homepage/pageExam/@Model.Courses.Content.Exams.ExamID/@Model.CourseID"
                                            class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
                                 <!-- Task -->
-                                @if (Model.Courses.CourseContent.Tasks != null)
+                                @if (Model.Courses.Content.Tasks != null)
                                 {
                                     <div class="@(locked ? "desc_contentlock" : "desc_content")">
-                                        <p>@Model.Courses.CourseContent.Tasks.TaskName</p>
-                                        <a href="/homepage/pageTask/@Model.Courses.CourseContent.Tasks.TaskID/@Model.CourseID"
+                                        <p>@Model.Courses.Content.Tasks.TaskName</p>
+                                        <a href="/homepage/pageTask/@Model.Courses.Content.Tasks.TaskID/@Model.CourseID"
                                            class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }

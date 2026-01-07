@@ -5,6 +5,8 @@ namespace Luno_platform.Models
 {
     public class Tasks
     {
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TaskID { get; set; }
@@ -17,6 +19,7 @@ namespace Luno_platform.Models
 
         public int NumOfQuestions { get; set; }
 
+        public bool status { get; set; } = false;
 
         public int instructorId { get; set; }
 
@@ -31,7 +34,7 @@ namespace Luno_platform.Models
         public virtual Classes Classes { get; set; }
 
 
-
+       
         public virtual ICollection<Question> Questions { get; set; }
 
 

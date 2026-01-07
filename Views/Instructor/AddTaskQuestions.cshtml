@@ -1,4 +1,6 @@
 ﻿@model Luno_platform.Viewmodel.AddTaskQuestionVM
+
+
 @{
     Layout = "_InstructorDashboard";
 }
@@ -25,27 +27,29 @@
                        placeholder="نص السؤال" />
 
                 <input asp-for="Questions[i].ChooseA"
+                       id="chooseA-@i"
                        class="form-control mb-3"
                        placeholder="الاختيار A" />
 
                 <input asp-for="Questions[i].ChooseB"
+                       id="chooseB-@i"
                        class="form-control mb-3"
                        placeholder="الاختيار B" />
 
                 <input asp-for="Questions[i].ChooseC"
+                       id="chooseC-@i"
                        class="form-control mb-3"
                        placeholder="الاختيار C" />
 
                 <input asp-for="Questions[i].ChooseD"
+                       id="chooseD-@i"
                        class="form-control mb-3"
                        placeholder="الاختيار D" />
 
                 <select asp-for="Questions[i].CorrectAnswer"
-                        class="form-select mt-2">
-                    <option value="A">الإجابة الصحيحة: A</option>
-                    <option value="B">الإجابة الصحيحة: B</option>
-                    <option value="C">الإجابة الصحيحة: C</option>
-                    <option value="D">الإجابة الصحيحة: D</option>
+                        class="form-select mt-2 correct-answer"
+                        data-index="@i">
+                    <option value="">اختر الإجابة الصحيحة</option>
                 </select>
 
             </div>
@@ -136,3 +140,27 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script>
+    document.addEventListener("input", function (e) {
+        if (e.target.matches(".form-control")) {
+
+            let index = e.target.id.split("-")[1];
+
+            let a = document.getElementById(`chooseA-${index}`).value;
+            let b = document.getElementById(`chooseB-${index}`).value;
+            let c = document.getElementById(`chooseC-${index}`).value;
+            let d = document.getElementById(`chooseD-${index}`).value;
+
+            let select = document.querySelector(`select[data-index='${index}']`);
+
+            select.innerHTML = `
+                <option value="">اختر الإجابة الصحيحة</option>
+                <option value="${a}">${a}</option>
+                <option value="${b}">${b}</option>
+                <option value="${c}">${c}</option>
+                <option value="${d}">${d}</option>
+            `;
+        }
+    });
+</script>

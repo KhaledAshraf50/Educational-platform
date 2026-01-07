@@ -354,6 +354,23 @@
                 </div>
                                 }
             </div>
+            <form asp-action="AddClassToInstructor" method="post">
+
+                <input type="hidden" asp-for="InstructorID" />
+
+                <div class="form-group">
+                    <label>إضافة صف جديد</label>
+
+                    <select class="form-control"
+                            asp-for="SelectedClassID"
+                            asp-items="@(new SelectList(Model.AllClasses, "ClassID", "ClassName"))">
+                        <option value="">اختر الصف</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-success">إضافة</button>
+            </form>
+
         </div>
 
         <!-- Courses Section -->
