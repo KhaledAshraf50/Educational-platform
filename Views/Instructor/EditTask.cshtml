@@ -4,7 +4,7 @@
 }
 <div class="container view-questions-page mt-5">
 
-    <h2 class="page-title">📝 تعديل أسئلة الواجب</h2>
+    <h2 class="page-title"> تعديل أسئلة الواجب</h2>
 
     <form asp-action="EditTask" method="post">
         <input type="hidden" asp-for="TaskId" />
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="correct-answer">
-                    <label>✅ الإجابة الصحيحة</label>
+                    <label> الإجابة الصحيحة</label>
 
                     <select asp-for="Questions[i].CorrectAnswer" class="form-select">
                         <option value="">اختر الإجابة</option>
@@ -77,7 +77,7 @@
         }
 
         <div class="text-center mt-4">
-            <button type="submit" class="btn-back w-100">💾 حفظ التعديلات</button>
+            <button type="submit" class="btn-back w-100"> حفظ التعديلات</button>
         </div>
     </form>
 

@@ -338,7 +338,7 @@
                                 عدد الكورسات: <span class="course-count fw-semibold text-dark">@cls.Courses.Count</span>
                             </p>
                             <div class="d-flex justify-content-center gap-2">
-                            @*     <a class="btn btn-orange btn-sm"
+                                @*     <a class="btn btn-orange btn-sm"
                                    href="@Url.Action("ShowCoursesTeacher", "Instructor",
                                                                        new { structorid = Model.InstructorID, classId = cls.ClassID })">
                                 تصفح الكورسات
@@ -346,13 +346,13 @@
                                 <form method="post" asp-action="ShowCoursesTeacher" asp-controller="Instructor" style="display:inline;">
                                     <input type="hidden" name="structorid" value="@Model.InstructorID" />
                                     <input type="hidden" name="classId" value="@cls.ClassID" />
-                                    <button type="submit" class="btn btn-secondary"> الدخول للكوس</button>
+                                    <button type="submit" style="background-color:#F2994A" class="btn btn-secondary"> الدخول للكوس</button>
                                 </form>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action("AddCourse", "Instructor", new { classId = cls.ClassID })">إضافة كورس للصف</a>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("AddCourse", "Instructor", new { classId = cls.ClassID })">إضافة كورس للصف</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                                }
+                }
             </div>
             <form asp-action="AddClassToInstructor" method="post">
 

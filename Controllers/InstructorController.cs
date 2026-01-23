@@ -2,8 +2,6 @@
 using Luno_platform.Models;
 using Luno_platform.Service;
 using Luno_platform.Viewmodel;
-
-
 //using Luno_platform.Viewmodel;
 using Luno_platform.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -349,46 +347,46 @@ namespace Luno_platform.Controllers
         //}
 
 
-        public IActionResult Instructorinvoices(string searchTerm = "", int page = 1)
-        {
-            int pageSize = 10;
-            int instructorId = GetInstructorIdFromUser();
+        //public IActionResult Instructorinvoices(string searchTerm = "", int page = 1)
+        //{
+        //    int pageSize = 10;
+        //    int instructorId = GetInstructorIdFromUser();
 
-            var invoicesQuery = _context.Payments
-                .Include(p => p.Courses)
-                .Where(p => p.Courses.instructorID == instructorId);
+        //    var invoicesQuery = _context.Payments
+        //        .Include(p => p.Courses)
+        //        .Where(p => p.Courses.instructorID == instructorId);
 
-            // فلترة حسب السيرش
-            if (!string.IsNullOrEmpty(searchTerm))
-            {
-                invoicesQuery = invoicesQuery
-                    .Where(p => p.Courses.CourseName.Contains(searchTerm)
-                             || p.ID.ToString().Contains(searchTerm));
-            }
+        //    // فلترة حسب السيرش
+        //    if (!string.IsNullOrEmpty(searchTerm))
+        //    {
+        //        invoicesQuery = invoicesQuery
+        //            .Where(p => p.Courses.CourseName.Contains(searchTerm)
+        //                     || p.ID.ToString().Contains(searchTerm));
+        //    }
 
-            invoicesQuery = invoicesQuery.OrderByDescending(p => p.date);
+        //    invoicesQuery = invoicesQuery.OrderByDescending(p => p.date);
 
-            var paginated = invoicesQuery
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(p => new InvoiceVM
-                {
-                    InvoiceId = p.ID,
-                    CourseName = p.Courses.CourseName,
-                    Date = p.date,
-                    Status = p.status,
-                    Amount = p.amountPayment
-                })
-                .ToList();
+        //    var paginated = invoicesQuery
+        //        .Skip((page - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .Select(p => new InvoiceVM
+        //        {
+        //            InvoiceId = p.ID,
+        //            CourseName = p.Courses.CourseName,
+        //            Date = p.date,
+        //            Status = p.status,
+        //            Amount = p.amountPayment
+        //        })
+        //        .ToList();
 
-            int totalRecords = invoicesQuery.Count();
+        //    int totalRecords = invoicesQuery.Count();
 
-            ViewBag.CurrentPage = page;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
-            ViewBag.SearchTerm = searchTerm;
+        //    ViewBag.CurrentPage = page;
+        //    ViewBag.TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+        //    ViewBag.SearchTerm = searchTerm;
 
-            return View(paginated);
-        }
+        //    return View(paginated);
+        //}
 
 
 
