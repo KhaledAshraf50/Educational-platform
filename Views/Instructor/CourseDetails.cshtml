@@ -1,322 +1,172 @@
-﻿@model Luno_platform.Viewmodel.CourseFullInfoVM
+﻿@using Luno_platform.Viewmodel
+@model detailscourse_viewmodel
 
 @{
-    Layout = "_InstructorDashboard";
+    Layout = "~/Views/Shared/_navbar.cshtml";
 }
 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
-
-<style>
-    :root {
-        --primary-color: #092C4C;
-        --secondary-color: #F2994A;
-        --success-color: #27ae60;
-        --light-bg: #f8fafc;
-        --card-bg: #ffffff;
-    }
-
-    body {
-        background-color: var(--light-bg);
-    }
-
-    .course-details {
-        padding: 40px 20px;
-        direction: rtl;
-    }
-
-    .sidebar:hover ~ .course-details {
-        margin-right: 220px;
-    }
-
-    .course-header {
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
-        background: var(--card-bg);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        margin-bottom: 30px;
-    }
-
-    .course-image {
-        width: 300px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .course-info {
-        flex: 1;
-    }
-
-    .course-title {
-        color: var(--primary-color);
-        font-weight: bold;
-        font-size: 28px;
-        margin-bottom: 15px;
-    }
-
-    .course-teacher, .course-price {
-        color: #666;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-        .course-price span, .course-teacher span {
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        .course-price i {
-            color: var(--secondary-color);
-        }
-
-    .btn-primary {
-        background-color: var(--primary-color);
-        border-color: var(--primary-color);
-        color: white;
-        font-weight: 600;
-        padding: 12px 30px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        margin-top: 15px;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-        .btn-primary:hover {
-            background-color: #0a3d5c;
-            border-color: #0a3d5c;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(9, 44, 76, 0.3);
-        }
-
-    .course-description, .course_content {
-        background: var(--card-bg);
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        margin-bottom: 30px;
-    }
-
-        .course-description h2, .course_content h1 {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 24px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .course-description p {
-            color: #666;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-    .accordion-item {
-        background: var(--card-bg);
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        overflow: hidden;
-    }
-
-    .accordion-button {
-        background-color: var(--card-bg);
-        color: var(--primary-color);
-        font-weight: 600;
-        padding: 18px 20px;
-        font-size: 16px;
-    }
-
-        .accordion-button:not(.collapsed) {
-            background-color: rgba(242, 153, 74, 0.1);
-            color: var(--primary-color);
-        }
-
-        .accordion-button:focus {
-            box-shadow: none;
-            border-color: var(--secondary-color);
-        }
-
-    .accordion-body {
-        padding: 20px;
-    }
-
-        .accordion-body h5 {
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-    .d-flex.justify-content-between {
-        background-color: #f8f9fb;
-        padding: 15px 20px;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        transition: all 0.3s ease;
-    }
-
-        .d-flex.justify-content-between:hover {
-            background-color: rgba(242, 153, 74, 0.05);
-            border-color: var(--secondary-color);
-        }
-
-        .d-flex.justify-content-between span {
-            color: #333;
-            font-weight: 500;
-        }
-
-        .d-flex.justify-content-between a {
-            color: var(--primary-color);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-            .d-flex.justify-content-between a:hover {
-                color: var(--secondary-color);
-            }
-
-    .text-muted {
-        color: #999 !important;
-        font-style: italic;
-    }
-
-    hr {
-        border-color: #e0e0e0;
-        margin: 20px 0;
-    }
-</style>
-
-<section class="course-details mt-5">
+<section class="course-details" style="margin-top: 100px;">
     <div class="container">
 
-        <!-- Course Header -->
-        <div class="course-header d-flex">
-            <img src="@Url.Content(Model.Course.Image)" alt="Course Image" class="course-image" />
-            <div class="course-info ms-4">
-                <h1 class="course-title">@Model.Course.CourseName</h1>
-
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div class="alert alert-warning" style="padding:12px; font-size:16px;">
+                @TempData["AlertMessage"]
+            </div>
+        }
+        <!-- هيدر -->
+        <div class="course-header">
+            <img src="@Url.Content(Model.Courses.Course.Image)" alt="صورة الكورس" class="course-image" />
+            <div class="course-info">
+                <h1 class="course-title">@Model.Courses.Course.CourseName</h1>
                 <p class="course-teacher">
-                    أنت المدرّس الأساسي للكورس
+                    المدرس:
+                    <span>@Model.Courses.Course.Instructor.User.fname @Model.Courses.Course.Instructor.User.lastName</span>
                 </p>
-
-                <p class="course-price">
-                    <i class="fa-solid fa-tag"></i> سعر الكورس:
-                    <span>@Model.Course.price</span>
-                </p>
-
-                <form method="post" asp-action="EditCourse" asp-controller="Instructor" style="display:inline;">
-                    <input type="hidden" name="courseId" value="@Model.Course.CourseId" />
+                <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.Courses.Course.price</span></p>
+                @* <form asp-action="EditCourse" method="get" asp-controller="Instructor" style="display:inline;">
+                    <input type="hidden" name="courseId" value="@Model.Courses.Course.CourseId" />
                     <button type="submit" class="btn btn-warning">تعديل</button>
-                </form>
+                </form> *@
+                @if (@Model.issubscrip)
+                {
+                    <button class="enroll-btn btn" disabled>
+                        أنت مشترك بالفعل
+                    </button>
+                }
+                else
+                {
+                    @* <form asp-controller="Payment" asp-action="Pay" method="post">
+                        <input type="hidden" name="courseId" value="@Model.Courses.CourseId" />
+                        <input type="hidden" name="amount" value="@Model.Courses.price" />
+                        <button type="submit" class="enroll-btn btn">
+                            اشترك الآن
+                        </button>
+                    </form> *@
+                    @if (User.IsInRole("student"))
+                    {
+                        <a asp-controller="Payment" asp-action="SelectPaymentMethod" asp-route-courseId="@Model.CourseID" class="btn btn-primary">
+                            اشترك الآن
+                        </a>
+                    }
+
+                }
 
             </div>
         </div>
 
-        <!-- Description -->
+        <!-- الوصف -->
         <div class="course-description">
-            <h2>وصف الكورس</h2>
-            <p>@Model.Course.description</p>
+            <h2>عن الكورس</h2>
+            <p>@Model.Courses.Course.description</p>
         </div>
 
-        <!-- Content -->
+        <!-- المحتوى -->
         <div class="course_content">
-            <h1 class="title mb-4">محتوى الكورس</h1>
+            <h1 class="title mb-4">تفاصيل الكورس</h1>
 
-            <div class="accordion" id="accordionContent">
+            <div class="accordion" id="accordionLevel1">
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse"
                                 data-bs-target="#collapseContent"
-                                aria-expanded="false">
-                            محتوى الفيديوهات والملفات
+                                aria-expanded="false" aria-controls="collapseContent">
+                            المحتوى
                         </button>
                     </h2>
 
-                    <div id="collapseContent" class="accordion-collapse collapse">
+                    <!-- محتوى واحد فقط -->
+                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#accordionLevel1">
                         <div class="accordion-body">
 
-                            @if (Model.Course.CourseContent != null)
+                            @if (Model.Courses.Content != null)
                             {
-                                <h5>الفيديوهات / الملفات</h5>
+                                int.TryParse(User.FindFirst("UserId")?.Value, out int currentUserId);
 
-                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url1))
+
+                                bool isAdmin = User.IsInRole("admin");
+                                bool isInstructor = User.IsInRole("instructor") && Model.Courses.Course.Instructor.User.Id == currentUserId;
+                                bool isSubscribed = Model.issubscrip;
+                                    
+                                bool locked = !(isAdmin || isInstructor || isSubscribed);
+
+                                <!-- Url1 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url1))
                                 {
-                                    <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.Course.CourseContent.nameurl1</span>
-                                        <a href="@Model.Course.CourseContent.Url1" target="_blank">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.Content.nameurl1</p>
+                                        <a href="@Model.Courses.Content.Url1" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url2))
+                                <!-- Url2 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url2))
                                 {
-                                    <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.Course.CourseContent.nameurl2</span>
-                                        <a href="@Model.Course.CourseContent.Url2" target="_blank">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.Content.nameurl2</p>
+                                        <a href="@Model.Courses.Content.Url2" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url3))
+                                <!-- Url3 -->
+                                @if (!string.IsNullOrEmpty(Model.Courses.Content.Url3))
                                 {
-                                    <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.Course.CourseContent.nameurl3</span>
-                                        <a href="@Model.Course.CourseContent.Url3" target="_blank">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.Content.nameurl3</p>
+                                        <a href="@Model.Courses.Content.Url3" class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-
-                                <!-- EXAM -->
-                                <hr />
-                                <h5>الامتحان</h5>
-
-                                @if (Model.Course.CourseContent.Exams != null)
+                                <!-- Exam -->
+                                @if (Model.Courses.Content.Exams != null)
                                 {
-                                    <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.Course.CourseContent.Exams.ExamName</span>
-                                        <a href="/Instructor/ViewExamQuestions/@Model.Course.CourseContent.Exams.ExamID">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.Content.Exams.ExamName</p>
+                                        <a href="/homepage/pageExam/@Model.Courses.Content.Exams.ExamID/@Model.CourseID"
+                                           class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
                                 }
 
-                                else
+                                <!-- Task -->
+                                @if (Model.Courses.Content.Tasks != null)
                                 {
-                                    <p class="text-muted">لا يوجد امتحان لهذا الكورس</p>
-                                }
-
-                                <!-- TASK -->
-                                <hr />
-                                <h5>الواجب</h5>
-
-                                @if (Model.Course.CourseContent.Tasks != null)
-                                {
-                                    <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.Course.CourseContent.Tasks.TaskName</span>
-                                        <a href="/Instructor/ViewTaskQuestions/@Model.Course.CourseContent.Tasks.TaskID">عرض</a>
+                                    <div class="@(locked ? "desc_contentlock" : "desc_content")">
+                                        <p>@Model.Courses.Content.Tasks.TaskName</p>
+                                        <a href="/homepage/pageTask/@Model.Courses.Content.Tasks.TaskID/@Model.CourseID"
+                                           class="@(locked ? "locked-link" : "")">عرض</a>
                                     </div>
-                                }
-                                else
-                                {
-                                    <p class="text-muted">لا يوجد واجب لهذا الكورس</p>
                                 }
                             }
                             else
                             {
-                                <p>لا يوجد محتوى بعد لهذا الكورس.</p>
+                                <p>لا يوجد محتوى لهذا الكورس حتى الآن.</p>
                             }
 
                         </div>
                     </div>
+
                 </div>
 
             </div>
+
         </div>
 
     </div>
 </section>
+
+<script>
+    // مسح الرسالة
+    setTimeout(() => {
+        document.querySelectorAll(".alert").forEach(a => a.remove());
+    }, 4000);
+
+    // منع انتقال اللينكات المقفولة
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("locked-link")) {
+            e.preventDefault();
+        }
+    });
+</script>

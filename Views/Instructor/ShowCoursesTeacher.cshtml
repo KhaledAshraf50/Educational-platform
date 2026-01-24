@@ -207,9 +207,11 @@
                             </div>
                             <div class="bodyleft">
                                 @* <a href="/Homepage/show_details_courses/@course.CourseId" class="enroll-btn btn"> الدخول للكوس</a> *@
-                                <form method="post" asp-action="show_details_courses" asp-controller="Homepage" style="display:inline;">
+                                <form asp-action="show_details_courses" asp-controller="Homepage" method="post" style="display:inline;">
                                     <input type="hidden" name="courseId" value="@course.CourseId" />
-                                    <button type="submit" class="btn btn-secondary"> الدخول للكوس</button>
+                                    <button type="submit" class="btn btn-sm btn-secondary">
+                                        الدخول الكورس 
+                                    </button>
                                 </form>
                                 @* <form asp-controller="Payment" asp-action="Pay" method="post">
                             <input type="hidden" name="courseId" value="@course.CourseId" />

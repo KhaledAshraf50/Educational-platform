@@ -6,11 +6,6 @@
 }
 
 <link rel="stylesheet" href="~/assets/css/details_courses.css" />
-
-
-
-
-
 <section class="course-details" style="margin-top: 100px;">
     <div class="container">
 
@@ -30,7 +25,13 @@
                     <span>@Model.Courses.Course.Instructor.User.fname @Model.Courses.Course.Instructor.User.lastName</span>
                 </p>
                 <p class="course-price"><i class="fa-solid fa-tag"></i> السعر: <span>@Model.Courses.Course.price</span></p>
-
+                @if (User.IsInRole("instructor"))
+                {
+                    <form asp-action="EditCourse" method="get" asp-controller="Instructor" style="display:inline;">
+                        <input type="hidden" name="courseId" value="@Model.Courses.Course.CourseId" />
+                        <button type="submit" class="btn btn-warning">تعديل</button>
+                    </form>
+                }
                 @if (@Model.issubscrip)
                 {
                     <button class="enroll-btn btn" disabled>
@@ -86,8 +87,13 @@
 
                             @if (Model.Courses.Content != null)
                             {
-                                var locked = !Model.issubscrip;
+                                int.TryParse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value, out int currentUserId);
 
+                                bool isAdmin = User.IsInRole("admin");
+                                bool isInstructor = Model.Courses.Course.Instructor.User.Id == currentUserId;
+                                bool isSubscribed = Model.issubscrip;
+
+                                bool locked = !(isAdmin || isInstructor || isSubscribed);
                                 <!-- Url1 -->
                                 @if (!string.IsNullOrEmpty(Model.Courses.Content.Url1))
                                 {

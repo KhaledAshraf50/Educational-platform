@@ -26,16 +26,30 @@ namespace Luno_platform.Controllers
         private I_instructor_services _instructorService;
         private LunoDBContext _context;
         private readonly UserManager<Users> _userManager;
+        private readonly IstudentService _istudentService;
+
         public InstructorController(I_instructor_services instructorService, Icourses_service courseService, LunoDBContext context, IWebHostEnvironment env,
-        UserManager<Users> userManager)
+        UserManager<Users> userManager, IstudentService i_Instructor_Services)
         {
             _instructorService = instructorService;
             _icourses_Service = courseService;
             _context = context;
             _env = env;
             _userManager = userManager;
+            _istudentService = i_Instructor_Services;
         }
 
+        public int getuserid()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return -1;
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            return userId;
+        }
         public int GetInstructorIdFromUser()
         {
             // 1. جلب UserId من Login
@@ -391,8 +405,8 @@ namespace Luno_platform.Controllers
 
 
         //[Route("Instructor/CourseDetails/")]
-        
-        public IActionResult CourseDetails(int courseId)
+
+        public IActionResult CourseDetails(int courseId, bool? fromTask = false)
         {
             var course = _icourses_Service.Infocourse(courseId);
 
@@ -400,13 +414,29 @@ namespace Luno_platform.Controllers
             {
                 return NotFound();
             }
+            var userid = getuserid();
 
-            return View("CourseDetails", course);
+            var studentid = _istudentService.getStudentId(userid);
+
+            var model = new detailscourse_viewmodel
+            {
+                Courses = course,
+                issubscrip = _istudentService.isSubdcrip(studentid, courseId),
+                CourseID = courseId
+            };
+            if (fromTask == true)
+            {
+                TempData["AlertMessage"] = TempData["AlertMessage"]; // حافظ على الرسالة
+            }
+
+            // عرض الرسالة فقط لو جاي من pageTask
+
+            return View("CourseDetails", model);
         }
 
 
         //[Route("Instructor/EditCourse/{courseId}")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult EditCourse(int courseId)
         {
             var course = _icourses_Service.Infocourse(courseId);
@@ -440,11 +470,17 @@ namespace Luno_platform.Controllers
             return View(vm);
         }
         [HttpPost]
-        [Route("Instructor/EditCourse/{courseId}")]
+        [ValidateAntiForgeryToken]
         public IActionResult EditCourse(EditCourseVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
+
+            if (string.IsNullOrEmpty(model.CourseName))
+            {
+                ModelState.AddModelError("CourseName", "اسم الكورس مطلوب.");
+                return View(model);
+            }
 
             var course = _context.Courses
                 .Include(c => c.CourseContent)
@@ -453,37 +489,29 @@ namespace Luno_platform.Controllers
                 .ThenInclude(cc => cc.Tasks)
                 .FirstOrDefault(c => c.CourseId == model.CourseId);
 
-            if (course == null)
-                return NotFound();
+            if (course == null) return NotFound();
 
-            // تحديث بيانات الكورس الأساسية
             course.CourseName = model.CourseName;
             course.description = model.Description;
             course.price = model.Price;
 
-            // التعامل مع الصورة الجديدة (رفع ملف)
-            if (Request.Form.Files.Count > 0)
+            var file = Request.Form.Files["ImageFile"];
+            if (file != null && file.Length > 0)
             {
-                var file = Request.Form.Files[0];
                 var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                 var path = Path.Combine(_env.WebRootPath, "images/courses", fileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                    file.CopyTo(stream);
-
+                using var stream = new FileStream(path, FileMode.Create);
+                file.CopyTo(stream);
                 course.Image = "/images/courses/" + fileName;
             }
-            // لو مش رفع صورة، يفضل الصورة القديمة موجودة بدون تغيير
 
-            // تحديث محتوى الكورس
+            // تحديث المحتوى
             if (course.CourseContent != null)
             {
                 course.CourseContent.nameurl1 = model.NameUrl1;
                 course.CourseContent.Url1 = model.Url1;
-
                 course.CourseContent.nameurl2 = model.NameUrl2;
                 course.CourseContent.Url2 = model.Url2;
-
                 course.CourseContent.nameurl3 = model.NameUrl3;
                 course.CourseContent.Url3 = model.Url3;
 
@@ -498,6 +526,7 @@ namespace Luno_platform.Controllers
 
             return RedirectToAction("CourseDetails", new { courseId = model.CourseId });
         }
+
 
         //[Route("instructor/ShowCoursesTeacher/{structorid}/{classId}")]
         public IActionResult ShowCoursesTeacher(int structorid, int classId)
