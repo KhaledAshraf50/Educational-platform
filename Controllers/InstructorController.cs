@@ -1386,25 +1386,22 @@ namespace Luno_platform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteTaskConfirmed(int id)
+        public IActionResult DeleteTaskConfirmed(int taskID)
         {
             var task = _context.Tasks
                 .Include(t => t.Questions)
-                .FirstOrDefault(t => t.TaskID == id);
+                .FirstOrDefault(t => t.TaskID == taskID);
 
             if (task == null)
                 return NotFound();
 
-            // حذف الاسئلة الاول
-            _context.Questions.RemoveRange(task.Questions);
-
-            // حذف التاسك نفسه
             _context.Tasks.Remove(task);
-
             _context.SaveChanges();
 
-            return RedirectToAction("Dashboard");
+            TempData["Success"] = "تم حذف الواجب بنجاح";
+            return RedirectToAction("Index");
         }
+
 
 
     }
