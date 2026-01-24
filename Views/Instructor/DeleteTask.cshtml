@@ -1,0 +1,125 @@
+﻿@model Luno_platform.Models.Tasks
+
+@{
+    ViewData["Title"] = "حذف الواجب";
+    Layout = "_InstructorDashboard";
+}
+
+<style>
+    .delete-wrapper {
+        max-width: 520px;
+        margin: 60px auto;
+    }
+
+    .delete-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        text-align: center;
+    }
+
+    .delete-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(242,153,74,.15);
+        color: var(--secondary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+        margin: 0 auto 16px;
+    }
+
+    .delete-card h4 {
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+    }
+
+    .delete-card p {
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 22px;
+    }
+
+    .task-info {
+        background: var(--light-bg);
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 24px;
+        text-align: right;
+        font-size: 14px;
+    }
+
+        .task-info span {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+    .delete-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .btn-cancel {
+        background: #eef1f5;
+        border-radius: 10px;
+        padding: 10px 22px;
+        border: none;
+        font-weight: 600;
+    }
+
+    .btn-delete {
+        background: var(--secondary-color);
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 22px;
+        border: none;
+        font-weight: 600;
+    }
+
+        .btn-delete:hover {
+            opacity: .9;
+        }
+</style>
+
+<div class="delete-wrapper">
+
+    <div class="delete-card">
+
+        <div class="delete-icon">
+            🗑
+        </div>
+
+        <h4>حذف الواجب</h4>
+        <p>
+            هل أنت متأكد أنك تريد حذف هذا الواجب؟
+            <br />
+            سيتم حذف جميع الأسئلة المرتبطة به.
+        </p>
+
+        <div class="task-info">
+            <div>اسم الواجب: <span>@Model.TaskName</span></div>
+            <div>عدد الأسئلة: <span>@Model.Questions?.Count()</span></div>
+        </div>
+
+        <form asp-action="DeleteTaskConfirmed" method="post">
+            <input type="hidden" asp-for="TaskID" />
+
+            <div class="delete-actions">
+                <a asp-action="Index" class="btn-cancel">
+                    إلغاء
+                </a>
+
+                <button type="submit" class="btn-delete">
+                    تأكيد الحذف
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

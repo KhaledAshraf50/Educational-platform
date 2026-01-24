@@ -1,4 +1,4 @@
-﻿@model Courses
+﻿@model Luno_platform.Viewmodel.CourseFullInfoVM
 
 @{
     Layout = "_InstructorDashboard";
@@ -198,9 +198,9 @@
 
         <!-- Course Header -->
         <div class="course-header d-flex">
-            <img src="@Url.Content(Model.Image)" alt="Course Image" class="course-image" />
+            <img src="@Url.Content(Model.Course.Image)" alt="Course Image" class="course-image" />
             <div class="course-info ms-4">
-                <h1 class="course-title">@Model.CourseName</h1>
+                <h1 class="course-title">@Model.Course.CourseName</h1>
 
                 <p class="course-teacher">
                     أنت المدرّس الأساسي للكورس
@@ -208,11 +208,11 @@
 
                 <p class="course-price">
                     <i class="fa-solid fa-tag"></i> سعر الكورس:
-                    <span>@Model.price</span>
+                    <span>@Model.Course.price</span>
                 </p>
 
                 <form method="post" asp-action="EditCourse" asp-controller="Instructor" style="display:inline;">
-                    <input type="hidden" name="courseId" value="@Model.CourseId" />
+                    <input type="hidden" name="courseId" value="@Model.Course.CourseId" />
                     <button type="submit" class="btn btn-warning">تعديل</button>
                 </form>
 
@@ -222,7 +222,7 @@
         <!-- Description -->
         <div class="course-description">
             <h2>وصف الكورس</h2>
-            <p>@Model.description</p>
+            <p>@Model.Course.description</p>
         </div>
 
         <!-- Content -->
@@ -244,31 +244,31 @@
                     <div id="collapseContent" class="accordion-collapse collapse">
                         <div class="accordion-body">
 
-                            @if (Model.CourseContent != null)
+                            @if (Model.Course.CourseContent != null)
                             {
                                 <h5>الفيديوهات / الملفات</h5>
 
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url1))
+                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url1))
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.CourseContent.nameurl1</span>
-                                        <a href="@Model.CourseContent.Url1" target="_blank">عرض</a>
+                                        <span>@Model.Course.CourseContent.nameurl1</span>
+                                        <a href="@Model.Course.CourseContent.Url1" target="_blank">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url2))
+                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url2))
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.CourseContent.nameurl2</span>
-                                        <a href="@Model.CourseContent.Url2" target="_blank">عرض</a>
+                                        <span>@Model.Course.CourseContent.nameurl2</span>
+                                        <a href="@Model.Course.CourseContent.Url2" target="_blank">عرض</a>
                                     </div>
                                 }
 
-                                @if (!string.IsNullOrEmpty(Model.CourseContent.Url3))
+                                @if (!string.IsNullOrEmpty(Model.Course.CourseContent.Url3))
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.CourseContent.nameurl3</span>
-                                        <a href="@Model.CourseContent.Url3" target="_blank">عرض</a>
+                                        <span>@Model.Course.CourseContent.nameurl3</span>
+                                        <a href="@Model.Course.CourseContent.Url3" target="_blank">عرض</a>
                                     </div>
                                 }
 
@@ -277,11 +277,11 @@
                                 <hr />
                                 <h5>الامتحان</h5>
 
-                                @if (Model.CourseContent.Exams != null)
+                                @if (Model.Course.CourseContent.Exams != null)
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.CourseContent.Exams.ExamName</span>
-                                        <a href="/Instructor/ViewExamQuestions/@Model.CourseContent.Exams.ExamID">عرض</a>
+                                        <span>@Model.Course.CourseContent.Exams.ExamName</span>
+                                        <a href="/Instructor/ViewExamQuestions/@Model.Course.CourseContent.Exams.ExamID">عرض</a>
                                     </div>
                                 }
 
@@ -294,11 +294,11 @@
                                 <hr />
                                 <h5>الواجب</h5>
 
-                                @if (Model.CourseContent.Tasks != null)
+                                @if (Model.Course.CourseContent.Tasks != null)
                                 {
                                     <div class="d-flex justify-content-between border p-2 my-2">
-                                        <span>@Model.CourseContent.Tasks.TaskName</span>
-                                        <a href="/Instructor/ViewTaskQuestions/@Model.CourseContent.Tasks.TaskID">عرض</a>
+                                        <span>@Model.Course.CourseContent.Tasks.TaskName</span>
+                                        <a href="/Instructor/ViewTaskQuestions/@Model.Course.CourseContent.Tasks.TaskID">عرض</a>
                                     </div>
                                 }
                                 else

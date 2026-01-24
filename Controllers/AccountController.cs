@@ -82,7 +82,7 @@ namespace Luno_platform.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("", "Email not found");
+                ModelState.AddModelError("", "Email not found or nvalid password");
                 return View(model);
             }
             if (user.status == "Pending")
@@ -101,7 +101,7 @@ namespace Luno_platform.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", "Invalid password");
+                ModelState.AddModelError("", "Email not found or nvalid password");
                 return View(model);
             }
           
@@ -297,49 +297,49 @@ CreateBaseUser(Register_User_Viewmode model)
 
         //_____________
 
-        [HttpGet]
-        public IActionResult RegisterAdmin()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult RegisterAdmin()
+        //{
+        //    return View();
+        //}
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterAdmin(Register_User_Viewmode model)
-        {
-            model.Role = "admin";
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> RegisterAdmin(Register_User_Viewmode model)
+        //{
+        //    model.Role = "admin";
 
-            // تحقق من باسورد الأدمن
-            if (model.Passwordregiester != "2025")
-            {
-                ModelState.AddModelError("Passwordregiester", "كلمة السر الخاصة بالأدمن غير صحيحة");
-                return View(model);
-            }
+        //    // تحقق من باسورد الأدمن
+        //    if (model.Passwordregiester != "2025")
+        //    {
+        //        ModelState.AddModelError("Passwordregiester", "كلمة السر الخاصة بالأدمن غير صحيحة");
+        //        return View(model);
+        //    }
 
-            if (!ModelState.IsValid)
-                return View(model);
+        //    if (!ModelState.IsValid)
+        //        return View(model);
 
-            var (success, user, errors) = await CreateBaseUser(model);
+        //    var (success, user, errors) = await CreateBaseUser(model);
 
-            if (!success)
-            {
-                foreach (var err in errors)
-                    ModelState.AddModelError("", err.Description);
+        //    if (!success)
+        //    {
+        //        foreach (var err in errors)
+        //            ModelState.AddModelError("", err.Description);
 
-                return View(model);
-            }
+        //        return View(model);
+        //    }
 
-            var admin = new Admin
-            {
-                UserId = user.Id
-            };
+        //    var admin = new Admin
+        //    {
+        //        UserId = user.Id
+        //    };
 
-            _context.Admins.Add(admin);
-            await _context.SaveChangesAsync();
+        //    _context.Admins.Add(admin);
+        //    await _context.SaveChangesAsync();
 
-            return RedirectToAction("Login", "Account");
-        }
+        //    return RedirectToAction("Login", "Account");
+        //}
 
 
     }
