@@ -81,7 +81,6 @@
     /* ===== PAGE BASE ===== */
     .content {
         padding: var(--spacing-lg);
-        background: var(--grey-5);
         min-height: 100vh;
     }
 
@@ -429,7 +428,7 @@
         font-weight: 500;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /*  RESPONSIVE  */
     @@media (max-width: 768px) {
         .content
 
@@ -451,19 +450,35 @@
         font-size: var(--font-size-medium);
     }
 
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
     .data-table {
-        font-size: 12px;
-    }
+        font-size: 8px;
+            /* min-width: 720px; /* يمنع الجدول يتهرس */ */
+        }
+
 
         .data-table thead th,
         .data-table tbody td {
-            padding: 12px 8px;
-        }
+                white-space: nowrap;
+                font-size: 12px;
+            }
 
-    .action-btn {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
+            .data-table td:last-child {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                align-items: flex-start;
+            }
+
+        .action-btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 13px;
+            padding: 6px 10px;
+        }
 
     }
 
@@ -507,9 +522,7 @@
         <!-- OVERVIEW CARDS -->
         <div class="overview-grid">
             <div class="overview-card">
-                <div class="icon primary">
                     <i class="bi bi-journal-text"></i>
-                </div>
                 <div class="content-info">
                     <h6>إجمالي الواجبات</h6>
                     <h3>@Model.TotalAssignments</h3>
@@ -517,9 +530,7 @@
             </div>
 
             <div class="overview-card">
-                <div class="icon secondary">
                     <i class="bi bi-file-earmark-text"></i>
-                </div>
                 <div class="content-info">
                     <h6>إجمالي الامتحانات</h6>
                     <h3>@Model.TotalExams</h3>
@@ -527,9 +538,7 @@
             </div>
 
             <div class="overview-card">
-                <div class="icon success">
                     <i class="bi bi-person-check"></i>
-                </div>
                 <div class="content-info">
                     <h6>تسليم الواجبات</h6>
                     <h3>@Model.StudentsSubmitted / @Model.StudentsTotalAssignments</h3>
@@ -537,9 +546,7 @@
             </div>
 
             <div class="overview-card">
-                <div class="icon info">
                     <i class="bi bi-clock-history"></i>
-                </div>
                 <div class="content-info">
                     <h6>أداء الامتحانات</h6>
                     <h3>@Model.StudentsTakenExams / @Model.StudentsTotalExams</h3>
