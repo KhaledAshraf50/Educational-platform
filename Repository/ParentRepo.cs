@@ -69,18 +69,23 @@ namespace Luno_platform.Repository
         }
         public StudentProgressVM GetStudentProgress(int studentId)
         {
-            // 1- كل الامتحانات اللي الطالب دخلها
+            // ================== 1️⃣ EXAMS ==================
+
+            // كل الامتحانات اللي الطالب دخلها
             var studentExamStats = _Context.StudentStatistics
                                            .Where(s => s.StudentID == studentId && s.ExamId != null)
                                            .ToList();
 
-            // مجموع درجات الطالب
+            // مجموع درجات الطالب في الامتحانات
             double totalStudentDegrees = studentExamStats.Sum(s => s.degree);
 
-            // جيب الامتحانات اللي الطالب دخلها
-            var examIds = studentExamStats.Select(s => s.ExamId.Value).Distinct().ToList();
+            // IDs الامتحانات اللي دخلها
+            var examIds = studentExamStats
+                .Select(s => s.ExamId.Value)
+                .Distinct()
+                .ToList();
 
-            if(examIds==null || examIds.Count==0)
+            if (examIds == null || examIds.Count == 0)
             {
                 return new StudentProgressVM
                 {
@@ -89,11 +94,12 @@ namespace Luno_platform.Repository
                     OverallProgress = 0
                 };
             }
-            // هات الامتحانات الأصلية علشان نعرف total degree
+
+            // مجموع الدرجات النهائية للامتحانات
             var exams = _Context.Exams
                                 .Where(e => examIds.Contains(e.ExamID))
                                 .ToList();
-            // مجموع درجات الامتحانات
+
             double totalExamDegrees = exams.Sum(e => e.degreeExam);
 
             double examProgress = 0;
@@ -102,23 +108,38 @@ namespace Luno_platform.Repository
                 examProgress = (totalStudentDegrees / totalExamDegrees) * 100.0;
             }
 
-            // 2- TASK Progress
-            var allTasks = _Context.Tasks.ToList();
+            // ================== 2️⃣ TASKS ==================
 
-            // عدد الواجبات اللي الطالب سلّمها (لو StudentAnswer مستخدم لتسجيل التسليم)
-            var submittedTasks = _Context.StudentAnswers
-                                         .Where(s => s.StudentID == studentId && s.TaskId != null)
-                                         .Select(s => s.TaskId)
-                                         .Distinct()
-                                         .Count();
+            // جدول الأساس للتسكات
+            var allTasks = _Context.Studentstaistics_In_Tasks
+                .Where(s => s.StudentID == studentId && s.TaskId != null)
+                .ToList();
 
-            double taskProgress = 0;
-            if (allTasks.Count > 0)
+            // مجموع درجات الطالب في التسكات
+            double totalStudentDegreesinTask = allTasks.Sum(s => s.degree);
+
+            // IDs التسكات اللي الطالب ليه درجات فيها
+            var taskIds = allTasks
+                .Select(s => s.TaskId.Value)
+                .Distinct()
+                .ToList();
+
+            // مجموع الدرجات النهائية للتسكات
+            double totalTaskDegrees = 0;
+            if (taskIds.Any())
             {
-                taskProgress = (double)submittedTasks / allTasks.Count * 100.0;
+                totalTaskDegrees = _Context.Tasks
+                    .Where(t => taskIds.Contains(t.TaskID))
+                    .Sum(t => t.NumOfQuestions); // اسم العمود زي ما هو عندك
             }
 
-            // 3- Overall Progress
+            double taskProgress = 0;
+            if (totalTaskDegrees > 0)
+            {
+                taskProgress = (totalStudentDegreesinTask / totalTaskDegrees) * 100.0;
+            }
+
+            // ================== 3️⃣ OVERALL ==================
             double overall = (examProgress + taskProgress) / 2;
 
             return new StudentProgressVM
@@ -128,6 +149,7 @@ namespace Luno_platform.Repository
                 OverallProgress = Math.Round(overall, 2)
             };
         }
+
 
         public List<Payments> GetPayments(int studentId)
         {

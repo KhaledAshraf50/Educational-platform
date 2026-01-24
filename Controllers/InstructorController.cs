@@ -957,12 +957,12 @@ namespace Luno_platform.Controllers
                 ClassId = model.ClassId,
                 Time = model.Time,
                 NumOfQuestions = model.TotalQuestions,
-                degreeExam = model.TotalMarks,
+                degreeExam = model.TotalQuestions,
                 instructorID = GetInstructorIdFromUser()
             };
 
             _context.Exams.Add(exam);
-            _context.SaveChanges();
+             _context.SaveChanges();
 
             // بعد ما نحفظ الامتحان نروح مباشرة لإضافة الأسئلة
             return RedirectToAction("AddQuestions", new { examId = exam.ExamID });
@@ -1351,7 +1351,7 @@ namespace Luno_platform.Controllers
             var oldQuestions = _context.Questions
                 .Where(q => q.TaskId == model.TaskId);
 
-            _context.Questions.RemoveRange(oldQuestions);
+            //_context.Questions.RemoveRange(oldQuestions);
 
             foreach (var q in model.Questions)
             {
