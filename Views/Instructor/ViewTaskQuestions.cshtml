@@ -7,7 +7,7 @@
 
 <div class="container view-questions-page">
 
-    <h2 class="page-title">📝 أسئلة الواجب</h2>
+    <h2 class="page-title"> أسئلة الواجب</h2>
 
     @for (int i = 0; i < Model.Count; i++)
     {
@@ -29,7 +29,7 @@
             </div>
 
             <div class="correct-answer">
-                ✅ الإجابة الصحيحة: <span>@Model[i].correctAnswer</span>
+                 الإجابة الصحيحة: <span>@Model[i].correctAnswer</span>
             </div>
 
         </div>
@@ -37,7 +37,7 @@
 
     <div class="text-center mt-4">
         <a href="@Url.Action("Dashboard", "Instructor")" class="btn-back">
-            🔙 رجوع إلى لوحة التحكم
+            رجوع إلى لوحة التحكم
         </a>
     </div>
 

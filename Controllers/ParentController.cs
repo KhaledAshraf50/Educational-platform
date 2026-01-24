@@ -151,7 +151,7 @@ namespace Luno_platform.Controllers
 
         //------------------------
 
-        public IActionResult Invoices()
+        public IActionResult Invoices(int StudentId)
         {
             int userId = GetUserId();
             var parent = _parentRepo.GetByUserId(userId);
@@ -160,19 +160,18 @@ namespace Luno_platform.Controllers
 
             foreach (var student in students)
             {
-                int studentId = student.StudentID;
-                var payments = _parentRepo.GetPayments(studentId);
-
+                 StudentId = student.StudentID;
+                var payments = _parentRepo.GetPayments(StudentId);
                 allPayments.AddRange(payments);
             }
 
             var totalPaid = allPayments
-             .Where(p => p.status == "مقبول")
+             .Where(p => p.status == "مقبول"&&p.StudentID==StudentId)
              .Sum(p => p.amountPayment);
 
             // إجمالي الغير مدفوع (مرفوض أو قيد المراجعة)
             var totalUnpaid = allPayments
-                .Where(p => p.status == "مرفوض" || p.status == "قيد المراجعة")
+                .Where(p => p.status == "ملغي" || p.status == "تحت المراجعة")
                 .Sum(p => p.amountPayment);
 
             ViewBag.TotalPaid = totalPaid;

@@ -186,40 +186,60 @@
     {
         @foreach (var course in Model.Courses)
         {
-            <div class="card-courses">
-                <div class="image-courses">
-                    <img src="@Url.Content(course.Image)" alt="">
-                </div>
-                <div class="body-course">
-                    <div class="bodytop">
-                        <div class="bodyright">
-                            <div class="brtop">
-                                <p>@course.CourseName</p>
+            @if (course.status?.Trim().ToLower() == "active")
+            {
+                <div class="card-courses">
+                    <div class="image-courses"> <img class="" src="@Url.Content(course.Image)" alt=""></div>
+                    <div class="body-course">
+                        <div class="bodytop">
+                            <div class="bodyright">
+                                <div class="brtop">
+                                    <p> @course.CourseName </p>
+                                </div>
+                                <div class="brmid">
+                                    <p>
+                                        @course.description
+                                    </p>
+                                </div>
+                                <div class="brdowm">
+                                </div>
+
                             </div>
-                            <div class="brmid">
-                                <p>@course.description</p>
+                            <div class="bodyleft">
+                                @* <a href="/Homepage/show_details_courses/@course.CourseId" class="enroll-btn btn"> الدخول للكوس</a> *@
+                                <form method="post" asp-action="show_details_courses" asp-controller="Homepage" style="display:inline;">
+                                    <input type="hidden" name="courseId" value="@course.CourseId" />
+                                    <button type="submit" class="btn btn-secondary"> الدخول للكوس</button>
+                                </form>
+                                @* <form asp-controller="Payment" asp-action="Pay" method="post">
+                            <input type="hidden" name="courseId" value="@course.CourseId" />
+                            <input type="hidden" name="amount" value="@course.price" />
+                            <button type="submit" class="enroll-btn btn">
+                                اشترك الآن
+                            </button>
+                        </form> *@
+                            </div>
+
+                        </div>
+                        <div class="bodybuttom">
+                            <div class="price">
+                                <span>@course.price</span> جنيهًا
+                            </div>
+                            <div class="date">
+                                <h3>
+                                    @course.createdAt
+                                </h3>
+
                             </div>
                         </div>
-                        <div class="bodyleft">
-                            @* <a href="@Url.Action("CourseDetails", "Instructor", new { courseId = course.CourseId })" class="mt-2 btn btn-primary btn-sm">
-                                عرض التفاصيل
-                            </a> *@
-                            <form method="post" asp-action="CourseDetails" asp-controller="Instructor" style="display:inline;">
-                                <input type="hidden" name="courseId" value="@course.CourseId" />
-                                <button type="submit" class="btn btn-secondary"> عرض التفاصيل</button>
-                            </form>
-                        </div>
+
                     </div>
-                    <div class="bodybuttom">
-                        <div class="price">
-                            <span>@course.price</span> جنيهًا
-                        </div>
-                        <div class="date">
-                            <h3>@course.createdAt.ToShortDateString()</h3>
-                        </div>
-                    </div>
+
                 </div>
-            </div>
+            }
+
+
         }
-    }
+
+            }
 </section>
