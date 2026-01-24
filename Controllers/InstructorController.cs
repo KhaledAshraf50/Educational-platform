@@ -536,7 +536,11 @@ namespace Luno_platform.Controllers
         public IActionResult AddCourse()
         {
             int instructorId = GetInstructorIdFromUser();
-            ViewBag.subjectid = 4;
+            var instructor = _context.Instructors
+    .FirstOrDefault(i => i.instructorID == instructorId);
+
+            ViewBag.subjectid = instructor.SubjectID;
+
 
             var vm = new AddCourseVM
             {
