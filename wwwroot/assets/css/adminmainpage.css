@@ -440,3 +440,41 @@ body {
 :dir(rtl) .search input {
   direction: ltr;
 }
+/* sidebar «› —«÷Ì „Œ›Ì */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 260px;
+    height: 100vh;
+    background: #092C4C;
+    color: #fff;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+}
+
+    /* „Œ›Ì („Ê»«Ì·) */
+    .sidebar.closed {
+        transform: translateX(100%);
+    }
+
+    /* Ÿ«Â— */
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+/* overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1090;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+    .overlay.show {
+        display: block;
+        opacity: 1;
+    }

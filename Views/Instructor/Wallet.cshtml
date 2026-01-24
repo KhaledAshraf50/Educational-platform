@@ -15,6 +15,10 @@
         --light-bg: #f8fafc;
     }
 
+    /* ===============================
+       Layout
+       =============================== */
+
     .wallet-container {
         padding: 30px;
         direction: rtl;
@@ -25,6 +29,11 @@
     .sidebar:hover ~ .wallet-container {
         margin-right: 220px;
     }
+
+    /* ===============================
+       Header
+       =============================== */
+
     .wallet-header {
         background: linear-gradient(135deg, var(--primary-color) 0%, #0a3d5c 100%);
         padding: 40px;
@@ -46,6 +55,10 @@
             font-size: 16px;
         }
 
+    /* ===============================
+       Balance Cards
+       =============================== */
+
     .balance-cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -58,16 +71,8 @@
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
         border-right: 4px solid;
-        position: relative;
-        overflow: hidden;
     }
-
-        .balance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
 
         .balance-card.pending {
             border-color: var(--warning-color);
@@ -110,22 +115,18 @@
         .balance-card h3 {
             font-size: 16px;
             color: #666;
-            margin: 0 0 10px 0;
-            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .balance-card .amount {
             font-size: 36px;
             font-weight: bold;
             color: var(--primary-color);
-            margin: 0;
         }
 
-        .balance-card .note {
-            font-size: 13px;
-            color: #999;
-            margin-top: 10px;
-        }
+    /* ===============================
+       Transactions Section
+       =============================== */
 
     .transactions-section {
         background: white;
@@ -141,8 +142,13 @@
             font-size: 24px;
         }
 
+    /* ===============================
+       Table (Desktop)
+       =============================== */
+
     .table {
-        margin: 0;
+        width: 100%;
+        border-collapse: collapse;
     }
 
         .table thead {
@@ -155,26 +161,26 @@
                 font-weight: 700;
                 padding: 15px;
                 font-size: 14px;
-            }
-
-        .table tbody tr {
-            transition: all 0.3s ease;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-            .table tbody tr:hover {
-                background: #f8faff;
+                text-align: center;
             }
 
         .table tbody td {
-            padding: 18px 15px;
-            vertical-align: middle;
-            color: #333;
+            padding: 15px;
             font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
         }
 
+        .table tbody tr:hover {
+            background: #f8faff;
+        }
+
+    /* ===============================
+       Status Badges
+       =============================== */
+
     .badge {
-        padding: 8px 16px;
+        padding: 6px 14px;
         border-radius: 20px;
         font-weight: 600;
         font-size: 13px;
@@ -190,6 +196,10 @@
             color: var(--success-color);
         }
 
+    /* ===============================
+       Empty State
+       =============================== */
+
     .empty-state {
         text-align: center;
         padding: 60px 20px;
@@ -202,19 +212,57 @@
             opacity: 0.3;
         }
 
-        .empty-state h4 {
-            color: #666;
-            margin-bottom: 10px;
-        }
+    /* ===============================
+       📱 Mobile Responsive Table
+       =============================== */
 
     @@media (max-width: 768px) {
-        .balance-cards {
-            grid-template-columns: 1fr;
-        }
+        .wallet-container
+
+    {
+        margin-right: 0;
+        padding: 15px;
+    }
+
+    .sidebar:hover ~ .wallet-container {
+        margin-right: 0;
+    }
+
+    .wallet-header {
+        padding: 20px;
+        text-align: center;
+    }
 
         .wallet-header h1 {
-            font-size: 24px;
+            font-size: 22px;
         }
+
+        .wallet-header p {
+            font-size: 14px;
+        }
+
+    .balance-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .balance-card {
+        padding: 20px;
+    }
+
+        .balance-card .amount {
+            font-size: 26px;
+        }
+
+    /*  الحل الصح للجدول */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table {
+        min-width: 600px;
+    }
+
     }
 </style>
 <div class="wallet-container">
@@ -261,9 +309,10 @@
     <!-- Transactions Table -->
     <div class="transactions-section">
         <h2><i class="fa-solid fa-list"></i> سجل التحويلات</h2>
-
+        <div class="table-responsive">
         @if (Model.Teacher_Payments2 != null && Model.Teacher_Payments2.Any())
         {
+
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -303,5 +352,6 @@
                 <p>سيظهر هنا سجل التحويلات المالية</p>
             </div>
         }
+    </div>
     </div>
 </div>
