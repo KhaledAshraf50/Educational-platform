@@ -43,15 +43,16 @@
             <div class="col-md-4">
                 <div class="summary-card">
                     <h6>إجمالي المدفوع</h6>
-                    <h4>@ViewBag.TotalPaid EG</h4>
+                    <h4 id="totalPaid">@ViewBag.TotalPaid EG</h4>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="summary-card">
                     <h6>إجمالي الغير مدفوع</h6>
-                    <h4>@ViewBag.TotalUnpaid EG</h4>
+                    <h4 id="totalUnpaid">0 EG</h4>
                 </div>
             </div>
+
         </div>
 
         <!-- جدول الفواتير الأساسي -->
@@ -73,7 +74,9 @@
                     <!-- داتا فيك - الطالب الأول -->
                     @foreach (var item in Model)
                     {
-                        <tr data-student="@item.StudentID">
+                        <tr data-student="@item.StudentID"
+                            data-status="@item.status"
+                            data-amount="@item.amountPayment">
                             <td>@item.StudentID</td>
                             <td>@item.Student.User.fname @item.Student.User.lastName</td>
                             <td>@item.Courses.CourseName</td>
@@ -124,31 +127,62 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            var searchInput = document.getElementById("invoiceSearch");
             var dropdown = document.getElementById("studentsDropdown");
             var rows = document.querySelectorAll("#invoiceTable tbody tr");
+            var totalPaidEl = document.getElementById("totalPaid");
+            var totalUnpaidEl = document.getElementById("totalUnpaid");
 
-            function filterTable() {
-                var searchValue = searchInput.value.toLowerCase();
-                var selectedStudent = dropdown.value;
+            // كارت الغير مدفوع
+            var unpaidCard = totalUnpaidEl.closest(".summary-card");
+
+            function calculateTotals() {
+                let totalPaid = 0;
+                let totalUnpaid = 0;
+                let hasUnpaid = false;
 
                 rows.forEach(row => {
-                    var rowText = row.innerText.toLowerCase();
-                    var rowStudent = row.getAttribute("data-student");
 
-                    var matchesSearch = rowText.includes(searchValue);
-                    var matchesStudent = (selectedStudent === "all" || selectedStudent === rowStudent);
+                    // الصفوف الظاهرة بس
+                    if (row.style.display === "none") return;
 
-                    if (matchesSearch && matchesStudent) {
-                        row.style.display = "";
+                    let status = row.getAttribute("data-status");
+                    let amount = parseFloat(row.getAttribute("data-amount"));
+
+                    if (status === "مقبول") {
+                        totalPaid += amount;
                     } else {
-                        row.style.display = "none";
+                        totalUnpaid += amount;
+                        hasUnpaid = true;
                     }
                 });
+
+                totalPaidEl.innerText = totalPaid + " EG";
+
+                // إظهار / إخفاء الغير مدفوع
+                if (hasUnpaid) {
+                    totalUnpaidEl.innerText = totalUnpaid + " EG";
+                    unpaidCard.style.display = "block";
+                } else {
+                    unpaidCard.style.display = "none";
+                }
             }
-            searchInput.addEventListener("keyup", filterTable);
-            dropdown.addEventListener("change", filterTable);
+
+            dropdown.addEventListener("change", function () {
+                var selected = this.value;
+
+                rows.forEach(row => {
+                    var rowStudent = row.getAttribute("data-student");
+                    row.style.display =
+                        (selected === "all" || selected === rowStudent) ? "" : "none";
+                });
+
+                calculateTotals();
+            });
+
+            calculateTotals(); // أول تحميل
         });
     </script>
+
+
 
 }
