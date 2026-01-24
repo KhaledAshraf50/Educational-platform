@@ -2,9 +2,10 @@
 @{
     Layout = "_InstructorDashboard";
 }
+
 <div class="container view-questions-page mt-5">
 
-    <h2 class="page-title"> تعديل أسئلة الواجب</h2>
+    <h2 class="page-title">تعديل أسئلة الواجب</h2>
 
     <form asp-action="EditTask" method="post">
         <input type="hidden" asp-for="TaskId" />
@@ -17,57 +18,61 @@
                     سؤال @(i + 1)
                 </div>
 
+                <!-- Question Text -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold">نص السؤال</label>
-                    <input asp-for="Questions[@i].QuestionText" class="form-control form-control-lg" />
+                    <input asp-for="Questions[@i].QuestionText"
+                           class="form-control form-control-lg" />
                 </div>
 
+                <!-- Choices -->
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">A</label>
-                        <select asp-for="Questions[@i].ChooseA" class="form-select">
-                            <option selected disabled>اختر</option>
-                            <option>@Model.Questions[i].ChooseA</option>
-                        </select>
+                        <input asp-for="Questions[@i].ChooseA"
+                               class="form-control form-control-lg choice-input"
+                               data-q="@i" data-choice="A" />
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">B</label>
-                        <select asp-for="Questions[@i].ChooseB" class="form-select">
-                            <option selected disabled>اختر</option>
-                            <option>@Model.Questions[i].ChooseB</option>
-                        </select>
+                        <input asp-for="Questions[@i].ChooseB"
+                               class="form-control form-control-lg choice-input"
+                               data-q="@i" data-choice="B" />
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">C</label>
-                        <select asp-for="Questions[@i].ChooseC" class="form-select">
-                            <option selected disabled>اختر</option>
-                            <option>@Model.Questions[i].ChooseC</option>
-                        </select>
+                        <input asp-for="Questions[@i].ChooseC"
+                               class="form-control form-control-lg choice-input"
+                               data-q="@i" data-choice="C" />
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">D</label>
-                        <select asp-for="Questions[@i].ChooseD" class="form-select">
-                            <option selected disabled>اختر</option>
-                            <option>@Model.Questions[i].ChooseD</option>
-                        </select>
+                        <input asp-for="Questions[@i].ChooseD"
+                               class="form-control form-control-lg choice-input"
+                               data-q="@i" data-choice="D" />
                     </div>
                 </div>
 
+                <!-- Correct Answer -->
                 <div class="correct-answer">
-                    <label> الإجابة الصحيحة</label>
-
-                    <select asp-for="Questions[i].CorrectAnswer" class="form-select">
+                    <label class="fw-semibold">الإجابة الصحيحة</label>
+                    <select asp-for="Questions[i].CorrectAnswer"
+                            class="form-select correct-answer-select"
+                            data-q="@i">
                         <option value="">اختر الإجابة</option>
-                        <option value="@Model.Questions[i].ChooseA" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseA)">
+                        <option value="@Model.Questions[i].ChooseA">
                             @Model.Questions[i].ChooseA
                         </option>
-                        <option value="@Model.Questions[i].ChooseB" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseB)">
+                        <option value="@Model.Questions[i].ChooseB">
                             @Model.Questions[i].ChooseB
                         </option>
-                        <option value="@Model.Questions[i].ChooseC" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseC)">
+                        <option value="@Model.Questions[i].ChooseC">
                             @Model.Questions[i].ChooseC
                         </option>
-                        <option value="@Model.Questions[i].ChooseD" selected="@(Model.Questions[i].CorrectAnswer == Model.Questions[i].ChooseD)">
+                        <option value="@Model.Questions[i].ChooseD">
                             @Model.Questions[i].ChooseD
                         </option>
                     </select>
@@ -77,12 +82,15 @@
         }
 
         <div class="text-center mt-4">
-            <button type="submit" class="btn-back w-100"> حفظ التعديلات</button>
+            <button type="submit" class="btn-back w-100">
+                حفظ التعديلات
+            </button>
         </div>
     </form>
 
 </div>
 
+<!-- ================= STYLE ================= -->
 <style>
     :root {
         --primary: #092c4c;
@@ -94,7 +102,6 @@
         background: var(--soft-bg);
     }
 
-    /* Page */
     .view-questions-page {
         max-width: 950px;
         padding: 35px 10px;
@@ -109,7 +116,6 @@
         font-size: 2rem;
     }
 
-    /* Card */
     .question-view-card {
         background: #fff;
         border-radius: 16px;
@@ -125,7 +131,6 @@
             box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Header */
         .question-view-card .header {
             background: linear-gradient(135deg, var(--primary), #104b7e);
             color: white;
@@ -136,22 +141,14 @@
             margin-bottom: 20px;
         }
 
-    /* Form Labels */
-    .form-label {
-        font-weight: 600;
-    }
-
-    /* Back / Save Button */
     .btn-back {
         background: linear-gradient(135deg, var(--primary), #1268a5);
         color: white;
-        text-decoration: none;
         font-weight: bold;
         padding: 12px 35px;
         border-radius: 30px;
-        display: inline-block;
-        transition: .25s ease;
         border: none;
+        transition: .25s ease;
     }
 
         .btn-back:hover {
@@ -160,3 +157,31 @@
             color: white;
         }
 </style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+    document.querySelectorAll('.choice-input').forEach(input => {
+        input.addEventListener('input', function () {
+
+            const qIndex = this.dataset.q;
+            const choice = this.dataset.choice;
+            const select = document.querySelector(
+                `.correct-answer-select[data-q='${qIndex}']`
+            );
+
+            if (!select) return;
+
+            const optionMap = { A: 1, B: 2, C: 3, D: 4 };
+            const option = select.options[optionMap[choice]];
+
+            const wasSelected = option.selected;
+
+            option.text = this.value;
+            option.value = this.value;
+
+            if (wasSelected) {
+                select.value = this.value;
+            }
+        });
+    });
+</script>
