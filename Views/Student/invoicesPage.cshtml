@@ -6,34 +6,35 @@
     <link rel="stylesheet" href="~/assets/css/invoices.css">
 }
 <div class="InvoicesPage m-3" id="InvoicesPage">
-    <div class="container text-center mt-3 ">
-        <div class="d-flex justify-content-between align-items-center mb-3" style="gap: 15px;">
+   
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 balance-wrapper gap-3">
+
             <!-- زر الرصيد -->
-            <button class="pay-btn d-flex align-items-center justify-content-center"
-                    style="
-            min-width: 150px;
-            height: 50px;
-            font-size: 18px;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border: none;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        "
-                    onmouseover="this.style.backgroundColor='var(--secondary-color)'; this.style.boxShadow='var(--hover-shadow)';"
-                    onmouseout="this.style.backgroundColor='var(--primary-color)'; this.style.boxShadow='var(--card-shadow)';">
+            <button class="pay-btn d-flex align-items-center justify-content-center">
                 <span class="counter">EG @ViewBag.Balance</span>
                 <i class="fa-solid fa-coins ms-2"></i>
             </button>
 
 
 
+
             <!-- نموذج شحن الرصيد -->
-            <form method="post" asp-controller="Student" asp-action="ChargeBalance" class="d-flex align-items-center" style="gap: 10px;">
-                <input type="number" name="amount" class="form-control" placeholder="ادخل مبلغ الشحن" required style="width: 150px; height: 45px; text-align: center;" />
-                <button type="submit" class="btn btn-success" style="height: 45px;">شحن الرصيد</button>
+            <form method="post"
+                  asp-controller="Student"
+                  asp-action="ChargeBalance"
+                  class="charge-form d-flex flex-wrap align-items-center gap-2">
+
+
+                <input type="number"
+                       name="amount"
+                       class="form-control charge-input"
+                       placeholder="ادخل مبلغ الشحن"
+                       required />
+                <button type="submit" class="btn btn-success charge-btn">
+                    شحن الرصيد
+                </button>
             </form>
+
         </div>
 
         <div class="header d-flex justify-content-between align-items-center mb-3">
