@@ -118,9 +118,10 @@
     <div class="container">
         <h2>تعديل الكورس</h2>
 
-        <form asp-action="CourseDetails" method="post" enctype="multipart/form-data">
+        <form asp-action="EditCourse" method="post" enctype="multipart/form-data">
             @* <inpt type="hidden" asp-for="courseId" /> *@
-            <input type="hidden" name="courseId" value="@Model.CourseId" />
+            <input type="hidden" asp-for="CourseId" />
+            @Html.AntiForgeryToken()
 
             <!-- الاسم والوصف والسعر -->
             <div class="mb-3">
@@ -141,14 +142,8 @@
             <!-- الصورة -->
             <div class="mb-3">
                 <label>الصورة الحالية</label><br />
-                <img src="@Model.Image" alt="Course Image" width="200" class="mb-2" />
+                <input type="file" name="ImageFile" class="form-control" />
             </div>
-
-            <div class="mb-3">
-                <label>رفع صورة جديدة (اختياري)</label>
-                <input type="file" name="CourseImage" class="form-control" />
-            </div>
-
             <hr />
             <h4>محتوى الكورس</h4>
 

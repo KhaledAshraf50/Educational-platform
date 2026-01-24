@@ -13,6 +13,13 @@ namespace Luno_platform
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDistributedMemoryCache(); // لتخزين البيانات مؤقتًا في الذاكرة
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // مدة انتهاء الصلاحية
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             // =============================
             // Add services to the container
             // =============================
@@ -133,6 +140,7 @@ namespace Luno_platform
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseSession();
 
             app.UseStaticFiles();
             app.UseRouting();
