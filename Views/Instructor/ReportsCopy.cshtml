@@ -16,21 +16,22 @@
             <i class="fa-solid fa-circle-user"></i>
         </button>
     </div>
-    <div class="Reportspage m-3 bodycontent">
-        <div class="search d-flex mb-3">
-            <input type="search" id="Search" class="form-control me-3" placeholder="اكتب للبحث" asp-for="Search">
+    <div class="Reportspage bodycontent">
+        <!-- منطقة البحث -->
+        <div class="search mb-3">
+            <input type="search"
+                   id="Search"
+                   class="form-control w-100"
+                   placeholder="اكتب للبحث"
+                   asp-for="Search">
         </div>
-        <div class="flexToProg mb-3">
-            <div class="sub-choose d-flex">
-                @* <select asp-for="SelectedSubjectId" id="SelectedSubjectId" class="form-select mx-2">
-                    <option value="">اختر المادة</option>
-                    @foreach (var s in Model.Subjects)
-                    {
-                        <option value="@s.SubjectID">@s.SubjectNameAR</option>
-                    }
-                </select> *@
 
-                <select asp-for="SelectedClassId" id="SelectedClassId" class="form-select mx-2">
+        <!-- منطقة الفلاتر -->
+        <div class="flexToProg mb-3">
+            <div class="sub-choose">
+                <select asp-for="SelectedClassId"
+                        id="SelectedClassId"
+                        class="form-select">
                     <option value="">اختر الصف</option>
                     @foreach (var c in Model.Classes)
                     {
@@ -40,29 +41,34 @@
             </div>
         </div>
 
-        <table class="table subject-table table-striped table-hover text-center align-middle table_Edit" id="arabic">
-            <thead class="table-light">
-                <tr>
-                    <th>الكورس</th>
-                    <th>المادة</th>
-                    <th>الصف</th>
-                    <th>عدد الطلاب</th>
-                    <th>الأرباح</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Courses)
-                {
+        <!-- الجدول مع responsive wrapper -->
+        <div class="table-responsive">
+            <table class="table subject-table table-striped table-hover text-center align-middle table_Edit" id="arabic">
+                <thead class="table-light">
                     <tr>
-                        <td>@item.CourseName</td>
-                        <td>@item.SubjectName</td>
-                        <td>@item.ClassName</td>
-                        <td>@item.StudentsCount</td>
-                        <td>@item.Earnings</td>
+                        <th>الكورس</th>
+                        <th>المادة</th>
+                        <th>الصف</th>
+                        <th>عدد الطلاب</th>
+                        <th>الأرباح</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Courses)
+                    {
+                        <tr>
+                            <td>@item.CourseName</td>
+                            <td>@item.SubjectName</td>
+                            <td>@item.ClassName</td>
+                            <td>@item.StudentsCount</td>
+                            <td>@item.Earnings</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
