@@ -33,4 +33,4 @@ The system allows managing classes, lessons (online & offline), exams, homework,
 Initial setup created. Development in progress.
 
 ##  link of site 
-http://lunoplatform.somee.com/
+https://lunoplatform-dhdse2d2fgdzgkab.westeurope-01.azurewebsites.net/
